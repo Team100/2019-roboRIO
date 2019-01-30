@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Wiring</title>
+    <style type="text/css" media="screen">
+      table {
+          text-align: left;
+          width: 480px;
+
+          border-top: 2px solid black;
+          border-bottom: 2px solid black;
+          border-collapse:collapse;
+          border-spacing:0px;
+      }
+      th {
+          border-top: 2px solid black;
+          border-bottom: 2px solid black;
+      }
+      .pound {
+          width: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Wiring</h1>
+                            <h2>PWMs</h2>
+        <table><tr>
+            <th class="pound">#</th>
+            <th>Subsystem</th>
+            <th>Motor</th>
+            <th>Type</th></tr>
+                                                    <tr><td>0</td><td>CargoFloorPickup </td><td>RollorCargoFloorPickup</td><td>VictorSP</td></tr>
+                                                          <tr><td>1</td><td>HatchFloorPickup </td><td>Roller</td><td>VictorSP</td></tr>
+                                                                                                                                                                                                                                                                                                                             </table>
+     
+                <h2>CAN IDs</h2>
+    <table><tr>
+    <th class="pound">ID</th>
+    <th>Subsystem</th>
+    <th>Device</th>
+    <th>Type</th></tr>
+                                              <tr><td>0</td><td>DriveTrain </td><td>LeftMaster</td><td>Talon SRX</td></tr>
+                                                          <tr><td>1</td><td>DriveTrain </td><td>LeftFollower</td><td>Victor SPX</td></tr>
+                                                          <tr><td>2</td><td>CarriageShoulder </td><td>CarriageShoulderMotor</td><td>Talon SRX</td></tr>
+                                                          <tr><td>3</td><td>Climber </td><td>ClimberFollower2</td><td>Victor SPX</td></tr>
+                                                          <tr><td>4</td><td>Cargo_HatchScore </td><td>TopBallRollerShooter</td><td>Talon SRX</td></tr>
+                                                          <tr><td>5</td><td>Cargo_HatchScore </td><td>BottomBallRollerShooter</td><td>Talon SRX</td></tr>
+                                                          <tr><td>6</td><td>CargoFloorPickup </td><td>TiltCargoFloorPickup</td><td>Talon SRX</td></tr>
+                                                                                  <tr><td>9</td><td>HatchFloorPickup </td><td>Tilt</td><td>Talon SRX</td></tr>
+                                                          <tr><td>10</td><td>Elevator </td><td>ElevatorMaster</td><td>Talon SRX</td></tr>
+                                                          <tr><td>11</td><td>Elevator </td><td>ElevatorFollower</td><td>Victor SPX</td></tr>
+                                                          <tr><td>12</td><td>Climber </td><td>ClimberMaster</td><td>Talon SRX</td></tr>
+                                                          <tr><td>13</td><td>Climber </td><td>ClimberFollower1</td><td>Victor SPX</td></tr>
+                                                          <tr><td>14</td><td>DriveTrain </td><td>RightFollower</td><td>Victor SPX</td></tr>
+                                                          <tr><td>15</td><td>DriveTrain </td><td>RightMaster</td><td>Talon SRX</td></tr>
+                                                                                                                                                 </table>
+    
+            
+                        
+                    <h2>PCM 0</h2>
+        <table><tr>
+            <th class="pound">#</th>
+            <th>Subsystem</th>
+            <th>Solenoid</th></tr>
+                                                                        <tr><td>0</td><td>Shifter </td><td>DriveTrainShifter Output </td><td></td></tr>
+                                                                                              <tr><td>1</td><td>Cargo_HatchScore </td><td>LoadingStationIntake Output </td><td></td></tr>
+                                                                                              <tr><td>2</td><td>Cargo_HatchScore </td><td>HatchScorer Output </td><td></td></tr>
+                                                                                              <tr><td>3</td><td>Cargo_HatchScore </td><td>CargoScorer Output </td><td></td></tr>
+                                                                                              <tr><td>4</td><td>HatchFloorPickup </td><td>HatchFloorPickup Output </td><td></td></tr>
+                                                                                              <tr><td>5</td><td>CargoFloorPickup </td><td>CargoGroundPickup Output </td><td></td></tr>
+                                                                                              <tr><td>6</td><td>Climber </td><td>Deploy Output </td><td></td></tr>
+                                                                                                                                                                                                                                                                                 </table>
+                                                                                                                                                                                                                                                    
+          </body>
+</html>
