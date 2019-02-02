@@ -74,7 +74,8 @@ public class OI {
         
         shifterButton = new JoystickButton(leftStick, 3);
         shifterButton.whenPressed(new HighGear());
-
+        
+        driveButton = new JoystickButton(leftStick, 1);
 
         // SmartDashboard Buttons
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
