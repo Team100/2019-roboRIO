@@ -19,7 +19,7 @@ import org.usfirst.frc100.Team100Robot.Robot;
 public class Drive extends Command {
     
     public Drive() {
-        requires(Robot.driveTrain);
+        requires(Robot.drivetrain);
     }
 
     // Called just before this Command runs the first time
@@ -30,7 +30,7 @@ public class Drive extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.driveTrain.drive();
+        Robot.drivetrain.drive();
     }
 
     // Make this return true when this Command no longer needs to run execute()

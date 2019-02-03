@@ -58,10 +58,10 @@ public class Constants {
     public static final boolean DRIVE_TRAIN_RIGHT_MASTER_INVERT = false;
     public static final InvertType DRIVE_TRAIN_RIGHT_FOLLOWER_INVERT = InvertType.FollowMaster;
     //PID Rotation with NavX
-    public static final double DT_MASTER_P = 0.007;
-    public static final double DT_MASTER_I = 0.00004;
-    public static final double DT_MASTER_D = 0.002;
-    public static final double DT_MASTER_F = 0;
+    public static final double DT_TURN_P = 0.007;
+    public static final double DT_TURN_I = 0.00004;
+    public static final double DT_TURN_D = 0.002;
+    public static final double DT_TURN_F = 0;
     public static final double DT_TURN_MIN_ROTATION_ANGLE = -180;
     public static final double DT_TURN_MAX_ROTATION_ANGLE = 180;
     public static final double DT_TURN_MIN_OUTPUT = -1;
