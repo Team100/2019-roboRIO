@@ -57,6 +57,7 @@ public class Constants {
     public static final InvertType DRIVE_TRAIN_LEFT_FOLLOWER_INVERT = InvertType.FollowMaster;
     public static final boolean DRIVE_TRAIN_RIGHT_MASTER_INVERT = false;
     public static final InvertType DRIVE_TRAIN_RIGHT_FOLLOWER_INVERT = InvertType.FollowMaster;
+    public static final boolean ARCADE_DRIVE_MODE = true;
     //PID Rotation with NavX
     public static final double DT_TURN_P = 0.007;
     public static final double DT_TURN_I = 0.00004;
@@ -67,7 +68,34 @@ public class Constants {
     public static final double DT_TURN_MIN_OUTPUT = -1;
     public static final double DT_TURN_MAX_OUTPUT = 1;
     public static final double DT_TURN_ABSOLUTE_TOLERANCE = 1;
-    public static final double DRIVE_TRAIN_PIVOT_MOTOR_OUTPUT = 0.5;
-    public static final boolean ARCADE_DRIVE_MODE = true;
+    public static final double DT_TURN_MOTOR_OUTPUT = 0.5;
+
+    /*
+     * Elevator
+     */
+
+    /*
+     * Elevator Carriage
+     */
+
+    /*
+     * Cargo Floor Pickup
+     */
+
+    /*
+     * Hatch Floor Pickup
+     */
+    public static final double HATCH_PICKUP_INTAKE_SPEED = 0.6;
+    public static final double HATCH_PICKUP_TILT_SPEED = 0.2;
+	public static final int HATCH_PICKUP_UPPER_LIMIT_SWITCH_SLOT = 0;
+	public static final int HATCH_PICKUP_LOWER_LIMIT_SWITCH_SLOT = 1;
+
+    /*
+     * Cargo Hatch Score
+     */
+
+    /*
+     * Climber
+     */
 
 }

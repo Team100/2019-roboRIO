@@ -13,8 +13,8 @@ package org.usfirst.frc100.Team100Robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
 import org.usfirst.frc100.Team100Robot.Constants;
+import org.usfirst.frc100.Team100Robot.commands.PickupHatch;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -36,19 +36,35 @@ public class HatchFloorPickup extends Subsystem {
         roller.setInverted(false);
         
         hatchFloorPickup = new Solenoid(Constants.PCM_CANID, Constants.HATCH_PICKUP_PCMID);
-        addChild("HatchFloorPickup",hatchFloorPickup);
+        addChild("HatchFloorPickup", hatchFloorPickup);
     }
  
     @Override
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        // setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new PickupHatch());
     }
 
     @Override
     public void periodic() {
         // Put code here to be run every loop
 
+    }
+
+    public void intake(){
+        roller.set(Constants.HATCH_PICKUP_INTAKE_SPEED);
+    }
+
+    public void stopRoller(){
+        roller.set(0);
+    }
+
+    public void tiltUp(){
+        if(tilt.getSelectedSensorPosition(Constants.HATCH_PICKUP_UPPER_LIMIT_SWITCH_SLOT) == 0) tilt.set(-Constants.HATCH_PICKUP_TILT_SPEED);
+    }
+
+    public void tiltDown(){
+        if(tilt.getSelectedSensorPosition(Constants.HATCH_PICKUP_LOWER_LIMIT_SWITCH_SLOT) == 0) tilt.set(-Constants.HATCH_PICKUP_TILT_SPEED);
     }
 
     // Put methods for controlling this subsystem

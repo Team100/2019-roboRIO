@@ -101,8 +101,8 @@ public class Drivetrain extends Subsystem implements PIDOutput {
 
 	@Override
 	public void pidWrite(double output) {
-        leftMaster.set(ControlMode.PercentOutput, output*Constants.DRIVE_TRAIN_PIVOT_MOTOR_OUTPUT);
-        rightMaster.set(ControlMode.PercentOutput, output*Constants.DRIVE_TRAIN_PIVOT_MOTOR_OUTPUT);
+        leftMaster.set(ControlMode.PercentOutput, output*Constants.DT_TURN_MOTOR_OUTPUT);
+        rightMaster.set(ControlMode.PercentOutput, output*Constants.DT_TURN_MOTOR_OUTPUT);
     }
 
     // Put methods for controlling this subsystem
