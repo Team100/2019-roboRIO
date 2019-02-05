@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
     public static OI oi;
     public static boolean arcade = true;
     public static int timer = 0;
-    public static Drivetrain drivetrain;
+    public static DriveTrain drivetrain;
     public static Shifter shifter;
     public static CarriageShoulder carriageShoulder;
     public static Climber climber;
@@ -55,7 +55,7 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         ahrs = new AHRS(Constants.NAVX_COMM_PORT);
 
-        drivetrain = new Drivetrain();
+        drivetrain = new DriveTrain();
         shifter = new Shifter();
         carriageShoulder = new CarriageShoulder();
         climber = new Climber();

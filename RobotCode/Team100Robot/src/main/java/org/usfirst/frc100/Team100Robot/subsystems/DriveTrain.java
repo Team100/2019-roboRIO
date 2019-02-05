@@ -11,25 +11,24 @@
 
 package org.usfirst.frc100.Team100Robot.subsystems;
 
-import org.usfirst.frc100.Team100Robot.Constants;
-import org.usfirst.frc100.Team100Robot.Robot;
-import org.usfirst.frc100.Team100Robot.commands.*;
-
-import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.command.Subsystem;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
+import org.usfirst.frc100.Team100Robot.Constants;
+import org.usfirst.frc100.Team100Robot.Robot;
+import org.usfirst.frc100.Team100Robot.commands.Drive;
+
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class Drivetrain extends Subsystem implements PIDOutput {
+public class DriveTrain extends Subsystem implements PIDOutput {
     private WPI_TalonSRX leftMaster;
     private WPI_TalonSRX rightMaster;
     private DifferentialDrive differentialDrive;
@@ -37,7 +36,7 @@ public class Drivetrain extends Subsystem implements PIDOutput {
     private WPI_VictorSPX rightFollower;
     public PIDController turnPID;
 
-    public Drivetrain() {
+    public DriveTrain() {
         leftMaster = new WPI_TalonSRX(Constants.DRIVE_TRAIN_LEFT_MASTER_CANID);
         rightMaster = new WPI_TalonSRX(Constants.DRIVE_TRAIN_RIGHT_MASTER_CANID);
         
