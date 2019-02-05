@@ -28,7 +28,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class DriveTrain extends Subsystem implements PIDOutput {
+public class Drivetrain extends Subsystem implements PIDOutput {
     private WPI_TalonSRX leftMaster;
     private WPI_TalonSRX rightMaster;
     private DifferentialDrive differentialDrive;
@@ -36,7 +36,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     private WPI_VictorSPX rightFollower;
     public PIDController turnPID;
 
-    public DriveTrain() {
+    public Drivetrain() {
         leftMaster = new WPI_TalonSRX(Constants.DRIVE_TRAIN_LEFT_MASTER_CANID);
         rightMaster = new WPI_TalonSRX(Constants.DRIVE_TRAIN_RIGHT_MASTER_CANID);
         
