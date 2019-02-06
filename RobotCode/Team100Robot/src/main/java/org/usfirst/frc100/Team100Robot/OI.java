@@ -49,27 +49,68 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
 
-    public JoystickButton shifterButton;
-    public Joystick leftStick;
-    public JoystickButton shifterButtonLowGear;
-    public Joystick rightStick;
-    public Joystick manipulatorControl;
-    public JoystickButton driveButton;
+    private Joystick leftStick;
+    private Joystick rightStick;
+    private Joystick manipulatorControl;
+    
+    private JoystickButton shiftLow;
+    private JoystickButton shiftHigh;
+    private JoystickButton spitCargo;
+    private JoystickButton hatchUp;
+    private JoystickButton hatchDown;
+    private JoystickButton intakeCargo;
+    private JoystickButton cargoUp;
+    private JoystickButton cargoDown;
+    private JoystickButton climberToggle;
+    private JoystickButton hatchClamp;
+    private JoystickButton elevatorStageUp;
+    private JoystickButton hatchRelease;
+    private JoystickButton elevatorStageDown;
 
     public OI() {
 
-        manipulatorControl = new Joystick(2);
-        
-        rightStick = new Joystick(1);
-        
-        shifterButtonLowGear = new JoystickButton(rightStick, 3);
-        shifterButtonLowGear.whenPressed(new LowGear());
+        /*
+         * INIT Joysticks
+         */
         leftStick = new Joystick(0);
+        rightStick = new Joystick(1);
+        manipulatorControl = new Joystick(2);
+
         
-        shifterButton = new JoystickButton(leftStick, 3);
-        shifterButton.whenPressed(new HighGear());
+        /* 
+         * Joystick 0 (Left Stick)
+         */
+        spitCargo = new JoystickButton(leftStick, 1);
+
+        shiftLow = new JoystickButton(leftStick, 3);
+        shiftLow.whenPressed(new LowGear());
         
-        driveButton = new JoystickButton(leftStick, 1);
+        hatchUp = new JoystickButton(leftStick, 4);
+ 
+        hatchDown = new JoystickButton(leftStick, 5);
+
+        //Joystick 1 (Right Stick)
+        intakeCargo = new JoystickButton(rightStick, 1);
+        
+        shiftHigh = new JoystickButton(rightStick, 3);
+        shiftHigh.whenPressed(new HighGear());
+        
+        cargoUp = new JoystickButton(rightStick, 4);
+ 
+        cargoDown = new JoystickButton(rightStick, 5);
+
+        //Joystick 2 (Manipulator Control)
+        climberToggle = new JoystickButton(manipulatorControl, 4);
+ 
+        hatchClamp = new JoystickButton(manipulatorControl, 5);
+
+        elevatorStageUp = new JoystickButton(manipulatorControl, 6);
+
+        hatchRelease = new JoystickButton(manipulatorControl, 7);
+
+        elevatorStageDown = new JoystickButton(manipulatorControl, 8);
+
+        
 
         // SmartDashboard Buttons
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());

@@ -34,8 +34,6 @@ public class Robot extends TimedRobot {
     SendableChooser<Command> chooser = new SendableChooser<>();
 
     public static OI oi;
-    public static boolean arcade = true;
-    public static int timer = 0;
     public static Drivetrain drivetrain;
     public static Shifter shifter;
     public static CarriageShoulder carriageShoulder;
@@ -122,20 +120,6 @@ public class Robot extends TimedRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         currentHeading = ahrs.getFusedHeading();
-        if(timer > 0) timer--;
-        if(oi.driveButton.get() && timer == 0){
-            toggleArcade();
-            timer = 25;
-        }
-    }
-
-    public static boolean getArcade(){
-        return arcade;
-    }
-
-    public static void toggleArcade(){
-        if(arcade) arcade = false;
-        else arcade = true;
     }
 
     public static double getCurrentHeading(){
