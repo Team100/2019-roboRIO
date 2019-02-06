@@ -39,8 +39,8 @@ public class Robot extends TimedRobot {
     public static CarriageShoulder carriageShoulder;
     public static Climber climber;
     public static CargoHatchScore cargoHatchScore;
-    public static CargoFloorPickup cargoFloorPickup;
-    public static HatchFloorPickup hatchFloorPickup;
+    public static CargoPickup cargoPickup;
+    public static HatchPickup hatchPickup;
     public static Elevator elevator;
     public static double currentHeading;
     public static AHRS ahrs;
@@ -58,8 +58,8 @@ public class Robot extends TimedRobot {
         carriageShoulder = new CarriageShoulder();
         climber = new Climber();
         cargoHatchScore = new CargoHatchScore();
-        cargoFloorPickup = new CargoFloorPickup();
-        hatchFloorPickup = new HatchFloorPickup();
+        cargoPickup = new CargoPickup();
+        hatchPickup = new HatchPickup();
         elevator = new Elevator();
 
         // OI must be constructed after subsystems. If the OI creates Commands

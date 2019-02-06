@@ -14,7 +14,6 @@ package org.usfirst.frc100.Team100Robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import org.usfirst.frc100.Team100Robot.Constants;
-import org.usfirst.frc100.Team100Robot.commands.PickupHatch;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -22,13 +21,13 @@ import edu.wpi.first.wpilibj.VictorSP;
 /**
  *
  */
-public class HatchFloorPickup extends Subsystem {
+public class HatchPickup extends Subsystem {
 
     private WPI_TalonSRX tilt;
     private VictorSP roller;
     private Solenoid hatchFloorPickup;
 
-    public HatchFloorPickup() {
+    public HatchPickup() {
         tilt = new WPI_TalonSRX(Constants.HATCH_PICKUP_TILT_CANID);
         
         roller = new VictorSP(Constants.HATCH_PICKUP_ROLLER_PWM);
@@ -42,7 +41,7 @@ public class HatchFloorPickup extends Subsystem {
     @Override
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new PickupHatch());
+        // setDefaultCommand(new PickupHatch());
     }
 
     @Override

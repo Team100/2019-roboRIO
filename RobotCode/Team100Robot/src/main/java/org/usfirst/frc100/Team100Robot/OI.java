@@ -81,6 +81,7 @@ public class OI {
          * Joystick 0 (Left Stick)
          */
         spitCargo = new JoystickButton(leftStick, 1);
+        spitCargo.whenPressed(new SpitCargo());
 
         shiftLow = new JoystickButton(leftStick, 3);
         shiftLow.whenPressed(new LowGear());
@@ -96,8 +97,10 @@ public class OI {
         shiftHigh.whenPressed(new HighGear());
         
         cargoUp = new JoystickButton(rightStick, 4);
+        cargoUp.whenPressed(new CargoUp());
  
         cargoDown = new JoystickButton(rightStick, 5);
+        cargoDown.whenPressed(new CargoDown());
 
         //Joystick 2 (Manipulator Control)
         climberToggle = new JoystickButton(manipulatorControl, 4);
@@ -110,7 +113,7 @@ public class OI {
 
         elevatorStageDown = new JoystickButton(manipulatorControl, 8);
 
-        
+
 
         // SmartDashboard Buttons
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());

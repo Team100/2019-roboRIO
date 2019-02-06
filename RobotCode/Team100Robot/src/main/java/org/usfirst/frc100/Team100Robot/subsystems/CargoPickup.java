@@ -22,13 +22,13 @@ import edu.wpi.first.wpilibj.VictorSP;
 /**
  *
  */
-public class CargoFloorPickup extends Subsystem {
+public class CargoPickup extends Subsystem {
 
     private WPI_TalonSRX tiltCargoFloorPickup;
     private VictorSP rollerCargoFloorPickup;
     private Solenoid cargoGroundPickup;
 
-    public CargoFloorPickup() {
+    public CargoPickup() {
         tiltCargoFloorPickup = new WPI_TalonSRX(Constants.CARGO_PICKUP_TILT_PWM);
 
         rollerCargoFloorPickup = new VictorSP(Constants.CARGO_PICKUP_ROLLER_PWM);
