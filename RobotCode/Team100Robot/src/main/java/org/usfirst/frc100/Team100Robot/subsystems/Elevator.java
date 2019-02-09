@@ -17,15 +17,24 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import org.usfirst.frc100.Team100Robot.Constants;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorAtSetpoint;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.Homing.ElevatorHomingInit;
 
 /**
  *
  */
 public class Elevator extends Subsystem {
 
+
     private WPI_TalonSRX elevatorMaster;
     private WPI_VictorSPX elevatorFollower;
 
+    public enum homingStates{
+        INIT,ELEV_GOING_DOWN,ELEV_AT_LIMIT_SWITCH,ELEV_RISING,COMPLETE,FATAL
+    }
+    public enum states{
+
+    }
     public Elevator() {
         elevatorMaster = new WPI_TalonSRX(Constants.ELEVATOR_MASTER_CANID);
         elevatorFollower = new WPI_VictorSPX(Constants.ELEVATOR_FOLLOWER_CANID);
@@ -35,6 +44,8 @@ public class Elevator extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new ElevatorAtSetpoint());
+        new ElevatorHomingInit().start();
     }
 
     @Override
