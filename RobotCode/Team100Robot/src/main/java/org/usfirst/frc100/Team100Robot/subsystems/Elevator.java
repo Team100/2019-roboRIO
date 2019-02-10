@@ -12,12 +12,16 @@
 package org.usfirst.frc100.Team100Robot.subsystems;
 
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import org.usfirst.frc100.Team100Robot.Constants;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorAtSetpoint;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorMoveToSetpoint;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.Homing.ElevatorHomingInit;
 
 /**
@@ -26,18 +30,53 @@ import org.usfirst.frc100.Team100Robot.commands.Elevator.Homing.ElevatorHomingIn
 public class Elevator extends Subsystem {
 
 
-    private WPI_TalonSRX elevatorMaster;
-    private WPI_VictorSPX elevatorFollower;
-
+    public WPI_TalonSRX elevatorMaster;
+    public WPI_VictorSPX elevatorFollower;
+    public DigitalInput lowerLimitSwitch = new DigitalInput(0);
+    public DigitalInput upperLimitSwitch = new DigitalInput(1);
+    public DigitalInput intermediateLimitSwitch = new DigitalInput(3);
+    public DigitalInput intermediateDownLimitSwitch = new DigitalInput(4);
+    public int setpoint;
+    /**
+     * Enum for possible homing states of the elevator
+     */
     public enum homingStates{
         INIT,ELEV_GOING_DOWN,ELEV_AT_LIMIT_SWITCH,ELEV_RISING,COMPLETE,FATAL
     }
+    /**
+     * The homing state of the elevator
+     */
+    public homingStates hs;
+    /**
+     * Possible states for the elevator to be in
+     */
     public enum states{
-
+        AT_SETPOINT,MOVE_TO_SETPOINT,HOMING
     }
+    /**
+     * The current state of the elevator
+     */
+    public states state;
+
     public Elevator() {
         elevatorMaster = new WPI_TalonSRX(Constants.ELEVATOR_MASTER_CANID);
         elevatorFollower = new WPI_VictorSPX(Constants.ELEVATOR_FOLLOWER_CANID);
+    }
+
+    /**
+     * Set the setpoint for the Talon SRX given the setpoint instance variable
+     */
+    public void updateSetpoint(){
+        new ElevatorMoveToSetpoint();
+    }
+    /**
+     * Set the setpoint for the Talon SRX
+     * @param setpoint
+     */
+    public void updateSetpoint(int setpoint){
+        this.setpoint = setpoint;
+        this.updateSetpoint();
+
     }
 
     @Override
@@ -53,6 +92,7 @@ public class Elevator extends Subsystem {
         // Put code here to be run every loop
 
     }
+    
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
