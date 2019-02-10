@@ -50,13 +50,13 @@ public class Elevator extends Subsystem {
     /**
      * Possible states for the elevator to be in
      */
-    public enum states{
+    public enum States{
         AT_SETPOINT,MOVE_TO_SETPOINT,HOMING
     }
     /**
      * The current state of the elevator
      */
-    public states state;
+    public States state;
 
     public Elevator() {
         elevatorMaster = new WPI_TalonSRX(Constants.ELEVATOR_MASTER_CANID);

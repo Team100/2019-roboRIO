@@ -9,6 +9,7 @@ package org.usfirst.frc100.Team100Robot.commands.Elevator.Homing;
 
 import org.usfirst.frc100.Team100Robot.Robot;
 import org.usfirst.frc100.Team100Robot.subsystems.Elevator.homingStates;
+import org.usfirst.frc100.Team100Robot.subsystems.Elevator.States;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -35,12 +36,13 @@ public class ElevatorHomingComplete extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.elevator.updateSetpoint(1000);
   }
 
   // Called when another command which requires one or more of the same
