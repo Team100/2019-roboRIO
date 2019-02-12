@@ -80,6 +80,24 @@ public class Constants {
      public static final double HOMING_GOING_UP_POWER = 0.025;
      /**Buffer in elevator target for acceptable destination */
      public static final int ELEVATOR_POSITION_BUFFER = 750;
+
+
+
+     ////////////// PID
+
+     /**Elevator PID P */
+     public static final double ELEVATOR_KP = 1.0;
+
+     /**Elevator PID I */
+     public static final double ELEVATOR_KI = 0;
+
+     /**Elevator PID D */
+     public static final double ELEVATOR_KD = 0;
+
+     /**Elevator PID F */
+     public static final double ELEVATOR_KF = 1;
+
+
     /*
      * Elevator Carriage
      */

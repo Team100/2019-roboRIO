@@ -13,6 +13,7 @@ package org.usfirst.frc100.Team100Robot.subsystems;
 
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -24,9 +25,7 @@ import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorAtSetpoint;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorMoveToSetpoint;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.Homing.ElevatorHomingInit;
 
-/**
- *
- */
+
 public class Elevator extends Subsystem {
 
 
@@ -58,16 +57,61 @@ public class Elevator extends Subsystem {
      */
     public States state;
 
+    /**
+     * Whether Preferences or Constants should be used for PID values
+     * <br />
+     * <code>false</code> uses Constants.java for PID values
+     * <code>true</code> uses NT Preferences for PID values with Constants.java as the fallback
+     */
+    public static final boolean ELEVATOR_USE_PREFERENCES_FOR_PID_VALUES = false;
+
+    /**
+     * Instance of Robot Preferences
+     */
+    private Preferences prefs;
+
+    /**
+     * Post Constants PID values to preferences
+     * <br />
+     * <i>Run this to initialize preferences or to make preferences up to date with the constants</i>
+     */
+    public static final boolean ELEVATOR_POST_PID_CONSTANTS_TO_NT_PREFERENCES = true;
+
+
+
+
+
+
     public Elevator() {
         elevatorMaster = new WPI_TalonSRX(Constants.ELEVATOR_MASTER_CANID);
         elevatorFollower = new WPI_VictorSPX(Constants.ELEVATOR_FOLLOWER_CANID);
+        if(ELEVATOR_POST_PID_CONSTANTS_TO_NT_PREFERENCES){
+            prefs.putDouble("ELEVATOR_KP", Constants.ELEVATOR_KP);
+            prefs.putDouble("ELEVATOR_KI", Constants.ELEVATOR_KI);
+            prefs.putDouble("ELEVATOR_KD", Constants.ELEVATOR_KD);
+            prefs.putDouble("ELEVATOR_KF", Constants.ELEVATOR_KF);
+        }
+        if(ELEVATOR_USE_PREFERENCES_FOR_PID_VALUES){
+            elevatorMaster.config_kP(0, prefs.getDouble("ELEVATOR_KP",Constants.ELEVATOR_KP));
+            elevatorMaster.config_kI(0, prefs.getDouble("ELEVATOR_KI",Constants.ELEVATOR_KI));
+            elevatorMaster.config_kD(0, prefs.getDouble("ELEVATOR_KD",Constants.ELEVATOR_KD));
+            elevatorMaster.config_kF(0, prefs.getDouble("ELEVATOR_KF",Constants.ELEVATOR_KF));
+
+        }
+        else{
+            elevatorMaster.config_kP(0, Constants.ELEVATOR_KP);
+            elevatorMaster.config_kI(0, Constants.ELEVATOR_KI);
+            elevatorMaster.config_kD(0, Constants.ELEVATOR_KD);
+            elevatorMaster.config_kF(0, Constants.ELEVATOR_KF);
+        }
+        
     }
 
     /**
      * Set the setpoint for the Talon SRX given the setpoint instance variable
      */
     public void updateSetpoint(){
-        new ElevatorMoveToSetpoint();
+        new ElevatorMoveToSetpoint().start();
     }
     /**
      * Set the setpoint for the Talon SRX
