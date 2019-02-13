@@ -12,11 +12,15 @@
 package org.usfirst.frc100.Team100Robot.subsystems;
 
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import org.usfirst.frc100.Team100Robot.Constants;
+import org.usfirst.frc100.Team100Robot.Robot;
 
 /**
  *
@@ -25,6 +29,8 @@ public class Elevator extends Subsystem {
 
     private WPI_TalonSRX elevatorMaster;
     private WPI_VictorSPX elevatorFollower;
+
+    public final Encoder armEncoder = Robot.armEncoder;
 
     public Elevator() {
         elevatorMaster = new WPI_TalonSRX(Constants.ELEVATOR_MASTER_CANID);
@@ -42,9 +48,10 @@ public class Elevator extends Subsystem {
         // Put code here to be run every loop
 
     }
-
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-
+    public void UpdateDashboard(){
+        //SmartDashboard.putNumber("armEncoder", armEncoder.getBusVoltage());
+        SmartDashboard.putString("CurrentCommandElevator", getCurrentCommandName());
+        SmartDashboard.putNumber("DrivetrainRight", 3);
+        SmartDashboard.putNumber("Elevator", armEncoder.getRaw());    
+    }
 }
-

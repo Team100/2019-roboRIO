@@ -21,6 +21,14 @@ import org.usfirst.frc100.Team100Robot.commands.*;
 import org.usfirst.frc100.Team100Robot.subsystems.*;
 import com.kauailabs.navx.frc.*;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.Encoder;
+
+import org.usfirst.frc100.Team100Robot.subsystems.Drivetrain;
+
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -45,6 +53,11 @@ public class Robot extends TimedRobot {
     public static double currentHeading;
     public static AHRS ahrs;
 
+    public static Encoder drivetrainLeftEncoder;
+    public static Encoder drivetrainRightEncoder;
+    public static Encoder armEncoder;
+    public static Encoder climberEncoder;
+
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -62,6 +75,7 @@ public class Robot extends TimedRobot {
         hatchPickup = new HatchPickup();
         elevator = new Elevator();
 
+
         // OI must be constructed after subsystems. If the OI creates Commands
         //(which it very likely will), subsystems are not guaranteed to be
         // constructed yet. Thus, their requires() statements may grab null
@@ -72,6 +86,8 @@ public class Robot extends TimedRobot {
         chooser.setDefaultOption("Autonomous Command", new AutonomousCommand());
         
         SmartDashboard.putData("Auto mode", chooser);
+        
+        SmartDashboard.putNumber("Test", 1);
     }
 
     /**
@@ -125,4 +141,5 @@ public class Robot extends TimedRobot {
     public static double getCurrentHeading(){
         return currentHeading;
     }
+    
 }

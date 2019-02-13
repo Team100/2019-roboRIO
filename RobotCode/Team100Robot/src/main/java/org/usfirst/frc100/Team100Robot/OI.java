@@ -67,6 +67,7 @@ public class OI {
     private JoystickButton hatchRelease;
     private JoystickButton elevatorStageDown;
 
+
     public OI() {
 
         /*
@@ -115,12 +116,14 @@ public class OI {
 
 
 
+
         // SmartDashboard Buttons
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
         SmartDashboard.putData("DriveCMD", new Drive());
         SmartDashboard.putData("HighGear", new HighGear());
         SmartDashboard.putData("LowGear", new LowGear());
-    }
+        SmartDashboard.putData("UpdateDashboard", new UpdateDashboard());
+        }
 
     public Joystick getLeftStick() {
         return leftStick;

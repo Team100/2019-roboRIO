@@ -12,12 +12,17 @@
 package org.usfirst.frc100.Team100Robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import org.usfirst.frc100.Team100Robot.Constants;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
+
+import org.usfirst.frc100.Team100Robot.Robot;
 
 /**
  *
@@ -27,6 +32,8 @@ public class Climber extends Subsystem {
     private WPI_TalonSRX climberMaster;
     private Solenoid deploy;
     private WPI_VictorSPX climberFollower;
+
+    public final Encoder climberEncoder = Robot.climberEncoder; 
 
     public Climber() {
         climberMaster = new WPI_TalonSRX(Constants.CLIMBER_MASTER_CANID);
@@ -52,5 +59,12 @@ public class Climber extends Subsystem {
     }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    public void UpdateDashboard(){
+        SmartDashboard.putNumber("DriveTrain/LeftEncoder Raw", climberEncoder.getRaw());
+            SmartDashboard.putNumber("DriveTrain/Left Encoder Count", climberEncoder.get());
+		    SmartDashboard.putNumber("DriveTrain/Left Encoder Distance", climberEncoder.getDistance());
+    	SmartDashboard.putNumber("DriveTrain/Left Encoder Rate", climberEncoder.getRate());
+    }
+
 }
 

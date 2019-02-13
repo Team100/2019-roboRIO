@@ -18,7 +18,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import org.usfirst.frc100.Team100Robot.Constants;
 import org.usfirst.frc100.Team100Robot.Robot;
 import org.usfirst.frc100.Team100Robot.commands.Drive;
-
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -35,6 +35,9 @@ public class Drivetrain extends Subsystem implements PIDOutput {
     private WPI_VictorSPX leftFollower;
     private WPI_VictorSPX rightFollower;
     public PIDController turnPID;
+
+    public final Encoder drivetrainLeftEncoder = Robot.drivetrainLeftEncoder; 
+    public final Encoder drivetrainRightEncoder = Robot.drivetrainRightEncoder;
 
     public Drivetrain() {
         leftMaster = new WPI_TalonSRX(Constants.DRIVE_TRAIN_LEFT_MASTER_CANID);
@@ -105,6 +108,25 @@ public class Drivetrain extends Subsystem implements PIDOutput {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+
+    public void UpdateDashboard(){
+        SmartDashboard.putNumber("DrivetrainLeft", leftMaster.getBusVoltage());
+        SmartDashboard.putNumber("DrivetrainRight", rightMaster.getBusVoltage());
+        SmartDashboard.putNumber("DrivetrainRight", 3);
+        SmartDashboard.putString("CurrentCommandDrivetrain", getCurrentCommandName());
+    }
+
+    /*public void UpdateDashboard() {
+            SmartDashboard.putNumber("DriveTrain/LeftEncoder Raw", drivetrainLeftEncoder.getRaw());
+            SmartDashboard.putNumber("DriveTrain/Left Encoder Count", drivetrainLeftEncoder.get());
+		    SmartDashboard.putNumber("DriveTrain/Left Encoder Distance", drivetrainLeftEncoder.getDistance());
+    	SmartDashboard.putNumber("DriveTrain/Left Encoder Rate", drivetrainLeftEncoder.getRate());
+        
+            SmartDashboard.putNumber("DriveTrain/RightEncoder Raw", drivetrainRightEncoder.getRaw());
+            SmartDashboard.putNumber("DriveTrain/Right Encoder Count", drivetrainRightEncoder.get());
+		    SmartDashboard.putNumber("DriveTrain/Right Encoder Distance", drivetrainRightEncoder.getDistance());
+        SmartDashboard.putNumber("DriveTrain/Right Encoder Rate", drivetrainRightEncoder.getRate());
+    }*/
 
 }
 
