@@ -36,6 +36,8 @@ public class Elevator extends Subsystem {
     public DigitalInput intermediateLimitSwitch = new DigitalInput(3);
     public DigitalInput intermediateDownLimitSwitch = new DigitalInput(4);
     public int setpoint;
+
+    public int setpointLevel = 0;
     /**
      * Enum for possible homing states of the elevator
      */
@@ -106,6 +108,20 @@ public class Elevator extends Subsystem {
         }
         
     }
+
+    public class Setpoint{
+        public String annotation;
+        public int setpoint = -1;
+        public int arrayIndex = -1;
+        public Setpoint(String annotation, int setpoint, int arrayIndex){
+            this.setpoint = setpoint;
+            this.annotation = annotation;
+            this.arrayIndex = arrayIndex;
+
+        }
+    }
+    
+    public Setpoint[] setpointsArray = {new Setpoint("ABSOLUTE_BOTTOM", 0, 0),new Setpoint("SHIP_LOW",50,1),new Setpoint("ROCKET_LOW",100,2),new Setpoint("ROCKET_MEDIUM",200,3),new Setpoint("ROCKET_HIGH",300,4)};
 
     /**
      * Set the setpoint for the Talon SRX given the setpoint instance variable

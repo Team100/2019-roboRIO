@@ -23,6 +23,10 @@ public class ElevatorMoveToSetpoint extends Command {
     requires(Robot.elevator);
 
   }
+  public ElevatorMoveToSetpoint(int setpoint){
+    requires(Robot.elevator);
+    Robot.elevator.setpoint = setpoint;
+  }
 
   // Called just before this Command runs the first time
   @Override
@@ -39,6 +43,8 @@ public class ElevatorMoveToSetpoint extends Command {
       Robot.elevator.state = States.AT_SETPOINT;
       
     }
+    Robot.elevator.updateSetpoint();
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

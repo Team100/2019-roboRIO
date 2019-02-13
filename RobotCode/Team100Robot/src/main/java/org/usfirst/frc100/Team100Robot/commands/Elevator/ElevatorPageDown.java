@@ -27,12 +27,18 @@ public class ElevatorPageDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if(Robot.elevator.setpointLevel > 0){
+      Robot.elevator.setpointLevel -= 1;
+
+    }
+    Robot.elevator.setpoint = Robot.elevator.setpointsArray[Robot.elevator.setpointLevel].setpoint;
+    Robot.elevator.updateSetpoint();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true

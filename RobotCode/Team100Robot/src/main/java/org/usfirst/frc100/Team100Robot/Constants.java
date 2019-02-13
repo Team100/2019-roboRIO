@@ -98,6 +98,12 @@ public class Constants {
      public static final double ELEVATOR_KF = 1;
 
 
+    /**Conversion factor from Inches to Encoder ticks
+     * For elevator control
+    */
+     public static final double INCH_TO_ENCODER_CONVERSION_FACTION = 1;
+
+     
     /*
      * Elevator Carriage
      */
