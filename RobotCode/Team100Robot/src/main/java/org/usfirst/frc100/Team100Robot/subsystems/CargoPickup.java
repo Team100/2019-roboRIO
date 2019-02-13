@@ -24,19 +24,20 @@ import edu.wpi.first.wpilibj.VictorSP;
  */
 public class CargoPickup extends Subsystem {
 
-    private WPI_TalonSRX tiltCargoFloorPickup;
-    private VictorSP rollerCargoFloorPickup;
-    private Solenoid cargoGroundPickup;
+    private WPI_TalonSRX cargoTilt;
+    private VictorSP cargoRoller1;
+    private VictorSP cargoRoller2;
 
     public CargoPickup() {
-        tiltCargoFloorPickup = new WPI_TalonSRX(Constants.CARGO_PICKUP_TILT_PWM);
+        cargoTilt = new WPI_TalonSRX(Constants.CARGO_PICKUP_TILT_CANID);
 
-        rollerCargoFloorPickup = new VictorSP(Constants.CARGO_PICKUP_ROLLER_PWM);
-        addChild("RollerCargoFloorPickup", rollerCargoFloorPickup);
-        rollerCargoFloorPickup.setInverted(false);
+        cargoRoller1 = new VictorSP(Constants.CARGO_PICKUP_ROLLER1_PWM);
+        addChild("CargoRoller1", cargoRoller1);
+        cargoRoller1.setInverted(false);
         
-        cargoGroundPickup = new Solenoid(Constants.PCM_CANID, Constants.CARGO_GROUND_PICKUP_PCMID);
-        addChild("CargoGroundPickup", cargoGroundPickup);
+        cargoRoller2 = new VictorSP(Constants.CARGO_PICKUP_ROLLER2_PWM);
+        addChild("CargoRoller2", cargoRoller2);
+        cargoRoller2.setInverted(false);
     }
 
     @Override
