@@ -15,6 +15,7 @@ package org.usfirst.frc100.Team100Robot.subsystems;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -23,6 +24,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import org.usfirst.frc100.Team100Robot.Constants;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorAtSetpoint;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorMoveToSetpoint;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorTeleop;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.Homing.ElevatorHomingInit;
 
 
@@ -79,6 +81,14 @@ public class Elevator extends Subsystem {
      */
     public static final boolean ELEVATOR_POST_PID_CONSTANTS_TO_NT_PREFERENCES = true;
 
+    /**
+     * <code>true</code> Disables intelligent control (PID, Setpoints, homing)
+     * <br />
+     * <code>false</code> Enables intelligent control (PID, Setpoints, homing) [SHOULD ALMOST ALWAYS BE SET TO]
+     * <br />
+     * <strong>This should <em>ONLY</em> be used for elevator testing and SHOULD NEVER BE ON DURING COMPETITION</strong>
+     */
+    public static final boolean DISABLE_INTELLIGENT_CONTROL = true;
 
 
 
@@ -109,10 +119,28 @@ public class Elevator extends Subsystem {
         
     }
 
+    /**
+     * Template for a setpoint
+     */
     public class Setpoint{
+        /**
+         * Name or any notes regarding to the Setpoint
+         */
         public String annotation;
+        /**
+         * The setpoint value
+         */
         public int setpoint = -1;
+        /**
+         * The location within the Setpoint array
+         */
         public int arrayIndex = -1;
+        /**
+         * Creates a new setpoint
+         * @param annotation Name or any other useful information
+         * @param setpoint The value of the setpoint
+         * @param arrayIndex The index of the setpoint in the setpointsArray
+         */
         public Setpoint(String annotation, int setpoint, int arrayIndex){
             this.setpoint = setpoint;
             this.annotation = annotation;
@@ -143,13 +171,36 @@ public class Elevator extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
-        setDefaultCommand(new ElevatorAtSetpoint());
-        new ElevatorHomingInit().start();
+        if(DISABLE_INTELLIGENT_CONTROL){
+            setDefaultCommand(new ElevatorTeleop());
+        }else{
+            setDefaultCommand(new ElevatorAtSetpoint());
+            new ElevatorHomingInit().start();
+        }
+        
     }
 
     @Override
     public void periodic() {
         // Put code here to be run every loop
+        updateSD();
+
+    }
+    /**
+     * Updates SmartDashboard
+     */
+    public void updateSD(){
+        SmartDashboard.putNumber("ELEV/location", elevatorMaster.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("ELEV/percentoutput",elevatorMaster.getMotorOutputPercent());
+        SmartDashboard.putNumber("ELEV/setpoint",setpoint);
+        SmartDashboard.putNumber("ELEV/setpointLevel",setpointLevel);
+        SmartDashboard.putBoolean("ELEV/usingPreferencesForPIDValues", ELEVATOR_USE_PREFERENCES_FOR_PID_VALUES);
+        SmartDashboard.putNumber("ELEV/error",elevatorMaster.getClosedLoopError());
+        SmartDashboard.putNumber("ELEV/talontarget",elevatorMaster.getClosedLoopTarget());
+        SmartDashboard.putString("ELEV/state",state.toString());
+        SmartDashboard.putNumber("ELEV/activeTrajectoryVelocity",elevatorMaster.getActiveTrajectoryVelocity());
+        SmartDashboard.putNumber("ELEV/outputCurrent",elevatorMaster.getOutputCurrent());
+        SmartDashboard.putNumber("ELEV/outputVoltage",elevatorMaster.getMotorOutputVoltage());
 
     }
     
