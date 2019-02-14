@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 
 /**
- *
+ * 
  */
 public class CargoPickup extends Subsystem {
 
