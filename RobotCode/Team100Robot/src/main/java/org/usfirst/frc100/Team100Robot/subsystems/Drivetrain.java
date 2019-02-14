@@ -112,7 +112,6 @@ public class Drivetrain extends Subsystem implements PIDOutput {
     public void UpdateDashboard(){
         SmartDashboard.putNumber("DrivetrainLeft", leftMaster.getBusVoltage());
         SmartDashboard.putNumber("DrivetrainRight", rightMaster.getBusVoltage());
-        SmartDashboard.putNumber("DrivetrainRight", 3);
         SmartDashboard.putString("CurrentCommandDrivetrain", getCurrentCommandName());
     }
 

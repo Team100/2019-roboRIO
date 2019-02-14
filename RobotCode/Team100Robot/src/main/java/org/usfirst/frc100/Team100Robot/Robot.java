@@ -86,8 +86,6 @@ public class Robot extends TimedRobot {
         chooser.setDefaultOption("Autonomous Command", new AutonomousCommand());
         
         SmartDashboard.putData("Auto mode", chooser);
-        
-        SmartDashboard.putNumber("Test", 1);
     }
 
     /**

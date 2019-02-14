@@ -60,10 +60,10 @@ public class Climber extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public void UpdateDashboard(){
-        SmartDashboard.putNumber("DriveTrain/LeftEncoder Raw", climberEncoder.getRaw());
-            SmartDashboard.putNumber("DriveTrain/Left Encoder Count", climberEncoder.get());
-		    SmartDashboard.putNumber("DriveTrain/Left Encoder Distance", climberEncoder.getDistance());
-    	SmartDashboard.putNumber("DriveTrain/Left Encoder Rate", climberEncoder.getRate());
+        SmartDashboard.putString("CurrentCommandElevator", getCurrentCommandName());
+            SmartDashboard.putNumber("ClimberEncoderCount", climberEncoder.get());
+		    SmartDashboard.putNumber("DistanceEncoder", climberEncoder.getDistance());
+    	SmartDashboard.putNumber("EncoderRate", climberEncoder.getRate());
     }
 
 }

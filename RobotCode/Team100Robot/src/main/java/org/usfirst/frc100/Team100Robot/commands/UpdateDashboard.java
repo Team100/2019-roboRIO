@@ -10,7 +10,7 @@ public class UpdateDashboard extends Command {
     public UpdateDashboard() {	
         Robot.elevator.UpdateDashboard();
         Robot.drivetrain.UpdateDashboard();
-        Robot.climber.UpdateDashboard();
+    //    Robot.climber.UpdateDashboard();
     }
 
     protected void initialize() {
