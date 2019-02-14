@@ -35,8 +35,8 @@ public class Elevator extends Subsystem {
     public WPI_VictorSPX elevatorFollower;
     public DigitalInput lowerLimitSwitch = new DigitalInput(0);
     public DigitalInput upperLimitSwitch = new DigitalInput(1);
-    public DigitalInput intermediateLimitSwitch = new DigitalInput(3);
-    public DigitalInput intermediateDownLimitSwitch = new DigitalInput(4);
+    public DigitalInput intermediateLimitSwitch = new DigitalInput(2);
+    public DigitalInput intermediateDownLimitSwitch = new DigitalInput(3);
     public int setpoint;
 
     public int setpointLevel = 0;
@@ -54,7 +54,7 @@ public class Elevator extends Subsystem {
      * Possible states for the elevator to be in
      */
     public enum States{
-        AT_SETPOINT,MOVE_TO_SETPOINT,HOMING
+        AT_SETPOINT,MOVE_TO_SETPOINT,HOMING,TELEOP
     }
     /**
      * The current state of the elevator
@@ -72,7 +72,7 @@ public class Elevator extends Subsystem {
     /**
      * Instance of Robot Preferences
      */
-    private Preferences prefs;
+    public Preferences prefs;
 
     /**
      * Post Constants PID values to preferences
@@ -95,8 +95,11 @@ public class Elevator extends Subsystem {
 
 
     public Elevator() {
+        prefs = Preferences.getInstance();
+    
         elevatorMaster = new WPI_TalonSRX(Constants.ELEVATOR_MASTER_CANID);
         elevatorFollower = new WPI_VictorSPX(Constants.ELEVATOR_FOLLOWER_CANID);
+        elevatorFollower.follow(elevatorMaster);
         if(ELEVATOR_POST_PID_CONSTANTS_TO_NT_PREFERENCES){
             prefs.putDouble("ELEVATOR_KP", Constants.ELEVATOR_KP);
             prefs.putDouble("ELEVATOR_KI", Constants.ELEVATOR_KI);
@@ -116,7 +119,7 @@ public class Elevator extends Subsystem {
             elevatorMaster.config_kD(0, Constants.ELEVATOR_KD);
             elevatorMaster.config_kF(0, Constants.ELEVATOR_KF);
         }
-        
+        this.state = States.TELEOP;
     }
 
     /**
@@ -177,14 +180,19 @@ public class Elevator extends Subsystem {
             setDefaultCommand(new ElevatorAtSetpoint());
             new ElevatorHomingInit().start();
         }
+        System.out.println(this.getDefaultCommandName());
         
     }
 
     @Override
     public void periodic() {
         // Put code here to be run every loop
-        updateSD();
-
+        //updateSD();
+        SmartDashboard.putString("ELEV COMMAND", this.getCurrentCommandName());
+        SmartDashboard.putBoolean("Lower Limit Switch",this.lowerLimitSwitch.get());
+        SmartDashboard.putBoolean("Upper Limit Switch",this.upperLimitSwitch.get());
+        SmartDashboard.putBoolean("Intermediate Down",this.intermediateDownLimitSwitch.get());
+        SmartDashboard.putBoolean("Intermediate Up",this.intermediateLimitSwitch.get());
     }
     /**
      * Updates SmartDashboard
@@ -201,6 +209,7 @@ public class Elevator extends Subsystem {
         SmartDashboard.putNumber("ELEV/activeTrajectoryVelocity",elevatorMaster.getActiveTrajectoryVelocity());
         SmartDashboard.putNumber("ELEV/outputCurrent",elevatorMaster.getOutputCurrent());
         SmartDashboard.putNumber("ELEV/outputVoltage",elevatorMaster.getMotorOutputVoltage());
+        //SmartDashboard.putString("ELEV/homeState",hs.toString());
 
     }
     

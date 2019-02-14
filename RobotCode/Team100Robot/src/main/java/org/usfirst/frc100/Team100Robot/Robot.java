@@ -51,7 +51,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-        ahrs = new AHRS(Constants.NAVX_COMM_PORT);
+       // ahrs = new AHRS(Constants.NAVX_COMM_PORT);
 
         drivetrain = new Drivetrain();
         shifter = new Shifter();
@@ -119,7 +119,7 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        currentHeading = ahrs.getFusedHeading();
+        //currentHeading = ahrs.getFusedHeading();
     }
 
     public static double getCurrentHeading(){

@@ -57,11 +57,12 @@ public class Drivetrain extends Subsystem implements PIDOutput {
         rightMaster.setInverted(Constants.DRIVE_TRAIN_RIGHT_MASTER_INVERT);
         rightFollower.setInverted(Constants.DRIVE_TRAIN_RIGHT_FOLLOWER_INVERT);
 
-        turnPID = new PIDController(Constants.DT_TURN_P, Constants.DT_TURN_I, Constants.DT_TURN_D, Robot.ahrs, this);
+        /*turnPID = new PIDController(Constants.DT_TURN_P, Constants.DT_TURN_I, Constants.DT_TURN_D, Robot.ahrs, this);
         turnPID.setInputRange(Constants.DT_TURN_MIN_ROTATION_ANGLE, Constants.DT_TURN_MAX_ROTATION_ANGLE);
         turnPID.setContinuous(true);
         turnPID.setOutputRange(Constants.DT_TURN_MIN_OUTPUT, Constants.DT_TURN_MAX_OUTPUT);
         turnPID.setAbsoluteTolerance(Constants.DT_TURN_ABSOLUTE_TOLERANCE);
+   */
     }
 
     public void turn(double leftPower, double rightPower){
@@ -70,7 +71,7 @@ public class Drivetrain extends Subsystem implements PIDOutput {
     }
 
     public void pidTurn(){
-        turn(turnPID.get(), turnPID.get());
+        //turn(turnPID.get(), turnPID.get());
     }
 
     @Override
