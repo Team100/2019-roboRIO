@@ -22,21 +22,21 @@ public class Constants {
     public static SerialPort.Port NAVX_COMM_PORT = SerialPort.Port.kUSB;
     public static final int PCM_CANID = 0;
     public static final int DRIVE_TRAIN_LEFT_MASTER_CANID = 0;
-    public static final int DRIVE_TRAIN_LEFT_FOLLOWER_CANID = 1;
+    public static final int DRIVE_TRAIN_LEFT_FOLLOWER_CANID = 3;
     public static final int DRIVE_TRAIN_RIGHT_MASTER_CANID = 15;
-    public static final int DRIVE_TRAIN_RIGHT_FOLLOWER_CANID = 14;
-    public static final int ELEVATOR_MASTER_CANID = 10;
-    public static final int ELEVATOR_FOLLOWER_CANID = 11;
-    public static final int ELEVATOR_CARRIAGE_SHOULDER_CANID = 2;
-    public static final int CARGO_PICKUP_TALON_CANID = 3;
-    public static final int CARGO_PICKUP_TILT_PWM = 6;
-    public static final int CARGO_PICKUP_ROLLER_PWM = 7;
+    public static final int DRIVE_TRAIN_RIGHT_FOLLOWER_CANID = 13;
+    public static final int ELEVATOR_MASTER_CANID = 11;
+    public static final int ELEVATOR_FOLLOWER_CANID = 9;
+    public static final int ELEVATOR_CARRIAGE_SHOULDER_CANID = 1;
+    public static final int CARGO_PICKUP_TILT_CANID = 2;
+    public static final int CARGO_PICKUP_ROLLER1_PWM = 6;
+    public static final int CARGO_PICKUP_ROLLER2_PWM = 7;
     public static final int HATCH_PICKUP_ROLLER_PWM = 8;
-    public static final int HATCH_PICKUP_TILT_CANID = 9;
+    public static final int HATCH_PICKUP_TILT_CANID = 10;
 	public static final int CARGO_HATCH_SCORER_TOP_CANID = 4;
     public static final int CARGO_HATCH_SCORER_BOTTOM_CANID = 5;
-	public static final int CLIMBER_MASTER_CANID = 12;
-	public static final int CLIMBER_FOLLOWER_CANID = 13;
+	public static final int CLIMBER_MASTER_CANID = 14;
+	public static final int CLIMBER_FOLLOWER_CANID = 12;
 
     /* 
      * PNEUMATICS SOLENOID PCM IDs
