@@ -39,6 +39,7 @@ public class ElevatorHomingGoingDown extends Command {
   protected void execute() {
     if(Robot.elevator.atMinHeight){
       complete = true;
+      System.out.println("atMinHeight");
     }
   }
 
@@ -51,6 +52,7 @@ public class ElevatorHomingGoingDown extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    System.out.println("END");
     new ElevatorHomingDown().start();
 
   }
@@ -59,5 +61,6 @@ public class ElevatorHomingGoingDown extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

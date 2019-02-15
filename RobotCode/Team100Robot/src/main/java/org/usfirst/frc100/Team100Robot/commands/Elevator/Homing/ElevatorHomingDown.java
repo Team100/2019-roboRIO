@@ -34,6 +34,7 @@ public class ElevatorHomingDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    System.out.println("In homing down");
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -52,5 +53,6 @@ public class ElevatorHomingDown extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

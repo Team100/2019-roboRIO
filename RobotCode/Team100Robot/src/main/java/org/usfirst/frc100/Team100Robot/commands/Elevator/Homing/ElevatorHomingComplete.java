@@ -42,12 +42,18 @@ public class ElevatorHomingComplete extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.elevator.updateSetpoint(1000);
+    Robot.elevator.homed = true;
+
+    Robot.elevator.state= States.MOVE_TO_SETPOINT;
+    System.out.println("HOMING COMPLETE");
+    Robot.elevator.updateSetpoint(2500);
+
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

@@ -33,10 +33,10 @@ public class Elevator extends Subsystem {
 
     public WPI_TalonSRX elevatorMaster;
     public WPI_VictorSPX elevatorFollower;
-    public DigitalInput lowerLimitSwitch = new DigitalInput(0);
-    public DigitalInput upperLimitSwitch = new DigitalInput(1);
-    public DigitalInput intermediateLimitSwitch = new DigitalInput(2);
-    public DigitalInput intermediateDownLimitSwitch = new DigitalInput(3);
+    public DigitalInput carriageLowerLimitSwitch = new DigitalInput(0);
+    public DigitalInput carriageUpperLimitSwitch = new DigitalInput(1);
+    public DigitalInput intermediateUpperLimitSwitch = new DigitalInput(2);
+    public DigitalInput intermediateLowerLimitSwitch = new DigitalInput(3);
     public int setpoint;
 
     public int setpointLevel = 0;
@@ -91,9 +91,9 @@ public class Elevator extends Subsystem {
      * <br />
      * <strong>This should <em>ONLY</em> be used for elevator testing and SHOULD NEVER BE ON DURING COMPETITION</strong>
      */
-    public static final boolean DISABLE_INTELLIGENT_CONTROL = false;
+    public static final boolean DISABLE_INTELLIGENT_CONTROL = true;
 
-
+    public boolean homed = false;
 
 
 
@@ -102,7 +102,14 @@ public class Elevator extends Subsystem {
     
         elevatorMaster = new WPI_TalonSRX(Constants.ELEVATOR_MASTER_CANID);
         elevatorFollower = new WPI_VictorSPX(Constants.ELEVATOR_FOLLOWER_CANID);
+        elevatorMaster.setInverted(true);
+        elevatorFollower.setInverted(true);
+
         elevatorFollower.follow(elevatorMaster);
+        elevatorMaster.setSensorPhase(true);
+        elevatorMaster.configPeakOutputForward(0.4);
+        elevatorMaster.configPeakOutputReverse(0.3);
+    
         if(ELEVATOR_POST_PID_CONSTANTS_TO_NT_PREFERENCES){
             prefs.putDouble("ELEVATOR_KP", Constants.ELEVATOR_KP);
             prefs.putDouble("ELEVATOR_KI", Constants.ELEVATOR_KI);
@@ -122,7 +129,12 @@ public class Elevator extends Subsystem {
             elevatorMaster.config_kD(0, Constants.ELEVATOR_KD);
             elevatorMaster.config_kF(0, Constants.ELEVATOR_KF);
         }
-        this.state = States.TELEOP;
+
+
+        //elevatorMaster.configClosedloopRamp(0.4);
+        //elevatorMaster.configPeakCurrentLimit(20);
+        //elevatorMaster.configPeakCurrentLimit(60);
+        homed = false;
     }
 
     /**
@@ -161,6 +173,7 @@ public class Elevator extends Subsystem {
      * Set the setpoint for the Talon SRX given the setpoint instance variable
      */
     public void updateSetpoint(){
+        System.out.println("FINAL SP"+this.setpoint);
         new ElevatorMoveToSetpoint().start();
     }
     /**
@@ -169,6 +182,7 @@ public class Elevator extends Subsystem {
      */
     public void updateSetpoint(int setpoint){
         this.setpoint = setpoint;
+        System.out.println("SETPOINT: "+this.setpoint);
         this.updateSetpoint();
 
     }
@@ -180,9 +194,9 @@ public class Elevator extends Subsystem {
         if(DISABLE_INTELLIGENT_CONTROL){
             setDefaultCommand(new ElevatorTeleop());
         }else{
-            //setDefaultCommand(new ElevatorAtSetpoint());
+            setDefaultCommand(new ElevatorAtSetpoint());
             //new ElevatorHomingInit().start();
-            setDefaultCommand(new ElevatorHomingInit());
+            //setDefaultCommand(new ElevatorHomingInit());
         }
         System.out.println(this.getDefaultCommandName());
         
@@ -191,38 +205,49 @@ public class Elevator extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-        //updateSD();
+        updateSD();
         SmartDashboard.putString("ELEV COMMAND", this.getCurrentCommandName());
-        SmartDashboard.putBoolean("Lower Limit Switch",this.lowerLimitSwitch.get());
-        SmartDashboard.putBoolean("Upper Limit Switch",this.upperLimitSwitch.get());
-        SmartDashboard.putBoolean("Intermediate Down",this.intermediateDownLimitSwitch.get());
-        SmartDashboard.putBoolean("Intermediate Up",this.intermediateLimitSwitch.get());
+        SmartDashboard.putBoolean("Carriage Lower Limit Switch",this.carriageLowerLimitSwitch.get());
+        SmartDashboard.putBoolean("Carriage Upper Limit Switch",this.carriageUpperLimitSwitch.get());
+        SmartDashboard.putBoolean("Intermediate Lower Limit Switch",this.intermediateLowerLimitSwitch.get());
+        SmartDashboard.putBoolean("Intermediate Upper Limit Switch",this.intermediateUpperLimitSwitch.get());
         SmartDashboard.putNumber("ELEV ENC",this.elevatorMaster.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("ELEV PercentOutput", this.elevatorMaster.getMotorOutputPercent());
 
-
-        if(this.intermediateLimitSwitch.get() && this.upperLimitSwitch.get() && !this.lowerLimitSwitch.get() && !this.intermediateDownLimitSwitch.get()){
+        
+        if(this.intermediateUpperLimitSwitch.get() && this.carriageUpperLimitSwitch.get() && !this.carriageLowerLimitSwitch.get() && !this.intermediateLowerLimitSwitch.get()){
             this.atMinHeight = true;
         }else{this.atMinHeight = false;}
-        if(!this.intermediateLimitSwitch.get() && !this.upperLimitSwitch.get() && this.lowerLimitSwitch.get() && this.intermediateDownLimitSwitch.get()){
-            this.atMinHeight = true;
-        }else{this.atMinHeight = false;}
+        if(!this.intermediateUpperLimitSwitch.get() && !this.carriageUpperLimitSwitch.get() && this.carriageLowerLimitSwitch.get() && this.intermediateLowerLimitSwitch.get()){
+            this.atMaxHeight = true;
+        }else{this.atMaxHeight = false;}
+
+        if(this.atMinHeight && elevatorMaster.getMotorOutputPercent() < 0){
+            elevatorMaster.set(ControlMode.PercentOutput,0);
+        }
+        else if(this.atMaxHeight && elevatorMaster.getMotorOutputPercent() > 0){
+            elevatorMaster.set(ControlMode.PercentOutput,0);
+        }
     }
     /**
      * Updates SmartDashboard
      */
     public void updateSD(){
-        SmartDashboard.putNumber("ELEV/location", elevatorMaster.getSelectedSensorPosition(0));
-        SmartDashboard.putNumber("ELEV/percentoutput",elevatorMaster.getMotorOutputPercent());
-        SmartDashboard.putNumber("ELEV/setpoint",setpoint);
-        SmartDashboard.putNumber("ELEV/setpointLevel",setpointLevel);
-        SmartDashboard.putBoolean("ELEV/usingPreferencesForPIDValues", ELEVATOR_USE_PREFERENCES_FOR_PID_VALUES);
-        SmartDashboard.putNumber("ELEV/error",elevatorMaster.getClosedLoopError());
-        SmartDashboard.putNumber("ELEV/talontarget",elevatorMaster.getClosedLoopTarget());
-        SmartDashboard.putString("ELEV/state",state.toString());
-        SmartDashboard.putNumber("ELEV/activeTrajectoryVelocity",elevatorMaster.getActiveTrajectoryVelocity());
-        SmartDashboard.putNumber("ELEV/outputCurrent",elevatorMaster.getOutputCurrent());
-        SmartDashboard.putNumber("ELEV/outputVoltage",elevatorMaster.getMotorOutputVoltage());
+        if(state == States.MOVE_TO_SETPOINT || state == States.AT_SETPOINT){
+        SmartDashboard.putNumber("ELEV_location", elevatorMaster.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("ELEV_percentoutput",elevatorMaster.getMotorOutputPercent());
+        SmartDashboard.putNumber("ELEV_setpoint",setpoint);
+        SmartDashboard.putNumber("ELEV_setpointLevel",setpointLevel);
+        SmartDashboard.putBoolean("ELEV_usingPreferencesForPIDValues", ELEVATOR_USE_PREFERENCES_FOR_PID_VALUES);
+        SmartDashboard.putNumber("ELEV_error",elevatorMaster.getClosedLoopError());
+        SmartDashboard.putNumber("ELEV_talontarget",elevatorMaster.getClosedLoopTarget());
+        SmartDashboard.putString("ELEV_state",state.toString());
+        SmartDashboard.putNumber("ELEV_activeTrajectoryVelocity",elevatorMaster.getActiveTrajectoryVelocity());
+        SmartDashboard.putNumber("ELEV_outputCurrent",elevatorMaster.getOutputCurrent());
+        SmartDashboard.putNumber("ELEV_outputVoltage",elevatorMaster.getMotorOutputVoltage());
         //SmartDashboard.putString("ELEV/homeState",hs.toString());
+
+        }
 
     }
     

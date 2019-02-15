@@ -40,16 +40,20 @@ public class ElevatorTeleop extends Command {
     else{
     }*/
     SmartDashboard.putNumber("ELEV OI AXIS",Robot.oi.getManipulatorControl().getRawAxis(3));
-    if(Robot.oi.getManipulatorControl().getRawAxis(3) < 0 && !Robot.elevator.atMinHeight){
-      Robot.elevator.elevatorMaster.set(ControlMode.PercentOutput,Robot.oi.getManipulatorControl().getRawAxis(3)*.4);
+    Robot.elevator.elevatorMaster.set(ControlMode.PercentOutput,-Robot.oi.getManipulatorControl().getRawAxis(3));
+/*
+    if(Robot.oi.getManipulatorControl().getRawAxis(3) <= 0 && !Robot.elevator.atMaxHeight){ //Going up
+      Robot.elevator.elevatorMaster.set(ControlMode.PercentOutput,-Robot.oi.getManipulatorControl().getRawAxis(3)*.4);
 
-    }else if(Robot.oi.getManipulatorControl().getRawAxis(3) > 0 && !Robot.elevator.atMaxHeight){
-      Robot.elevator.elevatorMaster.set(ControlMode.PercentOutput,Robot.oi.getManipulatorControl().getRawAxis(3)*.3);
+    }else if(Robot.oi.getManipulatorControl().getRawAxis(3) >= 0 && !Robot.elevator.atMinHeight){ //Going down
+      Robot.elevator.elevatorMaster.set(ControlMode.PercentOutput,-Robot.oi.getManipulatorControl().getRawAxis(3)*.3);
 
     }
     else{
-      Robot.elevator.elevatorMaster.set(ControlMode.PercentOutput,Robot.oi.getManipulatorControl().getRawAxis(3)*0.1);
-    }
+      System.out.println("Reached LS");
+
+      Robot.elevator.elevatorMaster.set(ControlMode.PercentOutput,0);
+  }*/
 
   }
 
