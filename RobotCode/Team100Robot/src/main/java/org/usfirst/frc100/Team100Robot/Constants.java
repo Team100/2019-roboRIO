@@ -101,9 +101,10 @@ public class Constants {
     /**Conversion factor from Inches to Encoder ticks
      * For elevator control
     */
-     public static final double INCH_TO_ENCODER_CONVERSION_FACTION = 1;
+     public static final int ELEVATOR_INCH_TO_ENCODER_CONVERSION_FACTION = 86;
 
-     
+     public static final double ELEVATOR_START_HEIGHT_IN_INCHES = 16.5;
+     public static final double ELEVATOR_MAX_HEIGHT_IN_INCHES = 78.5;
     /*
      * Elevator Carriage
      */

@@ -147,15 +147,15 @@ public class Elevator extends Subsystem {
          * @param setpoint The value of the setpoint
          * @param arrayIndex The index of the setpoint in the setpointsArray
          */
-        public Setpoint(String annotation, int setpoint, int arrayIndex){
-            this.setpoint = setpoint;
+        public Setpoint(String annotation, double setpoint, int arrayIndex){
+            this.setpoint = convertInchesToTicks(setpoint);
             this.annotation = annotation;
             this.arrayIndex = arrayIndex;
 
         }
     }
     
-    public Setpoint[] setpointsArray = {new Setpoint("ABSOLUTE_BOTTOM", 0, 0),new Setpoint("SHIP_LOW",50,1),new Setpoint("ROCKET_LOW",100,2),new Setpoint("ROCKET_MEDIUM",200,3),new Setpoint("ROCKET_HIGH",300,4)};
+    public Setpoint[] setpointsArray = {new Setpoint("", 19, 0),new Setpoint("",27.5,1),new Setpoint("",47,2),new Setpoint("",55.5,3),new Setpoint("ROCKET_HIGH",75,4),new Setpoint("",77.5,5)};
 
     /**
      * Set the setpoint for the Talon SRX given the setpoint instance variable
@@ -228,6 +228,18 @@ public class Elevator extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    /**
+     * 
+     * @param inches
+     * @return  the height in encoder ticks
+     */
+    public static int convertInchesToTicks(double inches){
+        if(inches > Constants.ELEVATOR_MAX_HEIGHT_IN_INCHES){
+            System.out.println("INCHES EXCEED MAX");
+            return (int)Constants.ELEVATOR_MAX_HEIGHT_IN_INCHES * Constants.ELEVATOR_INCH_TO_ENCODER_CONVERSION_FACTION;
+        }
+        return (int)((inches- Constants.ELEVATOR_START_HEIGHT_IN_INCHES) * Constants.ELEVATOR_INCH_TO_ENCODER_CONVERSION_FACTION );
+    }
 
 }
 
