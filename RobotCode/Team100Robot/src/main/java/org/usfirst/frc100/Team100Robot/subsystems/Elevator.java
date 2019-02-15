@@ -61,6 +61,9 @@ public class Elevator extends Subsystem {
      */
     public States state;
 
+    public boolean atMaxHeight = false;
+    public boolean atMinHeight = false;
+
     /**
      * Whether Preferences or Constants should be used for PID values
      * <br />
@@ -193,6 +196,15 @@ public class Elevator extends Subsystem {
         SmartDashboard.putBoolean("Upper Limit Switch",this.upperLimitSwitch.get());
         SmartDashboard.putBoolean("Intermediate Down",this.intermediateDownLimitSwitch.get());
         SmartDashboard.putBoolean("Intermediate Up",this.intermediateLimitSwitch.get());
+        SmartDashboard.putNumber("ELEV ENC",this.elevatorMaster.getSelectedSensorPosition(0));
+
+
+        if(this.intermediateLimitSwitch.get() && this.upperLimitSwitch.get() && !this.lowerLimitSwitch.get() && !this.intermediateDownLimitSwitch.get()){
+            this.atMinHeight = true;
+        }else{this.atMinHeight = false;}
+        if(!this.intermediateLimitSwitch.get() && !this.upperLimitSwitch.get() && this.lowerLimitSwitch.get() && this.intermediateDownLimitSwitch.get()){
+            this.atMinHeight = true;
+        }else{this.atMinHeight = false;}
     }
     /**
      * Updates SmartDashboard
