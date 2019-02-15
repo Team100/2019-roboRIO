@@ -70,7 +70,7 @@ public class Elevator extends Subsystem {
      * <code>false</code> uses Constants.java for PID values
      * <code>true</code> uses NT Preferences for PID values with Constants.java as the fallback
      */
-    public static final boolean ELEVATOR_USE_PREFERENCES_FOR_PID_VALUES = false;
+    public static final boolean ELEVATOR_USE_PREFERENCES_FOR_PID_VALUES = true;
 
     /**
      * Instance of Robot Preferences
@@ -91,7 +91,7 @@ public class Elevator extends Subsystem {
      * <br />
      * <strong>This should <em>ONLY</em> be used for elevator testing and SHOULD NEVER BE ON DURING COMPETITION</strong>
      */
-    public static final boolean DISABLE_INTELLIGENT_CONTROL = true;
+    public static final boolean DISABLE_INTELLIGENT_CONTROL = false;
 
 
 
@@ -180,8 +180,9 @@ public class Elevator extends Subsystem {
         if(DISABLE_INTELLIGENT_CONTROL){
             setDefaultCommand(new ElevatorTeleop());
         }else{
-            setDefaultCommand(new ElevatorAtSetpoint());
-            new ElevatorHomingInit().start();
+            //setDefaultCommand(new ElevatorAtSetpoint());
+            //new ElevatorHomingInit().start();
+            setDefaultCommand(new ElevatorHomingInit());
         }
         System.out.println(this.getDefaultCommandName());
         

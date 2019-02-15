@@ -30,6 +30,9 @@ public class ElevatorAtSetpoint extends Command {
   @Override
   protected void execute() {
     Robot.elevator.state = States.AT_SETPOINT;
+    if(Math.abs(Robot.oi.getManipulatorControl().getRawAxis(3)) > 0.2){
+      new ElevatorTeleop().start();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

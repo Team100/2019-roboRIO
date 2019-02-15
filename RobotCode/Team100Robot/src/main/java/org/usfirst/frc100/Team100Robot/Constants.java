@@ -75,9 +75,9 @@ public class Constants {
      */
 
      /**Power to apply when going down during homing sequence... <em>keep very small</em>*/
-     public static final double HOMING_GOING_DOWN_POWER = -0.025;
+     public static final double HOMING_GOING_DOWN_POWER = 0.3;
      /**Power to apply when going up during homing sequence... <em>keep very small</em> */
-     public static final double HOMING_GOING_UP_POWER = 0.025;
+     public static final double HOMING_GOING_UP_POWER = -0.3;
      /**Buffer in elevator target for acceptable destination */
      public static final int ELEVATOR_POSITION_BUFFER = 750;
 

@@ -13,6 +13,8 @@ package org.usfirst.frc100.Team100Robot;
 
 import org.usfirst.frc100.Team100Robot.commands.*;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorMoveToSetpoint;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorPageDown;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorPageUp;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
@@ -115,7 +117,8 @@ public class OI {
 
         elevatorStageDown = new JoystickButton(manipulatorControl, 8);
 
-        elevatorStageUp.whenPressed(new ElevatorMoveToSetpoint(500));
+        elevatorStageUp.whenPressed(new ElevatorPageUp());
+        elevatorStageDown.whenPressed(new ElevatorPageDown());
 
 
 
