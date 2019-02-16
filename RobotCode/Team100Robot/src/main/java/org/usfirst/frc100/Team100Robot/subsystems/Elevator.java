@@ -49,7 +49,7 @@ public class Elevator extends Subsystem {
         // Put code here to be run every loop
 
     }
-    public void UpdateDashboard(){
+    public void updateDashboard(){
         SmartDashboard.putString("CurrentCommandElevator", getCurrentCommandName());    
         SmartDashboard.putNumber("elevatorVoltage", elevatorMaster.getBusVoltage());
         SmartDashboard.putNumber("elevatorPosition", elevatorMaster.getSelectedSensorPosition());

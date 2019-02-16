@@ -98,4 +98,8 @@ public class Constants {
      * Climber
      */
 
+    /*
+     * Shuffleboard groups
+     */
+    public static final String SB_GROUP_PREFIX_DRIVETRAIN = "Drivetrain/";
 }

@@ -113,16 +113,13 @@ public class Drivetrain extends Subsystem implements PIDOutput {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    public void UpdateDashboard(){
-        SmartDashboard.putNumber("DrivetrainLeftBusVoltage", leftMaster.getBusVoltage());
-        SmartDashboard.putNumber("DrivetrainRightBusVoltage", rightMaster.getBusVoltage());
+    public void updateDashboard(){
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_DRIVETRAIN + "LeftBusVoltage", leftMaster.getBusVoltage());
+        SmartDashboard.putNumber("RightBusVoltage", rightMaster.getBusVoltage());
         SmartDashboard.putString("CurrentCommandDrivetrain", getCurrentCommandName());
-        SmartDashboard.putNumber("DriveTrain/Left Encoder Raw", drivetrainLeftEncoder.getRaw());
         SmartDashboard.putNumber("DrivetrainLeftOutputPercent", leftMaster.getMotorOutputPercent());
         SmartDashboard.putNumber("DrivetrainRightOutputPercent", rightMaster.getMotorOutputPercent());
         SmartDashboard.putNumber("DrivetrainLeftVelocity", leftMaster.getSelectedSensorVelocity());
         SmartDashboard.putNumber("DrivetrainRightVelocity", rightMaster.getSelectedSensorVelocity());
     }
-
-
 }

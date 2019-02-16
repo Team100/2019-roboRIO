@@ -21,9 +21,6 @@ import org.usfirst.frc100.Team100Robot.commands.*;
 import org.usfirst.frc100.Team100Robot.subsystems.*;
 import com.kauailabs.navx.frc.*;
 
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Encoder;
 
 import org.usfirst.frc100.Team100Robot.subsystems.Drivetrain;
@@ -94,12 +91,13 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit(){
-
+        new UpdateDashboard();
     }
 
     @Override
     public void disabledPeriodic() {
         Scheduler.getInstance().run();
+        new UpdateDashboard();
     }
 
     @Override
