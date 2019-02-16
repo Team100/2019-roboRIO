@@ -33,7 +33,7 @@ public class Climber extends Subsystem {
     private Solenoid deploy;
     private WPI_VictorSPX climberFollower;
 
-    public final Encoder climberEncoder = Robot.climberEncoder; 
+    public final Encoder climberMasterEncoder = Robot.climberEncoder; 
 
     public Climber() {
         climberMaster = new WPI_TalonSRX(Constants.CLIMBER_MASTER_CANID);
@@ -60,10 +60,10 @@ public class Climber extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public void UpdateDashboard(){
-        SmartDashboard.putString("CurrentCommandElevator", getCurrentCommandName());
-            SmartDashboard.putNumber("ClimberEncoderCount", climberEncoder.get());
-		    SmartDashboard.putNumber("DistanceEncoder", climberEncoder.getDistance());
-    	SmartDashboard.putNumber("EncoderRate", climberEncoder.getRate());
+        SmartDashboard.putString("CurrentCommandClimber", getCurrentCommandName());
+        SmartDashboard.putNumber("climberVoltage", climberMaster.getBusVoltage());
+        SmartDashboard.putNumber("climberPosition", climberMaster.getSelectedSensorPosition());
+        SmartDashboard.putNumber("climberVelocity", climberMaster.getSelectedSensorVelocity());
     }
 
 }
