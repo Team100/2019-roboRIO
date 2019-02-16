@@ -60,10 +60,10 @@ public class Climber extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public void updateDashboard(){
-        SmartDashboard.putString("CurrentCommandClimber", getCurrentCommandName());
-        SmartDashboard.putNumber("climberVoltage", climberMaster.getBusVoltage());
-        SmartDashboard.putNumber("climberPosition", climberMaster.getSelectedSensorPosition());
-        SmartDashboard.putNumber("climberVelocity", climberMaster.getSelectedSensorVelocity());
+        SmartDashboard.putString(Constants.SB_GROUP_PREFIX_CLIMBER + "CurrentCommandClimber", getCurrentCommandName());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CLIMBER + "climberVoltage", climberMaster.getBusVoltage());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CLIMBER + "climberPosition", climberMaster.getSelectedSensorPosition());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CLIMBER + "climberVelocity", climberMaster.getSelectedSensorVelocity());
     }
 
 }

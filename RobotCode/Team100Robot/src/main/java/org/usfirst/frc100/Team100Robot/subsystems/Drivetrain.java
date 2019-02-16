@@ -115,11 +115,11 @@ public class Drivetrain extends Subsystem implements PIDOutput {
 
     public void updateDashboard(){
         SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_DRIVETRAIN + "LeftBusVoltage", leftMaster.getBusVoltage());
-        SmartDashboard.putNumber("RightBusVoltage", rightMaster.getBusVoltage());
-        SmartDashboard.putString("CurrentCommandDrivetrain", getCurrentCommandName());
-        SmartDashboard.putNumber("DrivetrainLeftOutputPercent", leftMaster.getMotorOutputPercent());
-        SmartDashboard.putNumber("DrivetrainRightOutputPercent", rightMaster.getMotorOutputPercent());
-        SmartDashboard.putNumber("DrivetrainLeftVelocity", leftMaster.getSelectedSensorVelocity());
-        SmartDashboard.putNumber("DrivetrainRightVelocity", rightMaster.getSelectedSensorVelocity());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_DRIVETRAIN + "RightBusVoltage", rightMaster.getBusVoltage());
+        SmartDashboard.putString(Constants.SB_GROUP_PREFIX_DRIVETRAIN + "CurrentCommandDrivetrain", getCurrentCommandName());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_DRIVETRAIN + "DrivetrainLeftOutputPercent", leftMaster.getMotorOutputPercent());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_DRIVETRAIN + "DrivetrainRightOutputPercent", rightMaster.getMotorOutputPercent());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_DRIVETRAIN + "DrivetrainLeftVelocity", leftMaster.getSelectedSensorVelocity());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_DRIVETRAIN + "DrivetrainRightVelocity", rightMaster.getSelectedSensorVelocity());
     }
 }

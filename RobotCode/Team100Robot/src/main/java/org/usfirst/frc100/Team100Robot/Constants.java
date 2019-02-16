@@ -102,4 +102,6 @@ public class Constants {
      * Shuffleboard groups
      */
     public static final String SB_GROUP_PREFIX_DRIVETRAIN = "Drivetrain/";
+    public static final String SB_GROUP_PREFIX_ELEVATOR = "Elevator/";
+    public static final String SB_GROUP_PREFIX_CLIMBER = "Climber/";
 }
