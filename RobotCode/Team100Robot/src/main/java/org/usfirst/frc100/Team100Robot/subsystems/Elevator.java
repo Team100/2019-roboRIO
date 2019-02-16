@@ -50,9 +50,9 @@ public class Elevator extends Subsystem {
 
     }
     public void updateDashboard(){
-        SmartDashboard.putString("CurrentCommandElevator", getCurrentCommandName());    
-        SmartDashboard.putNumber("elevatorVoltage", elevatorMaster.getBusVoltage());
-        SmartDashboard.putNumber("elevatorPosition", elevatorMaster.getSelectedSensorPosition());
-        SmartDashboard.putNumber("elecatorVelocity", elevatorMaster.getSelectedSensorVelocity());
+        SmartDashboard.putString(Constants.SB_GROUP_PREFIX_ELEVATOR + "CurrentCommand", getCurrentCommandName());    
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_ELEVATOR + "Voltage", elevatorMaster.getBusVoltage());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_ELEVATOR + "Position", elevatorMaster.getSelectedSensorPosition());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_ELEVATOR + "Velocity", elevatorMaster.getSelectedSensorVelocity());
     }
 }

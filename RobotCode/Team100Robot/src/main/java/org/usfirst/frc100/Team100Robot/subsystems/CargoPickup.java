@@ -12,6 +12,8 @@
 package org.usfirst.frc100.Team100Robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import org.usfirst.frc100.Team100Robot.Constants;
@@ -51,6 +53,17 @@ public class CargoPickup extends Subsystem {
     }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-
+    public void updateDashboard(){
+        SmartDashboard.putString(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "CurrentCommand", getCurrentCommandName());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Tilt/Intake", cargoTilt.get());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Tilt/Hatch", cargoTilt.get());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Tilt/Cargo", cargoTilt.get());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Roller 1/Voltage", cargoRoller1.getBusVoltage());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Roller 1/Position", cargoRoller1.getSelectedSensorPosition());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Roller 1/Velocity", cargoRoller1.getSelectedSensorVelocity());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Roller 2/Voltage", cargoRoller2.getBusVoltage());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Roller 2/Position", cargoRoller2.getSelectedSensorPosition());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Roller 2/Velocity", cargoRoller2.getSelectedSensorVelocity());
+    }
 }
 
