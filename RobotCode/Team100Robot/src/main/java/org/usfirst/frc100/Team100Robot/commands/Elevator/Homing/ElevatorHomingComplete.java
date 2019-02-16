@@ -43,10 +43,12 @@ public class ElevatorHomingComplete extends Command {
   @Override
   protected void end() {
     Robot.elevator.homed = true;
-
+    Robot.elevator.elevatorMaster.setSelectedSensorPosition(0);
     Robot.elevator.state= States.MOVE_TO_SETPOINT;
     System.out.println("HOMING COMPLETE");
-    Robot.elevator.updateSetpoint(2500);
+    Robot.elevator.getPIDController().enable();
+    Robot.elevator.updateSetpoint(4000);
+    
 
   }
 

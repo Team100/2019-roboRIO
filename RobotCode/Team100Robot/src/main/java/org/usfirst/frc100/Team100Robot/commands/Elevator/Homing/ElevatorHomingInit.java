@@ -24,6 +24,7 @@ public class ElevatorHomingInit extends Command {
   @Override
   protected void initialize() {
     Robot.elevator.hs = homingStates.INIT;
+    Robot.elevator.getPIDController().disable();
     System.out.println("INIT STARTED");
   }
 

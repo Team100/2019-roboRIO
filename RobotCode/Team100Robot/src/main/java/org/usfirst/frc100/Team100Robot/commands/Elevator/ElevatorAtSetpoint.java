@@ -37,6 +37,7 @@ public class ElevatorAtSetpoint extends Command {
     if(Math.abs(Robot.oi.getManipulatorControl().getRawAxis(3)) > 0.2){
       new ElevatorTeleop().start();
     }
+    //Robot.elevator.elevatorMaster.set(0);
   }
 
   // Make this return true when this Command no longer needs to run execute()
