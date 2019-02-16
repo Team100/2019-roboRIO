@@ -31,18 +31,19 @@ public class ElevatorMoveToSetpoint extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.elevator.getPIDController().setSetpoint(Robot.elevator.setpoint);
+    Robot.elevator.elevatorMaster.set(ControlMode.Position,Robot.elevator.setpoint);
     done = false;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Math.abs(Robot.elevator.elevatorMaster.getSelectedSensorPosition(0) -Robot.elevator.setpoint) < Constants.ELEVATOR_POSITION_BUFFER && (Robot.elevator.elevatorMaster.getMotorOutputPercent() < 0.2)){
+    if(Math.abs(Robot.elevator.elevatorMaster.getSelectedSensorPosition(0) -Robot.elevator.setpoint) < Constants.ELEVATOR_POSITION_BUFFER){
       done = true;
       Robot.elevator.state = States.AT_SETPOINT;
       
     }
+    Robot.elevator.updateSetpoint();
 
   }
 

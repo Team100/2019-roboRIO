@@ -79,14 +79,14 @@ public class Constants {
      /**Power to apply when going up during homing sequence... <em>keep very small</em> */
      public static final double HOMING_GOING_UP_POWER = 0.3;
      /**Buffer in elevator target for acceptable destination */
-     public static final int ELEVATOR_POSITION_BUFFER = 85;
+     public static final int ELEVATOR_POSITION_BUFFER = 250;
 
 
 
      ////////////// PID
 
      /**Elevator PID P */
-     public static final double ELEVATOR_KP = 0.0000001;
+     public static final double ELEVATOR_KP = 1.0;
 
      /**Elevator PID I */
      public static final double ELEVATOR_KI = 0;
@@ -95,7 +95,7 @@ public class Constants {
      public static final double ELEVATOR_KD = 0;
 
      /**Elevator PID F */
-     public static final double ELEVATOR_KF = 0;
+     public static final double ELEVATOR_KF = 1;
 
 
     /**Conversion factor from Inches to Encoder ticks

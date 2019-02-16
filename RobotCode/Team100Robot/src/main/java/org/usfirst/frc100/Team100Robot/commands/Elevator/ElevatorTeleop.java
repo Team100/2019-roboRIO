@@ -25,7 +25,6 @@ public class ElevatorTeleop extends Command {
   @Override
   protected void initialize() {
     System.out.println("INITIALIZED TELEOP ELEVATOR");
-    Robot.elevator.getPIDController().disable();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -41,7 +40,7 @@ public class ElevatorTeleop extends Command {
     else{
     }*/
     SmartDashboard.putNumber("ELEV OI AXIS",Robot.oi.getManipulatorControl().getRawAxis(3));
-    Robot.elevator.elevatorMaster.set(-Robot.oi.getManipulatorControl().getRawAxis(3));
+    Robot.elevator.elevatorMaster.set(ControlMode.PercentOutput,-Robot.oi.getManipulatorControl().getRawAxis(3));
 /*
     if(Robot.oi.getManipulatorControl().getRawAxis(3) <= 0 && !Robot.elevator.atMaxHeight){ //Going up
       Robot.elevator.elevatorMaster.set(ControlMode.PercentOutput,-Robot.oi.getManipulatorControl().getRawAxis(3)*.4);

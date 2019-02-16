@@ -14,13 +14,10 @@ package org.usfirst.frc100.Team100Robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Preferences;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
@@ -31,7 +28,7 @@ import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorTeleop;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.Homing.ElevatorHomingInit;
 
 
-public class Elevator extends PIDSubsystem {
+public class Elevator extends Subsystem {
 
 
     public WPI_TalonSRX elevatorMaster;
@@ -73,7 +70,7 @@ public class Elevator extends PIDSubsystem {
      * <code>false</code> uses Constants.java for PID values
      * <code>true</code> uses NT Preferences for PID values with Constants.java as the fallback
      */
-    public static final boolean ELEVATOR_USE_PREFERENCES_FOR_PID_VALUES = false;
+    public static final boolean ELEVATOR_USE_PREFERENCES_FOR_PID_VALUES = true;
 
     /**
      * Instance of Robot Preferences
@@ -101,21 +98,17 @@ public class Elevator extends PIDSubsystem {
 
 
     public Elevator() {
-        super(Constants.ELEVATOR_KP,Constants.ELEVATOR_KI,Constants.ELEVATOR_KD,Constants.ELEVATOR_KF);
         prefs = Preferences.getInstance();
     
         elevatorMaster = new WPI_TalonSRX(Constants.ELEVATOR_MASTER_CANID);
         elevatorFollower = new WPI_VictorSPX(Constants.ELEVATOR_FOLLOWER_CANID);
         elevatorMaster.setInverted(true);
         elevatorFollower.setInverted(true);
-        elevatorMaster.setNeutralMode(NeutralMode.Brake);
-        elevatorFollower.setNeutralMode(NeutralMode.Brake);
-        elevatorMaster.configPeakOutputForward(0.5);
-        elevatorMaster.configPeakOutputReverse(-0.5);
+
         elevatorFollower.follow(elevatorMaster);
         elevatorMaster.setSensorPhase(true);
-        /*elevatorMaster.configPeakOutputForward(0.4);
-        elevatorMaster.configPeakOutputReverse(0.3);*/
+        elevatorMaster.configPeakOutputForward(0.4);
+        elevatorMaster.configPeakOutputReverse(0.3);
     
         if(ELEVATOR_POST_PID_CONSTANTS_TO_NT_PREFERENCES){
             prefs.putDouble("ELEVATOR_KP", Constants.ELEVATOR_KP);
@@ -124,13 +117,18 @@ public class Elevator extends PIDSubsystem {
             prefs.putDouble("ELEVATOR_KF", Constants.ELEVATOR_KF);
         }
         if(ELEVATOR_USE_PREFERENCES_FOR_PID_VALUES){
-            getPIDController().setPID(prefs.getDouble("ELEVATOR_KP",Constants.ELEVATOR_KP),prefs.getDouble("ELEVATOR_KP",Constants.ELEVATOR_KI),prefs.getDouble("ELEVATOR_KD",Constants.ELEVATOR_KD),prefs.getDouble("ELEVATOR_KF",Constants.ELEVATOR_KF));
+            elevatorMaster.config_kP(0, prefs.getDouble("ELEVATOR_KP",Constants.ELEVATOR_KP));
+            elevatorMaster.config_kI(0, prefs.getDouble("ELEVATOR_KI",Constants.ELEVATOR_KI));
+            elevatorMaster.config_kD(0, prefs.getDouble("ELEVATOR_KD",Constants.ELEVATOR_KD));
+            elevatorMaster.config_kF(0, prefs.getDouble("ELEVATOR_KF",Constants.ELEVATOR_KF));
 
         }
-        getPIDController().setAbsoluteTolerance(Constants.ELEVATOR_POSITION_BUFFER);
-        getPIDController().setContinuous(false);
-        getPIDController().enable();
-        LiveWindow.add(getPIDController());
+        else{
+            elevatorMaster.config_kP(0, Constants.ELEVATOR_KP);
+            elevatorMaster.config_kI(0, Constants.ELEVATOR_KI);
+            elevatorMaster.config_kD(0, Constants.ELEVATOR_KD);
+            elevatorMaster.config_kF(0, Constants.ELEVATOR_KF);
+        }
 
 
         //elevatorMaster.configClosedloopRamp(0.4);
@@ -215,10 +213,8 @@ public class Elevator extends PIDSubsystem {
         SmartDashboard.putBoolean("Intermediate Upper Limit Switch",this.intermediateUpperLimitSwitch.get());
         SmartDashboard.putNumber("ELEV ENC",this.elevatorMaster.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("ELEV PercentOutput", this.elevatorMaster.getMotorOutputPercent());
-        SmartDashboard.putNumber("ELEV Setpoint",this.setpoint);
-        SmartDashboard.putNumber("ELEV Error",this.getPIDController().getError());
+
         
-        SmartDashboard.putNumber("ELEV_P",this.getPIDController().getP());
         if(this.intermediateUpperLimitSwitch.get() && this.carriageUpperLimitSwitch.get() && !this.carriageLowerLimitSwitch.get() && !this.intermediateLowerLimitSwitch.get()){
             this.atMinHeight = true;
         }else{this.atMinHeight = false;}
@@ -226,18 +222,17 @@ public class Elevator extends PIDSubsystem {
             this.atMaxHeight = true;
         }else{this.atMaxHeight = false;}
 
-       /* if(this.atMinHeight && elevatorMaster.getMotorOutputPercent() < 0){
+        if(this.atMinHeight && elevatorMaster.getMotorOutputPercent() < 0){
             elevatorMaster.set(ControlMode.PercentOutput,0);
         }
         else if(this.atMaxHeight && elevatorMaster.getMotorOutputPercent() > 0){
             elevatorMaster.set(ControlMode.PercentOutput,0);
-        }*/
+        }
     }
     /**
      * Updates SmartDashboard
      */
     public void updateSD(){
-        /*
         if(state == States.MOVE_TO_SETPOINT || state == States.AT_SETPOINT){
         SmartDashboard.putNumber("ELEV_location", elevatorMaster.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("ELEV_percentoutput",elevatorMaster.getMotorOutputPercent());
@@ -252,7 +247,7 @@ public class Elevator extends PIDSubsystem {
         SmartDashboard.putNumber("ELEV_outputVoltage",elevatorMaster.getMotorOutputVoltage());
         //SmartDashboard.putString("ELEV/homeState",hs.toString());
 
-        }*/
+        }
 
     }
     
@@ -272,15 +267,5 @@ public class Elevator extends PIDSubsystem {
         return (int)((inches- Constants.ELEVATOR_START_HEIGHT_IN_INCHES) * Constants.ELEVATOR_INCH_TO_ENCODER_CONVERSION_FACTION );
     }
 
-
-    @Override protected double returnPIDInput(){
-        SmartDashboard.putNumber("ELEV SS",elevatorMaster.getSelectedSensorPosition());
-        return elevatorMaster.getSelectedSensorPosition();
-    }
-    @Override protected void usePIDOutput(double output){
-        SmartDashboard.putNumber("ELEV Output",output);
-        elevatorMaster.pidWrite(output);
-
-    }
 }
 
