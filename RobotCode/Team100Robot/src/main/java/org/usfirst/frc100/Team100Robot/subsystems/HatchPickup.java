@@ -68,6 +68,17 @@ public class HatchPickup extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-
+    public void updateDashboard(){
+        SmartDashboard.putString(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "CurrentCommand", getCurrentCommandName());
+        SmartDashboard.putBoolean(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Solenoids/Intake", loadingStationIntake.get());
+        SmartDashboard.putBoolean(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Solenoid/Hatch", hatchScorer.get());
+        SmartDashboard.putBoolean(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Solenoid/Cargo", cargoScorer.get());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Top Roller/Voltage", topBallRollerShooter.getBusVoltage());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Top Roller/Position", topBallRollerShooter.getSelectedSensorPosition());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Top Roller/Velocity", topBallRollerShooter.getSelectedSensorVelocity());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Bottom Roller/Voltage", bottomBallRollerShooter.getBusVoltage());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Bottom Roller/Position", bottomBallRollerShooter.getSelectedSensorPosition());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Bottom Roller/Velocity", bottomBallRollerShooter.getSelectedSensorVelocity());
+    }
 }
 

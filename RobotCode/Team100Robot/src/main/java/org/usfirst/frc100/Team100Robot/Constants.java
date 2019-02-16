@@ -105,7 +105,9 @@ public class Constants {
     public static final String SB_GROUP_PREFIX_ELEVATOR = "Elevator/";
     public static final String SB_GROUP_PREFIX_CLIMBER = "Climber/";
     public static final String SB_GROUP_PREFIX_SHOULDER = "Carriage Shoulder/";
+    public static final String SB_GROUP_PREFIX_SHIFTER = "Shifter/";
     public static final String SB_GROUP_PREFIX_SCORER = "Cargo+Hatch Score/";
     public static final String SB_GROUP_PREFIX_CARGO_PICKUP = "Cargo Pickup/";
+    public static final String SB_GROUP_PREFIX_HATCH_PICKUP = "Hatch Pickup/";
     
 }

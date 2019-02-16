@@ -18,7 +18,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import org.usfirst.frc100.Team100Robot.Constants;
 
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 
 /**
@@ -58,12 +57,10 @@ public class CargoPickup extends Subsystem {
         SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Tilt/Intake", cargoTilt.get());
         SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Tilt/Hatch", cargoTilt.get());
         SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Tilt/Cargo", cargoTilt.get());
-        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Roller 1/Voltage", cargoRoller1.getBusVoltage());
-        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Roller 1/Position", cargoRoller1.getSelectedSensorPosition());
-        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Roller 1/Velocity", cargoRoller1.getSelectedSensorVelocity());
-        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Roller 2/Voltage", cargoRoller2.getBusVoltage());
-        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Roller 2/Position", cargoRoller2.getSelectedSensorPosition());
-        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Roller 2/Velocity", cargoRoller2.getSelectedSensorVelocity());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Roller 1/Percent Output", cargoRoller1.get());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Roller 1/Speed", cargoRoller1.getSpeed());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Roller 2/Percent Output", cargoRoller2.get());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_CARGO_PICKUP + "Roller 2/Speed", cargoRoller2.getSpeed());
     }
 }
 

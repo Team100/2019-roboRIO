@@ -45,6 +45,9 @@ public class Shifter extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-
+    public void updateDashboard(){
+        SmartDashboard.putString(Constants.SB_GROUP_PREFIX_SHIFTER + "Current Command", getCurrentCommandName());
+        SmartDashboard.putBoolean(Constants.SB_GROUP_PREFIX_SHIFTER + "High Gear", driveTrainShifter.get());
+    }
 }
 
