@@ -18,6 +18,8 @@ public class UpdateDashboard extends Command {
         Robot.elevator.updateDashboard();
         Robot.drivetrain.updateDashboard();
         Robot.climber.updateDashboard();
+        Robot.carriageShoulder.updateDashboard();
+        Robot.cargoHatchScore.updateDashboard();
     }
 
     protected boolean isFinished() {

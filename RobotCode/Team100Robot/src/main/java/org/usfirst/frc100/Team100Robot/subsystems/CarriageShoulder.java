@@ -11,7 +11,10 @@
 
 package org.usfirst.frc100.Team100Robot.subsystems;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import org.usfirst.frc100.Team100Robot.Constants;
@@ -40,5 +43,11 @@ public class CarriageShoulder extends Subsystem {
     }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    public void updateDashboard(){
+        SmartDashboard.putString(Constants.SB_GROUP_PREFIX_SHOULDER + "CurrentCommand", getCurrentCommandName());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_SHOULDER + "Voltage", carriageShoulderMotor.getBusVoltage());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_SHOULDER + "Position", carriageShoulderMotor.getSelectedSensorPosition());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_SHOULDER + "Velocity", carriageShoulderMotor.getSelectedSensorVelocity());
+    }
 }
 

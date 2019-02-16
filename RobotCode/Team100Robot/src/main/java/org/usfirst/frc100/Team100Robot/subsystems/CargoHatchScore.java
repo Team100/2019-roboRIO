@@ -12,6 +12,8 @@
 package org.usfirst.frc100.Team100Robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import org.usfirst.frc100.Team100Robot.Constants;
@@ -56,6 +58,18 @@ public class CargoHatchScore extends Subsystem {
     }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    public void updateDashboard(){
+        SmartDashboard.putString(Constants.SB_GROUP_PREFIX_SHOULDER + "CurrentCommand", getCurrentCommandName());
+        SmartDashboard.putBoolean(Constants.SB_GROUP_PREFIX_SHOULDER + "Solenoids/Intake", loadingStationIntake.get());
+        SmartDashboard.putBoolean(Constants.SB_GROUP_PREFIX_SHOULDER + "Solenoid/Hatch", hatchScorer.get());
+        SmartDashboard.putBoolean(Constants.SB_GROUP_PREFIX_SHOULDER + "Solenoid/Cargo", cargoScorer.get());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_SHOULDER + "Top Roller/Voltage", topBallRollerShooter.getBusVoltage());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_SHOULDER + "Top Roller/Position", topBallRollerShooter.getSelectedSensorPosition());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_SHOULDER + "Top Roller/Velocity", topBallRollerShooter.getSelectedSensorVelocity());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_SHOULDER + "Bottom Roller/Voltage", bottomBallRollerShooter.getBusVoltage());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_SHOULDER + "Bottom Roller/Position", bottomBallRollerShooter.getSelectedSensorPosition());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_SHOULDER + "Bottom Roller/Velocity", bottomBallRollerShooter.getSelectedSensorVelocity());
+    }
 
 }
 
