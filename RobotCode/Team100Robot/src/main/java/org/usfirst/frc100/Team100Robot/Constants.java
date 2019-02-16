@@ -75,18 +75,22 @@ public class Constants {
      */
 
      /**Power to apply when going down during homing sequence... <em>keep very small</em>*/
-     public static final double HOMING_GOING_DOWN_POWER = -0.3;
+     public static final double HOMING_GOING_DOWN_POWER = -.3;
      /**Power to apply when going up during homing sequence... <em>keep very small</em> */
-     public static final double HOMING_GOING_UP_POWER = 0.3;
+     public static final double HOMING_GOING_UP_POWER = .5;
      /**Buffer in elevator target for acceptable destination */
-     public static final int ELEVATOR_POSITION_BUFFER = 250;
+     public static final int ELEVATOR_POSITION_BUFFER = 85;
 
+     /**
+      * Elevator Timeout in Milliseconds
+      */
+     public static final int ELEVATOR_MASTER_TIMEOUT = 10;
 
 
      ////////////// PID
 
      /**Elevator PID P */
-     public static final double ELEVATOR_KP = 1.0;
+     public static final double ELEVATOR_KP = 2;
 
      /**Elevator PID I */
      public static final double ELEVATOR_KI = 0;

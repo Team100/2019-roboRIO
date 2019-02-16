@@ -7,6 +7,8 @@
 
 package org.usfirst.frc100.Team100Robot.commands.Elevator;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import org.usfirst.frc100.Team100Robot.Robot;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.Homing.ElevatorHomingInit;
 import org.usfirst.frc100.Team100Robot.subsystems.Elevator.States;
@@ -36,6 +38,10 @@ public class ElevatorAtSetpoint extends Command {
     Robot.elevator.state = States.AT_SETPOINT;
     if(Math.abs(Robot.oi.getManipulatorControl().getRawAxis(3)) > 0.2){
       new ElevatorTeleop().start();
+    }
+    if(Robot.elevator.state == States.AT_SETPOINT){
+      //Robot.elevator.elevatorMaster.set(ControlMode.Position,Robot.elevator.setpoint);
+
     }
   }
 

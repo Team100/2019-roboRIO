@@ -28,6 +28,7 @@ public class ElevatorHomingDown extends Command {
   protected void initialize() {
     Robot.elevator.hs = homingStates.ELEV_AT_LIMIT_SWITCH;
     Robot.elevator.elevatorMaster.set(ControlMode.PercentOutput,0);
+    System.out.println("HOMING DOWN START");
     
   }
 
@@ -46,6 +47,7 @@ public class ElevatorHomingDown extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    System.out.println("Homing Down Done");
     new ElevatorHomingGoingUp().start();
   }
 

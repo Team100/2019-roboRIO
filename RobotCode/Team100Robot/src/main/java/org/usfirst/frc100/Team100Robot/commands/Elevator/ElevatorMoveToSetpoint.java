@@ -31,7 +31,7 @@ public class ElevatorMoveToSetpoint extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.elevator.elevatorMaster.set(ControlMode.Position,Robot.elevator.setpoint);
+    Robot.elevator.elevatorMaster.set(ControlMode.MotionMagic,Robot.elevator.setpoint);
     done = false;
   }
 
@@ -43,7 +43,7 @@ public class ElevatorMoveToSetpoint extends Command {
       Robot.elevator.state = States.AT_SETPOINT;
       
     }
-    Robot.elevator.updateSetpoint();
+    //Robot.elevator.updateSetpoint();
 
   }
 

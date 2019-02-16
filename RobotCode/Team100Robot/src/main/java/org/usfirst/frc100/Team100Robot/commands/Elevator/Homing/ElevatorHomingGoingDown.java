@@ -32,6 +32,7 @@ public class ElevatorHomingGoingDown extends Command {
     Robot.elevator.hs = homingStates.ELEV_GOING_DOWN;
     Robot.elevator.elevatorMaster.set(ControlMode.PercentOutput, Constants.HOMING_GOING_DOWN_POWER);
     complete = false;
+    System.out.println("In Init");
   }
 
   // Called repeatedly when this Command is scheduled to run

@@ -18,6 +18,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
@@ -70,7 +72,7 @@ public class Elevator extends Subsystem {
      * <code>false</code> uses Constants.java for PID values
      * <code>true</code> uses NT Preferences for PID values with Constants.java as the fallback
      */
-    public static final boolean ELEVATOR_USE_PREFERENCES_FOR_PID_VALUES = true;
+    public static final boolean ELEVATOR_USE_PREFERENCES_FOR_PID_VALUES = false;
 
     /**
      * Instance of Robot Preferences
@@ -102,13 +104,25 @@ public class Elevator extends Subsystem {
     
         elevatorMaster = new WPI_TalonSRX(Constants.ELEVATOR_MASTER_CANID);
         elevatorFollower = new WPI_VictorSPX(Constants.ELEVATOR_FOLLOWER_CANID);
+        elevatorMaster.configFactoryDefault();
+        elevatorFollower.configFactoryDefault();
+        elevatorMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Constants.ELEVATOR_MASTER_TIMEOUT);
         elevatorMaster.setInverted(true);
         elevatorFollower.setInverted(true);
-
-        elevatorFollower.follow(elevatorMaster);
         elevatorMaster.setSensorPhase(true);
-        elevatorMaster.configPeakOutputForward(0.4);
-        elevatorMaster.configPeakOutputReverse(0.3);
+        elevatorMaster.configPeakOutputForward(1);
+        elevatorMaster.configPeakOutputReverse(-1);
+        elevatorMaster.configNominalOutputForward(0);
+        elevatorMaster.configNominalOutputReverse(0);
+        elevatorMaster.configAllowableClosedloopError(0, 0, Constants.ELEVATOR_MASTER_TIMEOUT);
+        elevatorMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0,10,Constants.ELEVATOR_MASTER_TIMEOUT);
+        elevatorMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10,Constants.ELEVATOR_MASTER_TIMEOUT);
+        elevatorMaster.configMotionCruiseVelocity(15000,Constants.ELEVATOR_MASTER_TIMEOUT);
+        elevatorMaster.configMotionAcceleration(6000,Constants.ELEVATOR_MASTER_TIMEOUT);
+        elevatorMaster.enableCurrentLimit(false);
+        elevatorMaster.overrideLimitSwitchesEnable(false);
+        elevatorFollower.follow(elevatorMaster);
+        
     
         if(ELEVATOR_POST_PID_CONSTANTS_TO_NT_PREFERENCES){
             prefs.putDouble("ELEVATOR_KP", Constants.ELEVATOR_KP);
@@ -135,6 +149,7 @@ public class Elevator extends Subsystem {
         //elevatorMaster.configPeakCurrentLimit(20);
         //elevatorMaster.configPeakCurrentLimit(60);
         homed = false;
+        
     }
 
     /**
@@ -205,7 +220,7 @@ public class Elevator extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-        updateSD();
+        //updateSD();
         SmartDashboard.putString("ELEV COMMAND", this.getCurrentCommandName());
         SmartDashboard.putBoolean("Carriage Lower Limit Switch",this.carriageLowerLimitSwitch.get());
         SmartDashboard.putBoolean("Carriage Upper Limit Switch",this.carriageUpperLimitSwitch.get());
@@ -213,26 +228,38 @@ public class Elevator extends Subsystem {
         SmartDashboard.putBoolean("Intermediate Upper Limit Switch",this.intermediateUpperLimitSwitch.get());
         SmartDashboard.putNumber("ELEV ENC",this.elevatorMaster.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("ELEV PercentOutput", this.elevatorMaster.getMotorOutputPercent());
-
+        SmartDashboard.putNumber("ELEV Setpoint",this.setpoint);
+        SmartDashboard.putString("ELEV ControlMode",this.elevatorMaster.getControlMode().toString());
         
-        if(this.intermediateUpperLimitSwitch.get() && this.carriageUpperLimitSwitch.get() && !this.carriageLowerLimitSwitch.get() && !this.intermediateLowerLimitSwitch.get()){
+        SmartDashboard.putBoolean("AT TOP", this.atMaxHeight);
+        SmartDashboard.putBoolean("AT BOTTOM",this.atMinHeight);
+        
+        if(this.intermediateUpperLimitSwitch.get() 
+            && this.carriageUpperLimitSwitch.get() 
+            && !this.carriageLowerLimitSwitch.get() 
+            && !this.intermediateLowerLimitSwitch.get()){
             this.atMinHeight = true;
         }else{this.atMinHeight = false;}
-        if(!this.intermediateUpperLimitSwitch.get() && !this.carriageUpperLimitSwitch.get() && this.carriageLowerLimitSwitch.get() && this.intermediateLowerLimitSwitch.get()){
+
+        if(!this.intermediateUpperLimitSwitch.get() && 
+        !this.carriageUpperLimitSwitch.get() && 
+        this.carriageLowerLimitSwitch.get() && 
+        this.intermediateLowerLimitSwitch.get()){
             this.atMaxHeight = true;
         }else{this.atMaxHeight = false;}
 
-        if(this.atMinHeight && elevatorMaster.getMotorOutputPercent() < 0){
+        /*if(this.atMinHeight && elevatorMaster.getMotorOutputPercent() < 0){
             elevatorMaster.set(ControlMode.PercentOutput,0);
         }
         else if(this.atMaxHeight && elevatorMaster.getMotorOutputPercent() > 0){
             elevatorMaster.set(ControlMode.PercentOutput,0);
-        }
+        }*/
     }
     /**
      * Updates SmartDashboard
      */
     public void updateSD(){
+        /* 
         if(state == States.MOVE_TO_SETPOINT || state == States.AT_SETPOINT){
         SmartDashboard.putNumber("ELEV_location", elevatorMaster.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("ELEV_percentoutput",elevatorMaster.getMotorOutputPercent());
@@ -248,7 +275,7 @@ public class Elevator extends Subsystem {
         //SmartDashboard.putString("ELEV/homeState",hs.toString());
 
         }
-
+*/
     }
     
 
