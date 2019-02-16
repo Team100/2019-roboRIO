@@ -122,7 +122,6 @@ public class OI {
         SmartDashboard.putData("DriveCMD", new Drive());
         SmartDashboard.putData("HighGear", new HighGear());
         SmartDashboard.putData("LowGear", new LowGear());
-        SmartDashboard.putData("UpdateDashboard", new UpdateDashboard());
         }
 
     public Joystick getLeftStick() {

@@ -12,6 +12,8 @@
 package org.usfirst.frc100.Team100Robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import org.usfirst.frc100.Team100Robot.Constants;
 
@@ -70,15 +72,12 @@ public class HatchPickup extends Subsystem {
     // here. Call these from Commands.
     public void updateDashboard(){
         SmartDashboard.putString(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "CurrentCommand", getCurrentCommandName());
-        SmartDashboard.putBoolean(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Solenoids/Intake", loadingStationIntake.get());
-        SmartDashboard.putBoolean(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Solenoid/Hatch", hatchScorer.get());
-        SmartDashboard.putBoolean(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Solenoid/Cargo", cargoScorer.get());
-        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Top Roller/Voltage", topBallRollerShooter.getBusVoltage());
-        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Top Roller/Position", topBallRollerShooter.getSelectedSensorPosition());
-        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Top Roller/Velocity", topBallRollerShooter.getSelectedSensorVelocity());
-        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Bottom Roller/Voltage", bottomBallRollerShooter.getBusVoltage());
-        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Bottom Roller/Position", bottomBallRollerShooter.getSelectedSensorPosition());
-        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Bottom Roller/Velocity", bottomBallRollerShooter.getSelectedSensorVelocity());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Tilt/Voltage", tilt.getBusVoltage());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Tilt/Position", tilt.getSelectedSensorPosition());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Tilt/Velocity", tilt.getSelectedSensorVelocity());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Roller/Percent Output", roller.get());
+        SmartDashboard.putNumber(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Roller/Speed", roller.getSpeed());
+        SmartDashboard.putBoolean(Constants.SB_GROUP_PREFIX_HATCH_PICKUP + "Solenoid Status", hatchFloorPickup.get());
     }
 }
 

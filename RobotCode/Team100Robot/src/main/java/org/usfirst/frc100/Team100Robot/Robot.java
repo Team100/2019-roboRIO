@@ -97,7 +97,8 @@ public class Robot extends TimedRobot {
     @Override
     public void disabledPeriodic() {
         Scheduler.getInstance().run();
-        new UpdateDashboard();
+        String e = UpdateDashboard.update();
+        if (e != null) System.out.println("Can't update dashboard:" + e);
     }
 
     @Override
@@ -105,6 +106,7 @@ public class Robot extends TimedRobot {
         autonomousCommand = chooser.getSelected();
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
+        new UpdateDashboard();
     }
 
     /**
@@ -113,6 +115,8 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        String e = UpdateDashboard.update();
+        if (e != null) System.out.println("Can't update dashboard:" + e);
     }
 
     @Override
@@ -122,7 +126,7 @@ public class Robot extends TimedRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
-        
+        new UpdateDashboard();
     }
 
     /**
@@ -132,6 +136,8 @@ public class Robot extends TimedRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         currentHeading = ahrs.getFusedHeading();
+        String e = UpdateDashboard.update();
+        if (e != null) System.out.println("Can't update dashboard:" + e);
     }
 
     public static double getCurrentHeading(){
