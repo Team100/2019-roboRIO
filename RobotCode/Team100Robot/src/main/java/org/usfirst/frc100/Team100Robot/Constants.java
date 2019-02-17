@@ -22,21 +22,21 @@ public class Constants {
     public static SerialPort.Port NAVX_COMM_PORT = SerialPort.Port.kUSB;
     public static final int PCM_CANID = 0;
     public static final int DRIVE_TRAIN_LEFT_MASTER_CANID = 0;
-    public static final int DRIVE_TRAIN_LEFT_FOLLOWER_CANID = 1;
+    public static final int DRIVE_TRAIN_LEFT_FOLLOWER_CANID = 3;
     public static final int DRIVE_TRAIN_RIGHT_MASTER_CANID = 15;
-    public static final int DRIVE_TRAIN_RIGHT_FOLLOWER_CANID = 14;
-    public static final int ELEVATOR_MASTER_CANID = 10;
-    public static final int ELEVATOR_FOLLOWER_CANID = 11;
-    public static final int ELEVATOR_CARRIAGE_SHOULDER_CANID = 2;
-    public static final int CARGO_PICKUP_TALON_CANID = 3;
-    public static final int CARGO_PICKUP_TILT_PWM = 6;
-    public static final int CARGO_PICKUP_ROLLER_PWM = 7;
+    public static final int DRIVE_TRAIN_RIGHT_FOLLOWER_CANID = 13;
+    public static final int ELEVATOR_MASTER_CANID = 11;
+    public static final int ELEVATOR_FOLLOWER_CANID = 9;
+    public static final int ELEVATOR_CARRIAGE_SHOULDER_CANID = 1;
+    public static final int CARGO_PICKUP_TILT_CANID = 2;
+    public static final int CARGO_PICKUP_ROLLER1_PWM = 6;
+    public static final int CARGO_PICKUP_ROLLER2_PWM = 7;
     public static final int HATCH_PICKUP_ROLLER_PWM = 8;
-    public static final int HATCH_PICKUP_TILT_CANID = 9;
+    public static final int HATCH_PICKUP_TILT_CANID = 10;
 	public static final int CARGO_HATCH_SCORER_TOP_CANID = 4;
     public static final int CARGO_HATCH_SCORER_BOTTOM_CANID = 5;
-	public static final int CLIMBER_MASTER_CANID = 12;
-	public static final int CLIMBER_FOLLOWER_CANID = 13;
+	public static final int CLIMBER_MASTER_CANID = 14;
+	public static final int CLIMBER_FOLLOWER_CANID = 12;
 
     /* 
      * PNEUMATICS SOLENOID PCM IDs
@@ -74,10 +74,56 @@ public class Constants {
      * Elevator
      */
 
+     /**Power to apply when going down during homing sequence... <em>keep very small</em>*/
+     public static final double HOMING_GOING_DOWN_POWER = -.3;
+     /**Power to apply when going up during homing sequence... <em>keep very small</em> */
+     public static final double HOMING_GOING_UP_POWER = .5;
+     /**Buffer in elevator target for acceptable destination */
+     public static final int ELEVATOR_POSITION_BUFFER = 85;
+
+     /**
+      * Elevator Timeout in Milliseconds
+      */
+     public static final int ELEVATOR_MASTER_TIMEOUT = 10;
+
+
+     ////////////// PID
+
+     /**Elevator PID P */
+     public static final double ELEVATOR_KP = 2;
+
+     /**Elevator PID I */
+     public static final double ELEVATOR_KI = 0;
+
+     /**Elevator PID D */
+     public static final double ELEVATOR_KD = 0;
+
+     /**Elevator PID F */
+     public static final double ELEVATOR_KF = 1;
+
+
+    /**Conversion factor from Inches to Encoder ticks
+     * For elevator control
+    */
+     public static final int ELEVATOR_INCH_TO_ENCODER_CONVERSION_FACTION = 86;
+
+     public static final double ELEVATOR_START_HEIGHT_IN_INCHES = 16.5;
+     public static final double ELEVATOR_MAX_HEIGHT_IN_INCHES = 78.5;
     /*
      * Elevator Carriage
      */
 
+    /*
+     * Shoulder
+    */
+    public static final int SHOULDER_MASTER_TIMEOUT = 10;
+
+    public static final double SHOULDER_KP = 0.001;
+    public static final double SHOULDER_KI = 0;
+    public static final double SHOULDER_KD = 0;
+    public static final double SHOULDER_KF = 0;
+    public static final int SHOULDER_TIMEOUT = 10;
+    public static final int SHOULDER_BUFFER = 10;
     /*
      * Cargo Floor Pickup
      */
