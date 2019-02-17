@@ -40,8 +40,7 @@ public class Drivetrain extends Subsystem implements PIDOutput {
     //public final Encoder drivetrainLeftEncoder = Robot.drivetrainLeftEncoder; 
     //public final Encoder drivetrainRightEncoder = Robot.drivetrainRightEncoder;
 
-    Encoder enc,
-    drivetrainLeftEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+    Encoder enc, drivetrainLeftEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
 
     public Drivetrain() {
         leftMaster = new WPI_TalonSRX(Constants.DRIVE_TRAIN_LEFT_MASTER_CANID);

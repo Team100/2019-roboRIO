@@ -27,12 +27,12 @@ public class Constants {
     public static final int DRIVE_TRAIN_RIGHT_FOLLOWER_CANID = 13;
     public static final int ELEVATOR_MASTER_CANID = 11;
     public static final int ELEVATOR_FOLLOWER_CANID = 9;
-    public static final int ELEVATOR_CARRIAGE_SHOULDER_CANID = 1;
+    public static final int ELEVATOR_CARRIAGE_SHOULDER_CANID = 20;//1;
     public static final int CARGO_PICKUP_TILT_CANID = 2;
     public static final int CARGO_PICKUP_ROLLER1_PWM = 6;
     public static final int CARGO_PICKUP_ROLLER2_PWM = 7;
     public static final int HATCH_PICKUP_ROLLER_PWM = 8;
-    public static final int HATCH_PICKUP_TILT_CANID = 10;
+    public static final int HATCH_PICKUP_TILT_CANID = 1;
 	public static final int CARGO_HATCH_SCORER_TOP_CANID = 4;
     public static final int CARGO_HATCH_SCORER_BOTTOM_CANID = 5;
 	public static final int CLIMBER_MASTER_CANID = 14;
@@ -86,9 +86,9 @@ public class Constants {
      * Hatch Floor Pickup
      */
     public static final double HATCH_PICKUP_INTAKE_SPEED = 0.6;
-    public static final double HATCH_PICKUP_TILT_SPEED = 0.2;
-	public static final int HATCH_PICKUP_UPPER_LIMIT_SWITCH_SLOT = 0;
-	public static final int HATCH_PICKUP_LOWER_LIMIT_SWITCH_SLOT = 1;
+    public static final double HATCH_PICKUP_TILT_SPEED = 1;
+	public static final int HATCH_PICKUP_UPPER_LIMIT_SWITCH_SLOT = 2;
+	public static final int HATCH_PICKUP_LOWER_LIMIT_SWITCH_SLOT = 3;
 
     /*
      * Cargo Hatch Score

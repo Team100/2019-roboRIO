@@ -17,6 +17,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 
+
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -88,8 +90,10 @@ public class OI {
         shiftLow.whenPressed(new LowGear());
         
         hatchUp = new JoystickButton(leftStick, 4);
+        hatchUp.whenPressed(new HatchUp());
  
         hatchDown = new JoystickButton(leftStick, 5);
+        hatchDown.whenPressed(new HatchDown());
 
         //Joystick 1 (Right Stick)
         intakeCargo = new JoystickButton(rightStick, 1);
@@ -122,6 +126,7 @@ public class OI {
         SmartDashboard.putData("DriveCMD", new Drive());
         SmartDashboard.putData("HighGear", new HighGear());
         SmartDashboard.putData("LowGear", new LowGear());
+        SmartDashboard.putData("HatchUp", new HatchUp());
         }
 
     public Joystick getLeftStick() {
