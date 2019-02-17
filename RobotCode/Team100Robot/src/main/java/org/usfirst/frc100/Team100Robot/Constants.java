@@ -114,6 +114,17 @@ public class Constants {
      */
 
     /*
+     * Shoulder
+    */
+    public static final int SHOULDER_MASTER_TIMEOUT = 10;
+
+    public static final double SHOULDER_KP = 1;
+    public static final double SHOULDER_KI = 0;
+    public static final double SHOULDER_KD = 0;
+    public static final double SHOULDER_KF = 1;
+    public static final int SHOULDER_TIMEOUT = 10;
+    public static final int SHOULDER_BUFFER = 10;
+    /*
      * Cargo Floor Pickup
      */
 

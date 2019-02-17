@@ -12,25 +12,49 @@
 package org.usfirst.frc100.Team100Robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import org.usfirst.frc100.Team100Robot.Constants;
+import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderDefault;
 
 /**
  *
  */
 public class CarriageShoulder extends Subsystem {
 
-    private WPI_TalonSRX carriageShoulderMotor;
+    public int currentSetpointIndex = 0;
+    public int currentSetpoint = -1;
+    public static final int[] setpoints = {100,200,300};
+
+    public WPI_TalonSRX carriageShoulderMotor;
 
     public CarriageShoulder() {
         carriageShoulderMotor = new WPI_TalonSRX(Constants.ELEVATOR_CARRIAGE_SHOULDER_CANID);
+        carriageShoulderMotor.configFactoryDefault();
+        carriageShoulderMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Constants.SHOULDER_MASTER_TIMEOUT);
+        carriageShoulderMotor.setInverted(true);
+        carriageShoulderMotor.setSensorPhase(true);
+        carriageShoulderMotor.configPeakOutputForward(1);
+        carriageShoulderMotor.configPeakOutputReverse(-1);
+        carriageShoulderMotor.configNominalOutputForward(0);
+        carriageShoulderMotor.configNominalOutputReverse(0);
+        carriageShoulderMotor.configAllowableClosedloopError(0, 0, Constants.SHOULDER_MASTER_TIMEOUT);
+        carriageShoulderMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0,10,Constants.SHOULDER_MASTER_TIMEOUT);
+        carriageShoulderMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10,Constants.SHOULDER_MASTER_TIMEOUT);
+        carriageShoulderMotor.configMotionCruiseVelocity(15000,Constants.SHOULDER_MASTER_TIMEOUT);
+        carriageShoulderMotor.configMotionAcceleration(6000,Constants.SHOULDER_MASTER_TIMEOUT);
+        carriageShoulderMotor.enableCurrentLimit(false);
+        carriageShoulderMotor.overrideLimitSwitchesEnable(false);
     }
 
     @Override
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new ShoulderDefault());
     }
 
     @Override
@@ -40,5 +64,20 @@ public class CarriageShoulder extends Subsystem {
     }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    public void updateSetpointGivenIndex(){
+        this.currentSetpoint = this.setpoints[this.currentSetpointIndex];
+    }
+    public void moveUp(){
+        if(this.currentSetpoint < this.setpoints.length - 1){
+            this.currentSetpoint += 1;
+        }
+        this.updateSetpointGivenIndex();
+    }
+    public void moveDown(){
+        if(this.currentSetpoint > 0){
+            this.currentSetpoint -= 1;
+        }
+        this.updateSetpointGivenIndex();
+    }
 }
 

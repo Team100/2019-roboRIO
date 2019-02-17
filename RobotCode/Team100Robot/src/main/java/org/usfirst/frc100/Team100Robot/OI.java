@@ -15,6 +15,8 @@ import org.usfirst.frc100.Team100Robot.commands.*;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorMoveToSetpoint;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorPageDown;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorPageUp;
+import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderDown;
+import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderUp;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
@@ -101,10 +103,10 @@ public class OI {
         shiftHigh.whenPressed(new HighGear());
         
         cargoUp = new JoystickButton(rightStick, 4);
-        cargoUp.whenPressed(new CargoUp());
+        cargoUp.whenPressed(new ShoulderUp());
  
         cargoDown = new JoystickButton(rightStick, 5);
-        cargoDown.whenPressed(new CargoDown());
+        cargoDown.whenPressed(new ShoulderDown());
 
         //Joystick 2 (Manipulator Control)
         climberToggle = new JoystickButton(manipulatorControl, 4);
@@ -119,6 +121,7 @@ public class OI {
 
         elevatorStageUp.whenPressed(new ElevatorPageUp());
         elevatorStageDown.whenPressed(new ElevatorPageDown());
+
 
 
 
