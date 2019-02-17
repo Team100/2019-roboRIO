@@ -23,6 +23,8 @@ import org.usfirst.frc100.Team100Robot.Constants;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 /**
  *
  */
@@ -67,21 +69,21 @@ public class HatchPickup extends Subsystem {
 
     public boolean tiltUp(){
         System.out.println("STUFF");
-        // if(tilt.getSelectedSensorPosition(Constants.HATCH_PICKUP_UPPER_LIMIT_SWITCH_SLOT) == 0) {
-        //     tilt.set(ControlMode.PercentOutput, Constants.HATCH_PICKUP_TILT_SPEED);
-        //     return false;
-        // }
-        // else return true;
+        if(tilt.getSelectedSensorPosition(Constants.HATCH_PICKUP_UPPER_LIMIT_SWITCH_SLOT) == 0) {
+            tilt.set(ControlMode.PercentOutput, Constants.HATCH_PICKUP_TILT_SPEED);
+            //return false;
+        }
+        else return true;
         tilt.set(ControlMode.PercentOutput, Constants.HATCH_PICKUP_TILT_SPEED);
         return false;
     }
 
     public boolean tiltDown(){
-        // if(tilt.getSelectedSensorPosition(Constants.HATCH_PICKUP_LOWER_LIMIT_SWITCH_SLOT) == 0) {
-        //     tilt.set(ControlMode.PercentOutput, -Constants.HATCH_PICKUP_TILT_SPEED);
-        //     return false;
-        // }
-        // else return true;
+        if(tilt.getSelectedSensorPosition(Constants.HATCH_PICKUP_LOWER_LIMIT_SWITCH_SLOT) == 0) {
+            tilt.set(ControlMode.PercentOutput, -Constants.HATCH_PICKUP_TILT_SPEED);
+            //return false;
+        }
+        else return true;
         tilt.set(ControlMode.PercentOutput, -Constants.HATCH_PICKUP_TILT_SPEED);
         return false;
     }
