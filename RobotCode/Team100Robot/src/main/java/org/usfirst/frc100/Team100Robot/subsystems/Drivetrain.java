@@ -96,6 +96,7 @@ public class Drivetrain extends Subsystem implements PIDOutput {
 
     public void drive(){
         differentialDrive.arcadeDrive(-Robot.oi.getLeftStick().getY(), Robot.oi.getRightStick().getX());
+        
     }
 
 	@Override

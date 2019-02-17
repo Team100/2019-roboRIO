@@ -118,10 +118,10 @@ public class Constants {
     */
     public static final int SHOULDER_MASTER_TIMEOUT = 10;
 
-    public static final double SHOULDER_KP = 1;
+    public static final double SHOULDER_KP = 0.001;
     public static final double SHOULDER_KI = 0;
     public static final double SHOULDER_KD = 0;
-    public static final double SHOULDER_KF = 1;
+    public static final double SHOULDER_KF = 0;
     public static final int SHOULDER_TIMEOUT = 10;
     public static final int SHOULDER_BUFFER = 10;
     /*
