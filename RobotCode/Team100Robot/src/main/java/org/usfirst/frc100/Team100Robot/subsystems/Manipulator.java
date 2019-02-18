@@ -13,6 +13,7 @@ import org.usfirst.frc100.Team100Robot.Constants;
 import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulatorDefault;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -24,6 +25,9 @@ public class Manipulator extends Subsystem {
   public WPI_TalonSRX topRoller;
   public WPI_TalonSRX bottomRoller;
   public DigitalInput cargoSensor;
+  public Solenoid bill;
+  public Solenoid hatchPusher;
+  public Solenoid cargoScorer;
   public Manipulator(){
     topRoller = new WPI_TalonSRX(Constants.CARGO_MANIPULATOR_TOP_TALONSRX_ID);
     topRoller.overrideLimitSwitchesEnable(false);
@@ -31,6 +35,9 @@ public class Manipulator extends Subsystem {
     bottomRoller.overrideLimitSwitchesEnable(false);
     bottomRoller.follow(topRoller);
     cargoSensor =  new DigitalInput(4);
+    bill = new Solenoid(Constants.PCM_CANID,Constants.LOADING_STATION_INTAKE_PCMID);
+    hatchPusher = new Solenoid(Constants.PCM_CANID,Constants.HATCH_SCORER_PCMID);
+    
 
   }
 

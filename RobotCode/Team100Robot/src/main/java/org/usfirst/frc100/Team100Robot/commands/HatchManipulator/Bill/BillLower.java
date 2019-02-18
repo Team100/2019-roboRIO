@@ -5,25 +5,23 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot;
+package org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill;
 
 import org.usfirst.frc100.Team100Robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class IntakeArmUp extends Command {
-  public IntakeArmUp() {
+public class BillLower extends Command {
+  public BillLower() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.cargoPickup);
-
+    requires(Robot.manipulator);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.cargoPickup.cargoIntakeArmPivot.set(true);
-
+    Robot.manipulator.bill.set(true);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -40,6 +38,7 @@ public class IntakeArmUp extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.manipulator.bill.set(false);
   }
 
   // Called when another command which requires one or more of the same

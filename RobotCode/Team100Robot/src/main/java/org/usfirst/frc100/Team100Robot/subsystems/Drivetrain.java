@@ -39,7 +39,7 @@ public class Drivetrain extends Subsystem implements PIDOutput {
     public Solenoid shift;
 
     public Drivetrain() {
-        shift = new Solenoid(0);
+        shift = new Solenoid(Constants.PCM_CANID,0);
         leftMaster = new WPI_TalonSRX(Constants.DRIVE_TRAIN_LEFT_MASTER_CANID);
         rightMaster = new WPI_TalonSRX(Constants.DRIVE_TRAIN_RIGHT_MASTER_CANID);
         

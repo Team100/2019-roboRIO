@@ -15,7 +15,7 @@ public class CargoManipulatorDefault extends Command {
   public CargoManipulatorDefault() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.cargoManipulator);
+    requires(Robot.manipulator);
   }
 
   // Called just before this Command runs the first time
