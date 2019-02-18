@@ -7,6 +7,9 @@
 
 package org.usfirst.frc100.Team100Robot.commands.CargoManipulator;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
+import org.usfirst.frc100.Team100Robot.Constants;
 import org.usfirst.frc100.Team100Robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,6 +24,7 @@ public class CargoManipulatorIntake extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.cargoManipulator.topRoller.set(ControlMode.PercentOutput,Constants.CARGO_MANIPULATOR_INTAKE_SPEED);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -37,11 +41,13 @@ public class CargoManipulatorIntake extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.cargoManipulator.topRoller.set(ControlMode.PercentOutput,0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

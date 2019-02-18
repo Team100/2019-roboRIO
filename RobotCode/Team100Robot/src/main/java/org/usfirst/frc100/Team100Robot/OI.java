@@ -12,9 +12,14 @@
 package org.usfirst.frc100.Team100Robot;
 
 import org.usfirst.frc100.Team100Robot.commands.*;
+import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulatorOuttake;
+import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Drive;
+import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Shift.ShiftToHigh;
+import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Shift.ShiftToLow;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorMoveToSetpoint;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorPageDown;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorPageUp;
+import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmIntakeElement;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderDown;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderUp;
 
@@ -58,6 +63,7 @@ public class OI {
     private Joystick leftStick;
     private Joystick rightStick;
     private Joystick manipulatorControl;
+    private Joystick testingJS;
     
     private JoystickButton shiftLow;
     private JoystickButton shiftHigh;
@@ -72,6 +78,7 @@ public class OI {
     private JoystickButton elevatorStageUp;
     private JoystickButton hatchRelease;
     private JoystickButton elevatorStageDown;
+    
 
     public OI() {
 
@@ -81,16 +88,17 @@ public class OI {
         leftStick = new Joystick(0);
         rightStick = new Joystick(1);
         manipulatorControl = new Joystick(2);
+        testingJS = new Joystick(4);
 
         
         /* 
          * Joystick 0 (Left Stick)
          */
         spitCargo = new JoystickButton(leftStick, 1);
-        spitCargo.whenPressed(new SpitCargo());
+        spitCargo.whileHeld(new CargoManipulatorOuttake());
 
         shiftLow = new JoystickButton(leftStick, 3);
-        shiftLow.whenPressed(new LowGear());
+        shiftLow.whenPressed(new ShiftToLow());
         
         hatchUp = new JoystickButton(leftStick, 4);
  
@@ -100,7 +108,7 @@ public class OI {
         intakeCargo = new JoystickButton(rightStick, 1);
         
         shiftHigh = new JoystickButton(rightStick, 3);
-        shiftHigh.whenPressed(new HighGear());
+        shiftHigh.whenPressed(new ShiftToHigh());
         
         cargoUp = new JoystickButton(rightStick, 4);
         cargoUp.whenPressed(new ShoulderUp());
@@ -119,8 +127,11 @@ public class OI {
 
         elevatorStageDown = new JoystickButton(manipulatorControl, 8);
 
+        
+
         elevatorStageUp.whenPressed(new ElevatorPageUp());
         elevatorStageDown.whenPressed(new ElevatorPageDown());
+        intakeCargo.whileActive(new IntakeArmIntakeElement());
 
 
 
@@ -142,6 +153,9 @@ public class OI {
 
     public Joystick getManipulatorControl() {
         return manipulatorControl;
+    }
+    public Joystick getTestingJS(){
+        return testingJS;
     }
 
 }

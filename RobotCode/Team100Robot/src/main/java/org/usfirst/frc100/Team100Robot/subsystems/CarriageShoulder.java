@@ -65,9 +65,9 @@ public class CarriageShoulder extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
         /*currentSetpointIndex = 0;
         this.updateSetpointGivenIndex();*/
-        setDefaultCommand(new ShoulderDefault());
+        //setDefaultCommand(new ShoulderDefault());
 
-        //setDefaultCommand(new ShoulderTeleop());
+        setDefaultCommand(new ShoulderTeleop());
     }
 
     @Override

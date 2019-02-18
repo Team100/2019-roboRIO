@@ -17,10 +17,11 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import org.usfirst.frc100.Team100Robot.Constants;
 import org.usfirst.frc100.Team100Robot.Robot;
-import org.usfirst.frc100.Team100Robot.commands.Drive;
+import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Drive;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -35,8 +36,10 @@ public class Drivetrain extends Subsystem implements PIDOutput {
     private WPI_VictorSPX leftFollower;
     private WPI_VictorSPX rightFollower;
     public PIDController turnPID;
+    public Solenoid shift;
 
     public Drivetrain() {
+        shift = new Solenoid(0);
         leftMaster = new WPI_TalonSRX(Constants.DRIVE_TRAIN_LEFT_MASTER_CANID);
         rightMaster = new WPI_TalonSRX(Constants.DRIVE_TRAIN_RIGHT_MASTER_CANID);
         
@@ -56,6 +59,8 @@ public class Drivetrain extends Subsystem implements PIDOutput {
         leftFollower.setInverted(Constants.DRIVE_TRAIN_LEFT_FOLLOWER_INVERT);
         rightMaster.setInverted(Constants.DRIVE_TRAIN_RIGHT_MASTER_INVERT);
         rightFollower.setInverted(Constants.DRIVE_TRAIN_RIGHT_FOLLOWER_INVERT);
+        leftMaster.overrideLimitSwitchesEnable(false);
+        rightMaster.overrideLimitSwitchesEnable(false);
 
         /*turnPID = new PIDController(Constants.DT_TURN_P, Constants.DT_TURN_I, Constants.DT_TURN_D, Robot.ahrs, this);
         turnPID.setInputRange(Constants.DT_TURN_MIN_ROTATION_ANGLE, Constants.DT_TURN_MAX_ROTATION_ANGLE);
@@ -92,6 +97,8 @@ public class Drivetrain extends Subsystem implements PIDOutput {
         // Put code here to be run every loop
         SmartDashboard.putNumber("ENC LEFT",leftMaster.getSelectedSensorPosition());
         SmartDashboard.putNumber("ENC RIGHT", rightMaster.getSelectedSensorPosition());
+        SmartDashboard.putNumber("PO LEFT",leftMaster.getMotorOutputPercent());
+        SmartDashboard.putNumber("PO RIGHT",rightMaster.getMotorOutputPercent());
     }
 
     public void drive(){

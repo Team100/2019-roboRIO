@@ -5,26 +5,25 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc100.Team100Robot.commands.CargoManipulator;
+package org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
-import org.usfirst.frc100.Team100Robot.Constants;
 import org.usfirst.frc100.Team100Robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class CargoManipulatorOuttake extends Command {
-  public CargoManipulatorOuttake() {
+public class IntakeArmUp extends Command {
+  public IntakeArmUp() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.cargoManipulator);
+    requires(Robot.cargoPickup);
+
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.cargoManipulator.topRoller.set(ControlMode.PercentOutput,Constants.CARGO_MANIPULATOR_OUTTAKE_SPEED);
+    Robot.cargoPickup.cargoIntakeArmPivot.set(true);
+
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -41,13 +40,11 @@ public class CargoManipulatorOuttake extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.cargoManipulator.topRoller.set(ControlMode.PercentOutput,0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }

@@ -12,6 +12,8 @@
 package org.usfirst.frc100.Team100Robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import org.usfirst.frc100.Team100Robot.Constants;
@@ -24,13 +26,14 @@ import edu.wpi.first.wpilibj.VictorSP;
  */
 public class CargoPickup extends Subsystem {
 
-    private WPI_TalonSRX cargoTilt;
-    private VictorSP cargoRoller1;
-    private VictorSP cargoRoller2;
+    //public WPI_TalonSRX cargoTilt;
+    public VictorSP cargoRoller1;
+    public VictorSP cargoRoller2;
+    public Solenoid cargoIntakeArmPivot;
 
     public CargoPickup() {
-        cargoTilt = new WPI_TalonSRX(Constants.CARGO_PICKUP_TILT_CANID);
-
+        //cargoTilt = new WPI_TalonSRX(Constants.CARGO_PICKUP_TILT_CANID);
+        cargoIntakeArmPivot = new Solenoid(Constants.CARGO_GROUND_PICKUP_PCMID);
         cargoRoller1 = new VictorSP(Constants.CARGO_PICKUP_ROLLER1_PWM);
         addChild("CargoRoller1", cargoRoller1);
         cargoRoller1.setInverted(false);
@@ -38,16 +41,26 @@ public class CargoPickup extends Subsystem {
         cargoRoller2 = new VictorSP(Constants.CARGO_PICKUP_ROLLER2_PWM);
         addChild("CargoRoller2", cargoRoller2);
         cargoRoller2.setInverted(false);
+
+        
     }
 
     @Override
     public void initDefaultCommand() {
         // setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new IntakeArmTeleop());
     }
 
     @Override
     public void periodic() {
         // Put code here to be run every loop
+        SmartDashboard.putNumber("6 PO",cargoRoller1.get());
+    }
+
+    public void setOutput(double output){
+        System.out.println("SETTING TO "+output);
+        cargoRoller1.set(output);
+        cargoRoller2.set(output);
     }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
