@@ -5,15 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc100.Team100Robot.commands.IntakeArm;
+package org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot;
 
 import org.usfirst.frc100.Team100Robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class IntakeArmIntakeElement extends Command {
-  private boolean done = false;
-  public IntakeArmIntakeElement() {
+public class IntakeArmDown extends Command {
+  public IntakeArmDown() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.cargoPickup);
@@ -22,16 +21,13 @@ public class IntakeArmIntakeElement extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    System.out.println("INTAKE INIT");
-    Robot.cargoPickup.setOutput(-0.3);
+    Robot.cargoPickup.cargoIntakeArmPivot.set(false);
 
-    done = false;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -43,7 +39,6 @@ public class IntakeArmIntakeElement extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.cargoPickup.setOutput(0);
   }
 
   // Called when another command which requires one or more of the same

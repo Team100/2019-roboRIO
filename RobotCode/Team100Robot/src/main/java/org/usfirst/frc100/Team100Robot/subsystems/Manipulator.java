@@ -12,22 +12,25 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import org.usfirst.frc100.Team100Robot.Constants;
 import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulatorDefault;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * Add your docs here.
  */
-public class CargoManipulator extends Subsystem {
+public class Manipulator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public WPI_TalonSRX topRoller;
   public WPI_TalonSRX bottomRoller;
-  public CargoManipulator(){
+  public DigitalInput cargoSensor;
+  public Manipulator(){
     topRoller = new WPI_TalonSRX(Constants.CARGO_MANIPULATOR_TOP_TALONSRX_ID);
     topRoller.overrideLimitSwitchesEnable(false);
     bottomRoller = new WPI_TalonSRX(Constants.CARGO_MANIPULATOR_BOTTOM_TALONSRX_ID);
     bottomRoller.overrideLimitSwitchesEnable(false);
     bottomRoller.follow(topRoller);
+    cargoSensor =  new DigitalInput(4);
 
   }
 

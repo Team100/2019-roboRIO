@@ -15,33 +15,38 @@ import org.usfirst.frc100.Team100Robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class CargoManipulatorIntake extends Command {
+  private boolean done = false;
   public CargoManipulatorIntake() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.cargoManipulator);
+    requires(Robot.manipulator);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.cargoManipulator.topRoller.set(ControlMode.PercentOutput,Constants.CARGO_MANIPULATOR_INTAKE_SPEED);
+    done = false;
+    Robot.manipulator.topRoller.set(ControlMode.PercentOutput,Constants.CARGO_MANIPULATOR_INTAKE_SPEED);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if(Robot.manipulator.cargoSensor.get()){
+      done = true;
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return done;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.cargoManipulator.topRoller.set(ControlMode.PercentOutput,0);
+    Robot.manipulator.topRoller.set(ControlMode.PercentOutput,0);
   }
 
   // Called when another command which requires one or more of the same

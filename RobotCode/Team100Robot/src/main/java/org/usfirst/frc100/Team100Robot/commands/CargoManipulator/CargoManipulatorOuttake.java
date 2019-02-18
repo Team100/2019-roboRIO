@@ -18,13 +18,13 @@ public class CargoManipulatorOuttake extends Command {
   public CargoManipulatorOuttake() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.cargoManipulator);
+    requires(Robot.manipulator);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.cargoManipulator.topRoller.set(ControlMode.PercentOutput,Constants.CARGO_MANIPULATOR_OUTTAKE_SPEED);
+    Robot.manipulator.topRoller.set(ControlMode.PercentOutput,Constants.CARGO_MANIPULATOR_OUTTAKE_SPEED);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -41,7 +41,7 @@ public class CargoManipulatorOuttake extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.cargoManipulator.topRoller.set(ControlMode.PercentOutput,0);
+    Robot.manipulator.topRoller.set(ControlMode.PercentOutput,0);
   }
 
   // Called when another command which requires one or more of the same

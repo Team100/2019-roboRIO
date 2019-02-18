@@ -33,7 +33,7 @@ public class CargoPickup extends Subsystem {
 
     public CargoPickup() {
         //cargoTilt = new WPI_TalonSRX(Constants.CARGO_PICKUP_TILT_CANID);
-        cargoIntakeArmPivot = new Solenoid(Constants.CARGO_GROUND_PICKUP_PCMID);
+        cargoIntakeArmPivot = new Solenoid(Constants.PCM_CANID,Constants.CARGO_GROUND_PICKUP_PCMID);
         cargoRoller1 = new VictorSP(Constants.CARGO_PICKUP_ROLLER1_PWM);
         addChild("CargoRoller1", cargoRoller1);
         cargoRoller1.setInverted(false);
@@ -48,7 +48,7 @@ public class CargoPickup extends Subsystem {
     @Override
     public void initDefaultCommand() {
         // setDefaultCommand(new MySpecialCommand());
-        setDefaultCommand(new IntakeArmTeleop());
+        // setDefaultCommand(new CargoManipulator());
     }
 
     @Override
