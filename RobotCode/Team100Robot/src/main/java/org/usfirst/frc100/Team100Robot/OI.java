@@ -16,9 +16,11 @@ import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulato
 import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Drive;
 import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Shift.ShiftToHigh;
 import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Shift.ShiftToLow;
-import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorMoveToSetpoint;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorPageDown;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorPageUp;
+import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillLower;
+import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillRaise;
+import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Pusher.*;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmIntakeElement;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderDown;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderUp;
@@ -127,12 +129,25 @@ public class OI {
 
         elevatorStageDown = new JoystickButton(manipulatorControl, 8);
 
+
         
 
         elevatorStageUp.whenPressed(new ElevatorPageUp());
         elevatorStageDown.whenPressed(new ElevatorPageDown());
         intakeCargo.whileActive(new IntakeArmIntakeElement());
 
+
+        /*
+         * Testing Joystick __(will not be used for comp)___
+         */
+        JoystickButton duckBillExtend = new JoystickButton(testingJS, 1);
+        duckBillExtend.whileActive(new BillRaise());
+        JoystickButton duckBillRetract = new JoystickButton(testingJS,2);
+        duckBillRetract.whileActive(new BillLower());
+        JoystickButton pusherExtend = new JoystickButton(testingJS, 3);
+        pusherExtend.whileActive(new ExtendPusher());
+        JoystickButton pusherRetract = new JoystickButton(testingJS, 4);
+        pusherRetract.whileActive(new RetractPusher());
 
 
 
