@@ -36,8 +36,8 @@ public class HatchPickup extends Subsystem {
 
     public HatchPickup() {
         tilt = new WPI_TalonSRX(Constants.HATCH_PICKUP_TILT_CANID);
-        tilt.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
-        tilt.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
+        //tilt.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
+        //tilt.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
         
         roller = new VictorSP(Constants.HATCH_PICKUP_ROLLER_PWM);
         addChild("Roller", roller);
@@ -67,26 +67,37 @@ public class HatchPickup extends Subsystem {
         roller.set(0);
     }
 
-    public boolean tiltUp(){
-        System.out.println("STUFF");
-        if(tilt.getSelectedSensorPosition(Constants.HATCH_PICKUP_UPPER_LIMIT_SWITCH_SLOT) == 0) {
-            tilt.set(ControlMode.PercentOutput, Constants.HATCH_PICKUP_TILT_SPEED);
-            //return false;
-        }
-        else return true;
-        tilt.set(ControlMode.PercentOutput, Constants.HATCH_PICKUP_TILT_SPEED);
-        return false;
+    public void tiltUp(){
+        if(tilt.getSelectedSensorPosition(Constants.HATCH_PICKUP_UPPER_LIMIT_SWITCH_SLOT) == 0) tilt.set(-Constants.HATCH_PICKUP_TILT_SPEED);
     }
 
-    public boolean tiltDown(){
-        if(tilt.getSelectedSensorPosition(Constants.HATCH_PICKUP_LOWER_LIMIT_SWITCH_SLOT) == 0) {
-            tilt.set(ControlMode.PercentOutput, -Constants.HATCH_PICKUP_TILT_SPEED);
-            //return false;
-        }
-        else return true;
-        tilt.set(ControlMode.PercentOutput, -Constants.HATCH_PICKUP_TILT_SPEED);
-        return false;
+    public void tiltDown(){
+        if(tilt.getSelectedSensorPosition(Constants.HATCH_PICKUP_LOWER_LIMIT_SWITCH_SLOT) == 0) tilt.set(-Constants.HATCH_PICKUP_TILT_SPEED);
     }
+
+    // public boolean tiltUp(){
+    //     System.out.println("STUFF");
+    //     if(tilt.getSelectedSensorPosition(Constants.HATCH_PICKUP_UPPER_LIMIT_SWITCH_SLOT) == 0) {
+    //         tilt.set(ControlMode.PercentOutput, Constants.HATCH_PICKUP_TILT_SPEED);
+    //         //return false;
+    //     }
+    //     else return true;
+    //     tilt.set(ControlMode.PercentOutput, Constants.HATCH_PICKUP_TILT_SPEED);
+    //     return false;
+    // }
+
+    // public boolean tiltDown(){
+    //     if(tilt.getSelectedSensorPosition(Constants.HATCH_PICKUP_LOWER_LIMIT_SWITCH_SLOT) == 0) {
+    //         tilt.set(ControlMode.PercentOutput, -Constants.HATCH_PICKUP_TILT_SPEED);
+    //         System.out.println("heyheyhey");
+    //         //return false;
+    //     }
+    //     else return true;
+    //     System.out.println("ITWORKS");
+    //     tilt.set(ControlMode.PercentOutput, -Constants.HATCH_PICKUP_TILT_SPEED);
+    //     System.out.println("nowitworks");
+    //     return false;
+    // }
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
