@@ -35,14 +35,14 @@ public class CargoHatchScore extends Subsystem {
         topBallRollerShooter = new WPI_TalonSRX(Constants.CARGO_HATCH_SCORER_TOP_CANID);
         bottomBallRollerShooter = new WPI_TalonSRX(Constants.CARGO_HATCH_SCORER_BOTTOM_CANID);
         topBallRollerShooter.overrideLimitSwitchesEnable(false);
-        loadingStationIntake = new Solenoid(Constants.PCM_CANID, Constants.LOADING_STATION_INTAKE_PCMID);
-        addChild("LoadingStationIntake", loadingStationIntake);
+        //loadingStationIntake = new Solenoid(Constants.PCM_CANID, Constants.LOADING_STATION_INTAKE_PCMID);
+        //addChild("LoadingStationIntake", loadingStationIntake);
         
-        hatchScorer = new Solenoid(Constants.PCM_CANID, Constants.HATCH_SCORER_PCMID);
-        addChild("HatchScorer", hatchScorer);
+       // hatchScorer = new Solenoid(Constants.PCM_CANID, Constants.HATCH_SCORER_PCMID);
+       // addChild("HatchScorer", hatchScorer);
         
-        cargoScorer = new Solenoid(Constants.PCM_CANID, Constants.CARGO_SCORER_PCMID);
-        addChild("CargoScorer", cargoScorer);
+        //cargoScorer = new Solenoid(Constants.PCM_CANID, Constants.CARGO_SCORER_PCMID);
+       // addChild("CargoScorer", cargoScorer);
     }
 
     @Override
