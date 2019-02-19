@@ -18,6 +18,15 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc100.Team100Robot.commands.*;
+import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulatorIntake;
+import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulatorOuttake;
+import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Shift.ShiftToHigh;
+import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Shift.ShiftToLow;
+import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillLower;
+import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillRaise;
+import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Pusher.ExtendPusher;
+import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Pusher.RetractPusher;
+import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmIntakeElement;
 import org.usfirst.frc100.Team100Robot.subsystems.*;
 import com.kauailabs.navx.frc.*;
 
@@ -74,6 +83,21 @@ public class Robot extends TimedRobot {
         chooser.setDefaultOption("Autonomous Command", new AutonomousCommand());
         
         SmartDashboard.putData("Auto mode", chooser);
+
+
+
+
+
+        // Put Command Triggers
+        SmartDashboard.putData("CargoManipIntake",new CargoManipulatorIntake());
+        SmartDashboard.putData("CargoManipOuttake",new CargoManipulatorOuttake());
+        SmartDashboard.putData("DTShiftToHigh",new ShiftToHigh());
+        SmartDashboard.putData("DTShiftToLow",new ShiftToLow());
+        SmartDashboard.putData("BillRaise",new BillRaise());
+        SmartDashboard.putData("BillLower",new BillLower());
+        SmartDashboard.putData("PusherExtend",new ExtendPusher());
+        SmartDashboard.putData("PusherRetract",new RetractPusher());
+        SmartDashboard.putData("IntakeElement", new IntakeArmIntakeElement());
     }
 
     /**
