@@ -32,7 +32,8 @@ public class Climber extends Subsystem {
 
     public Climber() {
         climberMaster = new WPI_TalonSRX(Constants.CLIMBER_MASTER_CANID);
-        
+        climberMaster.configPeakOutputForward(0.25);
+        climberMaster.configPeakOutputReverse(-0.25);
         deploy = new Solenoid(Constants.PCM_CANID, Constants.CLIMBER_DEPLOY_PCMID);
         addChild("Deploy",deploy);
         

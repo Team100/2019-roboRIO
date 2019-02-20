@@ -29,11 +29,15 @@ public class Manipulator extends Subsystem {
   public Solenoid bill;
   public Solenoid hatchPusher;
   public Solenoid cargoScorer;
-  public Manipu lator(){
+  public Manipulator(){
     topRoller = new WPI_TalonSRX(Constants.CARGO_MANIPULATOR_TOP_TALONSRX_ID);
     topRoller.overrideLimitSwitchesEnable(false);
+    topRoller.configPeakOutputForward(0.25);
+    topRoller.configPeakOutputReverse(-0.25);
     bottomRoller = new WPI_TalonSRX(Constants.CARGO_MANIPULATOR_BOTTOM_TALONSRX_ID);
     bottomRoller.overrideLimitSwitchesEnable(false);
+    bottomRoller.configPeakOutputForward(0.25);
+    bottomRoller.configPeakOutputReverse(-0.25);
     bottomRoller.follow(topRoller);
     cargoSensor =  new DigitalInput(4);
     bill = new Solenoid(Constants.PCM_CANID,Constants.LOADING_STATION_INTAKE_PCMID);

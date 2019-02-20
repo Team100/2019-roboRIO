@@ -41,8 +41,8 @@ public class CarriageShoulder extends Subsystem {
         carriageShoulderMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Constants.SHOULDER_MASTER_TIMEOUT);
         carriageShoulderMotor.setInverted(true);
         carriageShoulderMotor.setSensorPhase(true);
-        carriageShoulderMotor.configPeakOutputForward(1);
-        carriageShoulderMotor.configPeakOutputReverse(-1);
+        carriageShoulderMotor.configPeakOutputForward(0.25);
+        carriageShoulderMotor.configPeakOutputReverse(-0.25);
         carriageShoulderMotor.configNominalOutputForward(0);
         carriageShoulderMotor.configNominalOutputReverse(0);
         carriageShoulderMotor.configAllowableClosedloopError(0, 10, Constants.SHOULDER_MASTER_TIMEOUT);
