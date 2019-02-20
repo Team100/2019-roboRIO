@@ -37,7 +37,7 @@ public class Elevator extends Subsystem {
     public WPI_VictorSPX elevatorFollower;
     public DigitalInput carriageLowerLimitSwitch = new DigitalInput(0);
     public DigitalInput carriageUpperLimitSwitch = new DigitalInput(1);
-    public DigitalInput intermediateUpperLimitSwitch = new DigitalInput(2);
+    public DigitalInput intermediateUpperLimitSwitch = new DigitalInput(9);
     public DigitalInput intermediateLowerLimitSwitch = new DigitalInput(3);
     public int setpoint;
 
