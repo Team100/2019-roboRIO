@@ -39,7 +39,7 @@ public class Drivetrain extends Subsystem implements PIDOutput {
     public Solenoid shift;
 
     public Drivetrain() {
-        shift = new Solenoid(Constants.PCM_CANID,0);
+        shift = new Solenoid(Constants.PCM_CANID,Constants.DRIVETRAIN_SHIFTER_PCMID);
         leftMaster = new WPI_TalonSRX(Constants.DRIVE_TRAIN_LEFT_MASTER_CANID);
         rightMaster = new WPI_TalonSRX(Constants.DRIVE_TRAIN_RIGHT_MASTER_CANID);
         
@@ -61,6 +61,7 @@ public class Drivetrain extends Subsystem implements PIDOutput {
         rightFollower.setInverted(Constants.DRIVE_TRAIN_RIGHT_FOLLOWER_INVERT);
         leftMaster.overrideLimitSwitchesEnable(false);
         rightMaster.overrideLimitSwitchesEnable(false);
+        
 
         /*turnPID = new PIDController(Constants.DT_TURN_P, Constants.DT_TURN_I, Constants.DT_TURN_D, Robot.ahrs, this);
         turnPID.setInputRange(Constants.DT_TURN_MIN_ROTATION_ANGLE, Constants.DT_TURN_MAX_ROTATION_ANGLE);
@@ -99,6 +100,9 @@ public class Drivetrain extends Subsystem implements PIDOutput {
         SmartDashboard.putNumber("ENC RIGHT", rightMaster.getSelectedSensorPosition());
         SmartDashboard.putNumber("PO LEFT",leftMaster.getMotorOutputPercent());
         SmartDashboard.putNumber("PO RIGHT",rightMaster.getMotorOutputPercent());
+        SmartDashboard.putBoolean("SHIFT State", shift.get());
+        SmartDashboard.putNumber("SHIFT ID", Constants.DRIVETRAIN_SHIFTER_PCMID);
+        SmartDashboard.putData("SHIFT PCM", shift);
     }
 
     public void drive(){

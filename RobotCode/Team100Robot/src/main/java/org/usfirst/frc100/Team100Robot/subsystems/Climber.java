@@ -12,6 +12,8 @@
 package org.usfirst.frc100.Team100Robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
@@ -48,6 +50,7 @@ public class Climber extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
+        SmartDashboard.putData("ClimberDeploySolenoid",deploy);
 
     }
     // Put methods for controlling this subsystem
