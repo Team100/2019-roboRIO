@@ -5,23 +5,27 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc100.Team100Robot.commands;
+package org.usfirst.frc100.Team100Robot.commands.Elevator.Homing;
 
 import org.usfirst.frc100.Team100Robot.Robot;
+import org.usfirst.frc100.Team100Robot.subsystems.Elevator.homingStates;
+import org.usfirst.frc100.Team100Robot.subsystems.Elevator.States;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class CargoDown extends Command {
-  public CargoDown() {
+public class ElevatorHomingComplete extends Command {
+  public ElevatorHomingComplete() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(Robot);
-    
+    // eg. requires(chassis);
+    requires(Robot.elevator);
+
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
+    Robot.elevator.hs = homingStates.COMPLETE;
+    //TODO Change base robot state
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -32,17 +36,24 @@ public class CargoDown extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.elevator.homed = true;
+
+    Robot.elevator.state= States.MOVE_TO_SETPOINT;
+    System.out.println("HOMING COMPLETE");
+    Robot.elevator.updateSetpoint(4000);
+
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

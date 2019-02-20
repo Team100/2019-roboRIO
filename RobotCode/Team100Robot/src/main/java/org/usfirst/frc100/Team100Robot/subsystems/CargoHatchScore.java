@@ -9,6 +9,8 @@
 // it from being updated in the future.
 
 
+//TODO Delete this file
+
 package org.usfirst.frc100.Team100Robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -32,15 +34,19 @@ public class CargoHatchScore extends Subsystem {
     public CargoHatchScore() {
         topBallRollerShooter = new WPI_TalonSRX(Constants.CARGO_HATCH_SCORER_TOP_CANID);
         bottomBallRollerShooter = new WPI_TalonSRX(Constants.CARGO_HATCH_SCORER_BOTTOM_CANID);
+        topBallRollerShooter.overrideLimitSwitchesEnable(false);
+        topBallRollerShooter.configPeakOutputForward(0.25);
+        topBallRollerShooter.configPeakOutputReverse(-0.25);
+        bottomBallRollerShooter.configPeakOutputForward(0.25);
+        bottomBallRollerShooter.configPeakOutputReverse(-0.25);
+        //loadingStationIntake = new Solenoid(Constants.PCM_CANID, Constants.LOADING_STATION_INTAKE_PCMID);
+        //addChild("LoadingStationIntake", loadingStationIntake);
         
-        loadingStationIntake = new Solenoid(Constants.PCM_CANID, Constants.LOADING_STATION_INTAKE_PCMID);
-        addChild("LoadingStationIntake", loadingStationIntake);
+       // hatchScorer = new Solenoid(Constants.PCM_CANID, Constants.HATCH_SCORER_PCMID);
+       // addChild("HatchScorer", hatchScorer);
         
-        hatchScorer = new Solenoid(Constants.PCM_CANID, Constants.HATCH_SCORER_PCMID);
-        addChild("HatchScorer", hatchScorer);
-        
-        cargoScorer = new Solenoid(Constants.PCM_CANID, Constants.CARGO_SCORER_PCMID);
-        addChild("CargoScorer", cargoScorer);
+        //cargoScorer = new Solenoid(Constants.PCM_CANID, Constants.CARGO_SCORER_PCMID);
+       // addChild("CargoScorer", cargoScorer);
     }
 
     @Override

@@ -5,28 +5,33 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc100.Team100Robot.commands;
+package org.usfirst.frc100.Team100Robot.commands.IntakeArm;
 
 import org.usfirst.frc100.Team100Robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class CargoDown extends Command {
-  public CargoDown() {
+public class IntakeArmIntakeElement extends Command {
+  private boolean done = false;
+  public IntakeArmIntakeElement() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(Robot);
-    
+    // eg. requires(chassis);
+    requires(Robot.cargoPickup);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    System.out.println("INTAKE INIT");
+    Robot.cargoPickup.setOutput(-0.3);
 
+    done = false;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -38,11 +43,13 @@ public class CargoDown extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.cargoPickup.setOutput(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

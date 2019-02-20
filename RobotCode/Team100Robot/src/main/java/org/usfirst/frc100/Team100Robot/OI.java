@@ -12,6 +12,19 @@
 package org.usfirst.frc100.Team100Robot;
 
 import org.usfirst.frc100.Team100Robot.commands.*;
+import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulatorOuttake;
+import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Drive;
+import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Shift.ShiftToHigh;
+import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Shift.ShiftToLow;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorPageDown;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorPageUp;
+import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillLower;
+import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillRaise;
+import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Pusher.*;
+import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmIntakeElement;
+import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderDown;
+import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderUp;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -52,6 +65,7 @@ public class OI {
     private Joystick leftStick;
     private Joystick rightStick;
     private Joystick manipulatorControl;
+    private Joystick testingJS;
     
     private JoystickButton shiftLow;
     private JoystickButton shiftHigh;
@@ -66,6 +80,7 @@ public class OI {
     private JoystickButton elevatorStageUp;
     private JoystickButton hatchRelease;
     private JoystickButton elevatorStageDown;
+    
 
     public OI() {
 
@@ -75,16 +90,17 @@ public class OI {
         leftStick = new Joystick(0);
         rightStick = new Joystick(1);
         manipulatorControl = new Joystick(2);
+        testingJS = new Joystick(4);
 
         
         /* 
          * Joystick 0 (Left Stick)
          */
         spitCargo = new JoystickButton(leftStick, 1);
-        spitCargo.whenPressed(new SpitCargo());
+        spitCargo.whileHeld(new CargoManipulatorOuttake());
 
         shiftLow = new JoystickButton(leftStick, 3);
-        shiftLow.whenPressed(new LowGear());
+        shiftLow.whenPressed(new ShiftToLow());
         
         hatchUp = new JoystickButton(leftStick, 4);
  
@@ -94,13 +110,13 @@ public class OI {
         intakeCargo = new JoystickButton(rightStick, 1);
         
         shiftHigh = new JoystickButton(rightStick, 3);
-        shiftHigh.whenPressed(new HighGear());
+        shiftHigh.whenPressed(new ShiftToHigh());
         
         cargoUp = new JoystickButton(rightStick, 4);
-        cargoUp.whenPressed(new CargoUp());
+        cargoUp.whenPressed(new ShoulderUp());
  
         cargoDown = new JoystickButton(rightStick, 5);
-        cargoDown.whenPressed(new CargoDown());
+        cargoDown.whenPressed(new ShoulderDown());
 
         //Joystick 2 (Manipulator Control)
         climberToggle = new JoystickButton(manipulatorControl, 4);
@@ -112,6 +128,26 @@ public class OI {
         hatchRelease = new JoystickButton(manipulatorControl, 7);
 
         elevatorStageDown = new JoystickButton(manipulatorControl, 8);
+
+
+        
+
+        elevatorStageUp.whenPressed(new ElevatorPageUp());
+        elevatorStageDown.whenPressed(new ElevatorPageDown());
+        intakeCargo.whileActive(new IntakeArmIntakeElement());
+
+
+        /*
+         * Testing Joystick __(will not be used for comp)___
+         */
+        JoystickButton duckBillExtend = new JoystickButton(testingJS, 1);
+        duckBillExtend.whileActive(new BillRaise());
+        JoystickButton duckBillRetract = new JoystickButton(testingJS,2);
+        duckBillRetract.whileActive(new BillLower());
+        JoystickButton pusherExtend = new JoystickButton(testingJS, 3);
+        pusherExtend.whileActive(new ExtendPusher());
+        JoystickButton pusherRetract = new JoystickButton(testingJS, 4);
+        pusherRetract.whileActive(new RetractPusher());
 
 
 
@@ -132,6 +168,9 @@ public class OI {
 
     public Joystick getManipulatorControl() {
         return manipulatorControl;
+    }
+    public Joystick getTestingJS(){
+        return testingJS;
     }
 
 }

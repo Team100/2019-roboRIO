@@ -9,7 +9,7 @@
 // it from being updated in the future.
 
 
-package org.usfirst.frc100.Team100Robot.commands;
+package org.usfirst.frc100.Team100Robot.commands.Drivetrain;
 
 import org.usfirst.frc100.Team100Robot.Robot;
 

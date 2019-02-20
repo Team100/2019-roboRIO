@@ -45,7 +45,7 @@ public class LowGear extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.shifter.getShifter().set(false);
+        //Robot.shifter.getShifter().set(false);
     }
 
     // Make this return true when this Command no longer needs to run execute()

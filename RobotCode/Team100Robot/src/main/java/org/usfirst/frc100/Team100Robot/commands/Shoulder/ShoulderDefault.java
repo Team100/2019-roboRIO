@@ -5,23 +5,25 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc100.Team100Robot.commands;
+package org.usfirst.frc100.Team100Robot.commands.Shoulder;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import org.usfirst.frc100.Team100Robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class CargoDown extends Command {
-  public CargoDown() {
+public class ShoulderDefault extends Command {
+  public ShoulderDefault() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(Robot);
-    
+    // eg. requires(chassis);
+    requires(Robot.carriageShoulder);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
+    Robot.carriageShoulder.carriageShoulderMotor.set(ControlMode.PercentOutput,0);
   }
 
   // Called repeatedly when this Command is scheduled to run

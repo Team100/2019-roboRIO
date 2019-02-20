@@ -12,6 +12,8 @@
 package org.usfirst.frc100.Team100Robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
@@ -30,7 +32,8 @@ public class Climber extends Subsystem {
 
     public Climber() {
         climberMaster = new WPI_TalonSRX(Constants.CLIMBER_MASTER_CANID);
-        
+        climberMaster.configPeakOutputForward(0.25);
+        climberMaster.configPeakOutputReverse(-0.25);
         deploy = new Solenoid(Constants.PCM_CANID, Constants.CLIMBER_DEPLOY_PCMID);
         addChild("Deploy",deploy);
         
@@ -48,6 +51,7 @@ public class Climber extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
+        SmartDashboard.putData("ClimberDeploySolenoid",deploy);
 
     }
     // Put methods for controlling this subsystem

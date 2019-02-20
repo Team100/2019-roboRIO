@@ -5,39 +5,58 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc100.Team100Robot.commands;
+package org.usfirst.frc100.Team100Robot.commands.Elevator;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
+import org.usfirst.frc100.Team100Robot.Constants;
 import org.usfirst.frc100.Team100Robot.Robot;
+import org.usfirst.frc100.Team100Robot.subsystems.Elevator.States;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class CargoDown extends Command {
-  public CargoDown() {
+public class ElevatorMoveToSetpoint extends Command {
+  private boolean done;
+  public ElevatorMoveToSetpoint() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(Robot);
-    
+    // eg. requires(chassis);
+    requires(Robot.elevator);
+
+  }
+  public ElevatorMoveToSetpoint(int setpoint){
+    requires(Robot.elevator);
+    Robot.elevator.setpoint = setpoint;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
+    Robot.elevator.elevatorMaster.set(ControlMode.MotionMagic,Robot.elevator.setpoint);
+    done = false;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if(Math.abs(Robot.elevator.elevatorMaster.getSelectedSensorPosition(0) -Robot.elevator.setpoint) < Constants.ELEVATOR_POSITION_BUFFER){
+      done = true;
+      Robot.elevator.state = States.AT_SETPOINT;
+      
+    }
+    //Robot.elevator.updateSetpoint();
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return done;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+
   }
 
   // Called when another command which requires one or more of the same

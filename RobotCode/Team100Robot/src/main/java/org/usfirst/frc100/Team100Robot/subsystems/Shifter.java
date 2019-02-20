@@ -24,8 +24,8 @@ public class Shifter extends Subsystem {
     private Solenoid driveTrainShifter;
 
     public Shifter() {
-        driveTrainShifter = new Solenoid(Constants.PCM_CANID, Constants.DRIVETRAIN_SHIFTER_PCMID);
-        addChild("DriveTrainShifter",driveTrainShifter);
+       // driveTrainShifter = new Solenoid(Constants.PCM_CANID, Constants.DRIVETRAIN_SHIFTER_PCMID);
+        //addChild("DriveTrainShifter",driveTrainShifter);
     }
 
     @Override
