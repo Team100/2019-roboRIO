@@ -35,10 +35,10 @@ public class Elevator extends Subsystem {
 
     public WPI_TalonSRX elevatorMaster;
     public WPI_VictorSPX elevatorFollower;
-    public DigitalInput carriageLowerLimitSwitch = new DigitalInput(0);
-    public DigitalInput carriageUpperLimitSwitch = new DigitalInput(1);
-    public DigitalInput intermediateUpperLimitSwitch = new DigitalInput(9);
-    public DigitalInput intermediateLowerLimitSwitch = new DigitalInput(3);
+    public DigitalInput carriageLowerLimitSwitch = new DigitalInput(Constants.CARRIAGE_LOWER_LIMIT_SWITCH_ID);
+    public DigitalInput carriageUpperLimitSwitch = new DigitalInput(Constants.CARRIAGE_UPPER_LIMIT_SWITCH_ID);
+    public DigitalInput intermediateUpperLimitSwitch = new DigitalInput(Constants.INTERMEDIATE_UPPER_LIMIT_SWITCH_ID);
+    public DigitalInput intermediateLowerLimitSwitch = new DigitalInput(Constants.INTERMEDIATE_LOWER_LIMIT_SWITCH_ID);
     public int setpoint;
 
     public int setpointLevel = 0;
@@ -171,7 +171,7 @@ public class Elevator extends Subsystem {
         /**
          * Creates a new setpoint
          * @param annotation Name or any other useful information
-         * @param setpoint The value of the setpoint
+         * @param setpoint The value of the setpoint in inches
          * @param arrayIndex The index of the setpoint in the setpointsArray
          */
         public Setpoint(String annotation, double setpoint, int arrayIndex){
@@ -210,7 +210,7 @@ public class Elevator extends Subsystem {
             setDefaultCommand(new ElevatorTeleop());
         }else{
             setDefaultCommand(new ElevatorAtSetpoint());
-            //new ElevatorHomingInit().start();
+            new ElevatorHomingInit().start();
             //setDefaultCommand(new ElevatorHomingInit());
         }
         System.out.println(this.getDefaultCommandName());

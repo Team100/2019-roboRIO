@@ -39,7 +39,7 @@ public class Manipulator extends Subsystem {
     bottomRoller.configPeakOutputForward(1);
     bottomRoller.configPeakOutputReverse(-1);
     bottomRoller.follow(topRoller);
-    cargoSensor =  new DigitalInput(4);
+    cargoSensor =  new DigitalInput(Constants.CARGO_SENSOR_ID);
     bill = new Solenoid(Constants.PCM_CANID,Constants.LOADING_STATION_INTAKE_PCMID);
     hatchPusher = new Solenoid(Constants.PCM_CANID,Constants.HATCH_SCORER_PCMID);
     cargoScorer = new Solenoid(Constants.PCM_CANID,Constants.CARGO_SCORER_PCMID);

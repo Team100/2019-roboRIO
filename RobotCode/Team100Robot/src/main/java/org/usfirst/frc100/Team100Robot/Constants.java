@@ -110,7 +110,14 @@ public class Constants {
 
      public static final double ELEVATOR_START_HEIGHT_IN_INCHES = 16.5; //Type: Inches
      public static final double ELEVATOR_MAX_HEIGHT_IN_INCHES = 78.5; //Type: Inches
-    /*
+    
+    
+    public static final int CARRIAGE_LOWER_LIMIT_SWITCH_ID = 0;
+    public static final int CARRIAGE_UPPER_LIMIT_SWITCH_ID = 1;
+    public static final int INTERMEDIATE_UPPER_LIMIT_SWITCH_ID = 9;
+    public static final int INTERMEDIATE_LOWER_LIMIT_SWITCH_ID = 3;
+    
+     /*
      * Elevator Carriage
      */
 
@@ -153,4 +160,6 @@ public class Constants {
     public static final double CARGO_MANIPULATOR_INTAKE_SPEED = 1;
     public static final double CARGO_MANIPULATOR_OUTTAKE_SPEED = -1;
 
+
+    public static final int CARGO_SENSOR_ID = 4;
 }

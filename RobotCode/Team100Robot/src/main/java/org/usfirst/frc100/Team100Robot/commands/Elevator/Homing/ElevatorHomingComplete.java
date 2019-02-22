@@ -25,7 +25,7 @@ public class ElevatorHomingComplete extends Command {
   @Override
   protected void initialize() {
     Robot.elevator.hs = homingStates.COMPLETE;
-    //TODO Change base robot state
+    Robot.elevator.updateSetpoint(500);
   }
 
   // Called repeatedly when this Command is scheduled to run
