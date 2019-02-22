@@ -217,6 +217,11 @@ public class Elevator extends Subsystem {
         
     }
 
+    public void moveToLevel(int level){
+        this.setpointLevel = level;
+        this.setpoint = this.setpointsArray[level].setpoint;
+        this.updateSetpoint();
+    }
     @Override
     public void periodic() {
         // Put code here to be run every loop
