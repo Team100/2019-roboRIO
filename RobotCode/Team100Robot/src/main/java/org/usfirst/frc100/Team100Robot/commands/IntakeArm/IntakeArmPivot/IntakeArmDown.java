@@ -9,6 +9,7 @@ package org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot;
 
 import org.usfirst.frc100.Team100Robot.Robot;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class IntakeArmDown extends Command {
@@ -21,7 +22,7 @@ public class IntakeArmDown extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.cargoPickup.cargoIntakeArmPivot.set(false);
+    Robot.cargoPickup.cargoIntakePivotDoubleSolenoid.set(Value.kForward);
 
   }
 

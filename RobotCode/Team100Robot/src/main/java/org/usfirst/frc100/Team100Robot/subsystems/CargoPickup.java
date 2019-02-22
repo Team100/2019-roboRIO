@@ -18,6 +18,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import org.usfirst.frc100.Team100Robot.Constants;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 
@@ -29,13 +30,11 @@ public class CargoPickup extends Subsystem {
     //public WPI_TalonSRX cargoTilt;
     public VictorSP cargoRoller1;
     public VictorSP cargoRoller2;
-    public Solenoid cargoIntakeArmPivot;
-    public Solenoid cargoIntakeArmPivot2;
-
+   // public Solenoid cargoIntakeArmPivot;
+    //public Solenoid cargoIntakeArmPivot2;
+    public DoubleSolenoid cargoIntakePivotDoubleSolenoid;
     public CargoPickup() {
-        //cargoTilt = new WPI_TalonSRX(Constants.CARGO_PICKUP_TILT_CANID);
-        cargoIntakeArmPivot = new Solenoid(Constants.PCM_CANID,Constants.CARGO_GROUND_PICKUP_PCMID);
-        cargoIntakeArmPivot2 = new Solenoid(Constants.PCM_CANID,Constants.CARGO_GROUND_PICKUP2_PCMID);
+   
         cargoRoller1 = new VictorSP(Constants.CARGO_PICKUP_ROLLER1_PWM);
         addChild("CargoRoller1", cargoRoller1);
         cargoRoller1.setInverted(false);
@@ -43,6 +42,8 @@ public class CargoPickup extends Subsystem {
         cargoRoller2 = new VictorSP(Constants.CARGO_PICKUP_ROLLER2_PWM);
         addChild("CargoRoller2", cargoRoller2);
         cargoRoller2.setInverted(false);
+        
+        cargoIntakePivotDoubleSolenoid = new DoubleSolenoid(Constants.CARGO_GROUND_PICKUP_PCMID, Constants.CARGO_GROUND_PICKUP2_PCMID);
 
         
     }
@@ -57,8 +58,8 @@ public class CargoPickup extends Subsystem {
     public void periodic() {
         // Put code here to be run every loop
         SmartDashboard.putNumber("6 PO",cargoRoller1.get());
-        SmartDashboard.putData("CargoIntakeArmPivot", cargoIntakeArmPivot);
-        SmartDashboard.putData("CargoIntakeArmPivot2",cargoIntakeArmPivot2);
+        
+        SmartDashboard.putData("CargoIntakeArmPivot",cargoIntakePivotDoubleSolenoid);
     }
 
     public void setOutput(double output){
