@@ -35,7 +35,6 @@ public class HumanPlayerCargoIntake extends CommandGroup {
     // arm.
 
     requires(Robot.manipulator);
-    requires(Robot.cargoHatchScore);
     requires(Robot.elevator);
     requires(Robot.carriageShoulder);
     addSequential(new ShoulderDefault());

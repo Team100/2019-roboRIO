@@ -71,9 +71,15 @@ public class Constants {
     public static final double DT_TURN_ABSOLUTE_TOLERANCE = 1; //Type: Degrees
     public static final double DT_TURN_MOTOR_OUTPUT = 0.5; //Type: Percent Output (-1-1)
 
+    public static final int DT_MAX_AMP = 30;
     /*
      * Elevator
      */
+
+     public static final double ELEVATOR_MAX_OUTPUT_UP = 1;
+     public static final double ELEVATOR_MAX_OUTPUT_DOWN = -1;
+
+     public static final int ELEVATOR_MAX_AMP = 15;
 
      /**Power to apply when going down during homing sequence... <em>keep very small</em>*/
      public static final double HOMING_GOING_DOWN_POWER = -.3; //Type: Percent Output (-1-1)
@@ -134,6 +140,10 @@ public class Constants {
     public static final int SHOULDER_BUFFER = 10; //Type: Encoder Ticks
 
     public static final int SHOULDER_LEVEL_LOCATION = 100;
+    public static final double SHOULDER_MAX_OUTPUT_FORWARD = 1.0;
+    public static final double SHOULDER_MAX_OUTPUT_REVERSE = -1.0;
+
+    public static final int SHOULDER_MAX_AMP = 15;
     /*
      * Cargo Floor Pickup
      */

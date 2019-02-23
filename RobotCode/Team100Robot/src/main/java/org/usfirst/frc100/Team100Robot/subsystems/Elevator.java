@@ -110,8 +110,8 @@ public class Elevator extends Subsystem {
         elevatorMaster.setInverted(true);
         elevatorFollower.setInverted(true);
         elevatorMaster.setSensorPhase(true);
-        elevatorMaster.configPeakOutputForward(0.25);
-        elevatorMaster.configPeakOutputReverse(-0.25);
+        elevatorMaster.configPeakOutputForward(Constants.ELEVATOR_MAX_OUTPUT_UP);
+        elevatorMaster.configPeakOutputReverse(Constants.ELEVATOR_MAX_OUTPUT_DOWN);
         elevatorMaster.configNominalOutputForward(0);
         elevatorMaster.configNominalOutputReverse(0);
         elevatorMaster.configAllowableClosedloopError(0, 0, Constants.ELEVATOR_MASTER_TIMEOUT);
@@ -121,6 +121,8 @@ public class Elevator extends Subsystem {
         elevatorMaster.configMotionAcceleration(6000,Constants.ELEVATOR_MASTER_TIMEOUT);
         elevatorMaster.enableCurrentLimit(false);
         elevatorMaster.overrideLimitSwitchesEnable(false);
+        elevatorMaster.configContinuousCurrentLimit(Constants.ELEVATOR_MAX_AMP);
+
         elevatorFollower.follow(elevatorMaster);
         
     

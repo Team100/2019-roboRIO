@@ -47,7 +47,7 @@ public class Robot extends TimedRobot {
     public static Shifter shifter;
     public static CarriageShoulder carriageShoulder;
     public static Climber climber;
-    public static CargoHatchScore cargoHatchScore;
+    //public static CargoHatchScore cargoHatchScore;
     public static CargoPickup cargoPickup;
     public static HatchPickup hatchPickup;
     public static Elevator elevator;
@@ -67,7 +67,7 @@ public class Robot extends TimedRobot {
         shifter = new Shifter();
         carriageShoulder = new CarriageShoulder();
         climber = new Climber();
-        cargoHatchScore = new CargoHatchScore();
+        //cargoHatchScore = new CargoHatchScore();
         cargoPickup = new CargoPickup();
         hatchPickup = new HatchPickup();
         elevator = new Elevator();

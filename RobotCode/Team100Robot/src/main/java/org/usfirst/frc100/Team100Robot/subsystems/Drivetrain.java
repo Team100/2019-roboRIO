@@ -54,6 +54,10 @@ public class Drivetrain extends Subsystem implements PIDOutput {
         
         leftFollower.follow(leftMaster);
         rightFollower.follow(rightMaster);
+        leftMaster.configContinuousCurrentLimit(Constants.DT_MAX_AMP);
+        rightMaster.configContinuousCurrentLimit(Constants.DT_MAX_AMP);
+
+
 
         leftMaster.setInverted(Constants.DRIVE_TRAIN_LEFT_MASTER_INVERT);
         leftFollower.setInverted(Constants.DRIVE_TRAIN_LEFT_FOLLOWER_INVERT);

@@ -41,8 +41,8 @@ public class CarriageShoulder extends Subsystem {
         carriageShoulderMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Constants.SHOULDER_MASTER_TIMEOUT);
         carriageShoulderMotor.setInverted(true);
         carriageShoulderMotor.setSensorPhase(true);
-        carriageShoulderMotor.configPeakOutputForward(0.25);
-        carriageShoulderMotor.configPeakOutputReverse(-0.25);
+        carriageShoulderMotor.configPeakOutputForward(Constants.SHOULDER_MAX_OUTPUT_FORWARD);
+        carriageShoulderMotor.configPeakOutputReverse(Constants.SHOULDER_MAX_OUTPUT_REVERSE);
         carriageShoulderMotor.configNominalOutputForward(0);
         carriageShoulderMotor.configNominalOutputReverse(0);
         carriageShoulderMotor.configAllowableClosedloopError(0, 10, Constants.SHOULDER_MASTER_TIMEOUT);
@@ -51,7 +51,8 @@ public class CarriageShoulder extends Subsystem {
         carriageShoulderMotor.configMotionCruiseVelocity(15000,Constants.SHOULDER_MASTER_TIMEOUT);
         carriageShoulderMotor.configMotionAcceleration(6000,Constants.SHOULDER_MASTER_TIMEOUT);
         
-        carriageShoulderMotor.enableCurrentLimit(false);
+        carriageShoulderMotor.enableCurrentLimit(true);
+        carriageShoulderMotor.configPeakCurrentLimit(Constants.SHOULDER_MAX_AMP);
         carriageShoulderMotor.overrideLimitSwitchesEnable(false);
         carriageShoulderMotor.config_kP(0, Constants.ELEVATOR_KP);
         carriageShoulderMotor.config_kI(0, Constants.ELEVATOR_KI);

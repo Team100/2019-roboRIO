@@ -36,7 +36,6 @@ public class CargoScore extends CommandGroup {
     requires(Robot.manipulator);
     requires(Robot.cargoPickup);
     requires(Robot.carriageShoulder);
-    requires(Robot.cargoHatchScore);
     addSequential(new CargoManipulatorOuttake());
 
   }
