@@ -12,7 +12,7 @@
 package org.usfirst.frc100.Team100Robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.//SmartDashboard.//SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -56,9 +56,9 @@ public class CargoPickup extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-        SmartDashboard.putNumber("6 PO",cargoRoller1.get());
+        //SmartDashboard.putNumber("6 PO",cargoRoller1.get());
         
-        SmartDashboard.putData("CargoIntakeArmPivot",cargoIntakePivotDoubleSolenoid);
+        //SmartDashboard.putData("CargoIntakeArmPivot",cargoIntakePivotDoubleSolenoid);
     }
 
     public void setOutput(double output){

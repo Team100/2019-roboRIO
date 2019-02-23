@@ -12,7 +12,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import org.usfirst.frc100.Team100Robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.//SmartDashboard.//SmartDashboard;
 
 public class ShoulderTeleop extends Command {
   public ShoulderTeleop() {
@@ -29,7 +29,7 @@ public class ShoulderTeleop extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    SmartDashboard.putNumber("OI Val",Robot.oi.getManipulatorControl().getRawAxis(1));
+    //SmartDashboard.putNumber("OI Val",Robot.oi.getManipulatorControl().getRawAxis(1));
     Robot.carriageShoulder.carriageShoulderMotor.set(ControlMode.PercentOutput,Robot.oi.getManipulatorControl().getRawAxis(1));
   }
 

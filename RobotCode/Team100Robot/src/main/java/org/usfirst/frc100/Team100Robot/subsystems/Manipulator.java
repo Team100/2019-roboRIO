@@ -15,7 +15,7 @@ import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulato
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.//SmartDashboard.//SmartDashboard;
 
 /**
  * Add your docs here.
@@ -50,8 +50,8 @@ public class Manipulator extends Subsystem {
   @Override
   public void periodic() {
     super.periodic();
-    SmartDashboard.putData("BillSolenoid",bill);
-    SmartDashboard.putData("HatchPushSolenoid",hatchPusher);
+    //SmartDashboard.putData("BillSolenoid",bill);
+    //SmartDashboard.putData("HatchPushSolenoid",hatchPusher);
   }
   @Override
   public void initDefaultCommand() {

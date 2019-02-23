@@ -140,10 +140,10 @@ public class Constants {
     public static final int SHOULDER_BUFFER = 10; //Type: Encoder Ticks
 
     public static final int SHOULDER_LEVEL_LOCATION = 100;
-    public static final double SHOULDER_MAX_OUTPUT_FORWARD = 1.0;
-    public static final double SHOULDER_MAX_OUTPUT_REVERSE = -1.0;
+    public static final double SHOULDER_MAX_OUTPUT_FORWARD = 0.2;
+    public static final double SHOULDER_MAX_OUTPUT_REVERSE = -0.2;
 
-    public static final int SHOULDER_MAX_AMP = 15;
+    public static final int SHOULDER_MAX_AMP = 7;
     /*
      * Cargo Floor Pickup
      */

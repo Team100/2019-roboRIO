@@ -25,7 +25,7 @@ import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmIntakeElement
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderDown;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderUp;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.//SmartDashboard.//SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -151,11 +151,11 @@ public class OI {
 
 
 
-        // SmartDashboard Buttons
-        SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
-        SmartDashboard.putData("DriveCMD", new Drive());
-        SmartDashboard.putData("HighGear", new HighGear());
-        SmartDashboard.putData("LowGear", new LowGear());
+        // //SmartDashboard Buttons
+        //SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
+        //SmartDashboard.putData("DriveCMD", new Drive());
+        //SmartDashboard.putData("HighGear", new HighGear());
+        //SmartDashboard.putData("LowGear", new LowGear());
     }
 
     public Joystick getLeftStick() {

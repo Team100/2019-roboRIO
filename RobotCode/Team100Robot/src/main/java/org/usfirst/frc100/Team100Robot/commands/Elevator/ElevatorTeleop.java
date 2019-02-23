@@ -12,7 +12,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import org.usfirst.frc100.Team100Robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.//SmartDashboard.//SmartDashboard;
 
 public class ElevatorTeleop extends Command {
   public ElevatorTeleop() {
@@ -39,7 +39,7 @@ public class ElevatorTeleop extends Command {
     }
     else{
     }*/
-    SmartDashboard.putNumber("ELEV OI AXIS",Robot.oi.getManipulatorControl().getRawAxis(3));
+    //SmartDashboard.putNumber("ELEV OI AXIS",Robot.oi.getManipulatorControl().getRawAxis(3));
     Robot.elevator.elevatorMaster.set(ControlMode.PercentOutput,-Robot.oi.getManipulatorControl().getRawAxis(3));
 /*
     if(Robot.oi.getManipulatorControl().getRawAxis(3) <= 0 && !Robot.elevator.atMaxHeight){ //Going up

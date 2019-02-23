@@ -15,8 +15,8 @@ package org.usfirst.frc100.Team100Robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.//SmartDashboard.SendableChooser;
+import edu.wpi.first.wpilibj.//SmartDashboard.//SmartDashboard;
 import org.usfirst.frc100.Team100Robot.commands.*;
 import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulatorIntake;
 import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulatorOuttake;
@@ -82,22 +82,22 @@ public class Robot extends TimedRobot {
         // Add commands to Autonomous Sendable Chooser
         chooser.setDefaultOption("Autonomous Command", new AutonomousCommand());
         
-        SmartDashboard.putData("Auto mode", chooser);
+        //SmartDashboard.putData("Auto mode", chooser);
 
 
 
 
 
         // Put Command Triggers
-        SmartDashboard.putData("CargoManipIntake",new CargoManipulatorIntake());
-        SmartDashboard.putData("CargoManipOuttake",new CargoManipulatorOuttake());
-        SmartDashboard.putData("DTShiftToHigh",new ShiftToHigh());
-        SmartDashboard.putData("DTShiftToLow",new ShiftToLow());
-        SmartDashboard.putData("BillRaise",new BillRaise());
-        SmartDashboard.putData("BillLower",new BillLower());
-        SmartDashboard.putData("PusherExtend",new ExtendPusher());
-        SmartDashboard.putData("PusherRetract",new RetractPusher());
-        SmartDashboard.putData("IntakeElement", new IntakeArmIntakeElement());
+        //SmartDashboard.putData("CargoManipIntake",new CargoManipulatorIntake());
+        //SmartDashboard.putData("CargoManipOuttake",new CargoManipulatorOuttake());
+        //SmartDashboard.putData("DTShiftToHigh",new ShiftToHigh());
+        //SmartDashboard.putData("DTShiftToLow",new ShiftToLow());
+        //SmartDashboard.putData("BillRaise",new BillRaise());
+        //SmartDashboard.putData("BillLower",new BillLower());
+        //SmartDashboard.putData("PusherExtend",new ExtendPusher());
+        //SmartDashboard.putData("PusherRetract",new RetractPusher());
+        //SmartDashboard.putData("IntakeElement", new IntakeArmIntakeElement());
     }
 
     /**

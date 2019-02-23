@@ -10,9 +10,11 @@ package org.usfirst.frc100.Team100Robot.commands.Shoulder;
 import org.usfirst.frc100.Team100Robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-
-public class ShoulderUp extends Command {
-  public ShoulderUp() {
+/**
+ * Homing position for shoulder
+ */
+public class ShoulderHoming extends Command {
+  public ShoulderHoming() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.carriageShoulder);
@@ -21,7 +23,6 @@ public class ShoulderUp extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    //Robot.carriageShoulder.moveUp();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -38,6 +39,9 @@ public class ShoulderUp extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.carriageShoulder.currentSetpointIndex = Robot.carriageShoulder.HOMING_SETPOINT;
+
+    System.out.println("HOMING DONE");
   }
 
   // Called when another command which requires one or more of the same

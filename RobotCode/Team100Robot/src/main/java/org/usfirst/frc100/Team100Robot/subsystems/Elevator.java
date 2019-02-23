@@ -15,7 +15,7 @@ package org.usfirst.frc100.Team100Robot.subsystems;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.//SmartDashboard.//SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -228,18 +228,18 @@ public class Elevator extends Subsystem {
     public void periodic() {
         // Put code here to be run every loop
         //updateSD();
-        SmartDashboard.putString("ELEV COMMAND", this.getCurrentCommandName());
-        SmartDashboard.putBoolean("Carriage Lower Limit Switch",this.carriageLowerLimitSwitch.get());
-        SmartDashboard.putBoolean("Carriage Upper Limit Switch",this.carriageUpperLimitSwitch.get());
-        SmartDashboard.putBoolean("Intermediate Lower Limit Switch",this.intermediateLowerLimitSwitch.get());
-        SmartDashboard.putBoolean("Intermediate Upper Limit Switch",this.intermediateUpperLimitSwitch.get());
-        SmartDashboard.putNumber("ELEV ENC",this.elevatorMaster.getSelectedSensorPosition(0));
-        SmartDashboard.putNumber("ELEV PercentOutput", this.elevatorMaster.getMotorOutputPercent());
-        SmartDashboard.putNumber("ELEV Setpoint",this.setpoint);
-        SmartDashboard.putString("ELEV ControlMode",this.elevatorMaster.getControlMode().toString());
+        //SmartDashboard.putString("ELEV COMMAND", this.getCurrentCommandName());
+        //SmartDashboard.putBoolean("Carriage Lower Limit Switch",this.carriageLowerLimitSwitch.get());
+        //SmartDashboard.putBoolean("Carriage Upper Limit Switch",this.carriageUpperLimitSwitch.get());
+        //SmartDashboard.putBoolean("Intermediate Lower Limit Switch",this.intermediateLowerLimitSwitch.get());
+        //SmartDashboard.putBoolean("Intermediate Upper Limit Switch",this.intermediateUpperLimitSwitch.get());
+        //SmartDashboard.putNumber("ELEV ENC",this.elevatorMaster.getSelectedSensorPosition(0));
+        //SmartDashboard.putNumber("ELEV PercentOutput", this.elevatorMaster.getMotorOutputPercent());
+        //SmartDashboard.putNumber("ELEV Setpoint",this.setpoint);
+        //SmartDashboard.putString("ELEV ControlMode",this.elevatorMaster.getControlMode().toString());
         
-        SmartDashboard.putBoolean("AT TOP", this.atMaxHeight);
-        SmartDashboard.putBoolean("AT BOTTOM",this.atMinHeight);
+        //SmartDashboard.putBoolean("AT TOP", this.atMaxHeight);
+        //SmartDashboard.putBoolean("AT BOTTOM",this.atMinHeight);
         
         if(this.intermediateUpperLimitSwitch.get() 
             && this.carriageUpperLimitSwitch.get() 
@@ -263,23 +263,23 @@ public class Elevator extends Subsystem {
         }*/
     }
     /**
-     * Updates SmartDashboard
+     * Updates //SmartDashboard
      */
     public void updateSD(){
         /* 
         if(state == States.MOVE_TO_SETPOINT || state == States.AT_SETPOINT){
-        SmartDashboard.putNumber("ELEV_location", elevatorMaster.getSelectedSensorPosition(0));
-        SmartDashboard.putNumber("ELEV_percentoutput",elevatorMaster.getMotorOutputPercent());
-        SmartDashboard.putNumber("ELEV_setpoint",setpoint);
-        SmartDashboard.putNumber("ELEV_setpointLevel",setpointLevel);
-        SmartDashboard.putBoolean("ELEV_usingPreferencesForPIDValues", ELEVATOR_USE_PREFERENCES_FOR_PID_VALUES);
-        SmartDashboard.putNumber("ELEV_error",elevatorMaster.getClosedLoopError());
-        SmartDashboard.putNumber("ELEV_talontarget",elevatorMaster.getClosedLoopTarget());
-        SmartDashboard.putString("ELEV_state",state.toString());
-        SmartDashboard.putNumber("ELEV_activeTrajectoryVelocity",elevatorMaster.getActiveTrajectoryVelocity());
-        SmartDashboard.putNumber("ELEV_outputCurrent",elevatorMaster.getOutputCurrent());
-        SmartDashboard.putNumber("ELEV_outputVoltage",elevatorMaster.getMotorOutputVoltage());
-        //SmartDashboard.putString("ELEV/homeState",hs.toString());
+        //SmartDashboard.putNumber("ELEV_location", elevatorMaster.getSelectedSensorPosition(0));
+        //SmartDashboard.putNumber("ELEV_percentoutput",elevatorMaster.getMotorOutputPercent());
+        //SmartDashboard.putNumber("ELEV_setpoint",setpoint);
+        //SmartDashboard.putNumber("ELEV_setpointLevel",setpointLevel);
+        //SmartDashboard.putBoolean("ELEV_usingPreferencesForPIDValues", ELEVATOR_USE_PREFERENCES_FOR_PID_VALUES);
+        //SmartDashboard.putNumber("ELEV_error",elevatorMaster.getClosedLoopError());
+        //SmartDashboard.putNumber("ELEV_talontarget",elevatorMaster.getClosedLoopTarget());
+        //SmartDashboard.putString("ELEV_state",state.toString());
+        //SmartDashboard.putNumber("ELEV_activeTrajectoryVelocity",elevatorMaster.getActiveTrajectoryVelocity());
+        //SmartDashboard.putNumber("ELEV_outputCurrent",elevatorMaster.getOutputCurrent());
+        //SmartDashboard.putNumber("ELEV_outputVoltage",elevatorMaster.getMotorOutputVoltage());
+        ////SmartDashboard.putString("ELEV/homeState",hs.toString());
 
         }
 */

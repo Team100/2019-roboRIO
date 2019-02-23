@@ -11,7 +11,7 @@ import org.usfirst.frc100.Team100Robot.Constants;
 import org.usfirst.frc100.Team100Robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.//SmartDashboard.//SmartDashboard;
 
 public class TurnRelative extends Command {
     double targetAngle;
@@ -52,8 +52,8 @@ public class TurnRelative extends Command {
         }
 
         Robot.drivetrain.pidTurn();
-        SmartDashboard.putNumber("Turn Error", Robot.drivetrain.turnPID.getError());
-        SmartDashboard.putNumber("TurnDest", targetHeading);
+        //SmartDashboard.putNumber("Turn Error", Robot.drivetrain.turnPID.getError());
+        //SmartDashboard.putNumber("TurnDest", targetHeading);
     }
 
     private boolean isOnTarget(){
@@ -65,7 +65,7 @@ public class TurnRelative extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        SmartDashboard.putBoolean("OnTarget", isOnTarget());
+        //SmartDashboard.putBoolean("OnTarget", isOnTarget());
         if(isOnTarget()){
             System.out.println("Finished turn");
             first = true;
