@@ -132,6 +132,8 @@ public class Constants {
     public static final double SHOULDER_KF = 0; //Type: PIDF Double
     public static final int SHOULDER_TIMEOUT = 10; //Type: Milliseconds
     public static final int SHOULDER_BUFFER = 10; //Type: Encoder Ticks
+
+    public static final int SHOULDER_LEVEL_LOCATION = 100;
     /*
      * Cargo Floor Pickup
      */
