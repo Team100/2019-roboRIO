@@ -29,6 +29,11 @@ public class Manipulator extends Subsystem {
   public Solenoid bill;
   public Solenoid hatchPusher;
   public Solenoid cargoScorer;
+
+  public enum ScoringObjects{
+    CARGO,HATCH,NONE
+  }
+  public ScoringObjects holding = ScoringObjects.NONE;
   public Manipulator(){
     topRoller = new WPI_TalonSRX(Constants.CARGO_MANIPULATOR_TOP_TALONSRX_ID);
     topRoller.overrideLimitSwitchesEnable(false);
@@ -52,6 +57,13 @@ public class Manipulator extends Subsystem {
     super.periodic();
     //SmartDashboard.putData("BillSolenoid",bill);
     //SmartDashboard.putData("HatchPushSolenoid",hatchPusher);
+    if(cargoSensor.get()){
+      holding = ScoringObjects.CARGO;
+    } else if(true){ //Replace to hatch ls triggered
+      holding = ScoringObjects.HATCH;
+    }else{
+      holding = ScoringObjects.NONE;
+    }
   }
   @Override
   public void initDefaultCommand() {

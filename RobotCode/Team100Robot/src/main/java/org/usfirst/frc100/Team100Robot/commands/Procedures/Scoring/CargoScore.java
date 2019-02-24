@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc100.Team100Robot.commands.Procedures;
+package org.usfirst.frc100.Team100Robot.commands.Procedures.Scoring;
 
 import org.usfirst.frc100.Team100Robot.Robot;
 import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulatorOuttake;

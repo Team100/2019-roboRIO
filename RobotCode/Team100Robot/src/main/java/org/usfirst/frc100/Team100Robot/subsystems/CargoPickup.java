@@ -18,6 +18,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import org.usfirst.frc100.Team100Robot.Constants;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 
@@ -32,6 +33,7 @@ public class CargoPickup extends Subsystem {
    // public Solenoid cargoIntakeArmPivot;
     //public Solenoid cargoIntakeArmPivot2;
     public DoubleSolenoid cargoIntakePivotDoubleSolenoid;
+    public AnalogInput absEnc;
     public CargoPickup() {
    
         cargoRoller1 = new VictorSP(Constants.CARGO_PICKUP_ROLLER1_PWM);
@@ -43,7 +45,7 @@ public class CargoPickup extends Subsystem {
         cargoRoller2.setInverted(false);
         
         cargoIntakePivotDoubleSolenoid = new DoubleSolenoid(Constants.CARGO_GROUND_PICKUP_PCMID, Constants.CARGO_GROUND_PICKUP2_PCMID);
-
+        absEnc= new AnalogInput(Constants.PICKUP_ARM_ENCODER_ID);
         
     }
 

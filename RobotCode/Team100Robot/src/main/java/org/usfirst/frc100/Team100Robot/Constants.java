@@ -154,6 +154,7 @@ public class Constants {
      * Cargo Floor Pickup
      */
 
+     public static final int PICKUP_ARM_ENCODER_ID = 0;
     /*
      * Hatch Floor Pickup
      */

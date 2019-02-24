@@ -22,8 +22,11 @@ import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillLower;
 import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillRaise;
 import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Pusher.*;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmIntakeElement;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.HomingProcedure;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.Scoring.ScoreProcessing;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderDown;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderUp;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.CargoGroundIntake;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
@@ -65,7 +68,7 @@ public class OI {
     private Joystick leftStick;
     private Joystick rightStick;
     private Joystick manipulatorControl;
-    private Joystick testingJS;
+    private Joystick buttonBoard;
     
     private JoystickButton shiftLow;
     private JoystickButton shiftHigh;
@@ -80,6 +83,22 @@ public class OI {
     private JoystickButton elevatorStageUp;
     private JoystickButton hatchRelease;
     private JoystickButton elevatorStageDown;
+
+    // ButtonBoard
+
+    private JoystickButton hatchIntake;
+    private JoystickButton cargoIntake;
+    private JoystickButton cargoLevel3Reverse;
+    private JoystickButton hatchLevel3;
+    private JoystickButton cargoLevel2;
+    private JoystickButton cargoLevel3;
+    private JoystickButton hatchLevel2;
+    private JoystickButton home;
+    private JoystickButton cargoHPIntake;
+    private JoystickButton score;
+    private JoystickButton cargoLevel1;
+    private JoystickButton hatchLevel1;
+    
     
 
     public OI() {
@@ -90,7 +109,7 @@ public class OI {
         leftStick = new Joystick(0);
         rightStick = new Joystick(1);
         manipulatorControl = new Joystick(2);
-        testingJS = new Joystick(4);
+        buttonBoard = new Joystick(3);
 
         
         /* 
@@ -137,19 +156,24 @@ public class OI {
         intakeCargo.whileActive(new IntakeArmIntakeElement());
 
 
-        /*
-         * Testing Joystick __(will not be used for comp)___
-         */
-        JoystickButton duckBillExtend = new JoystickButton(testingJS, 1);
-        duckBillExtend.whileActive(new BillRaise());
-        JoystickButton duckBillRetract = new JoystickButton(testingJS,2);
-        duckBillRetract.whileActive(new BillLower());
-        JoystickButton pusherExtend = new JoystickButton(testingJS, 3);
-        pusherExtend.whileActive(new ExtendPusher());
-        JoystickButton pusherRetract = new JoystickButton(testingJS, 4);
-        pusherRetract.whileActive(new RetractPusher());
+        hatchIntake= new JoystickButton(buttonBoard,1);
+        cargoIntake= new JoystickButton(buttonBoard,2);
+        cargoLevel3Reverse= new JoystickButton(buttonBoard,3);
+        hatchLevel3= new JoystickButton(buttonBoard,4);
+        cargoLevel2= new JoystickButton(buttonBoard,5);
+        cargoLevel3= new JoystickButton(buttonBoard,6);
+        hatchLevel2= new JoystickButton(buttonBoard,7);
+        home= new JoystickButton(buttonBoard,8);
+        cargoHPIntake= new JoystickButton(buttonBoard,10);
+        score= new JoystickButton(buttonBoard,12);
+        cargoLevel1= new JoystickButton(buttonBoard,15);
+        hatchLevel1= new JoystickButton(buttonBoard,16);
 
+        score.whenPressed(new ScoreProcessing());
+        home.whenPressed(new HomingProcedure());
+        cargoIntake.whenPressed(new CargoGroundIntake());
 
+      
 
         // //SmartDashboard Buttons
         //SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
@@ -169,9 +193,7 @@ public class OI {
     public Joystick getManipulatorControl() {
         return manipulatorControl;
     }
-    public Joystick getTestingJS(){
-        return testingJS;
-    }
+    
 
 }
 

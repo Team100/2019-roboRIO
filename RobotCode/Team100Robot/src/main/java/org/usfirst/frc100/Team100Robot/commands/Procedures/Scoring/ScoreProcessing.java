@@ -5,48 +5,48 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc100.Team100Robot.commands.Shoulder;
+package org.usfirst.frc100.Team100Robot.commands.Procedures.Scoring;
 
-import org.usfirst.frc100.Team100Robot.Constants;
-import org.usfirst.frc100.Team100Robot.Constants;
 import org.usfirst.frc100.Team100Robot.Robot;
+import org.usfirst.frc100.Team100Robot.subsystems.Manipulator.ScoringObjects;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ShoulderDown extends Command {
-  boolean done;
-  public ShoulderDown() {
+public class ScoreProcessing extends Command {
+  public ScoreProcessing() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.carriageShoulder);
+    requires(Robot.manipulator);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    done = false;
-    Robot.carriageShoulder.updateSetpoint(Robot.carriageShoulder.DOWN_SETPOINT);    
 
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Math.abs(Robot.carriageShoulder.currentSetpoint-Robot.carriageShoulder.carriageShoulderMotor.getSelectedSensorPosition())<Constants.SHOULDER_BUFFER){
-      done = true;
-    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return done;
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //System.out.println("HOMING DONE");
+    if(Robot.manipulator.holding == ScoringObjects.HATCH){
+      new HatchScore().start();
+
+    }else if(Robot.manipulator.holding == ScoringObjects.CARGO){
+      new CargoScore().start();
+    }else{
+
+    }
   }
 
   // Called when another command which requires one or more of the same
