@@ -18,6 +18,12 @@ import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Shift.ShiftToHigh;
 import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Shift.ShiftToLow;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorPageDown;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorPageUp;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorCargoLevel1;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorCargoLevel2;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorCargoLevel3;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorCargoReverseLevel3;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorHatchLevel1;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorHatchLevel3;
 import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillLower;
 import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillRaise;
 import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Pusher.*;
@@ -172,6 +178,13 @@ public class OI {
         score.whenPressed(new ScoreProcessing());
         home.whenPressed(new HomingProcedure());
         cargoIntake.whenPressed(new CargoGroundIntake());
+        cargoLevel1.whenPressed(new ElevatorCargoLevel1());
+        cargoLevel2.whenPressed(new ElevatorCargoLevel2());
+        cargoLevel3.whenPressed(new ElevatorCargoLevel3());
+        cargoLevel3Reverse.whenPressed(new ElevatorCargoReverseLevel3());
+        hatchLevel1.whenPressed(new ElevatorHatchLevel1());
+        hatchLevel2.whenPressed(new ElevatorHatchLevel1());
+        hatchLevel3.whenPressed(new ElevatorHatchLevel3());
 
       
 

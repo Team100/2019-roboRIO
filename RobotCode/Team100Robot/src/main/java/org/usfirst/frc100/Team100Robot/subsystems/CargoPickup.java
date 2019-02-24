@@ -60,7 +60,7 @@ public class CargoPickup extends Subsystem {
         // Put code here to be run every loop
         //SmartDashboard.putNumber("6 PO",cargoRoller1.get());
         
-        //SmartDashboard.putData("CargoIntakeArmPivot",cargoIntakePivotDoubleSolenoid);
+        SmartDashboard.putData("CargoIntakeArmPivot",cargoIntakePivotDoubleSolenoid);
     }
 
     public void setOutput(double output){

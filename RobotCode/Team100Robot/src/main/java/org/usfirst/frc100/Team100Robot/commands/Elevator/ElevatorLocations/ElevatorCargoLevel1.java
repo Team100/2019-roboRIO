@@ -5,24 +5,23 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot;
+package org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations;
 
 import org.usfirst.frc100.Team100Robot.Robot;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class IntakeArmDown extends Command {
-  public IntakeArmDown() {
+public class ElevatorCargoLevel1 extends Command {
+  public ElevatorCargoLevel1() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.cargoPickup);
+    requires(Robot.elevator);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.cargoPickup.cargoIntakePivotDoubleSolenoid.set(Value.kReverse);
+    Robot.elevator.moveToLevel(1);
 
   }
 
@@ -34,7 +33,7 @@ public class IntakeArmDown extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
@@ -46,6 +45,5 @@ public class IntakeArmDown extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }

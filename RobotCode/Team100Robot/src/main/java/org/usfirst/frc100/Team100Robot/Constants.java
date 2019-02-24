@@ -42,11 +42,11 @@ public class Constants {
      * PNEUMATICS SOLENOID PCM IDs
      */
     public static final int DRIVETRAIN_SHIFTER_PCMID = 5; //Type: PCM ID 
-    public static final int LOADING_STATION_INTAKE_PCMID = 1; //Type: PCM ID
+    public static final int EMPTY1_PCMID = 1; //Type: PCM ID
     public static final int CARGO_GROUND_PICKUP_PCMID = 6; //Type: PCM ID
     public static final int CARGO_GROUND_PICKUP2_PCMID = 7; //Type: PCM ID
-    public static final int HATCH_PICKUP_PCMID = 2; //Type: PCM ID
-    public static final int CARGO_SCORER_PCMID = 4; //Type: PCM ID DOESN'T EXIST
+    public static final int HATCH_FLIPPER_PCMID = 2; //Type: PCM ID
+    public static final int EMPTY2_PCMID = 4; //Type: PCM ID DOESN'T EXIST
 	public static final int HATCH_SCORER_PCMID = 3; //Type: PCM ID
     public static final int CLIMBER_DEPLOY_PCMID = 0; //Type: PCM ID
 

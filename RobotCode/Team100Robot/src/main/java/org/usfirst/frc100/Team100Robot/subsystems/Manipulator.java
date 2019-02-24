@@ -45,9 +45,9 @@ public class Manipulator extends Subsystem {
     bottomRoller.configPeakOutputReverse(-1);
     bottomRoller.follow(topRoller);
     cargoSensor =  new DigitalInput(Constants.CARGO_SENSOR_ID);
-    bill = new Solenoid(Constants.PCM_CANID,Constants.LOADING_STATION_INTAKE_PCMID);
+    bill = new Solenoid(Constants.PCM_CANID,Constants.HATCH_FLIPPER_PCMID);
     hatchPusher = new Solenoid(Constants.PCM_CANID,Constants.HATCH_SCORER_PCMID);
-    cargoScorer = new Solenoid(Constants.PCM_CANID,Constants.CARGO_SCORER_PCMID);
+    //cargoScorer = new Solenoid(Constants.PCM_CANID,Constants.EMPTY2_PCMID);
     
 
   }
@@ -64,6 +64,10 @@ public class Manipulator extends Subsystem {
     }else{
       holding = ScoringObjects.NONE;
     }
+
+    SmartDashboard.putData("Bill",this.bill);
+    SmartDashboard.putData("Pusher",this.hatchPusher);
+    //SmartDashboard.putData("Cargo Score",this.cargoScorer);
   }
   @Override
   public void initDefaultCommand() {
