@@ -12,7 +12,7 @@ import org.usfirst.frc100.Team100Robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 /**
- * Homing position for shoulder... the shoulder does not home
+ * Homing position for shoulder... THE SHOULDER DOES NOT HOME
  */
 public class ShoulderHoming extends Command {
   boolean done;
@@ -33,7 +33,7 @@ public class ShoulderHoming extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Math.abs(Robot.carriageShoulder.currentSetpoint-Robot.carriageShoulder.carriageShoulderMotor.getSelectedSensorPosition())<Constants.ELEVATOR_POSITION_BUFFER){
+    if(Math.abs(Robot.carriageShoulder.currentSetpoint-Robot.carriageShoulder.carriageShoulderMotor.getSelectedSensorPosition())<Constants.SHOULDER_BUFFER){
       done = true;
     }
   }
@@ -41,13 +41,13 @@ public class ShoulderHoming extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return done;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    System.out.println("HOMING DONE");
+    //System.out.println("HOMING DONE");
   }
 
   // Called when another command which requires one or more of the same

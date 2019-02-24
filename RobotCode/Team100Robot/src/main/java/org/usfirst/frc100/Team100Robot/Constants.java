@@ -84,9 +84,9 @@ public class Constants {
      /**Power to apply when going down during homing sequence... <em>keep very small</em>*/
      public static final double HOMING_GOING_DOWN_POWER = -.3; //Type: Percent Output (-1-1)
      /**Power to apply when going up during homing sequence... <em>keep very small</em> */
-     public static final double HOMING_GOING_UP_POWER = .5; //Type: Percent Output (-1-1)
+     public static final double HOMING_GOING_UP_POWER = .4; //Type: Percent Output (-1-1)
      /**Buffer in elevator target for acceptable destination */
-     public static final int ELEVATOR_POSITION_BUFFER = 85; //Type: Encoder Ticks
+     public static final int ELEVATOR_POSITION_BUFFER = Constants.ELEVATOR_INCH_TO_ENCODER_CONVERSION_FACTION; //Type: Encoder Ticks
 
      /**
       * Elevator Timeout in Milliseconds
@@ -97,7 +97,7 @@ public class Constants {
      ////////////// PID
 
      /**Elevator PID P */
-     public static final double ELEVATOR_KP = 2; //Type: PIDF Double
+     public static final double ELEVATOR_KP = 0.01; //Type: PIDF Double
 
      /**Elevator PID I */
      public static final double ELEVATOR_KI = 0; //Type: PIDF Double
@@ -108,15 +108,20 @@ public class Constants {
      /**Elevator PID F */
      public static final double ELEVATOR_KF = 1; //Type: PIDF Double
 
+     public static final int ELEVATOR_LOWER_SOFT_LIMIT = 0;
+     public static final int ELEVATOR_UPPER_SOFT_LIMIT = 294270;
+
+     public static final int ELEVATOR_FINISHED_HOMING_POS = 50000;
 
     /**Conversion factor from Inches to Encoder ticks
      * For elevator control
     */
-     public static final int ELEVATOR_INCH_TO_ENCODER_CONVERSION_FACTION = 86; //Type: Encoder Ticks
+     public static final int ELEVATOR_INCH_TO_ENCODER_CONVERSION_FACTION = 3196; //Type: Encoder Ticks  was 86 on comp
 
      public static final double ELEVATOR_START_HEIGHT_IN_INCHES = 16.5; //Type: Inches
      public static final double ELEVATOR_MAX_HEIGHT_IN_INCHES = 78.5; //Type: Inches
     
+     public static final double ELEVATOR_VOLTAGE_COMPENSATE = 11.3;
     
     public static final int CARRIAGE_LOWER_LIMIT_SWITCH_ID = 0;
     public static final int CARRIAGE_UPPER_LIMIT_SWITCH_ID = 1;
@@ -132,18 +137,19 @@ public class Constants {
     */
     public static final int SHOULDER_MASTER_TIMEOUT = 10; //Type: Milliseconds
 
-    public static final double SHOULDER_KP = 1; //Type: PIDF Double
-    public static final double SHOULDER_KI = 0; //Type: PIDF Double
-    public static final double SHOULDER_KD = 0; //Type: PIDF Double
+    public static final double SHOULDER_KP = 0.4; //Type: PIDF Double
+    public static final double SHOULDER_KI = 0.0001; //Type: PIDF Double
+    public static final double SHOULDER_KD = 0.009; //Type: PIDF Double
     public static final double SHOULDER_KF = 0; //Type: PIDF Double
     public static final int SHOULDER_TIMEOUT = 10; //Type: Milliseconds
-    public static final int SHOULDER_BUFFER = 80; //Type: Encoder Ticks
+    public static final int SHOULDER_BUFFER = 250; //Type: Encoder Ticks
 
     public static final int SHOULDER_LEVEL_LOCATION = 100;
-    public static final double SHOULDER_MAX_OUTPUT_FORWARD = 0.2;
-    public static final double SHOULDER_MAX_OUTPUT_REVERSE = -0.2;
+    public static final double SHOULDER_MAX_OUTPUT_FORWARD = 1;
+    public static final double SHOULDER_MAX_OUTPUT_REVERSE = -1;
 
-    public static final int SHOULDER_MAX_AMP = 7;
+    public static final int SHOULDER_MAX_AMP = 30;
+    public static final double SHOULDER_MAX_VOLTAGE_COMPENSATE = 11.3;
     /*
      * Cargo Floor Pickup
      */

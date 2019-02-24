@@ -28,6 +28,7 @@ import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorAtSetpoint;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorMoveToSetpoint;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorTeleop;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.Homing.ElevatorHomingInit;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.HomingProcedure;
 
 
 public class Elevator extends Subsystem {
@@ -110,6 +111,7 @@ public class Elevator extends Subsystem {
         elevatorMaster.setInverted(true);
         elevatorFollower.setInverted(true);
         elevatorMaster.setSensorPhase(true);
+        elevatorMaster.setSelectedSensorPosition(100000);
         elevatorMaster.configPeakOutputForward(Constants.ELEVATOR_MAX_OUTPUT_UP);
         elevatorMaster.configPeakOutputReverse(Constants.ELEVATOR_MAX_OUTPUT_DOWN);
         elevatorMaster.configNominalOutputForward(0);
@@ -117,11 +119,20 @@ public class Elevator extends Subsystem {
         elevatorMaster.configAllowableClosedloopError(0, 0, Constants.ELEVATOR_MASTER_TIMEOUT);
         elevatorMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0,10,Constants.ELEVATOR_MASTER_TIMEOUT);
         elevatorMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10,Constants.ELEVATOR_MASTER_TIMEOUT);
-        elevatorMaster.configMotionCruiseVelocity(15000,Constants.ELEVATOR_MASTER_TIMEOUT);
-        elevatorMaster.configMotionAcceleration(6000,Constants.ELEVATOR_MASTER_TIMEOUT);
+        elevatorMaster.configMotionCruiseVelocity(1500,Constants.ELEVATOR_MASTER_TIMEOUT);
+        elevatorMaster.configMotionAcceleration(750,Constants.ELEVATOR_MASTER_TIMEOUT);
         elevatorMaster.enableCurrentLimit(true);
         elevatorMaster.overrideLimitSwitchesEnable(false);
+        elevatorMaster.enableVoltageCompensation(true);
+        elevatorMaster.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_COMPENSATE);
+
+        elevatorMaster.configForwardSoftLimitEnable(true);
+        elevatorMaster.configReverseSoftLimitEnable(true);
+        elevatorMaster.configForwardSoftLimitThreshold(Constants.ELEVATOR_UPPER_SOFT_LIMIT, Constants.ELEVATOR_MASTER_TIMEOUT);
+        elevatorMaster.configReverseSoftLimitThreshold(Constants.ELEVATOR_LOWER_SOFT_LIMIT,Constants.ELEVATOR_MASTER_TIMEOUT);
         elevatorMaster.configContinuousCurrentLimit(Constants.ELEVATOR_MAX_AMP);
+        elevatorMaster.configPeakCurrentLimit(Constants.ELEVATOR_MAX_AMP);
+        
 
         elevatorFollower.follow(elevatorMaster);
         
@@ -147,7 +158,7 @@ public class Elevator extends Subsystem {
         }
 
 
-        //elevatorMaster.configClosedloopRamp(0.4);
+        elevatorMaster.configClosedloopRamp(0.4);
         //elevatorMaster.configPeakCurrentLimit(20);
         //elevatorMaster.configPeakCurrentLimit(60);
         homed = false;
@@ -212,7 +223,7 @@ public class Elevator extends Subsystem {
             setDefaultCommand(new ElevatorTeleop());
         }else{
             setDefaultCommand(new ElevatorAtSetpoint());
-            new ElevatorHomingInit().start();
+            new HomingProcedure().start();
             //setDefaultCommand(new ElevatorHomingInit());
         }
         System.out.println(this.getDefaultCommandName());
@@ -233,14 +244,18 @@ public class Elevator extends Subsystem {
         //SmartDashboard.putBoolean("Carriage Upper Limit Switch",this.carriageUpperLimitSwitch.get());
         //SmartDashboard.putBoolean("Intermediate Lower Limit Switch",this.intermediateLowerLimitSwitch.get());
         //SmartDashboard.putBoolean("Intermediate Upper Limit Switch",this.intermediateUpperLimitSwitch.get());
-        //SmartDashboard.putNumber("ELEV ENC",this.elevatorMaster.getSelectedSensorPosition(0));
-        //SmartDashboard.putNumber("ELEV PercentOutput", this.elevatorMaster.getMotorOutputPercent());
-        //SmartDashboard.putNumber("ELEV Setpoint",this.setpoint);
+        SmartDashboard.putNumber("ELEV ENC",this.elevatorMaster.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("ELEV PercentOutput", this.elevatorMaster.getMotorOutputPercent());
+        SmartDashboard.putNumber("ELEV Setpoint",this.setpoint);
         //SmartDashboard.putString("ELEV ControlMode",this.elevatorMaster.getControlMode().toString());
         
-        //SmartDashboard.putBoolean("AT TOP", this.atMaxHeight);
-        //SmartDashboard.putBoolean("AT BOTTOM",this.atMinHeight);
-        
+        SmartDashboard.putBoolean("AT TOP", this.atMaxHeight);
+        SmartDashboard.putBoolean("AT BOTTOM",this.atMinHeight);
+        SmartDashboard.putData("StartHoming", new HomingProcedure());
+        if(this.elevatorMaster.getControlMode() == ControlMode.MotionMagic){
+            SmartDashboard.putNumber("ELEV_error",elevatorMaster.getClosedLoopError());
+
+        }
         if(this.intermediateUpperLimitSwitch.get() 
             && this.carriageUpperLimitSwitch.get() 
             && !this.carriageLowerLimitSwitch.get() 
@@ -255,12 +270,12 @@ public class Elevator extends Subsystem {
             this.atMaxHeight = true;
         }else{this.atMaxHeight = false;}
 
-        /*if(this.atMinHeight && elevatorMaster.getMotorOutputPercent() < 0){
+        if(this.atMinHeight && elevatorMaster.getMotorOutputPercent() < 0){
             elevatorMaster.set(ControlMode.PercentOutput,0);
         }
         else if(this.atMaxHeight && elevatorMaster.getMotorOutputPercent() > 0){
             elevatorMaster.set(ControlMode.PercentOutput,0);
-        }*/
+        }
     }
     /**
      * Updates //SmartDashboard
