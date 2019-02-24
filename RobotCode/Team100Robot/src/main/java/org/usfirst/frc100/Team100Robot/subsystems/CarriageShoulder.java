@@ -33,7 +33,7 @@ public class CarriageShoulder extends Subsystem {
     public int currentSetpointIndex = 0;
     public int currentSetpoint = -1;
 
-    public static final int HOMING_SETPOINT = 2904;
+    public static final int HOMING_SETPOINT = 2900;
 
 
     public WPI_TalonSRX carriageShoulderMotor;
