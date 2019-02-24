@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.//SmartDashboard.//SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -100,13 +100,13 @@ public class Drivetrain extends Subsystem implements PIDOutput {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-        //SmartDashboard.putNumber("ENC LEFT",leftMaster.getSelectedSensorPosition());
-        //SmartDashboard.putNumber("ENC RIGHT", rightMaster.getSelectedSensorPosition());
-        //SmartDashboard.putNumber("PO LEFT",leftMaster.getMotorOutputPercent());
-        //SmartDashboard.putNumber("PO RIGHT",rightMaster.getMotorOutputPercent());
-        //SmartDashboard.putBoolean("SHIFT State", shift.get());
-        //SmartDashboard.putNumber("SHIFT ID", Constants.DRIVETRAIN_SHIFTER_PCMID);
-        //SmartDashboard.putData("SHIFT PCM", shift);
+        SmartDashboard.putNumber("ENC LEFT",leftMaster.getSelectedSensorPosition());
+        SmartDashboard.putNumber("ENC RIGHT", rightMaster.getSelectedSensorPosition());
+        SmartDashboard.putNumber("PO LEFT",leftMaster.getMotorOutputPercent());
+        SmartDashboard.putNumber("PO RIGHT",rightMaster.getMotorOutputPercent());
+        SmartDashboard.putBoolean("SHIFT State", shift.get());
+        SmartDashboard.putNumber("SHIFT ID", Constants.DRIVETRAIN_SHIFTER_PCMID);
+        SmartDashboard.putData("SHIFT PCM", shift);
     }
 
     public void drive(){

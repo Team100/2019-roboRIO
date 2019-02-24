@@ -11,7 +11,7 @@ import org.usfirst.frc100.Team100Robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 /**
- * Homing position for shoulder
+ * Homing position for shoulder... the shoulder does not home
  */
 public class ShoulderHoming extends Command {
   public ShoulderHoming() {
@@ -39,8 +39,7 @@ public class ShoulderHoming extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.carriageShoulder.currentSetpointIndex = Robot.carriageShoulder.HOMING_SETPOINT;
-
+    Robot.carriageShoulder.updateSetpoint(Robot.carriageShoulder.HOMING_SETPOINT);    
     System.out.println("HOMING DONE");
   }
 
@@ -48,5 +47,6 @@ public class ShoulderHoming extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

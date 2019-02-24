@@ -25,7 +25,7 @@ import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmIntakeElement
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderDown;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderUp;
 
-import edu.wpi.first.wpilibj.//SmartDashboard.//SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 

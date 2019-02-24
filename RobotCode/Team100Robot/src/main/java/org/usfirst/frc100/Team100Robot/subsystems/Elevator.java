@@ -15,7 +15,7 @@ package org.usfirst.frc100.Team100Robot.subsystems;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.//SmartDashboard.//SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -119,7 +119,7 @@ public class Elevator extends Subsystem {
         elevatorMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10,Constants.ELEVATOR_MASTER_TIMEOUT);
         elevatorMaster.configMotionCruiseVelocity(15000,Constants.ELEVATOR_MASTER_TIMEOUT);
         elevatorMaster.configMotionAcceleration(6000,Constants.ELEVATOR_MASTER_TIMEOUT);
-        elevatorMaster.enableCurrentLimit(false);
+        elevatorMaster.enableCurrentLimit(true);
         elevatorMaster.overrideLimitSwitchesEnable(false);
         elevatorMaster.configContinuousCurrentLimit(Constants.ELEVATOR_MAX_AMP);
 

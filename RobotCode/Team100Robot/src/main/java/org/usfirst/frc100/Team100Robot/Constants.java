@@ -132,7 +132,7 @@ public class Constants {
     */
     public static final int SHOULDER_MASTER_TIMEOUT = 10; //Type: Milliseconds
 
-    public static final double SHOULDER_KP = 0.001; //Type: PIDF Double
+    public static final double SHOULDER_KP = 1; //Type: PIDF Double
     public static final double SHOULDER_KI = 0; //Type: PIDF Double
     public static final double SHOULDER_KD = 0; //Type: PIDF Double
     public static final double SHOULDER_KF = 0; //Type: PIDF Double
