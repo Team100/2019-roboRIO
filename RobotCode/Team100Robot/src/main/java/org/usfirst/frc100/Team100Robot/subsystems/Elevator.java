@@ -194,8 +194,8 @@ public class Elevator extends Subsystem {
 
         }
     }
-    
-    public Setpoint[] setpointsArray = {new Setpoint("BASE", 19, 0),new Setpoint("",27.5,1),new Setpoint("ROCKET_LOW",47,2),new Setpoint("ROCKET_MEDIUM",55.5,3),new Setpoint("ROCKET_HIGH",75,4),new Setpoint("MAX_HEIGHT",77.5,5)};
+    //Each level is listed cargo then hatch
+    public Setpoint[] setpointsArray = {new Setpoint("BASE", 19, 0),new Setpoint("CARGO_LEVEL_1",28.5,1),new Setpoint("HATCH_LEVEL_1",19.5,2),new Setpoint("CARGO_LEVEL_2",55.5,3),new Setpoint("ROCKET_LEVEL_2",47.5,4),new Setpoint("CARGO_LEVEL_3",83.5,5), new Setpoint("HATCH_LEVEL_3",75.5,6), new Setpoint("CARGO_LEVEL_3_REVERSE [UPDATE VALUE]",83.5,7)};
 
     /**
      * Set the setpoint for the Talon SRX given the setpoint instance variable

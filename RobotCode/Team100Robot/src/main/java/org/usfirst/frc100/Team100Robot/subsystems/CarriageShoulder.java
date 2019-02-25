@@ -108,7 +108,10 @@ public class CarriageShoulder extends Subsystem {
 
     public static int degreesToSetpointConverter(double degrees){
       
-        return (int)((degrees - Constants.SHOULDER_DOWN_DEGREES)*Constants.SHOULDER_ENCODER_TICKS_PER_DEGREE_TRAVEL)+Constants.SHOULDER_DOWN_ENCODER_VALUE;
+        double step1 = (degrees - SHOULDER_DOWN_DEGREES); // Get the distance from the bottom to go
+        double step2 = (step1*SHOULDER_ENCODER_TICKS_PER_DEGREE_TRAVEL); // Get the 
+        double step3 = step2+SHOULDER_DOWN_ENCODER_VALUE;
+        return (int)step3;
     }
     public void resetRelativeEncoder(){
         this.carriageShoulderMotor.setSelectedSensorPosition(this.carriageShoulderMotor.getSensorCollection().getPulseWidthPosition());
