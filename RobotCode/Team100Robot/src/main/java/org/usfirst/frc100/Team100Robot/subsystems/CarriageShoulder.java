@@ -34,13 +34,14 @@ public class CarriageShoulder extends Subsystem {
     public int currentSetpointIndex = 0;
     public int currentSetpoint = -1;
 
-    public static final int HOMING_SETPOINT = 3600;
+    public static final int HOMING_SETPOINT = 90; //Degrees from zero
     public static final int LEVEL_SETPOINT = 2500;
     public static final int DOWN_SETPOINT = 1000;
 
     public WPI_TalonSRX carriageShoulderMotor;
 
     public CarriageShoulder() {
+        System.out.println("NINETY CHECK: " + degreesToSetpointConverter(90));
         carriageShoulderMotor = new WPI_TalonSRX(Constants.ELEVATOR_CARRIAGE_SHOULDER_CANID);
         carriageShoulderMotor.configFactoryDefault();
         carriageShoulderMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, Constants.SHOULDER_MASTER_TIMEOUT);
@@ -63,6 +64,9 @@ public class CarriageShoulder extends Subsystem {
         carriageShoulderMotor.enableVoltageCompensation(true);
         carriageShoulderMotor.configVoltageCompSaturation(Constants.SHOULDER_MAX_VOLTAGE_COMPENSATE);
         carriageShoulderMotor.overrideLimitSwitchesEnable(false);
+        carriageShoulderMotor.configForwardSoftLimitEnable(true);
+        carriageShoulderMotor.configForwardSoftLimitThreshold(Constants.SHOULDER_UPPER_ENCODER_VALUE);
+        carriageShoulderMotor.configReverseSoftLimitThreshold(Constants.SHOULDER_DOWN_DEGREES);
         carriageShoulderMotor.selectProfileSlot(0, 0);
         carriageShoulderMotor.config_kP(0, Constants.SHOULDER_KP);
         carriageShoulderMotor.config_kI(0, Constants.SHOULDER_KI);
@@ -79,8 +83,8 @@ public class CarriageShoulder extends Subsystem {
         this.updateSetpointGivenIndex();*/
         //setDefaultCommand(new ShoulderHoming());
 
-        setDefaultCommand(new ShoulderDefault());
-        //setDefaultCommand(new ShoulderTeleop());
+        //setDefaultCommand(new ShoulderDefault());
+        setDefaultCommand(new ShoulderTeleop());
 
     }
 
@@ -102,6 +106,10 @@ public class CarriageShoulder extends Subsystem {
         }
     }
 
+    public static int degreesToSetpointConverter(double degrees){
+      
+        return (int)((degrees - Constants.SHOULDER_DOWN_DEGREES)*Constants.SHOULDER_ENCODER_TICKS_PER_DEGREE_TRAVEL)+Constants.SHOULDER_DOWN_ENCODER_VALUE;
+    }
     public void resetRelativeEncoder(){
         this.carriageShoulderMotor.setSelectedSensorPosition(this.carriageShoulderMotor.getSensorCollection().getPulseWidthPosition());
     }

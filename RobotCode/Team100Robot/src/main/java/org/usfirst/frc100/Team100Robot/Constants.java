@@ -181,4 +181,15 @@ public class Constants {
 
 
     public static final int CARGO_SENSOR_ID = 4;
+
+
+
+
+    public static int SHOULDER_DOWN_ENCODER_VALUE = 4514;
+    public static int SHOULDER_UPPER_ENCODER_VALUE = 8788;
+    public static int SHOULDER_DOWN_DEGREES = -36;
+    public static int SHOULDER_UP_DEGREES = 144;
+    public static int SHOULDER_DISTANCE_TRAVELLED = 360-Constants.SHOULDER_UP_DEGREES-Constants.SHOULDER_DOWN_DEGREES;
+
+    public static int SHOULDER_ENCODER_TICKS_PER_DEGREE_TRAVEL = ((Constants.SHOULDER_DISTANCE_TRAVELLED)-Constants.SHOULDER_DOWN_ENCODER_VALUE)/Constants.SHOULDER_DISTANCE_TRAVELLED;
 }

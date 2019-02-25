@@ -26,7 +26,7 @@ public class ShoulderHoming extends Command {
   @Override
   protected void initialize() {
     done = false;
-    Robot.carriageShoulder.updateSetpoint(Robot.carriageShoulder.HOMING_SETPOINT);    
+    Robot.carriageShoulder.updateSetpoint(Robot.carriageShoulder.degreesToSetpointConverter(Robot.carriageShoulder.HOMING_SETPOINT));    
 
   }
 
