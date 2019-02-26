@@ -25,7 +25,7 @@ public class ShoulderDown extends Command {
   @Override
   protected void initialize() {
     done = false;
-    Robot.carriageShoulder.updateSetpoint(Robot.carriageShoulder.DOWN_SETPOINT);    
+    Robot.carriageShoulder.updateSetpoint(Robot.carriageShoulder.degreesToSetpointConverter(Robot.carriageShoulder.DOWN_SETPOINT));    
 
   }
 

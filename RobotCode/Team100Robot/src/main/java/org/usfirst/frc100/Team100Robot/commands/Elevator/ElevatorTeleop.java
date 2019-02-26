@@ -40,7 +40,7 @@ public class ElevatorTeleop extends Command {
     else{
     }*/
     //SmartDashboard.putNumber("ELEV OI AXIS",Robot.oi.getManipulatorControl().getRawAxis(3));
-    Robot.elevator.elevatorMaster.set(ControlMode.PercentOutput,-Robot.oi.getManipulatorControl().getRawAxis(3));
+    Robot.elevator.elevatorMaster.set(ControlMode.PercentOutput,-Robot.oi.getManipulatorControl().getRawAxis(3)*0.5);
 /*
     if(Robot.oi.getManipulatorControl().getRawAxis(3) <= 0 && !Robot.elevator.atMaxHeight){ //Going up
       Robot.elevator.elevatorMaster.set(ControlMode.PercentOutput,-Robot.oi.getManipulatorControl().getRawAxis(3)*.4);

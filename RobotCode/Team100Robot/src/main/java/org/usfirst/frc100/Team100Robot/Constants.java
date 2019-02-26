@@ -76,10 +76,10 @@ public class Constants {
      * Elevator
      */
 
-     public static final double ELEVATOR_MAX_OUTPUT_UP = 1;
-     public static final double ELEVATOR_MAX_OUTPUT_DOWN = -1;
+     public static final double ELEVATOR_MAX_OUTPUT_UP = 0.75;
+     public static final double ELEVATOR_MAX_OUTPUT_DOWN = -0.75;
 
-     public static final int ELEVATOR_MAX_AMP = 15;
+     public static final int ELEVATOR_MAX_AMP = 30;
 
      /**Power to apply when going down during homing sequence... <em>keep very small</em>*/
      public static final double HOMING_GOING_DOWN_POWER = -.3; //Type: Percent Output (-1-1)
@@ -137,7 +137,7 @@ public class Constants {
     */
     public static final int SHOULDER_MASTER_TIMEOUT = 10; //Type: Milliseconds
 
-    public static final double SHOULDER_KP = 0.4; //Type: PIDF Double
+    public static final double SHOULDER_KP = 0.6; //Type: PIDF Double
     public static final double SHOULDER_KI = 0.0001; //Type: PIDF Double
     public static final double SHOULDER_KD = 0.009; //Type: PIDF Double
     public static final double SHOULDER_KF = 0; //Type: PIDF Double
@@ -185,9 +185,9 @@ public class Constants {
 
 
 
-    public static int SHOULDER_DOWN_ENCODER_VALUE = 4514;
+    public static int SHOULDER_DOWN_ENCODER_VALUE = 1905;
     public static int SHOULDER_UPPER_ENCODER_VALUE = 8788;
-    public static int SHOULDER_DOWN_DEGREES = -93;
+    public static int SHOULDER_DOWN_DEGREES = -84;
     public static int SHOULDER_UP_DEGREES = 144;
     public static int SHOULDER_DISTANCE_TRAVELLED = Constants.SHOULDER_UP_DEGREES-Constants.SHOULDER_DOWN_DEGREES;
 

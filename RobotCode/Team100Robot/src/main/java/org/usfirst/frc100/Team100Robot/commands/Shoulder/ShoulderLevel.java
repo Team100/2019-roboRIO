@@ -26,7 +26,7 @@ public class ShoulderLevel extends Command {
   @Override
   protected void initialize() {
     done = false;
-    Robot.carriageShoulder.updateSetpoint(Robot.carriageShoulder.LEVEL_SETPOINT);    
+    Robot.carriageShoulder.updateSetpoint(Robot.carriageShoulder.degreesToSetpointConverter(Robot.carriageShoulder.LEVEL_SETPOINT));    
 
   }
 

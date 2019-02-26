@@ -34,9 +34,9 @@ public class CarriageShoulder extends Subsystem {
     public int currentSetpointIndex = 0;
     public int currentSetpoint = -1;
 
-    public static final int HOMING_SETPOINT = 90; //Degrees from zero
-    public static final int LEVEL_SETPOINT = 2500;
-    public static final int DOWN_SETPOINT = 1000;
+    public static final int HOMING_SETPOINT = 14; //Degrees from zero
+    public static final int LEVEL_SETPOINT = 0;
+    public static final int DOWN_SETPOINT = 130;
 
     public WPI_TalonSRX carriageShoulderMotor;
 
@@ -83,8 +83,8 @@ public class CarriageShoulder extends Subsystem {
         this.updateSetpointGivenIndex();*/
         //setDefaultCommand(new ShoulderHoming());
 
-        //setDefaultCommand(new ShoulderDefault());
-        setDefaultCommand(new ShoulderTeleop());
+        setDefaultCommand(new ShoulderDefault());
+        //setDefaultCommand(new ShoulderTeleop());
 
     }
 
@@ -108,9 +108,9 @@ public class CarriageShoulder extends Subsystem {
 
     public static int degreesToSetpointConverter(double degrees){
       
-        double step1 = (degrees - SHOULDER_DOWN_DEGREES); // Get the distance from the bottom to go
-        double step2 = (step1*SHOULDER_ENCODER_TICKS_PER_DEGREE_TRAVEL); // Get the 
-        double step3 = step2+SHOULDER_DOWN_ENCODER_VALUE;
+        double step1 = (degrees - Constants.SHOULDER_DOWN_DEGREES); // Get the distance from the bottom to go
+        double step2 = (step1*Constants.SHOULDER_ENCODER_TICKS_PER_DEGREE_TRAVEL); // Get the 
+        double step3 = step2+Constants.SHOULDER_DOWN_ENCODER_VALUE;
         return (int)step3;
     }
     public void resetRelativeEncoder(){
