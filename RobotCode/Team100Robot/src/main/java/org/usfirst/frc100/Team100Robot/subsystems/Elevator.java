@@ -119,8 +119,8 @@ public class Elevator extends Subsystem {
         elevatorMaster.configAllowableClosedloopError(0, 0, Constants.ELEVATOR_MASTER_TIMEOUT);
         elevatorMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0,10,Constants.ELEVATOR_MASTER_TIMEOUT);
         elevatorMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10,Constants.ELEVATOR_MASTER_TIMEOUT);
-        elevatorMaster.configMotionCruiseVelocity(1500,Constants.ELEVATOR_MASTER_TIMEOUT);
-        elevatorMaster.configMotionAcceleration(300,Constants.ELEVATOR_MASTER_TIMEOUT);
+        elevatorMaster.configMotionCruiseVelocity(3000,Constants.ELEVATOR_MASTER_TIMEOUT);
+        elevatorMaster.configMotionAcceleration(3000,Constants.ELEVATOR_MASTER_TIMEOUT);
         elevatorMaster.enableCurrentLimit(true);
         elevatorMaster.overrideLimitSwitchesEnable(false);
         elevatorMaster.enableVoltageCompensation(true);

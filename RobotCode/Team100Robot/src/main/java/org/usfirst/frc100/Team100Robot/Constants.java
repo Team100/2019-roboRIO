@@ -99,7 +99,7 @@ public class Constants {
      ////////////// PID
 
      /**Elevator PID P */
-     public static final double ELEVATOR_KP = 0.0001; //Type: PIDF Double
+     public static final double ELEVATOR_KP = 0.001; //Type: PIDF Double
 
      /**Elevator PID I */
      public static final double ELEVATOR_KI = 0; //Type: PIDF Double
@@ -108,7 +108,7 @@ public class Constants {
      public static final double ELEVATOR_KD = 0; //Type: PIDF Double
 
      /**Elevator PID F */
-     public static final double ELEVATOR_KF = 0.35; //Type: PIDF Double
+     public static final double ELEVATOR_KF = 0.300075; //Type: PIDF Double
 
      public static final int ELEVATOR_LOWER_SOFT_LIMIT = 0;
      public static final int ELEVATOR_UPPER_SOFT_LIMIT = 294270;
