@@ -37,10 +37,10 @@ public class HumanPlayerHatchIntake extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
-    requires(Robot.manipulator);
+    /*requires(Robot.manipulator);
     requires(Robot.elevator);
     requires(Robot.cargoPickup);
-    requires(Robot.carriageShoulder);
+    requires(Robot.carriageShoulder);*/
     addSequential(new IntakeArmUp());
     addSequential(new ElevatorDown());
     addSequential(new ShoulderDown());

@@ -80,6 +80,8 @@ public class Constants {
      public static final double ELEVATOR_MAX_OUTPUT_DOWN = -0.75;
 
      public static final int ELEVATOR_MAX_AMP = 30;
+     public static final double ELEVATOR_MAX_VOLTAGE = 4;
+     
 
      /**Power to apply when going down during homing sequence... <em>keep very small</em>*/
      public static final double HOMING_GOING_DOWN_POWER = -.3; //Type: Percent Output (-1-1)
@@ -97,7 +99,7 @@ public class Constants {
      ////////////// PID
 
      /**Elevator PID P */
-     public static final double ELEVATOR_KP = 0.01; //Type: PIDF Double
+     public static final double ELEVATOR_KP = 0.0001; //Type: PIDF Double
 
      /**Elevator PID I */
      public static final double ELEVATOR_KI = 0; //Type: PIDF Double
@@ -106,12 +108,12 @@ public class Constants {
      public static final double ELEVATOR_KD = 0; //Type: PIDF Double
 
      /**Elevator PID F */
-     public static final double ELEVATOR_KF = 1; //Type: PIDF Double
+     public static final double ELEVATOR_KF = 0.35; //Type: PIDF Double
 
      public static final int ELEVATOR_LOWER_SOFT_LIMIT = 0;
      public static final int ELEVATOR_UPPER_SOFT_LIMIT = 294270;
 
-     public static final int ELEVATOR_FINISHED_HOMING_POS = 50000;
+     public static final int ELEVATOR_FINISHED_HOMING_POS = 30000;
 
     /**Conversion factor from Inches to Encoder ticks
      * For elevator control
@@ -140,7 +142,7 @@ public class Constants {
     public static final double SHOULDER_KP = 0.6; //Type: PIDF Double
     public static final double SHOULDER_KI = 0.0001; //Type: PIDF Double
     public static final double SHOULDER_KD = 0.009; //Type: PIDF Double
-    public static final double SHOULDER_KF = 0; //Type: PIDF Double
+    public static final double SHOULDER_KF = 1; //Type: PIDF Double
     public static final int SHOULDER_TIMEOUT = 10; //Type: Milliseconds
     public static final int SHOULDER_BUFFER = 250; //Type: Encoder Ticks
 

@@ -35,9 +35,9 @@ public class ElevatorGoToLevel1CargoProcedure extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
     
-    requires(Robot.elevator);
+    /*requires(Robot.elevator);
     requires(Robot.cargoPickup);
-    requires(Robot.carriageShoulder);
+    requires(Robot.carriageShoulder);*/
     addSequential(new IntakeArmDown());
     addSequential(new ShoulderLevel());
   }

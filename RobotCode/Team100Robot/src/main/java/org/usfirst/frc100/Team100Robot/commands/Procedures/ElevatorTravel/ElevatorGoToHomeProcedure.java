@@ -38,9 +38,9 @@ public class ElevatorGoToHomeProcedure extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
 
-    requires(Robot.elevator);
+    /*requires(Robot.elevator);
     requires(Robot.cargoPickup);
-    requires(Robot.carriageShoulder);
+    requires(Robot.carriageShoulder);*/
     System.out.println("PROCEDURE START");
     addSequential(new IntakeArmDown());
     addSequential(new WaitForUserInput());

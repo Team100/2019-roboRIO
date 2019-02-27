@@ -39,10 +39,10 @@ public class CargoGroundIntake extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
 
-    requires(Robot.manipulator);
+    /*requires(Robot.manipulator);
     requires(Robot.elevator);
     requires(Robot.cargoPickup);
-    requires(Robot.carriageShoulder);
+    requires(Robot.carriageShoulder);*/
     addSequential(new IntakeArmDown());
     addSequential(new ElevatorDown());
     addSequential(new ShoulderDown());

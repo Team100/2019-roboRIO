@@ -33,9 +33,9 @@ public class CargoScore extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
 
-    requires(Robot.manipulator);
+    /*requires(Robot.manipulator);
     requires(Robot.cargoPickup);
-    requires(Robot.carriageShoulder);
+    // requires(Robot.carriageShoulder);*/
     addSequential(new CargoManipulatorOuttake());
 
   }

@@ -120,12 +120,11 @@ public class Elevator extends Subsystem {
         elevatorMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0,10,Constants.ELEVATOR_MASTER_TIMEOUT);
         elevatorMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10,Constants.ELEVATOR_MASTER_TIMEOUT);
         elevatorMaster.configMotionCruiseVelocity(1500,Constants.ELEVATOR_MASTER_TIMEOUT);
-        elevatorMaster.configMotionAcceleration(750,Constants.ELEVATOR_MASTER_TIMEOUT);
+        elevatorMaster.configMotionAcceleration(300,Constants.ELEVATOR_MASTER_TIMEOUT);
         elevatorMaster.enableCurrentLimit(true);
         elevatorMaster.overrideLimitSwitchesEnable(false);
         elevatorMaster.enableVoltageCompensation(true);
         elevatorMaster.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_COMPENSATE);
-
         elevatorMaster.configForwardSoftLimitEnable(true);
         elevatorMaster.configReverseSoftLimitEnable(true);
         elevatorMaster.configForwardSoftLimitThreshold(Constants.ELEVATOR_UPPER_SOFT_LIMIT, Constants.ELEVATOR_MASTER_TIMEOUT);
@@ -249,7 +248,10 @@ public class Elevator extends Subsystem {
         SmartDashboard.putNumber("ELEV Setpoint",this.setpoint);
         SmartDashboard.putString("ELEV ControlMode",this.elevatorMaster.getControlMode().toString());
         SmartDashboard.putString("ELEV Current Command",this.getCurrentCommandName());
-
+        SmartDashboard.putNumber("ELEV Voltage Output",this.elevatorMaster.getMotorOutputVoltage());
+        if(this.elevatorMaster.getControlMode() == ControlMode.MotionMagic){
+            SmartDashboard.putNumber("ELEV VELOCITY",this.elevatorMaster.getActiveTrajectoryVelocity());
+        }
         SmartDashboard.putBoolean("AT TOP", this.atMaxHeight);
         SmartDashboard.putBoolean("AT BOTTOM",this.atMinHeight);
         SmartDashboard.putData("StartHoming", new HomingProcedure());

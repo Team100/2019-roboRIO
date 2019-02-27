@@ -34,9 +34,9 @@ public class HumanPlayerCargoIntake extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
 
-    requires(Robot.manipulator);
+    /*requires(Robot.manipulator);
     requires(Robot.elevator);
-    requires(Robot.carriageShoulder);
+    requires(Robot.carriageShoulder);*/
     addSequential(new ShoulderDefault());
   }
 }

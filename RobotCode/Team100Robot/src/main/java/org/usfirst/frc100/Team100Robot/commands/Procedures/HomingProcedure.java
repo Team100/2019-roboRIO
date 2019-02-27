@@ -35,9 +35,9 @@ public class HomingProcedure extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
-    requires(Robot.elevator);
+    /*requires(Robot.elevator);
     requires(Robot.carriageShoulder);
-    requires(Robot.cargoPickup);
+    requires(Robot.cargoPickup);*/
     addSequential(new IntakeArmDown());
     addSequential(new WaitForUserInput());
     addSequential(new ShoulderHoming());

@@ -35,9 +35,9 @@ public class HatchScore extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
-    requires(Robot.manipulator);
+    /*requires(Robot.manipulator);
     requires(Robot.cargoPickup);
-    requires(Robot.carriageShoulder);
+    requires(Robot.carriageShoulder);*/
     addSequential(new BillLower());
     addSequential(new WaitForUserInput());
     addSequential(new ExtendPusher());
