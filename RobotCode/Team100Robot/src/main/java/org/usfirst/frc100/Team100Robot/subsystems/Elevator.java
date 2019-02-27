@@ -94,7 +94,7 @@ public class Elevator extends Subsystem {
      * <br />
      * <strong>This should <em>ONLY</em> be used for elevator testing and SHOULD NEVER BE ON DURING COMPETITION</strong>
      */
-    public static final boolean DISABLE_INTELLIGENT_CONTROL = true;
+    public static final boolean DISABLE_INTELLIGENT_CONTROL = false;
 
     public boolean homed = false;
 
@@ -247,8 +247,9 @@ public class Elevator extends Subsystem {
         SmartDashboard.putNumber("ELEV ENC",this.elevatorMaster.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("ELEV PercentOutput", this.elevatorMaster.getMotorOutputPercent());
         SmartDashboard.putNumber("ELEV Setpoint",this.setpoint);
-        //SmartDashboard.putString("ELEV ControlMode",this.elevatorMaster.getControlMode().toString());
-        
+        SmartDashboard.putString("ELEV ControlMode",this.elevatorMaster.getControlMode().toString());
+        SmartDashboard.putString("ELEV Current Command",this.getCurrentCommandName());
+
         SmartDashboard.putBoolean("AT TOP", this.atMaxHeight);
         SmartDashboard.putBoolean("AT BOTTOM",this.atMinHeight);
         SmartDashboard.putData("StartHoming", new HomingProcedure());

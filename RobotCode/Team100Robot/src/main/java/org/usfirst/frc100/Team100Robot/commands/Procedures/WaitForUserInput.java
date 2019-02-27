@@ -5,58 +5,52 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc100.Team100Robot.commands.Shoulder;
+package org.usfirst.frc100.Team100Robot.commands.Procedures;
 
-import org.usfirst.frc100.Team100Robot.Constants;
 import org.usfirst.frc100.Team100Robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-/**
- * Homing position for shoulder... THE SHOULDER DOES NOT HOME
- */
-public class ShoulderHoming extends Command {
-  boolean done;
-  public ShoulderHoming() {
+
+public class WaitForUserInput extends Command {
+  private boolean done = false;
+  public WaitForUserInput() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.carriageShoulder);
+    requires(Robot.global);
+    
+    
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
     done = false;
-    Robot.carriageShoulder.updateSetpoint(Robot.carriageShoulder.degreesToSetpointConverter(Robot.carriageShoulder.HOMING_SETPOINT));    
-    SmartDashboard.putBoolean("Shoulder home pos done", false);
-
+    System.out.println("Wait for user input began");
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Math.abs(Robot.carriageShoulder.currentSetpoint-Robot.carriageShoulder.carriageShoulderMotor.getSelectedSensorPosition())<Constants.SHOULDER_BUFFER){
+    if(Robot.oi.getManipulatorControl().getRawButton(9) == true){
+      System.out.println("WAIT COMPLETE");
       done = true;
-      SmartDashboard.putBoolean("Shoulder home pos done",true);
     }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return done;
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    System.out.println("SHOULDER HOMING DONE");
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }

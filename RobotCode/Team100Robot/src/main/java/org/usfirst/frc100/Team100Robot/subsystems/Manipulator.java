@@ -57,6 +57,8 @@ public class Manipulator extends Subsystem {
     super.periodic();
     //SmartDashboard.putData("BillSolenoid",bill);
     //SmartDashboard.putData("HatchPushSolenoid",hatchPusher);
+    SmartDashboard.putString("Manipulator Current Command",this.getCurrentCommandName());
+
     if(cargoSensor.get()){
       holding = ScoringObjects.CARGO;
     } else if(true){ //Replace to hatch ls triggered

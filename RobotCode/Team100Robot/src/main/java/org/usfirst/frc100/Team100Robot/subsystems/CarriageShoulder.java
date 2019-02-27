@@ -92,6 +92,7 @@ public class CarriageShoulder extends Subsystem {
     public void periodic() {
         // Put code here to be run every loop
         SmartDashboard.putData("Shoulder Level", new ShoulderLevel());
+        SmartDashboard.putString("CarriageShoulder Current Command",this.getCurrentCommandName());
 
         //SmartDashboard.putNumber("Shoulder Enc",this.carriageShoulderMotor.getSelectedSensorPosition());
         SmartDashboard.putNumber("Shoulder PO", this.carriageShoulderMotor.getMotorOutputPercent());

@@ -62,6 +62,7 @@ public class CargoPickup extends Subsystem {
         
         SmartDashboard.putData("CargoIntakeArmPivot",cargoIntakePivotDoubleSolenoid);
         SmartDashboard.putNumber("CargoIntakeEncoderPosition",absEnc.getValue());
+        SmartDashboard.putString("CargoPickup Current Command",this.getCurrentCommandName());
     }
 
     public void setOutput(double output){

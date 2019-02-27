@@ -5,20 +5,22 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc100.Team100Robot.commands.Procedures;
+package org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel;
 
 import org.usfirst.frc100.Team100Robot.Robot;
-import org.usfirst.frc100.Team100Robot.commands.Elevator.Homing.ElevatorHomingInit;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorDown;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmDown;
+import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmUp;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.WaitForUserInput;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHoming;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class HomingProcedure extends CommandGroup {
+public class ElevatorGoToHomeProcedure extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public HomingProcedure() {
+  public ElevatorGoToHomeProcedure() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -35,13 +37,17 @@ public class HomingProcedure extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
+
     requires(Robot.elevator);
-    requires(Robot.carriageShoulder);
     requires(Robot.cargoPickup);
+    requires(Robot.carriageShoulder);
+    System.out.println("PROCEDURE START");
     addSequential(new IntakeArmDown());
     addSequential(new WaitForUserInput());
     addSequential(new ShoulderHoming());
     addSequential(new WaitForUserInput());
-    addSequential(new ElevatorHomingInit());
+    addSequential(new ElevatorDown());
+    addSequential(new WaitForUserInput());
+    addSequential(new IntakeArmUp());
   }
 }
