@@ -14,6 +14,10 @@ import org.usfirst.frc100.Team100Robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ShoulderZeroPower extends Command {
+  /**
+   * This class is for testing only and SHOULD NOT be used in competition code
+   * In competition the shoulder and elevator should ALWAYS stay in MotionMagic mode
+   */
   public ShoulderZeroPower() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
