@@ -61,7 +61,7 @@ public class CarriageShoulder extends Subsystem {
         carriageShoulderMotor.configPeakOutputReverse(Constants.SHOULDER_MAX_OUTPUT_REVERSE);
         carriageShoulderMotor.configNominalOutputForward(0);
         carriageShoulderMotor.configNominalOutputReverse(0);
-        carriageShoulderMotor.configAllowableClosedloopError(0, Constants.SHOULDER_BUFFER, Constants.SHOULDER_MASTER_TIMEOUT);
+        carriageShoulderMotor.configAllowableClosedloopError(0, Constants.SHOULDER_PID_BUFFER, Constants.SHOULDER_MASTER_TIMEOUT);
         carriageShoulderMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0,10,Constants.SHOULDER_MASTER_TIMEOUT);
         carriageShoulderMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10,Constants.SHOULDER_MASTER_TIMEOUT);
         carriageShoulderMotor.configMotionCruiseVelocity(32767,Constants.SHOULDER_MASTER_TIMEOUT);

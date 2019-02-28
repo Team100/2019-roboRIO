@@ -12,6 +12,7 @@ import org.usfirst.frc100.Team100Robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ElevatorHatchLevel3 extends Command {
+  private boolean done = false;
   public ElevatorHatchLevel3() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -22,6 +23,7 @@ public class ElevatorHatchLevel3 extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    done = false;
     Robot.elevator.moveToLevel(6);
 
   }
@@ -34,7 +36,7 @@ public class ElevatorHatchLevel3 extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return done;
   }
 
   // Called once after isFinished returns true

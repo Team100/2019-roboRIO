@@ -144,7 +144,9 @@ public class Constants {
     public static final double SHOULDER_KD = 0; //Type: PIDF Double
     public static final double SHOULDER_KF = 0; //Type: PIDF Double
     public static final int SHOULDER_TIMEOUT = 10; //Type: Milliseconds
-    public static final int SHOULDER_BUFFER = 100; //Type: Encoder Ticks
+    public static final int SHOULDER_BUFFER = 250; //Type: Encoder Ticks
+    public static final int SHOULDER_PID_BUFFER = 100; //Type: Encoder Ticks  **NOTE THAT THIS IS ONLY FOR PID**
+
 
     public static final int SHOULDER_LEVEL_LOCATION = 100;
     public static final double SHOULDER_MAX_OUTPUT_FORWARD = 1;
