@@ -31,7 +31,9 @@ import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmIntakeElement
 import org.usfirst.frc100.Team100Robot.commands.Procedures.HomingProcedure;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel.ElevatorGoToHomeProcedure;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.Scoring.ScoreProcessing;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.Scoring.ShoulderZeroPower;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderDown;
+import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHoming;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderUp;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.CargoGroundIntake;
 
@@ -176,8 +178,10 @@ public class OI {
         cargoLevel1= new JoystickButton(buttonBoard,15);
         hatchLevel1= new JoystickButton(buttonBoard,16);
 
-        score.whenPressed(new ScoreProcessing());
-        home.whenPressed(new ElevatorGoToHomeProcedure());
+        //score.whenPressed(new ScoreProcessing()); TODO Change back
+        score.whenPressed(new ShoulderZeroPower());
+        home.whenPressed(new ShoulderHoming());
+        //home.whenPressed(new ElevatorGoToHomeProcedure());
         cargoIntake.whenPressed(new CargoGroundIntake());
         cargoLevel1.whenPressed(new ElevatorCargoLevel1());
         cargoLevel2.whenPressed(new ElevatorCargoLevel2());

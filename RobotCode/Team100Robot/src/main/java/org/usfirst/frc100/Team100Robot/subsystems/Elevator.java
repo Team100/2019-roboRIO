@@ -73,7 +73,7 @@ public class Elevator extends Subsystem {
      * <code>false</code> uses Constants.java for PID values
      * <code>true</code> uses NT Preferences for PID values with Constants.java as the fallback
      */
-    public static final boolean ELEVATOR_USE_PREFERENCES_FOR_PID_VALUES = false;
+    public static final boolean ELEVATOR_USE_PREFERENCES_FOR_PID_VALUES = true;
 
     /**
      * Instance of Robot Preferences
@@ -85,7 +85,7 @@ public class Elevator extends Subsystem {
      * <br />
      * <i>Run this to initialize preferences or to make preferences up to date with the constants</i>
      */
-    public static final boolean ELEVATOR_POST_PID_CONSTANTS_TO_NT_PREFERENCES = true;
+    public static final boolean ELEVATOR_POST_PID_CONSTANTS_TO_NT_PREFERENCES = false;
 
     /**
      * <code>true</code> Disables intelligent control (PID, Setpoints, homing)
@@ -222,8 +222,9 @@ public class Elevator extends Subsystem {
             setDefaultCommand(new ElevatorTeleop());
         }else{
             setDefaultCommand(new ElevatorAtSetpoint());
-            new HomingProcedure().start();
-            //setDefaultCommand(new ElevatorHomingInit());
+            //new HomingProcedure().start();
+            //setDefaultCommand(new ElevatorHomingInit()); TODO uncoment
+
         }
         System.out.println(this.getDefaultCommandName());
         
@@ -250,7 +251,8 @@ public class Elevator extends Subsystem {
         SmartDashboard.putString("ELEV Current Command",this.getCurrentCommandName());
         SmartDashboard.putNumber("ELEV Voltage Output",this.elevatorMaster.getMotorOutputVoltage());
         if(this.elevatorMaster.getControlMode() == ControlMode.MotionMagic){
-            SmartDashboard.putNumber("ELEV VELOCITY",this.elevatorMaster.getActiveTrajectoryVelocity());
+            SmartDashboard.putNumber("ELEV VELOCITY",this.elevatorMaster.getSelectedSensorVelocity());
+            SmartDashboard.putNumber("ELEV DESIRED VELOCITY",this.elevatorMaster.getActiveTrajectoryVelocity());
         }
         SmartDashboard.putBoolean("AT TOP", this.atMaxHeight);
         SmartDashboard.putBoolean("AT BOTTOM",this.atMinHeight);

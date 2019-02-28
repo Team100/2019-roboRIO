@@ -11,6 +11,7 @@
 
 package org.usfirst.frc100.Team100Robot.subsystems;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -33,14 +34,21 @@ public class CarriageShoulder extends Subsystem {
 
     public int currentSetpointIndex = 0;
     public int currentSetpoint = -1;
+    public boolean POST_TO_NT_PREFERENCES = false;
 
-    public static final int HOMING_SETPOINT = 14; //Degrees from zero
+    public static final int HOMING_SETPOINT = 14/*was 14*/; //Degrees from zero
     public static final int LEVEL_SETPOINT = 0;
     public static final int DOWN_SETPOINT = 130;
 
     public WPI_TalonSRX carriageShoulderMotor;
 
     public CarriageShoulder() {
+        if(POST_TO_NT_PREFERENCES){
+            Preferences.getInstance().putDouble("SHOULDER_KP", Constants.SHOULDER_KP);
+            Preferences.getInstance().putDouble("SHOULDER_KI", Constants.SHOULDER_KI);
+            Preferences.getInstance().putDouble("SHOULDER_KD", Constants.SHOULDER_KD);
+            Preferences.getInstance().putDouble("SHOULDER_KF", Constants.SHOULDER_KF);
+        }
         System.out.println("NINETY CHECK: " + degreesToSetpointConverter(90));
         carriageShoulderMotor = new WPI_TalonSRX(Constants.ELEVATOR_CARRIAGE_SHOULDER_CANID);
         carriageShoulderMotor.configFactoryDefault();
@@ -56,8 +64,8 @@ public class CarriageShoulder extends Subsystem {
         carriageShoulderMotor.configAllowableClosedloopError(0, Constants.SHOULDER_BUFFER, Constants.SHOULDER_MASTER_TIMEOUT);
         carriageShoulderMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0,10,Constants.SHOULDER_MASTER_TIMEOUT);
         carriageShoulderMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10,Constants.SHOULDER_MASTER_TIMEOUT);
-        carriageShoulderMotor.configMotionCruiseVelocity(2048,Constants.SHOULDER_MASTER_TIMEOUT);
-        carriageShoulderMotor.configMotionAcceleration(1024,Constants.SHOULDER_MASTER_TIMEOUT);
+        carriageShoulderMotor.configMotionCruiseVelocity(32767,Constants.SHOULDER_MASTER_TIMEOUT);
+        carriageShoulderMotor.configMotionAcceleration(32767,Constants.SHOULDER_MASTER_TIMEOUT);
         carriageShoulderMotor.configFeedbackNotContinuous(true, Constants.SHOULDER_MASTER_TIMEOUT);
         carriageShoulderMotor.enableCurrentLimit(true);
         carriageShoulderMotor.configPeakCurrentLimit(Constants.SHOULDER_MAX_AMP);
@@ -85,16 +93,20 @@ public class CarriageShoulder extends Subsystem {
 
         setDefaultCommand(new ShoulderDefault());
         //setDefaultCommand(new ShoulderTeleop());
-
     }
 
     @Override
     public void periodic() {
-        // Put code here to be run every loop
+        //System.out.println("IN PERIODIC");
+        this.carriageShoulderMotor.config_kP(0,Preferences.getInstance().getDouble("SHOULDER_KP",Constants.SHOULDER_KP));
+        this.carriageShoulderMotor.config_kI(0,Preferences.getInstance().getDouble("SHOULDER_KI",Constants.SHOULDER_KI));
+        this.carriageShoulderMotor.config_kD(0,Preferences.getInstance().getDouble("SHOULDER_KD",Constants.SHOULDER_KD));
+        this.carriageShoulderMotor.config_kF(0,Preferences.getInstance().getDouble("SHOULDER_KF",Constants.SHOULDER_KF));
+        SmartDashboard.putNumber("Prefs P",Preferences.getInstance().getDouble("SHOULDER_KP",-1));
         SmartDashboard.putData("Shoulder Level", new ShoulderLevel());
         SmartDashboard.putString("CarriageShoulder Current Command",this.getCurrentCommandName());
 
-        //SmartDashboard.putNumber("Shoulder Enc",this.carriageShoulderMotor.getSelectedSensorPosition());
+        SmartDashboard.putNumber("Shoulder Enc",this.carriageShoulderMotor.getSelectedSensorPosition());
         SmartDashboard.putNumber("Shoulder PO", this.carriageShoulderMotor.getMotorOutputPercent());
         //SmartDashboard.putString("Shoulder CM", this.carriageShoulderMotor.getControlMode().toString());
         //SmartDashboard.putNumber("Shoulder Setpoint",this.currentSetpoint);
@@ -102,7 +114,8 @@ public class CarriageShoulder extends Subsystem {
         //SmartDashboard.putString("Shoulder Control Mode",this.carriageShoulderMotor.getControlMode().toString());
         SmartDashboard.putNumber("Shoulder ENC Value", this.carriageShoulderMotor.getSelectedSensorPosition());
         if(this.carriageShoulderMotor.getControlMode() == ControlMode.MotionMagic){
-            //SmartDashboard.putNumber("Shoulder Error", this.carriageShoulderMotor.getClosedLoopError());
+            SmartDashboard.putNumber("Shoulder Error", this.carriageShoulderMotor.getClosedLoopError());
+            SmartDashboard.putNumber("Shoulder Vel",this.carriageShoulderMotor.getSelectedSensorVelocity());
             //SmartDashboard.putNumber("Shoulder Motor Setpoint",this.carriageShoulderMotor.getActiveTrajectoryPosition());
         }
     }
