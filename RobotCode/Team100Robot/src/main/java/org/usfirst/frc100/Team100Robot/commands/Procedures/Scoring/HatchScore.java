@@ -8,7 +8,6 @@
 package org.usfirst.frc100.Team100Robot.commands.Procedures.Scoring;
 
 import org.usfirst.frc100.Team100Robot.Robot;
-import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.PneumaticWait;
 import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillLower;
 import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Pusher.ExtendPusher;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.WaitForUserInput;
