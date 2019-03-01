@@ -7,19 +7,18 @@
 
 package org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel;
 
-import org.usfirst.frc100.Team100Robot.Robot;
-import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorCargoLevel1;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorHatchLevel1;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmDown;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmUp;
-import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderLevel;
+import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHatchScore;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class ElevatorGoToLevel1CargoProcedure extends CommandGroup {
+public class ElevatorGoToLevel1HatchProcedure extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public ElevatorGoToLevel1CargoProcedure() {
+  public ElevatorGoToLevel1HatchProcedure() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -36,13 +35,11 @@ public class ElevatorGoToLevel1CargoProcedure extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
-    
-    /*requires(Robot.elevator);
-    requires(Robot.cargoPickup);
-    requires(Robot.carriageShoulder);*/
+
     addSequential(new IntakeArmDown());
-    addSequential(new ShoulderLevel());
-    addSequential(new ElevatorCargoLevel1());
+    addSequential(new ShoulderHatchScore());
+    addSequential(new ElevatorHatchLevel1());
     addSequential(new IntakeArmUp());
+    
   }
 }

@@ -5,38 +5,35 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc100.Team100Robot.commands.IntakeArm;
+package org.usfirst.frc100.Team100Robot.commands.Shoulder;
 
+import org.usfirst.frc100.Team100Robot.Constants;
 import org.usfirst.frc100.Team100Robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class IntakeArmIntakeElement extends Command {
-  private boolean done = false;
-  public IntakeArmIntakeElement() {
+public class ShoulderHatchScore extends Command {
+  boolean done;
+  public ShoulderHatchScore() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.cargoPickup);
+    requires(Robot.carriageShoulder);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    System.out.println("INTAKE INIT");
-    Robot.cargoPickup.setOutput(-0.3);
-
     done = false;
+    Robot.carriageShoulder.updateSetpoint(Robot.carriageShoulder.degreesToSetpointConverter(Robot.carriageShoulder.HATCH_SETPOINT));    
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-    //TODO implement `done` code
-    if(Robot.manipulator.cargoSensor.get()){
+    if(Math.abs(Robot.carriageShoulder.currentSetpoint-Robot.carriageShoulder.carriageShoulderMotor.getSelectedSensorPosition())<Constants.SHOULDER_BUFFER){
       done = true;
     }
-    
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -48,7 +45,7 @@ public class IntakeArmIntakeElement extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.cargoPickup.setOutput(0);
+    //System.out.println("HOMING DONE");
   }
 
   // Called when another command which requires one or more of the same

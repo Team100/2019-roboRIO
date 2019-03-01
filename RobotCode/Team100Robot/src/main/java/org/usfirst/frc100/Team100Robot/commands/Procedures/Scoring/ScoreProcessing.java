@@ -45,7 +45,7 @@ public class ScoreProcessing extends Command {
     }else if(Robot.manipulator.holding == ScoringObjects.CARGO){
       new CargoScore().start();
     }else{
-
+      System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% No object posessed");
     }
   }
 

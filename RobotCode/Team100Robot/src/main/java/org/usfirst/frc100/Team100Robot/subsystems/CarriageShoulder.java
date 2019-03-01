@@ -39,6 +39,7 @@ public class CarriageShoulder extends Subsystem {
     public static final int HOMING_SETPOINT = 14/*was 14*/; //Degrees from zero
     public static final int LEVEL_SETPOINT = 0;
     public static final int DOWN_SETPOINT = 130;
+    public static final int HATCH_SETPOINT = 7;
 
     public WPI_TalonSRX carriageShoulderMotor;
 
