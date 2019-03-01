@@ -30,6 +30,12 @@ import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Pusher.*;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmIntakeElement;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.HomingProcedure;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel.ElevatorGoToHomeProcedure;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel.ElevatorGoToLevel1CargoProcedure;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel.ElevatorGoToLevel1HatchProcedure;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel.ElevatorGoToLevel2CargoProcedure;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel.ElevatorGoToLevel2HatchProcedure;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel.ElevatorGoToLevel3CargoProcedure;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel.ElevatorGoToLevel3HatchProcedure;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.Scoring.*;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderDown;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHoming;
@@ -179,13 +185,13 @@ public class OI {
         //home.whenPressed(new ShoulderHoming());
         home.whenPressed(new ElevatorGoToHomeProcedure());
         cargoIntake.whenPressed(new CargoGroundIntake());
-        cargoLevel1.whenPressed(new ElevatorCargoLevel1());
-        cargoLevel2.whenPressed(new ElevatorCargoLevel2());
-        cargoLevel3.whenPressed(new ElevatorCargoLevel3());
+        cargoLevel1.whenPressed(new ElevatorGoToLevel1CargoProcedure());
+        cargoLevel2.whenPressed(new ElevatorGoToLevel2CargoProcedure());
+        cargoLevel3.whenPressed(new ElevatorGoToLevel3CargoProcedure());
         cargoLevel3Reverse.whenPressed(new ElevatorCargoReverseLevel3());
-        hatchLevel1.whenPressed(new ElevatorHatchLevel1());
-        hatchLevel2.whenPressed(new ElevatorHatchLevel1());
-        hatchLevel3.whenPressed(new ElevatorHatchLevel3());
+        hatchLevel1.whenPressed(new ElevatorGoToLevel1HatchProcedure());
+        hatchLevel2.whenPressed(new ElevatorGoToLevel2HatchProcedure());
+        hatchLevel3.whenPressed(new ElevatorGoToLevel3HatchProcedure());
 
       
 

@@ -5,20 +5,21 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc100.Team100Robot.commands.Procedures;
+package org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel;
 
-import org.usfirst.frc100.Team100Robot.Robot;
-import org.usfirst.frc100.Team100Robot.commands.Elevator.Homing.ElevatorHomingInit;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorHatchLevel1;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorHatchLevel2;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmDown;
-import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHoming;
+import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmUp;
+import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHatchScore;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class HomingProcedure extends CommandGroup {
+public class ElevatorGoToLevel2HatchProcedure extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public HomingProcedure() {
+  public ElevatorGoToLevel2HatchProcedure() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -35,13 +36,11 @@ public class HomingProcedure extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
-    /*requires(Robot.elevator);
-    requires(Robot.carriageShoulder);
-    requires(Robot.cargoPickup);*/
+
     addSequential(new IntakeArmDown());
-    //addSequential(new WaitForUserInput());
-    addSequential(new ShoulderHoming());
-    //addSequential(new WaitForUserInput());
-    addSequential(new ElevatorHomingInit());
+    addSequential(new ShoulderHatchScore());
+    addSequential(new ElevatorHatchLevel2());
+    addSequential(new IntakeArmUp());
+    
   }
 }
