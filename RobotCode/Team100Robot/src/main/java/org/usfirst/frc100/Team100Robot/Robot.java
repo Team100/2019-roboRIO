@@ -27,6 +27,9 @@ import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillRaise;
 import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Pusher.ExtendPusher;
 import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Pusher.RetractPusher;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmIntakeElement;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.HatchBillOut;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.RetractHatchSystem;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.Scoring.HatchScore;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHoming;
 import org.usfirst.frc100.Team100Robot.subsystems.*;
 import com.kauailabs.navx.frc.*;
@@ -153,6 +156,9 @@ public class Robot extends TimedRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         SmartDashboard.putData(new ShoulderHoming());
+        SmartDashboard.putData("Hatch Score",new HatchScore());
+        SmartDashboard.putData("Hatch Retract", new RetractHatchSystem());
+        SmartDashboard.putData("Bill Out", new HatchBillOut());
         //currentHeading = ahrs.getFusedHeading();
     }
 

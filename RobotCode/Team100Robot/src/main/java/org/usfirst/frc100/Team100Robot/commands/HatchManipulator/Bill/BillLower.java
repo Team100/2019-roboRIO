@@ -12,10 +12,12 @@ import org.usfirst.frc100.Team100Robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class BillLower extends Command {
+  private boolean done;
   public BillLower() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.manipulator);
+    done = false;
   }
 
   // Called just before this Command runs the first time
@@ -27,18 +29,19 @@ public class BillLower extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    done=true;
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return done;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.manipulator.bill.set(false);
+    
   }
 
   // Called when another command which requires one or more of the same

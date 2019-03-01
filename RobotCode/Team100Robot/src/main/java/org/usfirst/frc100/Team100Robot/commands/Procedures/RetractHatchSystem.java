@@ -7,6 +7,7 @@
 
 package org.usfirst.frc100.Team100Robot.commands.Procedures;
 
+import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.PneumaticWait;
 import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillRaise;
 import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Pusher.RetractPusher;
 
@@ -34,7 +35,8 @@ public class RetractHatchSystem extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
     addSequential(new RetractPusher());
-    addSequential(new WaitForUserInput());
+    
+    addSequential(new PneumaticWait());
     addSequential(new BillRaise());
   }
 }

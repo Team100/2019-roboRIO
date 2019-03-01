@@ -5,21 +5,17 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc100.Team100Robot.commands.Procedures.Scoring;
+package org.usfirst.frc100.Team100Robot.commands.Procedures;
 
-import org.usfirst.frc100.Team100Robot.Robot;
-import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.PneumaticWait;
 import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillLower;
-import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Pusher.ExtendPusher;
-import org.usfirst.frc100.Team100Robot.commands.Procedures.WaitForUserInput;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class HatchScore extends CommandGroup {
+public class HatchBillOut extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public HatchScore() {
+  public HatchBillOut() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -36,13 +32,7 @@ public class HatchScore extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
-    /*requires(Robot.manipulator);
-    requires(Robot.cargoPickup);
-    requires(Robot.carriageShoulder);*/
-    addSequential(new BillLower());
-    //addSequential(new WaitForUserInput());
-    //addSequential(new PneumaticWait());
-    addParallel(new ExtendPusher());
 
+    addSequential(new BillLower());
   }
 }
