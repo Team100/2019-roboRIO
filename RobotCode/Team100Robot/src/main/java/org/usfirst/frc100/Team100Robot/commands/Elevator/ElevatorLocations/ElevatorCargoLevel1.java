@@ -7,11 +7,13 @@
 
 package org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations;
 
+import org.usfirst.frc100.Team100Robot.Constants;
 import org.usfirst.frc100.Team100Robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ElevatorCargoLevel1 extends Command {
+  private boolean done = false;
   public ElevatorCargoLevel1() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -22,18 +24,22 @@ public class ElevatorCargoLevel1 extends Command {
   @Override
   protected void initialize() {
     Robot.elevator.moveToLevel(1);
+    done = false;
 
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if(Math.abs(Robot.elevator.elevatorMaster.getSelectedSensorPosition() - Robot.elevator.setpoint) < Constants.ELEVATOR_POSITION_BUFFER){
+      done = true;
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return done;
   }
 
   // Called once after isFinished returns true
