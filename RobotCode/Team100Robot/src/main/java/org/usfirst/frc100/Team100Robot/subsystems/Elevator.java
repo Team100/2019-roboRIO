@@ -41,6 +41,7 @@ public class Elevator extends Subsystem {
     public DigitalInput intermediateUpperLimitSwitch = new DigitalInput(Constants.INTERMEDIATE_UPPER_LIMIT_SWITCH_ID);
     public DigitalInput intermediateLowerLimitSwitch = new DigitalInput(Constants.INTERMEDIATE_LOWER_LIMIT_SWITCH_ID);
     public int setpoint;
+    public int currentPosition;
 
     public int setpointLevel = 0;
     /**
@@ -94,7 +95,7 @@ public class Elevator extends Subsystem {
      * <br />
      * <strong>This should <em>ONLY</em> be used for elevator testing and SHOULD NEVER BE ON DURING COMPETITION</strong>
      */
-    public static final boolean DISABLE_INTELLIGENT_CONTROL = true;
+    public static final boolean DISABLE_INTELLIGENT_CONTROL = false;
 
     public boolean homed = false;
 
@@ -194,7 +195,7 @@ public class Elevator extends Subsystem {
         }
     }
     //Each level is listed cargo then hatch
-    public Setpoint[] setpointsArray = {new Setpoint("BASE", 19, 0),new Setpoint("CARGO_LEVEL_1",28.5,1),new Setpoint("HATCH_LEVEL_1",19.5,2),new Setpoint("CARGO_LEVEL_2",55.5,3),new Setpoint("HATCH_LEVEL_2",50,4),new Setpoint("CARGO_LEVEL_3",83.5,5), new Setpoint("HATCH_LEVEL_3",75.5,6), new Setpoint("CARGO_LEVEL_3_REVERSE [UPDATE VALUE]",83.5,7), new Setpoint("ABOVE_ARM_RAISE_LEVEL [UPDATE VALUE]", 55,8)};
+    public Setpoint[] setpointsArray = {new Setpoint("BASE", 19, 0),new Setpoint("CARGO_LEVEL_1",28.5,1),new Setpoint("HATCH_LEVEL_1",19.5,2),new Setpoint("CARGO_LEVEL_2",55.5,3),new Setpoint("HATCH_LEVEL_2",60,4),new Setpoint("CARGO_LEVEL_3",83.5,5), new Setpoint("HATCH_LEVEL_3",75.5,6), new Setpoint("CARGO_LEVEL_3_REVERSE [UPDATE VALUE]",83.5,7), new Setpoint("ABOVE_ARM_RAISE_LEVEL [UPDATE VALUE]", 55,8)};
 
 
     public double convertEncoderTicksToInch(int ticks){
@@ -236,6 +237,10 @@ public class Elevator extends Subsystem {
         
     }
 
+    public int getSetpoint(){
+        return setpoint;
+    }
+
     public void moveToLevel(int level){
         this.setpointLevel = level;
         this.setpoint = this.setpointsArray[level].setpoint;
@@ -252,6 +257,7 @@ public class Elevator extends Subsystem {
         //SmartDashboard.putBoolean("Intermediate Upper Limit Switch",this.intermediateUpperLimitSwitch.get());
         SmartDashboard.putNumber("ELEVATOR HEIGHT IN INCHES", convertEncoderTicksToInch(this.elevatorMaster.getSelectedSensorPosition()));
         SmartDashboard.putNumber("ELEV ENC",this.elevatorMaster.getSelectedSensorPosition(0));
+        this.currentPosition = this.elevatorMaster.getSelectedSensorPosition(0);
         SmartDashboard.putNumber("ELEV PercentOutput", this.elevatorMaster.getMotorOutputPercent());
         SmartDashboard.putNumber("ELEV Setpoint",this.setpoint);
         SmartDashboard.putString("ELEV ControlMode",this.elevatorMaster.getControlMode().toString());

@@ -56,6 +56,7 @@ public class ElevatorMoveToSetpoint extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    System.out.println("ENC VAL"+Robot.elevator.elevatorMaster.getSelectedSensorPosition());
 
   }
 

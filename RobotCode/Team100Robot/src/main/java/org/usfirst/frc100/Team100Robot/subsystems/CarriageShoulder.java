@@ -40,7 +40,7 @@ public class CarriageShoulder extends Subsystem {
     public static final int LEVEL_SETPOINT = 0;
     public static final int DOWN_SETPOINT = 130;
     public static final int HATCH_SETPOINT = 7;
-    public static final int HATCH_SCORE_SETPOINT = -5;
+    public static final int HATCH_MID_SETPOINT = -25;
 
     public WPI_TalonSRX carriageShoulderMotor;
 
@@ -83,6 +83,11 @@ public class CarriageShoulder extends Subsystem {
         carriageShoulderMotor.config_kD(0, Constants.SHOULDER_KD);
         carriageShoulderMotor.config_kF(0, Constants.SHOULDER_KF);
         resetRelativeEncoder();
+
+        //SmartDashboard.putData("Shoulder Level", new ShoulderLevel());
+        //SmartDashboard.putData("setToHome",new ShoulderHoming());
+
+
     }
 
     @Override
@@ -105,14 +110,12 @@ public class CarriageShoulder extends Subsystem {
         this.carriageShoulderMotor.config_kD(0,Preferences.getInstance().getDouble("SHOULDER_KD",Constants.SHOULDER_KD));
         this.carriageShoulderMotor.config_kF(0,Preferences.getInstance().getDouble("SHOULDER_KF",Constants.SHOULDER_KF));
         SmartDashboard.putNumber("Prefs P",Preferences.getInstance().getDouble("SHOULDER_KP",-1));
-        SmartDashboard.putData("Shoulder Level", new ShoulderLevel());
         SmartDashboard.putString("CarriageShoulder Current Command",this.getCurrentCommandName());
 
         SmartDashboard.putNumber("Shoulder Enc",this.carriageShoulderMotor.getSelectedSensorPosition());
         SmartDashboard.putNumber("Shoulder PO", this.carriageShoulderMotor.getMotorOutputPercent());
         //SmartDashboard.putString("Shoulder CM", this.carriageShoulderMotor.getControlMode().toString());
         //SmartDashboard.putNumber("Shoulder Setpoint",this.currentSetpoint);
-        SmartDashboard.putData("setToHome",new ShoulderHoming());
         //SmartDashboard.putString("Shoulder Control Mode",this.carriageShoulderMotor.getControlMode().toString());
 
         if(this.carriageShoulderMotor.getControlMode() == ControlMode.MotionMagic){

@@ -189,8 +189,8 @@ public class Constants {
 
 
 
-    public static int SHOULDER_DOWN_ENCODER_VALUE = 1905;
-    public static int SHOULDER_UPPER_ENCODER_VALUE = 8788;
+    public static int SHOULDER_DOWN_ENCODER_VALUE = -369;
+    public static int SHOULDER_UPPER_ENCODER_VALUE = 6293;
     public static int SHOULDER_DOWN_DEGREES = -84;
     public static int SHOULDER_UP_DEGREES = 144;
     public static int SHOULDER_DISTANCE_TRAVELLED = Constants.SHOULDER_UP_DEGREES-Constants.SHOULDER_DOWN_DEGREES;

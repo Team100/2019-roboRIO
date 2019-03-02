@@ -28,6 +28,8 @@ public class ElevatorHatchLevel2 extends Command {
   protected void initialize() {
     Robot.elevator.moveToLevel(3);
     done = false;
+    System.out.println("\u000c");
+    System.out.flush();
 
 
   }
@@ -35,7 +37,11 @@ public class ElevatorHatchLevel2 extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Math.abs(Robot.elevator.elevatorMaster.getSelectedSensorPosition() - Robot.elevator.setpoint) < Constants.ELEVATOR_POSITION_BUFFER){
+    System.out.println("In hatch 2");
+    System.out.println(Robot.elevator.currentPosition);
+    System.out.println(Robot.elevator.getSetpoint());
+    System.out.println(Constants.ELEVATOR_POSITION_BUFFER);
+    if(Math.abs(Robot.elevator.currentPosition - Robot.elevator.getSetpoint()) < Constants.ELEVATOR_POSITION_BUFFER){
       done = true;
     }
   }
@@ -49,6 +55,7 @@ public class ElevatorHatchLevel2 extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    System.out.println("^^^^^^^^^^^^ELEV LEVEL 2 END");
   }
 
   // Called when another command which requires one or more of the same
