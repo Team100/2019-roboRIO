@@ -269,7 +269,7 @@ public class Elevator extends Subsystem {
         }
         SmartDashboard.putBoolean("AT TOP", this.atMaxHeight);
         SmartDashboard.putBoolean("AT BOTTOM",this.atMinHeight);
-        SmartDashboard.putData("StartHoming", new HomingProcedure());
+        //SmartDashboard.putData("StartHoming", new HomingProcedure());
         if(this.elevatorMaster.getControlMode() == ControlMode.MotionMagic){
             SmartDashboard.putNumber("ELEV_error",elevatorMaster.getClosedLoopError());
 

@@ -32,7 +32,6 @@ public class IntakeArmIntakeElement extends Command {
   @Override
   protected void execute() {
 
-    //TODO implement `done` code
     if(Robot.manipulator.cargoSensor.get()){
       done = true;
     }

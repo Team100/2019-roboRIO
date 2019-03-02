@@ -106,7 +106,7 @@ public class Drivetrain extends Subsystem implements PIDOutput {
         SmartDashboard.putNumber("PO RIGHT",rightMaster.getMotorOutputPercent());
         SmartDashboard.putBoolean("SHIFT State", shift.get());
         SmartDashboard.putNumber("SHIFT ID", Constants.DRIVETRAIN_SHIFTER_PCMID);
-        SmartDashboard.putData("SHIFT PCM", shift);
+        //SmartDashboard.putData("SHIFT PCM", shift);
     }
 
     public void drive(){

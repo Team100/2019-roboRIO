@@ -67,8 +67,8 @@ public class Manipulator extends Subsystem {
       holding = ScoringObjects.NONE;
     }
 
-    SmartDashboard.putData("Bill",this.bill);
-    SmartDashboard.putData("Pusher",this.hatchPusher);
+    //SmartDashboard.putData("Bill",this.bill);
+    //SmartDashboard.putData("Pusher",this.hatchPusher);
     //SmartDashboard.putData("Cargo Score",this.cargoScorer);
   }
   @Override

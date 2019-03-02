@@ -183,6 +183,8 @@ public class Constants {
     public static final double CARGO_MANIPULATOR_INTAKE_SPEED = 1;
     public static final double CARGO_MANIPULATOR_OUTTAKE_SPEED = -1;
 
+    public static final double CARGO_EXPEL_DURATION = 1.5; //Type: Seconds
+
 
     public static final int CARGO_SENSOR_ID = 4;
 
