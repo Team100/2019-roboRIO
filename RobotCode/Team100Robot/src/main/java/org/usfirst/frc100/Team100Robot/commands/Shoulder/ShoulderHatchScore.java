@@ -24,7 +24,7 @@ public class ShoulderHatchScore extends Command {
   @Override
   protected void initialize() {
     done = false;
-    Robot.carriageShoulder.updateSetpoint(Robot.carriageShoulder.degreesToSetpointConverter(Robot.carriageShoulder.HATCH_SETPOINT));    
+    Robot.carriageShoulder.updateSetpoint(Robot.carriageShoulder.degreesToSetpointConverter(Robot.carriageShoulder.HATCH_SCORE_SETPOINT));    
 
   }
 

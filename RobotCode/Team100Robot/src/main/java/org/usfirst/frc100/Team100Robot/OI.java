@@ -183,7 +183,8 @@ public class OI {
         //score.whenPressed(new ScoreProcessing()); TODO Change back
         score.whenPressed(new ShoulderZeroPower());
         //home.whenPressed(new ShoulderHoming());
-        home.whenPressed(new ElevatorGoToHomeProcedure());
+        //home.whenPressed(new ElevatorGoToHomeProcedure());
+        home.whenPressed(new HomingProcedure());
         cargoIntake.whenPressed(new CargoGroundIntake());
         cargoLevel1.whenPressed(new ElevatorGoToLevel1CargoProcedure());
         cargoLevel2.whenPressed(new ElevatorGoToLevel2CargoProcedure());

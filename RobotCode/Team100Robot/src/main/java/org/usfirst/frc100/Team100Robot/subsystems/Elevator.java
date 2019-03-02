@@ -85,7 +85,7 @@ public class Elevator extends Subsystem {
      * <br />
      * <i>Run this to initialize preferences or to make preferences up to date with the constants</i>
      */
-    public static final boolean ELEVATOR_POST_PID_CONSTANTS_TO_NT_PREFERENCES = false;
+    public static final boolean ELEVATOR_POST_PID_CONSTANTS_TO_NT_PREFERENCES = true;
 
     /**
      * <code>true</code> Disables intelligent control (PID, Setpoints, homing)
@@ -94,7 +94,7 @@ public class Elevator extends Subsystem {
      * <br />
      * <strong>This should <em>ONLY</em> be used for elevator testing and SHOULD NEVER BE ON DURING COMPETITION</strong>
      */
-    public static final boolean DISABLE_INTELLIGENT_CONTROL = false;
+    public static final boolean DISABLE_INTELLIGENT_CONTROL = true;
 
     public boolean homed = false;
 
@@ -119,8 +119,8 @@ public class Elevator extends Subsystem {
         elevatorMaster.configAllowableClosedloopError(0, 0, Constants.ELEVATOR_MASTER_TIMEOUT);
         elevatorMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0,10,Constants.ELEVATOR_MASTER_TIMEOUT);
         elevatorMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10,Constants.ELEVATOR_MASTER_TIMEOUT);
-        elevatorMaster.configMotionCruiseVelocity(3000,Constants.ELEVATOR_MASTER_TIMEOUT);
-        elevatorMaster.configMotionAcceleration(3000,Constants.ELEVATOR_MASTER_TIMEOUT);
+        elevatorMaster.configMotionCruiseVelocity(15000,Constants.ELEVATOR_MASTER_TIMEOUT);
+        elevatorMaster.configMotionAcceleration(15000,Constants.ELEVATOR_MASTER_TIMEOUT);
         elevatorMaster.enableCurrentLimit(true);
         elevatorMaster.overrideLimitSwitchesEnable(false);
         elevatorMaster.enableVoltageCompensation(true);
@@ -194,8 +194,14 @@ public class Elevator extends Subsystem {
         }
     }
     //Each level is listed cargo then hatch
-    public Setpoint[] setpointsArray = {new Setpoint("BASE", 19, 0),new Setpoint("CARGO_LEVEL_1",28.5,1),new Setpoint("HATCH_LEVEL_1",19.5,2),new Setpoint("CARGO_LEVEL_2",55.5,3),new Setpoint("ROCKET_LEVEL_2",47.5,4),new Setpoint("CARGO_LEVEL_3",83.5,5), new Setpoint("HATCH_LEVEL_3",75.5,6), new Setpoint("CARGO_LEVEL_3_REVERSE [UPDATE VALUE]",83.5,7), new Setpoint("ABOVE_ARM_RAISE_LEVEL [UPDATE VALUE]", 55,8)};
+    public Setpoint[] setpointsArray = {new Setpoint("BASE", 19, 0),new Setpoint("CARGO_LEVEL_1",28.5,1),new Setpoint("HATCH_LEVEL_1",19.5,2),new Setpoint("CARGO_LEVEL_2",55.5,3),new Setpoint("HATCH_LEVEL_2",50,4),new Setpoint("CARGO_LEVEL_3",83.5,5), new Setpoint("HATCH_LEVEL_3",75.5,6), new Setpoint("CARGO_LEVEL_3_REVERSE [UPDATE VALUE]",83.5,7), new Setpoint("ABOVE_ARM_RAISE_LEVEL [UPDATE VALUE]", 55,8)};
 
+
+    public double convertEncoderTicksToInch(int ticks){
+
+        return  (ticks/Constants.ELEVATOR_INCH_TO_ENCODER_CONVERSION_FACTION)+Constants.ELEVATOR_START_HEIGHT_IN_INCHES;
+
+    }
     /**
      * Set the setpoint for the Talon SRX given the setpoint instance variable
      */
@@ -222,7 +228,7 @@ public class Elevator extends Subsystem {
             setDefaultCommand(new ElevatorTeleop());
         }else{
             setDefaultCommand(new ElevatorAtSetpoint());
-            //new HomingProcedure().start();
+            new HomingProcedure().start();
             //setDefaultCommand(new ElevatorHomingInit()); TODO uncoment
 
         }
@@ -239,11 +245,12 @@ public class Elevator extends Subsystem {
     public void periodic() {
         // Put code here to be run every loop
         //updateSD();
-        //SmartDashboard.putString("ELEV COMMAND", this.getCurrentCommandName());
+        SmartDashboard.putString("ELEV COMMAND", this.getCurrentCommandName());
         //SmartDashboard.putBoolean("Carriage Lower Limit Switch",this.carriageLowerLimitSwitch.get());
         //SmartDashboard.putBoolean("Carriage Upper Limit Switch",this.carriageUpperLimitSwitch.get());
         //SmartDashboard.putBoolean("Intermediate Lower Limit Switch",this.intermediateLowerLimitSwitch.get());
         //SmartDashboard.putBoolean("Intermediate Upper Limit Switch",this.intermediateUpperLimitSwitch.get());
+        SmartDashboard.putNumber("ELEVATOR HEIGHT IN INCHES", convertEncoderTicksToInch(this.elevatorMaster.getSelectedSensorPosition()));
         SmartDashboard.putNumber("ELEV ENC",this.elevatorMaster.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("ELEV PercentOutput", this.elevatorMaster.getMotorOutputPercent());
         SmartDashboard.putNumber("ELEV Setpoint",this.setpoint);

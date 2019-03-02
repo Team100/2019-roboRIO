@@ -40,6 +40,7 @@ public class ElevatorGoToLevel2HatchProcedure extends CommandGroup {
     addSequential(new IntakeArmDown());
     addSequential(new ShoulderHatchScore());
     addSequential(new ElevatorHatchLevel2());
+    addSequential(new ShoulderHatchScore());
     addSequential(new IntakeArmUp());
     
   }

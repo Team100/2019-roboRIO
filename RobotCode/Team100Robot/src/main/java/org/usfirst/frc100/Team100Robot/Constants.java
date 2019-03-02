@@ -144,8 +144,8 @@ public class Constants {
     public static final double SHOULDER_KD = 0; //Type: PIDF Double
     public static final double SHOULDER_KF = 0; //Type: PIDF Double
     public static final int SHOULDER_TIMEOUT = 10; //Type: Milliseconds
-    public static final int SHOULDER_BUFFER = 250; //Type: Encoder Ticks
-    public static final int SHOULDER_PID_BUFFER = 100; //Type: Encoder Ticks  **NOTE THAT THIS IS ONLY FOR PID**
+    public static final int SHOULDER_BUFFER = 350; //Type: Encoder Ticks
+    public static final int SHOULDER_PID_BUFFER = 50; //Type: Encoder Ticks  **NOTE THAT THIS IS ONLY FOR PID**
 
 
     public static final int SHOULDER_LEVEL_LOCATION = 100;
@@ -196,4 +196,10 @@ public class Constants {
     public static int SHOULDER_DISTANCE_TRAVELLED = Constants.SHOULDER_UP_DEGREES-Constants.SHOULDER_DOWN_DEGREES;
 
     public static int SHOULDER_ENCODER_TICKS_PER_DEGREE_TRAVEL = ((Constants.SHOULDER_UPPER_ENCODER_VALUE)-Constants.SHOULDER_DOWN_ENCODER_VALUE)/Constants.SHOULDER_DISTANCE_TRAVELLED;
+
+
+    // Encoder ticks for the bottom and top
+    public static final int INTAKE_SHOULDER_BOTTOM = 155;
+    public static final int INTAKE_SHOULDER_UP = 3400;
+
 }

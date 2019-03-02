@@ -34,6 +34,12 @@ public class CargoPickup extends Subsystem {
     //public Solenoid cargoIntakeArmPivot2;
     public DoubleSolenoid cargoIntakePivotDoubleSolenoid;
     public AnalogInput absEnc;
+
+    public enum CargoPickupStates{
+        DOWN, IN_MOTION, UP
+    }
+
+    public CargoPickupStates cps = CargoPickupStates.UP;
     public CargoPickup() {
    
         cargoRoller1 = new VictorSP(Constants.CARGO_PICKUP_ROLLER1_PWM);
@@ -49,17 +55,29 @@ public class CargoPickup extends Subsystem {
         
     }
 
+
+    public void getCPS(){
+        if(this.absEnc.getValue() > Constants.INTAKE_SHOULDER_BOTTOM && this.absEnc.getValue() < Constants.INTAKE_SHOULDER_BOTTOM + 250){
+            this.cps = CargoPickupStates.DOWN;
+        } else if(this.absEnc.getValue() < Constants.INTAKE_SHOULDER_UP && this.absEnc.getValue() > Constants.INTAKE_SHOULDER_UP-250){
+            this.cps = CargoPickupStates.UP;
+        }else{
+            this.cps = CargoPickupStates.IN_MOTION;
+        }
+        SmartDashboard.putString("CPS",this.cps.toString());
+    }
     @Override
     public void initDefaultCommand() {
         // setDefaultCommand(new MySpecialCommand());
         // setDefaultCommand(new CargoManipulator());
     }
 
+
     @Override
     public void periodic() {
         // Put code here to be run every loop
         //SmartDashboard.putNumber("6 PO",cargoRoller1.get());
-        
+        getCPS();
         SmartDashboard.putData("CargoIntakeArmPivot",cargoIntakePivotDoubleSolenoid);
         SmartDashboard.putNumber("CargoIntakeEncoderPosition",absEnc.getValue());
         SmartDashboard.putString("CargoPickup Current Command",this.getCurrentCommandName());

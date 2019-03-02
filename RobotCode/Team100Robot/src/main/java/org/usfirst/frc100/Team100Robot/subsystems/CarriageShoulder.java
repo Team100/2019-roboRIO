@@ -40,6 +40,7 @@ public class CarriageShoulder extends Subsystem {
     public static final int LEVEL_SETPOINT = 0;
     public static final int DOWN_SETPOINT = 130;
     public static final int HATCH_SETPOINT = 7;
+    public static final int HATCH_SCORE_SETPOINT = -5;
 
     public WPI_TalonSRX carriageShoulderMotor;
 
@@ -113,7 +114,7 @@ public class CarriageShoulder extends Subsystem {
         //SmartDashboard.putNumber("Shoulder Setpoint",this.currentSetpoint);
         SmartDashboard.putData("setToHome",new ShoulderHoming());
         //SmartDashboard.putString("Shoulder Control Mode",this.carriageShoulderMotor.getControlMode().toString());
-        SmartDashboard.putNumber("Shoulder ENC Value", this.carriageShoulderMotor.getSelectedSensorPosition());
+
         if(this.carriageShoulderMotor.getControlMode() == ControlMode.MotionMagic){
             SmartDashboard.putNumber("Shoulder Error", this.carriageShoulderMotor.getClosedLoopError());
             SmartDashboard.putNumber("Shoulder Vel",this.carriageShoulderMotor.getSelectedSensorVelocity());
