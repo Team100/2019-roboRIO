@@ -28,10 +28,6 @@ public class ElevatorHatchLevel2 extends Command {
   protected void initialize() {
     Robot.elevator.moveToLevel(3);
     done = false;
-    System.out.println("\u000c");
-    System.out.flush();
-
-
   }
 
   // Called repeatedly when this Command is scheduled to run
