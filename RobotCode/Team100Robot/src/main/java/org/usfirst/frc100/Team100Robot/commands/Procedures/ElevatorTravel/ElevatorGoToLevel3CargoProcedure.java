@@ -13,6 +13,7 @@ import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.Eleva
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmDown;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmUp;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderLevel;
+import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderLevel3Cargo;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -42,7 +43,7 @@ public class ElevatorGoToLevel3CargoProcedure extends CommandGroup {
     requires(Robot.cargoPickup);
     requires(Robot.carriageShoulder);*/
     addSequential(new IntakeArmDown());
-    addSequential(new ShoulderLevel());
+    addSequential(new ShoulderLevel3Cargo());
     addSequential(new ElevatorCargoLevel3());
     addSequential(new IntakeArmUp());
   }

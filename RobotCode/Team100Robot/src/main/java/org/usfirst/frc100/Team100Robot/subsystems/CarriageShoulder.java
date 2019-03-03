@@ -40,8 +40,9 @@ public class CarriageShoulder extends Subsystem {
     public static final int LEVEL_SETPOINT = 0;
     public static final int DOWN_SETPOINT = 130;
     public static final int HATCH_SETPOINT = 7;
+    public static final int CARGO_LEVEL_3_SETPOINT = 15;
     public static final int HATCH_MID_SETPOINT = -5;
-   public static final int CARGO_INTAKE_SETPOINT = -15;
+    public static final int CARGO_INTAKE_SETPOINT = -15;
 
     public WPI_TalonSRX carriageShoulderMotor;
 

@@ -40,13 +40,15 @@ public class Manipulator extends Subsystem {
     topRoller.overrideLimitSwitchesEnable(false);
     topRoller.configPeakOutputForward(1);
     topRoller.configPeakOutputReverse(-1);
+    topRoller.enableVoltageCompensation(true);
+    topRoller.configVoltageCompSaturation(11.3, Constants.SHOULDER_MASTER_TIMEOUT);
     
     bottomRoller = new WPI_TalonSRX(Constants.CARGO_MANIPULATOR_BOTTOM_TALONSRX_ID);
     bottomRoller.overrideLimitSwitchesEnable(false);
     bottomRoller.configPeakOutputForward(1);
     bottomRoller.configPeakOutputReverse(-1);
-    bottomRoller.follow(topRoller);
-
+    bottomRoller.enableVoltageCompensation(true);
+    bottomRoller.configVoltageCompSaturation(11.3,Constants.SHOULDER_MASTER_TIMEOUT);
     hatchSensor = new DigitalInput(Constants.HATCH_SENSOR_ID);
     cargoSensor =  new DigitalInput(Constants.CARGO_SENSOR_ID);
     bill = new Solenoid(Constants.PCM_CANID,Constants.HATCH_FLIPPER_PCMID);
