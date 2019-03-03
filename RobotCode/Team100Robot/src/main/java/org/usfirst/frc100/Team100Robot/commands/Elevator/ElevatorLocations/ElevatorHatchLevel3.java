@@ -8,6 +8,7 @@
 package org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations;
 
 import org.usfirst.frc100.Team100Robot.Robot;
+import org.usfirst.frc100.Team100Robot.subsystems.Elevator;
 import org.usfirst.frc100.Team100Robot.Constants;
 
 
@@ -18,7 +19,7 @@ public class ElevatorHatchLevel3 extends Command {
   public ElevatorHatchLevel3() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.elevator);
+    requires(Robot.global);
 
   }
 
@@ -33,7 +34,7 @@ public class ElevatorHatchLevel3 extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Math.abs(Robot.elevator.elevatorMaster.getSelectedSensorPosition() - Robot.elevator.setpoint) < Constants.ELEVATOR_POSITION_BUFFER){
+    if(Robot.elevator.elevatorMaster.getSelectedSensorPosition() > Elevator.convertInchesToTicks(Constants.ELEVATOR_SAFEZONE)){
       done = true;
     }
   }

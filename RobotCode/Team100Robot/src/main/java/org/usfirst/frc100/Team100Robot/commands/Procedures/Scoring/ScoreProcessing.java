@@ -39,13 +39,11 @@ public class ScoreProcessing extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    if(Robot.manipulator.holding == ScoringObjects.HATCH){
-      new HatchScore().start();
-
-    }else if(Robot.manipulator.holding == ScoringObjects.CARGO){
+    if(Robot.manipulator.holding == ScoringObjects.CARGO){
       new CargoScore().start();
-    }else{
-      System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% No object posessed");
+
+    }else {
+      new HatchScore().start();
     }
   }
 

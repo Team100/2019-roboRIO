@@ -8,8 +8,10 @@
 package org.usfirst.frc100.Team100Robot.commands.Procedures.Scoring;
 
 import org.usfirst.frc100.Team100Robot.Robot;
+import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.PneumaticWait;
 import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillLower;
 import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Pusher.ExtendPusher;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.RetractHatchSystem;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.WaitForUserInput;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -42,6 +44,12 @@ public class HatchScore extends CommandGroup {
     //addSequential(new WaitForUserInput());
     //addSequential(new PneumaticWait());
     addParallel(new ExtendPusher());
+
+    addSequential(new PneumaticWait());
+    addSequential(new PneumaticWait());
+    addSequential(new PneumaticWait());
+    addSequential(new RetractHatchSystem());
+
 
   }
 }

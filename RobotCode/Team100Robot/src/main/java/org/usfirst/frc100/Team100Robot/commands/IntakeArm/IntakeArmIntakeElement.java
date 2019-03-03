@@ -7,7 +7,9 @@
 
 package org.usfirst.frc100.Team100Robot.commands.IntakeArm;
 
+import org.usfirst.frc100.Team100Robot.Constants;
 import org.usfirst.frc100.Team100Robot.Robot;
+import org.usfirst.frc100.Team100Robot.subsystems.Manipulator.ScoringObjects;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -23,7 +25,7 @@ public class IntakeArmIntakeElement extends Command {
   @Override
   protected void initialize() {
     System.out.println("INTAKE INIT");
-    Robot.cargoPickup.setOutput(-0.3);
+    Robot.cargoPickup.setOutput(-Constants.CARGO_MANIPULATOR_INTAKE_SPEED);
 
     done = false;
   }
@@ -31,8 +33,9 @@ public class IntakeArmIntakeElement extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    System.out.println("Intake Arm Execute");
 
-    if(Robot.manipulator.cargoSensor.get()){
+    if(Robot.manipulator.holding == ScoringObjects.CARGO){
       done = true;
     }
     
@@ -48,6 +51,7 @@ public class IntakeArmIntakeElement extends Command {
   @Override
   protected void end() {
     Robot.cargoPickup.setOutput(0);
+    System.out.println("#################### DONE WITH INTAKING");
   }
 
   // Called when another command which requires one or more of the same

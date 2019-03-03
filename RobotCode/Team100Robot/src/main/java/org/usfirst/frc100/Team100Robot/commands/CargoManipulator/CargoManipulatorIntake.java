@@ -11,11 +11,15 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import org.usfirst.frc100.Team100Robot.Constants;
 import org.usfirst.frc100.Team100Robot.Robot;
+import org.usfirst.frc100.Team100Robot.subsystems.Manipulator.ScoringObjects;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class CargoManipulatorIntake extends Command {
   private boolean done = false;
+  private boolean inEndzone = false;
+  private double startTime = -1;
   public CargoManipulatorIntake() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -25,16 +29,22 @@ public class CargoManipulatorIntake extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    done = false;
+    inEndzone = false;
     Robot.manipulator.topRoller.set(ControlMode.PercentOutput,Constants.CARGO_MANIPULATOR_INTAKE_SPEED);
+    Robot.manipulator.bottomRoller.set(ControlMode.PercentOutput, Constants.CARGO_MANIPULATOR_INTAKE_SPEED);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.manipulator.cargoSensor.get()){
+    if(Robot.manipulator.holding == ScoringObjects.CARGO && !inEndzone){
+      inEndzone = true;
+      startTime = Timer.getFPGATimestamp();
+    }
+    if(inEndzone && Timer.getFPGATimestamp() - startTime > 0.25){
       done = true;
     }
+   
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -46,7 +56,9 @@ public class CargoManipulatorIntake extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    System.out.println("DONE");
     Robot.manipulator.topRoller.set(ControlMode.PercentOutput,0);
+    Robot.manipulator.bottomRoller.set(ControlMode.PercentOutput,0);
   }
 
   // Called when another command which requires one or more of the same

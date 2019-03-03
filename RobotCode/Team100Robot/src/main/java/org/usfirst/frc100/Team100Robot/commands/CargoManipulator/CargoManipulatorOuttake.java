@@ -28,6 +28,7 @@ public class CargoManipulatorOuttake extends Command {
   @Override
   protected void initialize() {
     Robot.manipulator.topRoller.set(ControlMode.PercentOutput,Constants.CARGO_MANIPULATOR_OUTTAKE_SPEED);
+    Robot.manipulator.bottomRoller.set(ControlMode.PercentOutput, Constants.CARGO_MANIPULATOR_OUTTAKE_SPEED);
     done = false;
     startTime = Timer.getFPGATimestamp();
   }
@@ -50,6 +51,7 @@ public class CargoManipulatorOuttake extends Command {
   @Override
   protected void end() {
     Robot.manipulator.topRoller.set(ControlMode.PercentOutput,0);
+    Robot.manipulator.bottomRoller.set(ControlMode.PercentOutput,0);
   }
 
   // Called when another command which requires one or more of the same

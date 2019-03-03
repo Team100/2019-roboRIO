@@ -17,7 +17,7 @@ public class ElevatorCargoLevel1 extends Command {
   public ElevatorCargoLevel1() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.elevator);
+    requires(Robot.global);
   }
 
   // Called just before this Command runs the first time

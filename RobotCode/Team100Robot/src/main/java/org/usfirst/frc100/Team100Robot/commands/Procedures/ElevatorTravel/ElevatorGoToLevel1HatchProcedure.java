@@ -11,6 +11,8 @@ import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.Eleva
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmDown;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmUp;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHatchScore;
+import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHoming;
+import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderLevel;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -38,6 +40,7 @@ public class ElevatorGoToLevel1HatchProcedure extends CommandGroup {
 
     addSequential(new IntakeArmDown());
     addSequential(new ShoulderHatchScore());
+
     addSequential(new ElevatorHatchLevel1());
     addSequential(new IntakeArmUp());
     

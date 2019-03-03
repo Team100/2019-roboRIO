@@ -155,10 +155,10 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        SmartDashboard.putData(new ShoulderHoming());
-        SmartDashboard.putData("Hatch Score",new HatchScore());
-        SmartDashboard.putData("Hatch Retract", new RetractHatchSystem());
-        SmartDashboard.putData("Bill Out", new HatchBillOut());
+        //SmartDashboard.putData(new ShoulderHoming());
+        //SmartDashboard.putData("Hatch Score",new HatchScore());
+        //SmartDashboard.putData("Hatch Retract", new RetractHatchSystem());
+        //SmartDashboard.putData("Bill Out", new HatchBillOut());
         //currentHeading = ahrs.getFusedHeading();
     }
 

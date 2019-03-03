@@ -25,7 +25,8 @@ public class Manipulator extends Subsystem {
   // here. Call these from Commands.
   public WPI_TalonSRX topRoller;
   public WPI_TalonSRX bottomRoller;
-  public DigitalInput cargoSensor;
+  public DigitalInput cargoSensor; // False = triggered
+  public DigitalInput hatchSensor;
   public Solenoid bill;
   public Solenoid hatchPusher;
   public Solenoid cargoScorer;
@@ -39,16 +40,19 @@ public class Manipulator extends Subsystem {
     topRoller.overrideLimitSwitchesEnable(false);
     topRoller.configPeakOutputForward(1);
     topRoller.configPeakOutputReverse(-1);
+    
     bottomRoller = new WPI_TalonSRX(Constants.CARGO_MANIPULATOR_BOTTOM_TALONSRX_ID);
     bottomRoller.overrideLimitSwitchesEnable(false);
     bottomRoller.configPeakOutputForward(1);
     bottomRoller.configPeakOutputReverse(-1);
     bottomRoller.follow(topRoller);
+
+    hatchSensor = new DigitalInput(Constants.HATCH_SENSOR_ID);
     cargoSensor =  new DigitalInput(Constants.CARGO_SENSOR_ID);
     bill = new Solenoid(Constants.PCM_CANID,Constants.HATCH_FLIPPER_PCMID);
     hatchPusher = new Solenoid(Constants.PCM_CANID,Constants.HATCH_SCORER_PCMID);
     //cargoScorer = new Solenoid(Constants.PCM_CANID,Constants.EMPTY2_PCMID);
-    
+    SmartDashboard.putData("Bill",bill);
 
   }
 
@@ -58,10 +62,12 @@ public class Manipulator extends Subsystem {
     //SmartDashboard.putData("BillSolenoid",bill);
     //SmartDashboard.putData("HatchPushSolenoid",hatchPusher);
     SmartDashboard.putString("Manipulator Current Command",this.getCurrentCommandName());
-
-    if(cargoSensor.get()){
+    SmartDashboard.putBoolean("Manipulator Cargo Sensor", this.cargoSensor.get());
+    SmartDashboard.putBoolean("Manipulator Hatch Sensor",this.hatchSensor.get());
+    SmartDashboard.putString("Maniuplator Holding",this.holding.toString());
+    if(!cargoSensor.get()){
       holding = ScoringObjects.CARGO;
-    } else if(true){ //Replace to hatch ls triggered
+    } else if(hatchSensor.get()){ //Replace to hatch ls triggered
       holding = ScoringObjects.HATCH;
     }else{
       holding = ScoringObjects.NONE;

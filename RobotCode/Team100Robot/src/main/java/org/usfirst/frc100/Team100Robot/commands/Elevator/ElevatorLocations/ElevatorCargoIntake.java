@@ -13,21 +13,20 @@ import org.usfirst.frc100.Team100Robot.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ElevatorCargoReverseLevel3 extends Command {
+public class ElevatorCargoIntake extends Command {
   private boolean done = false;
-  public ElevatorCargoReverseLevel3() {
-    
+
+  public ElevatorCargoIntake() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.global);
-
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.elevator.moveToLevel(9);
     done = false;
-    Robot.elevator.moveToLevel(7);
 
   }
 

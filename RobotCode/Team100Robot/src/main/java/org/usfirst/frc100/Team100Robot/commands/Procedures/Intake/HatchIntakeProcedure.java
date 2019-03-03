@@ -5,23 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel;
+package org.usfirst.frc100.Team100Robot.commands.Procedures.Intake;
 
-import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorHatchLevel1;
-import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorHatchLevel2;
-import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorHatchLevel3;
-import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmDown;
-import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmUp;
-import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHatchScore;
-import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderLevel;
+import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.PneumaticWait;
+import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillLower;
+import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillRaise;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class ElevatorGoToLevel3HatchProcedure extends CommandGroup {
+public class HatchIntakeProcedure extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public ElevatorGoToLevel3HatchProcedure() {
+  public HatchIntakeProcedure() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -38,11 +34,12 @@ public class ElevatorGoToLevel3HatchProcedure extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
-
-    addSequential(new IntakeArmDown());
-    addSequential(new ShoulderLevel());
-    addSequential(new ElevatorHatchLevel3());
-    addSequential(new IntakeArmUp());
     
+    addSequential(new BillLower());
+    addSequential(new PneumaticWait());
+    addSequential(new PneumaticWait());
+
+    addSequential(new BillRaise());
+
   }
 }

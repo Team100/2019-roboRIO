@@ -12,6 +12,8 @@ import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulato
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorDown;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmDown;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderDown;
+import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHoming;
+import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderIntake;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmIntakeElement;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -45,7 +47,7 @@ public class CargoGroundIntake extends CommandGroup {
     requires(Robot.carriageShoulder);*/
     addSequential(new IntakeArmDown());
     addSequential(new ElevatorDown());
-    addSequential(new ShoulderDown());
+    addSequential(new ShoulderIntake());
     addSequential(new CargoManipulatorIntake());
     addParallel(new IntakeArmIntakeElement());
   }

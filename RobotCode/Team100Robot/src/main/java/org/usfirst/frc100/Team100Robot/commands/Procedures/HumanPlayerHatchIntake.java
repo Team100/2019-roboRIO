@@ -41,7 +41,7 @@ public class HumanPlayerHatchIntake extends CommandGroup {
     requires(Robot.elevator);
     requires(Robot.cargoPickup);
     requires(Robot.carriageShoulder);*/
-    addSequential(new IntakeArmUp());
+    //addSequential(new IntakeArmUp());
     addSequential(new ElevatorDown());
     addSequential(new ShoulderDown());
     addSequential(new CargoManipulatorIntake());

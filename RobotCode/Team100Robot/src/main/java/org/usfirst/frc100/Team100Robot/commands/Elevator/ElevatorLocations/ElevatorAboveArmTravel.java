@@ -18,7 +18,7 @@ public class ElevatorAboveArmTravel extends Command {
   public ElevatorAboveArmTravel() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.elevator);
+    requires(Robot.global);
   }
 
   // Called just before this Command runs the first time

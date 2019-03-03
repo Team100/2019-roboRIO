@@ -38,6 +38,7 @@ import org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel.Elevat
 import org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel.ElevatorGoToLevel3CargoProcedure;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel.ElevatorGoToLevel3HatchProcedure;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.Intake.CargoGroundIntakeProcedure;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.Intake.HatchIntakeProcedure;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.Scoring.*;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderDown;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHoming;
@@ -178,17 +179,17 @@ public class OI {
         //Buttons to Commands
         elevatorStageUp.whenPressed(new ElevatorPageUp());
         elevatorStageDown.whenPressed(new ElevatorPageDown());
-        intakeCargo.whenPressed(new CargoGroundIntakeProcedure());
+        //intakeCargo.whenPressed(new CargoGroundIntakeProcedure());
 
         //hatchClamp.whenPressed(new HatchScore());//Temp for testing
-        hatchClamp.whenPressed(new HumanPlayerHatchIntake());
+        hatchIntake.whenPressed(new HatchIntakeProcedure());
 
-        //score.whenPressed(new ScoreProcessing()); TODO Change back
-        score.whenPressed(new ShoulderZeroPower());
+        score.whenPressed(new ScoreProcessing()); 
+        //score.whenPressed(new ShoulderZeroPower());
         //home.whenPressed(new ShoulderHoming());
-        //home.whenPressed(new ElevatorGoToHomeProcedure());
-        home.whenPressed(new HomingProcedure());
-        cargoIntake.whenPressed(new CargoGroundIntake());
+        home.whenPressed(new ElevatorGoToHomeProcedure());
+        //home.whenPressed(new HomingProcedure());
+        cargoIntake.whenPressed(new CargoGroundIntakeProcedure());
         cargoLevel1.whenPressed(new ElevatorGoToLevel1CargoProcedure());
         cargoLevel2.whenPressed(new ElevatorGoToLevel2CargoProcedure());
         cargoLevel3.whenPressed(new ElevatorGoToLevel3CargoProcedure());

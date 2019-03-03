@@ -130,6 +130,9 @@ public class Constants {
     public static final int INTERMEDIATE_UPPER_LIMIT_SWITCH_ID = 9;
     public static final int INTERMEDIATE_LOWER_LIMIT_SWITCH_ID = 3;
     
+
+    public static final double ELEVATOR_SAFEZONE = 65; //Point at which it is safe to continue movement in other subsystems
+
      /*
      * Elevator Carriage
      */
@@ -180,19 +183,20 @@ public class Constants {
       */
     public static final int CARGO_MANIPULATOR_TOP_TALONSRX_ID = 5;
     public static final int CARGO_MANIPULATOR_BOTTOM_TALONSRX_ID = 4;
-    public static final double CARGO_MANIPULATOR_INTAKE_SPEED = 1;
-    public static final double CARGO_MANIPULATOR_OUTTAKE_SPEED = -1;
+    public static final double CARGO_MANIPULATOR_INTAKE_SPEED = 0.5;
+    public static final double CARGO_MANIPULATOR_OUTTAKE_SPEED = -0.5;
 
-    public static final double CARGO_EXPEL_DURATION = 1.5; //Type: Seconds
-
-
-    public static final int CARGO_SENSOR_ID = 4;
+    public static final double CARGO_EXPEL_DURATION = 1; //Type: Seconds
 
 
+    public static final int CARGO_SENSOR_ID = 7;
+    public static final int HATCH_SENSOR_ID = 8;
 
 
-    public static int SHOULDER_DOWN_ENCODER_VALUE = -369;
-    public static int SHOULDER_UPPER_ENCODER_VALUE = 6293;
+
+    public static int SHOULDER_ENCODER_TICKS_TRAVELLED = 6800;
+    public static int SHOULDER_DOWN_ENCODER_VALUE = 422;
+    public static int SHOULDER_UPPER_ENCODER_VALUE = SHOULDER_DOWN_ENCODER_VALUE + SHOULDER_ENCODER_TICKS_TRAVELLED;
     public static int SHOULDER_DOWN_DEGREES = -84;
     public static int SHOULDER_UP_DEGREES = 144;
     public static int SHOULDER_DISTANCE_TRAVELLED = Constants.SHOULDER_UP_DEGREES-Constants.SHOULDER_DOWN_DEGREES;
@@ -203,5 +207,7 @@ public class Constants {
     // Encoder ticks for the bottom and top
     public static final int INTAKE_SHOULDER_BOTTOM = 155;
     public static final int INTAKE_SHOULDER_UP = 3400;
+
+    public static final int ELEVATOR_CENTERLINE_TOP_BAR_DISTANCE = 3;
 
 }
