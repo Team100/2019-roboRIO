@@ -31,6 +31,7 @@ public class Manipulator extends Subsystem {
   public Solenoid hatchPusher;
   public Solenoid cargoScorer;
 
+  public boolean hatchIntakeOut = false;
   public enum ScoringObjects{
     CARGO,HATCH,NONE
   }
@@ -55,6 +56,7 @@ public class Manipulator extends Subsystem {
     hatchPusher = new Solenoid(Constants.PCM_CANID,Constants.HATCH_SCORER_PCMID);
     //cargoScorer = new Solenoid(Constants.PCM_CANID,Constants.EMPTY2_PCMID);
     SmartDashboard.putData("Bill",bill);
+    hatchIntakeOut = false;
 
   }
 

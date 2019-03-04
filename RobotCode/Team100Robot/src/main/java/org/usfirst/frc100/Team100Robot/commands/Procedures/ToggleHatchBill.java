@@ -5,25 +5,27 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill;
+package org.usfirst.frc100.Team100Robot.commands.Procedures;
 
 import org.usfirst.frc100.Team100Robot.Robot;
+import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillLower;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class BillRaise extends Command {
-  public BillRaise() {
+public class ToggleHatchBill extends Command {
+  public ToggleHatchBill() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.manipulator);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    System.out.println("$$$$$$$$$$$$$$$$$$$$$ BILL RAISE");
-    Robot.manipulator.bill.set(false);
-    Robot.manipulator.hatchIntakeOut = false;
+    if(Robot.manipulator.hatchIntakeOut){
+      new RetractHatchSystem().start();
+    }else{
+      new BillLower().start();
+    }
   }
 
   // Called repeatedly when this Command is scheduled to run

@@ -24,6 +24,7 @@ public class BillLower extends Command {
   @Override
   protected void initialize() {
     Robot.manipulator.bill.set(true);
+    Robot.manipulator.hatchIntakeOut = true;
   }
 
   // Called repeatedly when this Command is scheduled to run

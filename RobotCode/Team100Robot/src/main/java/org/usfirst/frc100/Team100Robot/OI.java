@@ -30,6 +30,7 @@ import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Pusher.*;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmIntakeElement;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.HomingProcedure;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.HumanPlayerHatchIntake;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.ToggleHatchBill;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel.ElevatorGoToHomeProcedure;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel.ElevatorGoToLevel1CargoProcedure;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel.ElevatorGoToLevel1HatchProcedure;
@@ -182,7 +183,7 @@ public class OI {
         //intakeCargo.whenPressed(new CargoGroundIntakeProcedure());
 
         //hatchClamp.whenPressed(new HatchScore());//Temp for testing
-        hatchIntake.whenPressed(new HatchIntakeProcedure());
+        hatchIntake.whenPressed(new ToggleHatchBill());
 
         score.whenPressed(new ScoreProcessing()); 
         //score.whenPressed(new ShoulderZeroPower());
