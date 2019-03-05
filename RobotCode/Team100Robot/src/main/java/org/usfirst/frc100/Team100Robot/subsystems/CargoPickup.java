@@ -57,9 +57,17 @@ public class CargoPickup extends Subsystem {
 
 
     public void getCPS(){
-        if(this.absEnc.getValue() > Constants.INTAKE_SHOULDER_BOTTOM && this.absEnc.getValue() < Constants.INTAKE_SHOULDER_BOTTOM + 250){
+        /*if(this.absEnc.getValue() > Constants.INTAKE_SHOULDER_BOTTOM && this.absEnc.getValue() < Constants.INTAKE_SHOULDER_BOTTOM + 250){
             this.cps = CargoPickupStates.DOWN;
         } else if(this.absEnc.getValue() < Constants.INTAKE_SHOULDER_UP && this.absEnc.getValue() > Constants.INTAKE_SHOULDER_UP-250){
+            this.cps = CargoPickupStates.UP;
+        }else{
+            this.cps = CargoPickupStates.IN_MOTION;
+        }*/
+        if(this.absEnc.getValue() < 1500){
+            this.cps = CargoPickupStates.DOWN;
+        }
+        else if(this.absEnc.getValue() < Constants.INTAKE_SHOULDER_UP + 500){
             this.cps = CargoPickupStates.UP;
         }else{
             this.cps = CargoPickupStates.IN_MOTION;

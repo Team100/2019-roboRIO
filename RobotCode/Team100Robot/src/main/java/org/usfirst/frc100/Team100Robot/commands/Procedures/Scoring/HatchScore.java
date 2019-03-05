@@ -10,7 +10,9 @@ package org.usfirst.frc100.Team100Robot.commands.Procedures.Scoring;
 import org.usfirst.frc100.Team100Robot.Robot;
 import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.PneumaticWait;
 import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillLower;
+import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillRaise;
 import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Pusher.ExtendPusher;
+import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Pusher.RetractPusher;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.RetractHatchSystem;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.WaitForUserInput;
 
@@ -43,13 +45,15 @@ public class HatchScore extends CommandGroup {
     addSequential(new BillLower());
     //addSequential(new WaitForUserInput());
     //addSequential(new PneumaticWait());
-    addParallel(new ExtendPusher());
+    addSequential(new ExtendPusher());
 
     addSequential(new PneumaticWait());
     addSequential(new PneumaticWait());
     addSequential(new PneumaticWait());
-    addSequential(new RetractHatchSystem());
-
+    //addSequential(new RetractHatchSystem());
+    addSequential(new RetractPusher());
+    addSequential(new PneumaticWait());
+    addSequential(new BillRaise());
 
   }
 }

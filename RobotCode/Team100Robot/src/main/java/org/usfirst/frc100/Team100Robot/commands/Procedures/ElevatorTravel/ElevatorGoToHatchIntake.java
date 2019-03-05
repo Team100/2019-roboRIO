@@ -9,9 +9,13 @@ package org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel;
 
 import org.usfirst.frc100.Team100Robot.Robot;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorDown;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorHatchIntake;
+import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillLower;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmDown;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmUp;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.WaitForUserInput;
+import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderDown;
+import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHatchIntake;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHatchMid;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHoming;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderIntake;
@@ -19,11 +23,11 @@ import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderLevel;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class ElevatorGoToHomeProcedure extends CommandGroup {
+public class ElevatorGoToHatchIntake extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public ElevatorGoToHomeProcedure() {
+  public ElevatorGoToHatchIntake() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -44,10 +48,12 @@ public class ElevatorGoToHomeProcedure extends CommandGroup {
     /*requires(Robot.elevator);
     requires(Robot.cargoPickup);
     requires(Robot.carriageShoulder);*/
-    System.out.println("PROCEDURE START");
-    addSequential(new ShoulderHoming());
     addSequential(new IntakeArmDown());
-    addSequential(new ElevatorDown());
+    addSequential(new ElevatorHatchIntake());
+    addSequential(new ShoulderHatchIntake());
     addSequential(new IntakeArmUp());
+
+    addSequential(new BillLower());
+    
   }
 }

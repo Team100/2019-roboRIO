@@ -22,6 +22,7 @@ public class ExtendPusher extends Command {
   @Override
   protected void initialize() {
     Robot.manipulator.hatchPusher.set(true);
+    System.out.println(">>>>>>>>>>>>>>>>>>>> EXTENDED");
   }
 
   // Called repeatedly when this Command is scheduled to run

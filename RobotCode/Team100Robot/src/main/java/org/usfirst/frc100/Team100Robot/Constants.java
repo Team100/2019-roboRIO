@@ -195,18 +195,19 @@ public class Constants {
 
 
     public static int SHOULDER_ENCODER_TICKS_TRAVELLED = 6800;
-    public static int SHOULDER_DOWN_ENCODER_VALUE = 422;
+    public static int SHOULDER_DOWN_ENCODER_VALUE = 1059;
+    ;
     public static int SHOULDER_UPPER_ENCODER_VALUE = SHOULDER_DOWN_ENCODER_VALUE + SHOULDER_ENCODER_TICKS_TRAVELLED;
-    public static int SHOULDER_DOWN_DEGREES = -84;
-    public static int SHOULDER_UP_DEGREES = 144;
+    public static int SHOULDER_DOWN_DEGREES = -36;
+    public static int SHOULDER_UP_DEGREES = 156;
     public static int SHOULDER_DISTANCE_TRAVELLED = Constants.SHOULDER_UP_DEGREES-Constants.SHOULDER_DOWN_DEGREES;
 
     public static int SHOULDER_ENCODER_TICKS_PER_DEGREE_TRAVEL = ((Constants.SHOULDER_UPPER_ENCODER_VALUE)-Constants.SHOULDER_DOWN_ENCODER_VALUE)/Constants.SHOULDER_DISTANCE_TRAVELLED;
 
 
     // Encoder ticks for the bottom and top
-    public static final int INTAKE_SHOULDER_BOTTOM = 155;
-    public static final int INTAKE_SHOULDER_UP = 3400;
+    public static final int INTAKE_SHOULDER_BOTTOM = 100;
+    public static final int INTAKE_SHOULDER_UP = 3345;
 
     public static final int ELEVATOR_CENTERLINE_TOP_BAR_DISTANCE = 3;
 
