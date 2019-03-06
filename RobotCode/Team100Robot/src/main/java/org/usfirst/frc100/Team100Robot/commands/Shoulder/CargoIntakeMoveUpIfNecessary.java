@@ -5,49 +5,37 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc100.Team100Robot.commands.CargoManipulator;
+package org.usfirst.frc100.Team100Robot.commands.Shoulder;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
-import org.usfirst.frc100.Team100Robot.Constants;
 import org.usfirst.frc100.Team100Robot.Robot;
-import org.usfirst.frc100.Team100Robot.subsystems.Manipulator.ScoringObjects;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class CargoManipulatorIntake extends Command {
-  private boolean done = false;
-  private boolean inEndzone = false;
-  private double startTime = -1;
-  public CargoManipulatorIntake() {
+public class CargoIntakeMoveUpIfNecessary extends Command {
+  boolean done = false;
+  public CargoIntakeMoveUpIfNecessary() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.manipulator);
+    requires(Robot.global);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    inEndzone = false;
-    startTime = -1;
-    done = false;
-    
+    done = true;
+    if(Robot.elevator.previousSetpointLevel == 3 || Robot.elevator.previousSetpointLevel == 4 ){
+      done = false;
+      new ShoulderHoming().start();
+    }
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.manipulator.topRoller.set(ControlMode.PercentOutput,Constants.CARGO_MANIPULATOR_INTAKE_SPEED);
-    Robot.manipulator.bottomRoller.set(ControlMode.PercentOutput, Constants.CARGO_MANIPULATOR_INTAKE_SPEED);
-    if(Robot.manipulator.holding == ScoringObjects.CARGO && !inEndzone){
-      inEndzone = true;
-      startTime = Timer.getFPGATimestamp();
-    }
-    if(inEndzone && Timer.getFPGATimestamp() - startTime > 0.25){
+    if(Math.abs(Robot.carriageShoulder.carriageShoulderMotor.getSelectedSensorPosition() - Robot.carriageShoulder.currentSetpoint ) < Robot.carriageShoulder.HOMING_SETPOINT || done){
       done = true;
     }
-   
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -59,16 +47,11 @@ public class CargoManipulatorIntake extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    System.out.println("DONE");
-    Robot.manipulator.topRoller.set(ControlMode.PercentOutput,0);
-    Robot.manipulator.bottomRoller.set(ControlMode.PercentOutput,0);
-    
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }

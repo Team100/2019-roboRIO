@@ -44,6 +44,7 @@ public class Elevator extends Subsystem {
     public int currentPosition;
 
     public int setpointLevel = 0;
+    public int previousSetpointLevel = -1;
     /**
      * Enum for possible homing states of the elevator
      */
@@ -128,7 +129,7 @@ public class Elevator extends Subsystem {
         elevatorMaster.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_COMPENSATE);
         elevatorMaster.configForwardSoftLimitEnable(true);
         elevatorMaster.configReverseSoftLimitEnable(true);
-        elevatorMaster.configForwardSoftLimitThreshold(Constants.ELEVATOR_UPPER_SOFT_LIMIT, Constants.ELEVATOR_MASTER_TIMEOUT);
+        elevatorMaster.configForwardSoftLimitThreshold(convertInchesToTicks(Constants.ELEVATOR_MAX_HEIGHT_IN_INCHES), Constants.ELEVATOR_MASTER_TIMEOUT);
         elevatorMaster.configReverseSoftLimitThreshold(Constants.ELEVATOR_LOWER_SOFT_LIMIT,Constants.ELEVATOR_MASTER_TIMEOUT);
         elevatorMaster.configContinuousCurrentLimit(Constants.ELEVATOR_MAX_AMP);
         elevatorMaster.configPeakCurrentLimit(Constants.ELEVATOR_MAX_AMP);
@@ -195,8 +196,7 @@ public class Elevator extends Subsystem {
         }
     }
     //Each level is listed cargo then hatch
-    public Setpoint[] setpointsArray = {new Setpoint("BASE", Constants.ELEVATOR_START_HEIGHT_IN_INCHES+5, 0),new Setpoint("CARGO_LEVEL_1",Constants.ELEVATOR_START_HEIGHT_IN_INCHES + 7,1),new Setpoint("HATCH_LEVEL_1",19.5,2),new Setpoint("CARGO_LEVEL_2",62,3),new Setpoint("HATCH_LEVEL_2",65,4),new Setpoint("CARGO_LEVEL_3",83.5,5), new Setpoint("HATCH_LEVEL_3",79.5
-    ,6), new Setpoint("CARGO_LEVEL_3_REVERSE [UPDATE VALUE]",83.5,7), new Setpoint("ABOVE_ARM_RAISE_LEVEL [UPDATE VALUE]", 55,8),new Setpoint("Intake", Constants.ELEVATOR_START_HEIGHT_IN_INCHES+10, 9)};
+    public Setpoint[] setpointsArray = {new Setpoint("BASE", Constants.ELEVATOR_START_HEIGHT_IN_INCHES+5, 0),new Setpoint("CARGO_LEVEL_1",Constants.ELEVATOR_START_HEIGHT_IN_INCHES + 5,1),new Setpoint("HATCH_LEVEL_1",19.5,2),new Setpoint("CARGO_LEVEL_2",71,3),new Setpoint("HATCH_LEVEL_2",65,4),new Setpoint("CARGO_LEVEL_3",83.5,5), new Setpoint("HATCH_LEVEL_3",87,6), new Setpoint("CARGO_LEVEL_3_REVERSE [UPDATE VALUE]",83.5,7), new Setpoint("ABOVE_ARM_RAISE_LEVEL [UPDATE VALUE]", 55,8),new Setpoint("Intake",19.5, 9)};
 
 
     public double convertEncoderTicksToInch(int ticks){
@@ -246,7 +246,9 @@ public class Elevator extends Subsystem {
     }
 
     public void moveToLevel(int level){
+        this.previousSetpointLevel = this.setpointLevel;
         this.setpointLevel = level;
+        
         this.setpoint = this.setpointsArray[level].setpoint;
         this.updateSetpoint();
     }
@@ -333,7 +335,7 @@ public class Elevator extends Subsystem {
     public static int convertInchesToTicks(double inches){
         if(inches > Constants.ELEVATOR_MAX_HEIGHT_IN_INCHES){
             System.out.println("INCHES EXCEED MAX");
-            return (int)Constants.ELEVATOR_MAX_HEIGHT_IN_INCHES * Constants.ELEVATOR_INCH_TO_ENCODER_CONVERSION_FACTION;
+            return (int)(Constants.ELEVATOR_MAX_HEIGHT_IN_INCHES - Constants.ELEVATOR_START_HEIGHT_IN_INCHES) * Constants.ELEVATOR_INCH_TO_ENCODER_CONVERSION_FACTION;
         }
         return (int)((inches- Constants.ELEVATOR_START_HEIGHT_IN_INCHES - Constants.ELEVATOR_CENTERLINE_TOP_BAR_DISTANCE) * Constants.ELEVATOR_INCH_TO_ENCODER_CONVERSION_FACTION );
     }

@@ -67,7 +67,7 @@ public class CargoPickup extends Subsystem {
         if(this.absEnc.getValue() < 1500){
             this.cps = CargoPickupStates.DOWN;
         }
-        else if(this.absEnc.getValue() < Constants.INTAKE_SHOULDER_UP + 500){
+        else if(this.absEnc.getValue() <3400){
             this.cps = CargoPickupStates.UP;
         }else{
             this.cps = CargoPickupStates.IN_MOTION;

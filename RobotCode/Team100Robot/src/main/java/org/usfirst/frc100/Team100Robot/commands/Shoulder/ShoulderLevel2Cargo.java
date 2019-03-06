@@ -5,49 +5,43 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc100.Team100Robot.commands.CargoManipulator;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
+package org.usfirst.frc100.Team100Robot.commands.Shoulder;
 
 import org.usfirst.frc100.Team100Robot.Constants;
 import org.usfirst.frc100.Team100Robot.Robot;
-import org.usfirst.frc100.Team100Robot.subsystems.Manipulator.ScoringObjects;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-
-public class CargoManipulatorIntake extends Command {
-  private boolean done = false;
-  private boolean inEndzone = false;
-  private double startTime = -1;
-  public CargoManipulatorIntake() {
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+/**
+ * Homing position for shoulder... THE SHOULDER DOES NOT HOME
+ */
+public class ShoulderLevel2Cargo extends Command {
+  boolean done;
+  public ShoulderLevel2Cargo() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.manipulator);
+    requires(Robot.carriageShoulder);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    inEndzone = false;
-    startTime = -1;
     done = false;
-    
+    Robot.carriageShoulder.updateSetpoint(Robot.carriageShoulder.degreesToSetpointConverter(Robot.carriageShoulder.LEVEL_TWO_CARGO_SETPOINT));    
+    SmartDashboard.putBoolean("Shoulder home pos done", false);
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.manipulator.topRoller.set(ControlMode.PercentOutput,Constants.CARGO_MANIPULATOR_INTAKE_SPEED);
-    Robot.manipulator.bottomRoller.set(ControlMode.PercentOutput, Constants.CARGO_MANIPULATOR_INTAKE_SPEED);
-    if(Robot.manipulator.holding == ScoringObjects.CARGO && !inEndzone){
-      inEndzone = true;
-      startTime = Timer.getFPGATimestamp();
-    }
-    if(inEndzone && Timer.getFPGATimestamp() - startTime > 0.25){
+    System.out.println("@@@@@@"+Math.abs(Robot.carriageShoulder.currentSetpoint-Robot.carriageShoulder.carriageShoulderMotor.getSelectedSensorPosition()));
+    System.out.println("SETPOTNT"+Robot.carriageShoulder.currentSetpoint);
+    
+    if(Math.abs(Robot.carriageShoulder.currentSetpoint-Robot.carriageShoulder.carriageShoulderMotor.getSelectedSensorPosition())<Constants.SHOULDER_BUFFER){
       done = true;
+      SmartDashboard.putBoolean("Shoulder home pos done",true);
     }
-   
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -57,12 +51,10 @@ public class CargoManipulatorIntake extends Command {
   }
 
   // Called once after isFinished returns true
+  
   @Override
   protected void end() {
-    System.out.println("DONE");
-    Robot.manipulator.topRoller.set(ControlMode.PercentOutput,0);
-    Robot.manipulator.bottomRoller.set(ControlMode.PercentOutput,0);
-    
+    System.out.println("SHOULDER HOMING DONE");
   }
 
   // Called when another command which requires one or more of the same

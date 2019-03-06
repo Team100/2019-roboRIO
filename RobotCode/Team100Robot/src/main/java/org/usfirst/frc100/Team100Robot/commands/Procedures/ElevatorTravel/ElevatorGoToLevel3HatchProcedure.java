@@ -12,7 +12,9 @@ import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.Eleva
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorHatchLevel3;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmDown;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmUp;
+import org.usfirst.frc100.Team100Robot.commands.Shoulder.CargoIntakeMoveUpIfNecessary;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHatchScore;
+import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHoming;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderLevel;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -38,6 +40,8 @@ public class ElevatorGoToLevel3HatchProcedure extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
+    addSequential(new CargoIntakeMoveUpIfNecessary());
+    
 
     addSequential(new IntakeArmDown());
     addSequential(new ShoulderLevel());
