@@ -195,6 +195,9 @@ public class Elevator extends Subsystem {
 
         }
     }
+
+    public static int[] LOWER_SETPOINTS = {0,1,2,9,10};
+    public static  int[] UPPER_SETPOINTS = {4,5,6,7,8};
     //Each level is listed cargo then hatch
     public Setpoint[] setpointsArray = {new Setpoint("BASE", Constants.ELEVATOR_START_HEIGHT_IN_INCHES+5, 0),new Setpoint("CARGO_LEVEL_1",Constants.ELEVATOR_START_HEIGHT_IN_INCHES + 5,1),new Setpoint("HATCH_LEVEL_1",19.5,2),new Setpoint("CARGO_LEVEL_2",71,3),new Setpoint("HATCH_LEVEL_2",65,4),new Setpoint("CARGO_LEVEL_3",92,5), new Setpoint("HATCH_LEVEL_3",90,6), new Setpoint("CARGO_LEVEL_3_REVERSE [UPDATE VALUE]",83.5,7), new Setpoint("ABOVE_ARM_RAISE_LEVEL [UPDATE VALUE]", 55,8),new Setpoint("Cargo Intake",32, 9), new Setpoint("Hatch Intake",27,10)};
 
