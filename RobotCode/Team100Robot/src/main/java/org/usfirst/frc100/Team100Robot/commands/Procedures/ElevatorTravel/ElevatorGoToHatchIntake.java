@@ -14,6 +14,7 @@ import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillLower;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmDown;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmUp;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.WaitForUserInput;
+import org.usfirst.frc100.Team100Robot.commands.Shoulder.CargoIntakeMoveUpIfNecessary;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderDown;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHatchIntake;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHatchMid;
@@ -48,6 +49,7 @@ public class ElevatorGoToHatchIntake extends CommandGroup {
     /*requires(Robot.elevator);
     requires(Robot.cargoPickup);
     requires(Robot.carriageShoulder);*/
+    addSequential(new CargoIntakeMoveUpIfNecessary());
     addSequential(new ShoulderHoming());
 
     addSequential(new IntakeArmDown());

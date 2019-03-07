@@ -11,6 +11,7 @@ import org.usfirst.frc100.Team100Robot.commands.Global.GlobalDefault;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.*;
 
 /**
  * Add your docs here.
@@ -31,5 +32,10 @@ public class Global extends Subsystem {
   }
   public void thisMethodOnlyExistsToAppeaseWPILib(){
     System.out.println("appeased");
+  }
+  @Override
+  public void periodic() {
+    super.periodic();
+    SmartDashboard.putString("GLOBAL COMMAND",this.getCurrentCommandName());
   }
 }

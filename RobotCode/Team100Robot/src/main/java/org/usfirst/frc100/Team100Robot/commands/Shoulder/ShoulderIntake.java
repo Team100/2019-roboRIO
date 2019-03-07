@@ -13,7 +13,7 @@ import org.usfirst.frc100.Team100Robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ShoulderIntake extends Command {
-  boolean done;
+  boolean done = false;
   public ShoulderIntake() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -23,7 +23,7 @@ public class ShoulderIntake extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    done = true;
+    done = false;
     Robot.carriageShoulder.updateSetpoint(Robot.carriageShoulder.degreesToSetpointConverter(Robot.carriageShoulder.CARGO_INTAKE_SETPOINT));    
 
   }
@@ -31,6 +31,7 @@ public class ShoulderIntake extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    System.out.println("Shoulder Intake Execute");
     if(Math.abs(Robot.carriageShoulder.currentSetpoint-Robot.carriageShoulder.carriageShoulderMotor.getSelectedSensorPosition())<Constants.SHOULDER_BUFFER){
       done = true;
     }

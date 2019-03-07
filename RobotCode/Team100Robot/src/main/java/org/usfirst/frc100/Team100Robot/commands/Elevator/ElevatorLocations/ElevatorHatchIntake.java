@@ -25,7 +25,7 @@ public class ElevatorHatchIntake extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.elevator.moveToLevel(9);
+    Robot.elevator.moveToLevel(10);
     done = false;
 
   }

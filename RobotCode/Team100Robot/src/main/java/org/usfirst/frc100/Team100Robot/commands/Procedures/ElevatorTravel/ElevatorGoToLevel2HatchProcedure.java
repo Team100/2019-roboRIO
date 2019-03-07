@@ -44,6 +44,7 @@ public class ElevatorGoToLevel2HatchProcedure extends CommandGroup {
     addSequential(new CargoIntakeMoveUpIfNecessary());
 
     addSequential(new IntakeArmDown());
+    addSequential(new ShoulderHoming());
     addSequential(new ElevatorHatchLevel2());
     //addSequential(new Debug("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"));
     addSequential(new IntakeArmUp());

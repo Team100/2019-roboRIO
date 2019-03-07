@@ -88,7 +88,7 @@ public class Constants {
      /**Power to apply when going up during homing sequence... <em>keep very small</em> */
      public static final double HOMING_GOING_UP_POWER = .4; //Type: Percent Output (-1-1)
      /**Buffer in elevator target for acceptable destination */
-     public static final int ELEVATOR_POSITION_BUFFER = Constants.ELEVATOR_INCH_TO_ENCODER_CONVERSION_FACTION*4; //Type: Encoder Ticks
+     public static final int ELEVATOR_POSITION_BUFFER = Constants.ELEVATOR_INCH_TO_ENCODER_CONVERSION_FACTION*6; //Type: Encoder Ticks
 
      /**
       * Elevator Timeout in Milliseconds
@@ -121,7 +121,7 @@ public class Constants {
      public static final int ELEVATOR_INCH_TO_ENCODER_CONVERSION_FACTION = 3196; //Type: Encoder Ticks  was 86 on comp
 
      public static final double ELEVATOR_START_HEIGHT_IN_INCHES = 16.5; //Type: Inches
-     public static final double ELEVATOR_MAX_HEIGHT_IN_INCHES = 83; //Type: Inches
+     public static final double ELEVATOR_MAX_HEIGHT_IN_INCHES = 100; //Type: Inches
     
      public static final double ELEVATOR_VOLTAGE_COMPENSATE = 11.3;
     
@@ -195,7 +195,7 @@ public class Constants {
 
 
     public static int SHOULDER_ENCODER_TICKS_TRAVELLED = 6800;
-    public static int SHOULDER_DOWN_ENCODER_VALUE = 1922;
+    public static int SHOULDER_DOWN_ENCODER_VALUE = 4000;
     ;
     public static int SHOULDER_UPPER_ENCODER_VALUE = SHOULDER_DOWN_ENCODER_VALUE + SHOULDER_ENCODER_TICKS_TRAVELLED;
     public static int SHOULDER_DOWN_DEGREES = -36;

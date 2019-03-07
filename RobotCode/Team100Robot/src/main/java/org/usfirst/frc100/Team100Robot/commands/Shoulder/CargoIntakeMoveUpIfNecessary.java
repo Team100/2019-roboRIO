@@ -7,9 +7,11 @@
 
 package org.usfirst.frc100.Team100Robot.commands.Shoulder;
 
+import org.usfirst.frc100.Team100Robot.Constants;
 import org.usfirst.frc100.Team100Robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CargoIntakeMoveUpIfNecessary extends Command {
   boolean done = false;
@@ -22,10 +24,14 @@ public class CargoIntakeMoveUpIfNecessary extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    done = true;
-    if(Robot.elevator.previousSetpointLevel == 3 || Robot.elevator.previousSetpointLevel == 4 ){
+    if(Robot.elevator.setpointLevel == 4){
       done = false;
+      SmartDashboard.putBoolean("CIMUIN DONE",false);
+
       new ShoulderHoming().start();
+    }else{
+      done = true;
+      System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ NOT NECESSARY TO PIVOT");
     }
 
   }
@@ -33,8 +39,10 @@ public class CargoIntakeMoveUpIfNecessary extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Math.abs(Robot.carriageShoulder.carriageShoulderMotor.getSelectedSensorPosition() - Robot.carriageShoulder.currentSetpoint ) < Robot.carriageShoulder.HOMING_SETPOINT || done){
+    System.out.println("CIMUIN Execute");
+    if(Math.abs(Robot.carriageShoulder.currentSetpoint-Robot.carriageShoulder.carriageShoulderMotor.getSelectedSensorPosition())<Constants.SHOULDER_BUFFER){
       done = true;
+      SmartDashboard.putBoolean("CIMUIN DONE",true);
     }
   }
 
