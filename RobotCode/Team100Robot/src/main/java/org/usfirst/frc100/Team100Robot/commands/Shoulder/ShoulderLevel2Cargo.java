@@ -54,7 +54,7 @@ public class ShoulderLevel2Cargo extends Command {
   
   @Override
   protected void end() {
-    System.out.println("SHOULDER HOMING DONE");
+    System.out.println("SHOULDER LV 2 CARGO DONE");
   }
 
   // Called when another command which requires one or more of the same

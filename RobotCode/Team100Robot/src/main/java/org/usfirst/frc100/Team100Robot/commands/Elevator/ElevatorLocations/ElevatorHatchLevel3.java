@@ -19,7 +19,7 @@ public class ElevatorHatchLevel3 extends Command {
   public ElevatorHatchLevel3() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.global);
+    //requires(Robot.global);
 
   }
 

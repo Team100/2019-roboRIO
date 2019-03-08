@@ -19,7 +19,7 @@ public class ElevatorCargoLevel2 extends Command {
   public ElevatorCargoLevel2() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.global);
+    //requires(Robot.global);
 
   }
 

@@ -42,9 +42,10 @@ public class CargoGroundIntakeProcedure extends CommandGroup {
     // arm.
     addSequential(new CargoIntakeMoveUpIfNecessary());
     addSequential(new IntakeArmDown());
-    addSequential(new ShoulderIntake());
 
     addSequential(new ElevatorCargoIntake());
+    addSequential(new ShoulderIntake());
+
 
     addParallel(new CargoManipulatorIntake());
     addSequential(new IntakeArmIntakeElement());

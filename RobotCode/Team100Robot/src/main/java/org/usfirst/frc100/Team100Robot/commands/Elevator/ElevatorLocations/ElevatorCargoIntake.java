@@ -27,12 +27,14 @@ public class ElevatorCargoIntake extends Command {
   protected void initialize() {
     Robot.elevator.moveToLevel(9);
     done = false;
+    System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> CARGO INTAKE STARTED");
 
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    System.out.println("_______________________________________________________________");
     if(Math.abs(Robot.elevator.elevatorMaster.getSelectedSensorPosition() - Robot.elevator.setpoint) < Constants.ELEVATOR_POSITION_BUFFER){
       done = true;
     }
@@ -47,6 +49,7 @@ public class ElevatorCargoIntake extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Elevator Cargo Intake Done");
   }
 
   // Called when another command which requires one or more of the same

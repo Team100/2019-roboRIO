@@ -24,6 +24,7 @@ public class ShoulderIntake extends Command {
   @Override
   protected void initialize() {
     done = false;
+    System.out.println("SHOULDER INTAKE^^^^^^^^^^^^^^^^^^^^^^^@@@@@@@@@@@@@@@@@@@@@@@@@@@^^^^^^^^^^^^^^^^^^^^");
     Robot.carriageShoulder.updateSetpoint(Robot.carriageShoulder.degreesToSetpointConverter(Robot.carriageShoulder.CARGO_INTAKE_SETPOINT));    
 
   }
@@ -47,6 +48,7 @@ public class ShoulderIntake extends Command {
   @Override
   protected void end() {
     //System.out.println("HOMING DONE");
+    System.out.println("&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&");
   }
 
   // Called when another command which requires one or more of the same

@@ -15,32 +15,39 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CargoIntakeMoveUpIfNecessary extends Command {
   boolean done = false;
+  boolean first = true;
   public CargoIntakeMoveUpIfNecessary() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.global);
+    //requires(Robot.global);
+    requires(Robot.carriageShoulder);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    first = true;
     done = false;
-    if(Robot.elevator.setpointLevel == 4){
-      done = false;
-      System.out.println("()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()");
-      SmartDashboard.putBoolean("CIMUIN DONE",done);
-
-      new ShoulderHoming().start();
-    }else{
-      done = true;
-      System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ NOT NECESSARY TO PIVOT");
-    }
-
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if(first){
+      done = false;
+      if(Robot.elevator.setpointLevel == 4 /*Was 4*/){
+        done = false;
+        System.out.println("()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()");
+        SmartDashboard.putBoolean("CIMUIN DONE",done);
+        Robot.carriageShoulder.updateSetpoint(Robot.carriageShoulder.degreesToSetpointConverter(Robot.carriageShoulder.HOMING_SETPOINT));    
+      }else{
+        done = true;
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ NOT NECESSARY TO PIVOT");
+      }
+      first = false;
+
+    }
     System.out.println("CIMUIN Execute");
     SmartDashboard.putBoolean("CIMUIN DONE",done);
 
@@ -62,6 +69,8 @@ public class CargoIntakeMoveUpIfNecessary extends Command {
   @Override
   protected void end() {
     System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%CIMUIN DONE");
+    done = false;
+    first = false;
   }
 
   // Called when another command which requires one or more of the same

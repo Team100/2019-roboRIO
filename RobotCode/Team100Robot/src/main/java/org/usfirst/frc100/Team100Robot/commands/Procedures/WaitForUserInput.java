@@ -16,7 +16,7 @@ public class WaitForUserInput extends Command {
   public WaitForUserInput() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.global);
+    //requires(Robot.global);
     
     
   }

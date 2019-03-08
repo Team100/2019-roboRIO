@@ -47,6 +47,7 @@ public class ShoulderHatchMid extends Command {
   @Override
   protected void end() {
     //System.out.println("HOMING DONE");
+    
   }
 
   // Called when another command which requires one or more of the same

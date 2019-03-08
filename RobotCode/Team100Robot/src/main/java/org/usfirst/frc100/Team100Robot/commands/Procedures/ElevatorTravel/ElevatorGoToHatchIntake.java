@@ -49,7 +49,7 @@ public class ElevatorGoToHatchIntake extends CommandGroup {
     /*requires(Robot.elevator);
     requires(Robot.cargoPickup);
     requires(Robot.carriageShoulder);*/
-    addSequential(new CargoIntakeMoveUpIfNecessary());
+    //addSequential(new CargoIntakeMoveUpIfNecessary());
     addSequential(new ShoulderHoming());
 
     addSequential(new IntakeArmDown());

@@ -28,7 +28,8 @@ public class Global extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new GlobalDefault());
+   //
+   // setDefaultCommand(new GlobalDefault());
   }
   public void thisMethodOnlyExistsToAppeaseWPILib(){
     System.out.println("appeased");
