@@ -30,6 +30,8 @@ public class IntakeArmDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    System.out.println("INTAKE ARM EXECUTE");
+    System.out.println(Robot.cargoPickup.cargoIntakePivotDoubleSolenoid.get().toString());
   }
 
   // Make this return true when this Command no longer needs to run execute()

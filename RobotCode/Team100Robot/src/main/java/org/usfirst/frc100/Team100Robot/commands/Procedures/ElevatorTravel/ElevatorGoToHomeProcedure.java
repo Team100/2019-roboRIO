@@ -46,7 +46,7 @@ public class ElevatorGoToHomeProcedure extends CommandGroup {
     requires(Robot.cargoPickup);
     requires(Robot.carriageShoulder);*/
     System.out.println("PROCEDURE START");
-    addSequential(new CargoIntakeMoveUpIfNecessary());
+    //addSequential(new CargoIntakeMoveUpIfNecessary());
     addSequential(new ShoulderHoming());
     addSequential(new IntakeArmDown());
     addSequential(new ElevatorDown());

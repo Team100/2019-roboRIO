@@ -44,7 +44,7 @@ public class CarriageShoulder extends Subsystem {
     public static final int CARGO_LEVEL_3_SETPOINT = 45;
     public static final int HATCH_MID_SETPOINT = -5;
     public static final int CARGO_INTAKE_SETPOINT = -5;
-    public static final int HATCH_INTAKE_SETPOINT = 0;
+    public static final int HATCH_INTAKE_SETPOINT = 10;
 
     public WPI_TalonSRX carriageShoulderMotor;
 
@@ -72,7 +72,7 @@ public class CarriageShoulder extends Subsystem {
         carriageShoulderMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10,Constants.SHOULDER_MASTER_TIMEOUT);
         carriageShoulderMotor.configMotionCruiseVelocity(32767,Constants.SHOULDER_MASTER_TIMEOUT);
         carriageShoulderMotor.configMotionAcceleration(32767,Constants.SHOULDER_MASTER_TIMEOUT);
-        carriageShoulderMotor.configFeedbackNotContinuous(true, Constants.SHOULDER_MASTER_TIMEOUT);
+        carriageShoulderMotor.configFeedbackNotContinuous(false, Constants.SHOULDER_MASTER_TIMEOUT);
         carriageShoulderMotor.enableCurrentLimit(true);
         carriageShoulderMotor.configPeakCurrentLimit(Constants.SHOULDER_MAX_AMP);
         carriageShoulderMotor.enableVoltageCompensation(true);
@@ -137,7 +137,7 @@ public class CarriageShoulder extends Subsystem {
         return (int)step3;
     }
     public void resetRelativeEncoder(){
-        this.carriageShoulderMotor.setSelectedSensorPosition(this.carriageShoulderMotor.getSensorCollection().getPulseWidthPosition());
+        this.carriageShoulderMotor.setSelectedSensorPosition(Constants.SHOULDER_STARTING_ENCODER_VALUE);
     }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

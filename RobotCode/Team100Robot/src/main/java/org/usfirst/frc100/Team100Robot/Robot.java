@@ -118,6 +118,8 @@ public class Robot extends TimedRobot {
     @Override
     public void disabledPeriodic() {
         //Scheduler.getInstance().run();
+        SmartDashboard.putNumber("GLOBAL Shoulder PulseWidth Encoder", carriageShoulder.carriageShoulderMotor.getSensorCollection().getPulseWidthPosition());
+        SmartDashboard.putNumber("GLOBAL Shoulder Quadrature Encoder", carriageShoulder.carriageShoulderMotor.getSensorCollection().getQuadraturePosition());
     }
 
     @Override
@@ -136,6 +138,9 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putNumber("GLOBAL Shoulder PulseWidth Encoder", carriageShoulder.carriageShoulderMotor.getSensorCollection().getPulseWidthPosition());
+
+        SmartDashboard.putNumber("GLOBAL Shoulder Quadrature Encoder", carriageShoulder.carriageShoulderMotor.getSensorCollection().getQuadraturePosition());
     }
 
     @Override
@@ -160,6 +165,9 @@ public class Robot extends TimedRobot {
         //SmartDashboard.putData("Hatch Retract", new RetractHatchSystem());
         //SmartDashboard.putData("Bill Out", new HatchBillOut());
         //currentHeading = ahrs.getFusedHeading();
+        SmartDashboard.putNumber("GLOBAL Shoulder PulseWidth Encoder", carriageShoulder.carriageShoulderMotor.getSensorCollection().getPulseWidthPosition());
+
+        SmartDashboard.putNumber("GLOBAL Shoulder Quadrature Encoder", carriageShoulder.carriageShoulderMotor.getSensorCollection().getQuadraturePosition());
     }
 
     public static double getCurrentHeading(){

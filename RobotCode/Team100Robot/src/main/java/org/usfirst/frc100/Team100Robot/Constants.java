@@ -195,8 +195,9 @@ public class Constants {
 
 
     public static int SHOULDER_ENCODER_TICKS_TRAVELLED = 6800;
-    public static int SHOULDER_DOWN_ENCODER_VALUE = 4000;
-    ;
+    public static int SHOULDER_DOWN_ENCODER_VALUE = 0;//1027;
+    public static int SHOULDER_STARTING_ENCODER_VALUE = 1311;
+    
     public static int SHOULDER_UPPER_ENCODER_VALUE = SHOULDER_DOWN_ENCODER_VALUE + SHOULDER_ENCODER_TICKS_TRAVELLED;
     public static int SHOULDER_DOWN_DEGREES = -36;
     public static int SHOULDER_UP_DEGREES = 156;

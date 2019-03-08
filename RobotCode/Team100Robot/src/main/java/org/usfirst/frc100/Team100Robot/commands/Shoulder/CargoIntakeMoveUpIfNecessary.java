@@ -24,9 +24,11 @@ public class CargoIntakeMoveUpIfNecessary extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    done = false;
     if(Robot.elevator.setpointLevel == 4){
       done = false;
-      SmartDashboard.putBoolean("CIMUIN DONE",false);
+      System.out.println("()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()");
+      SmartDashboard.putBoolean("CIMUIN DONE",done);
 
       new ShoulderHoming().start();
     }else{
@@ -40,26 +42,32 @@ public class CargoIntakeMoveUpIfNecessary extends Command {
   @Override
   protected void execute() {
     System.out.println("CIMUIN Execute");
+    SmartDashboard.putBoolean("CIMUIN DONE",done);
+
     if(Math.abs(Robot.carriageShoulder.currentSetpoint-Robot.carriageShoulder.carriageShoulderMotor.getSelectedSensorPosition())<Constants.SHOULDER_BUFFER){
       done = true;
-      SmartDashboard.putBoolean("CIMUIN DONE",true);
+      System.out.println("********************************DONE");
     }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     return done;
+
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%CIMUIN DONE");
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }
