@@ -26,7 +26,9 @@ public class IntakeArmConditionalDown extends Command {
     // eg. requires(chassis);
     requires(Robot.cargoPickup);
     nextSetpoint = 32767;
-    throw new Error("Invalid constructor in IntakeArmConditionalDown.java");
+    first = true;
+    done = false;
+    
   }
   public IntakeArmConditionalDown(int nextSetpointIndex){
     requires(Robot.cargoPickup);
@@ -40,7 +42,8 @@ public class IntakeArmConditionalDown extends Command {
   protected void initialize() {
     first = true;
     done = false;
-    Robot.cargoPickup.cargoIntakePivotDoubleSolenoid.set(Value.kReverse);
+    this.nextSetpoint = Robot.elevator.desiredSetpointLevel;
+
     System.out.println("CONDITIONAL INITIALIZED " + nextSetpoint);
 
   }
@@ -49,6 +52,7 @@ public class IntakeArmConditionalDown extends Command {
   @Override
   protected void execute() {
     if(first){
+      this.nextSetpoint = Robot.elevator.desiredSetpointLevel;
       for(int i = 0; i < Robot.elevator.LOWER_SETPOINTS.length; i++){
         if(Robot.elevator.setpointLevel == Robot.elevator.LOWER_SETPOINTS[i]){
           fromSetpoint = SetpointGlobalLocations.DOWN;
@@ -67,10 +71,12 @@ public class IntakeArmConditionalDown extends Command {
       }
 
       if(fromSetpoint == toSetpoint && fromSetpoint != SetpointGlobalLocations.UNKNOWN){
+        System.out.println("CONDITION MET");
         done = true;
       }
       else{
         first = false;
+        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& SETTING PNEUMATIC");
         Robot.cargoPickup.cargoIntakePivotDoubleSolenoid.set(Value.kReverse);
       }
       
@@ -82,7 +88,8 @@ public class IntakeArmConditionalDown extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    System.out.print((Robot.cargoPickup.cps ==  CargoPickupStates.DOWN || done));
+    System.out.println((Robot.cargoPickup.cps ==  CargoPickupStates.DOWN || done));
+    System.out.println(done);
 
     return Robot.cargoPickup.cps ==  CargoPickupStates.DOWN || done;
   }
@@ -93,6 +100,7 @@ public class IntakeArmConditionalDown extends Command {
     System.out.println("IntakeArmEnded");
     done = false;
     first = true;
+
   }
 
   // Called when another command which requires one or more of the same

@@ -10,7 +10,10 @@ package org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel;
 import org.usfirst.frc100.Team100Robot.Robot;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorDown;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorHatchIntake;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorUpdateDesiredEndpoint.ElevatorUpdateDesiredSetpointLevel10;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorUpdateDesiredEndpoint.ElevatorUpdateDesiredSetpointLevel2;
 import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillLower;
+import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmConditionalDown;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmDown;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmUp;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.WaitForUserInput;
@@ -51,8 +54,9 @@ public class ElevatorGoToHatchIntake extends CommandGroup {
     requires(Robot.carriageShoulder);*/
     //addSequential(new CargoIntakeMoveUpIfNecessary());
     addSequential(new ShoulderHoming());
+    addSequential(new ElevatorUpdateDesiredSetpointLevel10());
 
-    addSequential(new IntakeArmDown());
+    addSequential(new IntakeArmConditionalDown());
     addSequential(new ElevatorHatchIntake());
     addSequential(new ShoulderHatchIntake());
     addSequential(new IntakeArmUp());

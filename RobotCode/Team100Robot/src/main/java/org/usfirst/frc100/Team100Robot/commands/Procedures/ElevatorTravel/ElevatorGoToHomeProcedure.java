@@ -9,6 +9,7 @@ package org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel;
 
 import org.usfirst.frc100.Team100Robot.Robot;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorDown;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorUpdateDesiredEndpoint.ElevatorUpdateDesiredSetpointLevel0;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmConditionalDown;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmDown;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmUp;
@@ -46,10 +47,12 @@ public class ElevatorGoToHomeProcedure extends CommandGroup {
     /*requires(Robot.elevator);
     requires(Robot.cargoPickup);
     requires(Robot.carriageShoulder);*/
-    System.out.println("PROCEDURE START");
+    //System.out.println("PROCEDURE START");
     //addSequential(new CargoIntakeMoveUpIfNecessary());
     addSequential(new ShoulderHoming());
-    addSequential(new IntakeArmConditionalDown(0));
+    addSequential(new ElevatorUpdateDesiredSetpointLevel0());
+    //addSequential(new IntakeArmConditionalDown());
+    addSequential(new IntakeArmDown());
     addSequential(new ElevatorDown());
     addSequential(new IntakeArmUp());
   }

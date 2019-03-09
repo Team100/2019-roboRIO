@@ -20,6 +20,7 @@ public class ElevatorDown extends Command {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     //requires(Robot.global);
+
   }
 
   // Called just before this Command runs the first time
@@ -33,6 +34,7 @@ public class ElevatorDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    System.out.println("IN ELEVATOR DOWN");
     if(Math.abs(Robot.elevator.elevatorMaster.getSelectedSensorPosition() - Robot.elevator.setpoint) < Constants.ELEVATOR_POSITION_BUFFER){
       done = true;
     }
