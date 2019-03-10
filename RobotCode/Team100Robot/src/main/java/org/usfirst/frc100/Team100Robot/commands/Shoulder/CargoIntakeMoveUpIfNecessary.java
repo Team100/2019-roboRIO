@@ -41,7 +41,14 @@ public class CargoIntakeMoveUpIfNecessary extends Command {
         System.out.println("()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()");
         SmartDashboard.putBoolean("CIMUIN DONE",done);
         Robot.carriageShoulder.updateSetpoint(Robot.carriageShoulder.degreesToSetpointConverter(Robot.carriageShoulder.HOMING_SETPOINT));    
-      }else{
+      } else if(Robot.elevator.setpointLevel == 1){
+        done = false;
+        System.out.println("()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()");
+        SmartDashboard.putBoolean("CIMUIN DONE",done);
+        Robot.elevator.moveToLevel(0);
+        Robot.carriageShoulder.updateSetpoint(Robot.carriageShoulder.degreesToSetpointConverter(Robot.carriageShoulder.HOMING_SETPOINT));    
+      }
+      else{
         done = true;
         System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ NOT NECESSARY TO PIVOT");
       }
@@ -51,6 +58,9 @@ public class CargoIntakeMoveUpIfNecessary extends Command {
     System.out.println("CIMUIN Execute");
     SmartDashboard.putBoolean("CIMUIN DONE",done);
 
+    if(Math.abs(Robot.elevator.elevatorMaster.getSelectedSensorPosition() - Robot.elevator.setpoint) < Constants.ELEVATOR_POSITION_BUFFER && (Math.abs(Robot.carriageShoulder.currentSetpoint-Robot.carriageShoulder.carriageShoulderMotor.getSelectedSensorPosition())<Constants.SHOULDER_BUFFER)){
+      done = true;
+    }
     if(Math.abs(Robot.carriageShoulder.currentSetpoint-Robot.carriageShoulder.carriageShoulderMotor.getSelectedSensorPosition())<Constants.SHOULDER_BUFFER){
       done = true;
       System.out.println("********************************DONE");

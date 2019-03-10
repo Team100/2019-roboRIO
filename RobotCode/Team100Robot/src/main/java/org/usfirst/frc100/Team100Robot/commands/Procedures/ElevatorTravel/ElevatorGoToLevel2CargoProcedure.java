@@ -10,6 +10,8 @@ package org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel;
 import org.usfirst.frc100.Team100Robot.Robot;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorCargoLevel1;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorCargoLevel2;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorUpdateDesiredEndpoint.ElevatorUpdateDesiredSetpointLevel3;
+import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmConditionalDown;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmDown;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmUp;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.CargoIntakeMoveUpIfNecessary;
@@ -45,10 +47,13 @@ public class ElevatorGoToLevel2CargoProcedure extends CommandGroup {
     requires(Robot.cargoPickup);
     requires(Robot.carriageShoulder);*/
     addSequential(new CargoIntakeMoveUpIfNecessary());
-    addSequential(new IntakeArmDown());
+    addSequential(new ElevatorUpdateDesiredSetpointLevel3()); //test/
+    addSequential(new IntakeArmConditionalDown());
+    //addSequential(new IntakeArmDown());
+    addSequential(new ShoulderHoming());
+    addSequential(new ElevatorCargoLevel2());
     addSequential(new ShoulderLevel());
 
-    addSequential(new ElevatorCargoLevel2());
     addSequential(new IntakeArmUp());
   }
 }

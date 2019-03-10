@@ -37,6 +37,7 @@ public class CarriageShoulder extends Subsystem {
     public boolean POST_TO_NT_PREFERENCES = false;
 
     public static final int HOMING_SETPOINT = 45/*was 14*/; //Degrees from zero
+    public static final int LEVEL_ONE_CARGO_SETPOINT = 25;
     public static final int LEVEL_TWO_CARGO_SETPOINT = 35;
     public static final int LEVEL_SETPOINT = 10;
     public static final int DOWN_SETPOINT = 45;
@@ -44,7 +45,9 @@ public class CarriageShoulder extends Subsystem {
     public static final int CARGO_LEVEL_3_SETPOINT = 45;
     public static final int HATCH_MID_SETPOINT = -5;
     public static final int CARGO_INTAKE_SETPOINT = -5;
-    public static final int HATCH_INTAKE_SETPOINT = 10;
+    public static final int HATCH_INTAKE_SETPOINT = -5;
+    
+
 
     public WPI_TalonSRX carriageShoulderMotor;
 
