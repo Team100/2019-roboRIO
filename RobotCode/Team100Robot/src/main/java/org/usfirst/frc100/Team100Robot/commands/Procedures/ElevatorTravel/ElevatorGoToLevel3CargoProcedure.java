@@ -51,6 +51,7 @@ public class ElevatorGoToLevel3CargoProcedure extends CommandGroup {
     addSequential(new ElevatorUpdateDesiredSetpointLevel5());
     addSequential(new IntakeArmConditionalDown());
     addSequential(new ElevatorCargoLevel3());
+    addSequential(new ShoulderHoming());
     addSequential(new IntakeArmUp());
   }
 }

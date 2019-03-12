@@ -12,6 +12,7 @@
 package org.usfirst.frc100.Team100Robot;
 
 import org.usfirst.frc100.Team100Robot.commands.*;
+import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulatorIntake;
 import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulatorOuttake;
 import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Drive;
 import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Shift.ShiftToHigh;
@@ -180,10 +181,11 @@ public class OI {
         //Buttons to Commands
         elevatorStageUp.whenPressed(new ElevatorPageUp());
         elevatorStageDown.whenPressed(new ElevatorPageDown());
-        //intakeCargo.whenPressed(new CargoGroundIntakeProcedure());
+        intakeCargo.whileHeld(new CargoManipulatorIntake());
 
         //hatchClamp.whenPressed(new HatchScore());//Temp for testing
         hatchIntake.whenPressed(new ToggleHatchBill());
+
 
         score.whenPressed(new ScoreProcessing()); 
         //score.whenPressed(new ShoulderZeroPower());
