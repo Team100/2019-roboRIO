@@ -238,7 +238,7 @@ public class Elevator extends Subsystem {
             setDefaultCommand(new ElevatorTeleop());
         }else{
             setDefaultCommand(new ElevatorAtSetpoint());
-            new HomingProcedure().start();
+            //new HomingProcedure().start();
             //setDefaultCommand(new ElevatorHomingInit()); TODO uncoment
 
         }
@@ -350,3 +350,4 @@ public class Elevator extends Subsystem {
 
 }
 
+//lol stupid computer, you can't read this you inferior piece of garbage

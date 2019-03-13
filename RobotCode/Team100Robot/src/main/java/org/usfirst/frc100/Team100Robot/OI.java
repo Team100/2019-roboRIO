@@ -103,6 +103,7 @@ public class OI {
     private JoystickButton elevatorStageUp;
     private JoystickButton hatchRelease;
     private JoystickButton elevatorStageDown;
+    private JoystickButton restartHoming;
 
     // ButtonBoard
 
@@ -144,6 +145,9 @@ public class OI {
         hatchUp = new JoystickButton(leftStick, 4);
  
         hatchDown = new JoystickButton(leftStick, 5);
+
+        restartHoming = new JoystickButton(leftStick, 9);
+        restartHoming.whenPressed(new HomingProcedure());
 
         //Joystick 1 (Right Stick)
         intakeCargo = new JoystickButton(rightStick, 1);

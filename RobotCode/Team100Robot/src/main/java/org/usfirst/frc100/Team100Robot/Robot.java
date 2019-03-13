@@ -28,6 +28,7 @@ import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Pusher.ExtendPu
 import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Pusher.RetractPusher;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmIntakeElement;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.HatchBillOut;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.HomingProcedure;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.RetractHatchSystem;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.Scoring.HatchScore;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHoming;
@@ -104,6 +105,7 @@ public class Robot extends TimedRobot {
         //SmartDashboard.putData("PusherExtend",new ExtendPusher());
         //SmartDashboard.putData("PusherRetract",new RetractPusher());
         //SmartDashboard.putData("IntakeElement", new IntakeArmIntakeElement());
+        new HomingProcedure().start();
     }
 
     /**
