@@ -16,6 +16,7 @@ import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulato
 import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Drive;
 import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Shift.ShiftToHigh;
 import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Shift.ShiftToLow;
+import org.usfirst.frc100.Team100Robot.commands.Drivetrain.VisionScore.DrivePID;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorPageDown;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorPageUp;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorCargoLevel1;
@@ -102,6 +103,7 @@ public class OI {
     private JoystickButton elevatorStageUp;
     private JoystickButton hatchRelease;
     private JoystickButton elevatorStageDown;
+    private JoystickButton smartDriving;
 
     // ButtonBoard
 
@@ -155,6 +157,8 @@ public class OI {
  
         cargoDown = new JoystickButton(rightStick, 5);
         cargoDown.whenPressed(new ShoulderDown());
+        smartDriving = new JoystickButton(rightStick,8);
+        smartDriving.whileHeld(new DrivePID());
 
         //Joystick 2 (Manipulator Control)
         climberToggle = new JoystickButton(manipulatorControl, 4);

@@ -67,12 +67,12 @@ public class Drivetrain extends Subsystem implements PIDOutput {
         rightMaster.overrideLimitSwitchesEnable(false);
         
 
-        /*turnPID = new PIDController(Constants.DT_TURN_P, Constants.DT_TURN_I, Constants.DT_TURN_D, Robot.ahrs, this);
+        turnPID = new PIDController(Constants.DT_TURN_P, Constants.DT_TURN_I, Constants.DT_TURN_D, Robot.ahrs, this);
         turnPID.setInputRange(Constants.DT_TURN_MIN_ROTATION_ANGLE, Constants.DT_TURN_MAX_ROTATION_ANGLE);
         turnPID.setContinuous(true);
         turnPID.setOutputRange(Constants.DT_TURN_MIN_OUTPUT, Constants.DT_TURN_MAX_OUTPUT);
         turnPID.setAbsoluteTolerance(Constants.DT_TURN_ABSOLUTE_TOLERANCE);
-   */
+   
     }
 
     public void turn(double leftPower, double rightPower){
@@ -114,6 +114,10 @@ public class Drivetrain extends Subsystem implements PIDOutput {
         
     }
 
+    public void driveWithPID(){
+        differentialDrive.arcadeDrive(-Robot.oi.getLeftStick().getY(), turnPID.get());
+        
+    }
 	@Override
 	public void pidWrite(double output) {
         leftMaster.set(ControlMode.PercentOutput, output*Constants.DT_TURN_MOTOR_OUTPUT);
