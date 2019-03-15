@@ -8,7 +8,9 @@
 package org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot;
 
 import org.usfirst.frc100.Team100Robot.Robot;
+import org.usfirst.frc100.Team100Robot.subsystems.CargoPickup.CargoPickupStates;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class IntakeArmUp extends Command {
@@ -22,19 +24,22 @@ public class IntakeArmUp extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.cargoPickup.cargoIntakeArmPivot.set(true);
+    System.out.println("#################INTAKE ARM UP STARTED");
+    
+    Robot.cargoPickup.cargoIntakePivotDoubleSolenoid.set(Value.kForward);
 
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return Robot.cargoPickup.cps ==  CargoPickupStates.UP;
   }
 
   // Called once after isFinished returns true

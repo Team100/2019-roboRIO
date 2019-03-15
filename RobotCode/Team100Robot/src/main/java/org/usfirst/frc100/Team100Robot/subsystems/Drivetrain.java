@@ -54,6 +54,10 @@ public class Drivetrain extends Subsystem implements PIDOutput {
         
         leftFollower.follow(leftMaster);
         rightFollower.follow(rightMaster);
+        leftMaster.configContinuousCurrentLimit(Constants.DT_MAX_AMP);
+        rightMaster.configContinuousCurrentLimit(Constants.DT_MAX_AMP);
+
+
 
         leftMaster.setInverted(Constants.DRIVE_TRAIN_LEFT_MASTER_INVERT);
         leftFollower.setInverted(Constants.DRIVE_TRAIN_LEFT_FOLLOWER_INVERT);
@@ -102,7 +106,7 @@ public class Drivetrain extends Subsystem implements PIDOutput {
         SmartDashboard.putNumber("PO RIGHT",rightMaster.getMotorOutputPercent());
         SmartDashboard.putBoolean("SHIFT State", shift.get());
         SmartDashboard.putNumber("SHIFT ID", Constants.DRIVETRAIN_SHIFTER_PCMID);
-        SmartDashboard.putData("SHIFT PCM", shift);
+        //SmartDashboard.putData("SHIFT PCM", shift);
     }
 
     public void drive(){

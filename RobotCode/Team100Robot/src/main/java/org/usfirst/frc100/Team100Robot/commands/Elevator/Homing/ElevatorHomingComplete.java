@@ -7,6 +7,7 @@
 
 package org.usfirst.frc100.Team100Robot.commands.Elevator.Homing;
 
+import org.usfirst.frc100.Team100Robot.Constants;
 import org.usfirst.frc100.Team100Robot.Robot;
 import org.usfirst.frc100.Team100Robot.subsystems.Elevator.homingStates;
 import org.usfirst.frc100.Team100Robot.subsystems.Elevator.States;
@@ -25,7 +26,7 @@ public class ElevatorHomingComplete extends Command {
   @Override
   protected void initialize() {
     Robot.elevator.hs = homingStates.COMPLETE;
-    //TODO Change base robot state
+    Robot.elevator.updateSetpoint(Constants.ELEVATOR_FINISHED_HOMING_POS);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -46,7 +47,7 @@ public class ElevatorHomingComplete extends Command {
 
     Robot.elevator.state= States.MOVE_TO_SETPOINT;
     System.out.println("HOMING COMPLETE");
-    Robot.elevator.updateSetpoint(4000);
+    Robot.elevator.updateSetpoint(Constants.ELEVATOR_FINISHED_HOMING_POS);
 
   }
 

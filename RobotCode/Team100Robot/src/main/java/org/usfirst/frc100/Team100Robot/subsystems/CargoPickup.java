@@ -18,7 +18,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import org.usfirst.frc100.Team100Robot.Constants;
 
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 
 /**
@@ -29,13 +30,18 @@ public class CargoPickup extends Subsystem {
     //public WPI_TalonSRX cargoTilt;
     public VictorSP cargoRoller1;
     public VictorSP cargoRoller2;
-    public Solenoid cargoIntakeArmPivot;
-    public Solenoid cargoIntakeArmPivot2;
+   // public Solenoid cargoIntakeArmPivot;
+    //public Solenoid cargoIntakeArmPivot2;
+    public DoubleSolenoid cargoIntakePivotDoubleSolenoid;
+    public AnalogInput absEnc;
 
+    public enum CargoPickupStates{
+        DOWN, IN_MOTION, UP
+    }
+
+    public CargoPickupStates cps = CargoPickupStates.UP;
     public CargoPickup() {
-        //cargoTilt = new WPI_TalonSRX(Constants.CARGO_PICKUP_TILT_CANID);
-        cargoIntakeArmPivot = new Solenoid(Constants.PCM_CANID,Constants.CARGO_GROUND_PICKUP_PCMID);
-        cargoIntakeArmPivot2 = new Solenoid(Constants.PCM_CANID,Constants.CARGO_GROUND_PICKUP2_PCMID);
+   
         cargoRoller1 = new VictorSP(Constants.CARGO_PICKUP_ROLLER1_PWM);
         addChild("CargoRoller1", cargoRoller1);
         cargoRoller1.setInverted(false);
@@ -43,22 +49,46 @@ public class CargoPickup extends Subsystem {
         cargoRoller2 = new VictorSP(Constants.CARGO_PICKUP_ROLLER2_PWM);
         addChild("CargoRoller2", cargoRoller2);
         cargoRoller2.setInverted(false);
-
+        
+        cargoIntakePivotDoubleSolenoid = new DoubleSolenoid(Constants.CARGO_GROUND_PICKUP_PCMID, Constants.CARGO_GROUND_PICKUP2_PCMID);
+        absEnc= new AnalogInput(Constants.PICKUP_ARM_ENCODER_ID);
         
     }
 
+
+    public void getCPS(){
+        /*if(this.absEnc.getValue() > Constants.INTAKE_SHOULDER_BOTTOM && this.absEnc.getValue() < Constants.INTAKE_SHOULDER_BOTTOM + 250){
+            this.cps = CargoPickupStates.DOWN;
+        } else if(this.absEnc.getValue() < Constants.INTAKE_SHOULDER_UP && this.absEnc.getValue() > Constants.INTAKE_SHOULDER_UP-250){
+            this.cps = CargoPickupStates.UP;
+        }else{
+            this.cps = CargoPickupStates.IN_MOTION;
+        }*/
+        if(this.absEnc.getValue() < 1500){
+            this.cps = CargoPickupStates.DOWN;
+        }
+        else if(this.absEnc.getValue() <3400){
+            this.cps = CargoPickupStates.UP;
+        }else{
+            this.cps = CargoPickupStates.IN_MOTION;
+        }
+        SmartDashboard.putString("CPS",this.cps.toString());
+    }
     @Override
     public void initDefaultCommand() {
         // setDefaultCommand(new MySpecialCommand());
         // setDefaultCommand(new CargoManipulator());
     }
 
+
     @Override
     public void periodic() {
         // Put code here to be run every loop
-        SmartDashboard.putNumber("6 PO",cargoRoller1.get());
-        SmartDashboard.putData("CargoIntakeArmPivot", cargoIntakeArmPivot);
-        SmartDashboard.putData("CargoIntakeArmPivot2",cargoIntakeArmPivot2);
+        //SmartDashboard.putNumber("6 PO",cargoRoller1.get());
+        getCPS();
+        SmartDashboard.putData("CargoIntakeArmPivot",cargoIntakePivotDoubleSolenoid);
+        SmartDashboard.putNumber("CargoIntakeEncoderPosition",absEnc.getValue());
+        SmartDashboard.putString("CargoPickup Current Command",this.getCurrentCommandName());
     }
 
     public void setOutput(double output){

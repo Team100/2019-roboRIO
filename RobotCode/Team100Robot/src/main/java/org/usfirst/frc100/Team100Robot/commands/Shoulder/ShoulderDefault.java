@@ -23,7 +23,7 @@ public class ShoulderDefault extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.carriageShoulder.carriageShoulderMotor.set(ControlMode.PercentOutput,0);
+    //Robot.carriageShoulder.carriageShoulderMotor.set(ControlMode.PercentOutput,0);
   }
 
   // Called repeatedly when this Command is scheduled to run

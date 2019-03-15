@@ -27,6 +27,11 @@ import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillRaise;
 import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Pusher.ExtendPusher;
 import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Pusher.RetractPusher;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmIntakeElement;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.HatchBillOut;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.HomingProcedure;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.RetractHatchSystem;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.Scoring.HatchScore;
+import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHoming;
 import org.usfirst.frc100.Team100Robot.subsystems.*;
 import com.kauailabs.navx.frc.*;
 
@@ -47,13 +52,14 @@ public class Robot extends TimedRobot {
     public static Shifter shifter;
     public static CarriageShoulder carriageShoulder;
     public static Climber climber;
-    public static CargoHatchScore cargoHatchScore;
+    //public static CargoHatchScore cargoHatchScore;
     public static CargoPickup cargoPickup;
     public static HatchPickup hatchPickup;
     public static Elevator elevator;
     public static double currentHeading;
     public static AHRS ahrs;
     public static Manipulator manipulator;
+    public static Global global;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -67,11 +73,12 @@ public class Robot extends TimedRobot {
         shifter = new Shifter();
         carriageShoulder = new CarriageShoulder();
         climber = new Climber();
-        cargoHatchScore = new CargoHatchScore();
+        //cargoHatchScore = new CargoHatchScore();
         cargoPickup = new CargoPickup();
         hatchPickup = new HatchPickup();
         elevator = new Elevator();
         manipulator = new Manipulator();
+        global = new Global();
 
         // OI must be constructed after subsystems. If the OI creates Commands
         //(which it very likely will), subsystems are not guaranteed to be
@@ -82,22 +89,23 @@ public class Robot extends TimedRobot {
         // Add commands to Autonomous Sendable Chooser
         chooser.setDefaultOption("Autonomous Command", new AutonomousCommand());
         
-        SmartDashboard.putData("Auto mode", chooser);
+        //SmartDashboard.putData("Auto mode", chooser);
 
 
 
 
 
         // Put Command Triggers
-        SmartDashboard.putData("CargoManipIntake",new CargoManipulatorIntake());
-        SmartDashboard.putData("CargoManipOuttake",new CargoManipulatorOuttake());
-        SmartDashboard.putData("DTShiftToHigh",new ShiftToHigh());
-        SmartDashboard.putData("DTShiftToLow",new ShiftToLow());
-        SmartDashboard.putData("BillRaise",new BillRaise());
-        SmartDashboard.putData("BillLower",new BillLower());
-        SmartDashboard.putData("PusherExtend",new ExtendPusher());
-        SmartDashboard.putData("PusherRetract",new RetractPusher());
-        SmartDashboard.putData("IntakeElement", new IntakeArmIntakeElement());
+        //SmartDashboard.putData("CargoManipIntake",new CargoManipulatorIntake());
+        //SmartDashboard.putData("CargoManipOuttake",new CargoManipulatorOuttake());
+        //SmartDashboard.putData("DTShiftToHigh",new ShiftToHigh());
+        //SmartDashboard.putData("DTShiftToLow",new ShiftToLow());
+        //SmartDashboard.putData("BillRaise",new BillRaise());
+        //SmartDashboard.putData("BillLower",new BillLower());
+        //SmartDashboard.putData("PusherExtend",new ExtendPusher());
+        //SmartDashboard.putData("PusherRetract",new RetractPusher());
+        //SmartDashboard.putData("IntakeElement", new IntakeArmIntakeElement());
+        new HomingProcedure().start();
     }
 
     /**
@@ -111,11 +119,16 @@ public class Robot extends TimedRobot {
 
     @Override
     public void disabledPeriodic() {
-        Scheduler.getInstance().run();
+        //Scheduler.getInstance().run();
+        SmartDashboard.putNumber("GLOBAL Shoulder PulseWidth Encoder", carriageShoulder.carriageShoulderMotor.getSensorCollection().getPulseWidthPosition());
+        SmartDashboard.putNumber("GLOBAL Shoulder Quadrature Encoder", carriageShoulder.carriageShoulderMotor.getSensorCollection().getQuadraturePosition());
     }
 
     @Override
     public void autonomousInit() {
+        Scheduler.getInstance().run();
+        
+
         autonomousCommand = chooser.getSelected();
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
@@ -127,10 +140,14 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putNumber("GLOBAL Shoulder PulseWidth Encoder", carriageShoulder.carriageShoulderMotor.getSensorCollection().getPulseWidthPosition());
+
+        SmartDashboard.putNumber("GLOBAL Shoulder Quadrature Encoder", carriageShoulder.carriageShoulderMotor.getSensorCollection().getQuadraturePosition());
     }
 
     @Override
     public void teleopInit() {
+        Scheduler.getInstance().run();
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
@@ -145,7 +162,14 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        //SmartDashboard.putData(new ShoulderHoming());
+        //SmartDashboard.putData("Hatch Score",new HatchScore());
+        //SmartDashboard.putData("Hatch Retract", new RetractHatchSystem());
+        //SmartDashboard.putData("Bill Out", new HatchBillOut());
         //currentHeading = ahrs.getFusedHeading();
+        SmartDashboard.putNumber("GLOBAL Shoulder PulseWidth Encoder", carriageShoulder.carriageShoulderMotor.getSensorCollection().getPulseWidthPosition());
+
+        SmartDashboard.putNumber("GLOBAL Shoulder Quadrature Encoder", carriageShoulder.carriageShoulderMotor.getSensorCollection().getQuadraturePosition());
     }
 
     public static double getCurrentHeading(){

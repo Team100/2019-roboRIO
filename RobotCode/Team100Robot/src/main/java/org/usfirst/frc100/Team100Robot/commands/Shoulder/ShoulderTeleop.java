@@ -29,8 +29,8 @@ public class ShoulderTeleop extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    SmartDashboard.putNumber("OI Val",Robot.oi.getManipulatorControl().getRawAxis(1));
-    Robot.carriageShoulder.carriageShoulderMotor.set(ControlMode.PercentOutput,Robot.oi.getManipulatorControl().getRawAxis(1));
+    //SmartDashboard.putNumber("OI Val",Robot.oi.getManipulatorControl().getRawAxis(1));
+    Robot.carriageShoulder.carriageShoulderMotor.set(ControlMode.PercentOutput,-1*Robot.oi.getManipulatorControl().getRawAxis(1));
   }
 
   // Make this return true when this Command no longer needs to run execute()

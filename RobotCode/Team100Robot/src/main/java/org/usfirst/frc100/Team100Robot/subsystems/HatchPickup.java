@@ -36,7 +36,7 @@ public class HatchPickup extends Subsystem {
         addChild("Roller", roller);
         roller.setInverted(false);
         
-        hatchFloorPickup = new Solenoid(Constants.PCM_CANID, Constants.HATCH_PICKUP_PCMID);
+        hatchFloorPickup = new Solenoid(Constants.PCM_CANID, Constants.EMPTY1_PCMID);
         addChild("HatchFloorPickup", hatchFloorPickup);
     }
  
@@ -49,7 +49,7 @@ public class HatchPickup extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-        SmartDashboard.putData(hatchFloorPickup);
+        //SmartDashboard.putData(hatchFloorPickup);
 
     }
 

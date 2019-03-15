@@ -21,7 +21,7 @@ public class ShoulderUp extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.carriageShoulder.moveUp();
+    //Robot.carriageShoulder.moveUp();
   }
 
   // Called repeatedly when this Command is scheduled to run
