@@ -24,7 +24,7 @@ public class IntakeArmIntakeElement extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    System.out.println("INTAKE INIT");
+    //System.out.println("INTAKE INIT");
     Robot.cargoPickup.setOutput(-Constants.CARGO_MANIPULATOR_INTAKE_SPEED);
 
     done = false;
@@ -33,7 +33,7 @@ public class IntakeArmIntakeElement extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println("Intake Arm Execute");
+    //System.out.println("Intake Arm Execute");
 
     if(Robot.manipulator.holding == ScoringObjects.CARGO){
       done = true;
@@ -51,7 +51,7 @@ public class IntakeArmIntakeElement extends Command {
   @Override
   protected void end() {
     Robot.cargoPickup.setOutput(0);
-    System.out.println("#################### DONE WITH INTAKING");
+    //System.out.println("#################### DONE WITH INTAKING");
   }
 
   // Called when another command which requires one or more of the same

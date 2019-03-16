@@ -42,7 +42,7 @@ public class TurnRelative extends Command {
     @Override
     protected void execute() {
         if(first){
-            System.out.println("INIT_RELATIVE");
+            //System.out.println("INIT_RELATIVE");
             targetHeading = targetAngle;
             targetHeading += Robot.getCurrentHeading();
             targetHeading = normalize(targetHeading);
@@ -67,7 +67,7 @@ public class TurnRelative extends Command {
     protected boolean isFinished() {
         //SmartDashboard.putBoolean("OnTarget", isOnTarget());
         if(isOnTarget()){
-            System.out.println("Finished turn");
+            //System.out.println("Finished turn");
             first = true;
             return true;
         }

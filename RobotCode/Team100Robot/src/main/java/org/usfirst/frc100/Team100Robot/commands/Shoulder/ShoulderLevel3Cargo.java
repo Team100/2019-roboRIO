@@ -45,7 +45,7 @@ public class ShoulderLevel3Cargo extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    System.out.println("###L3 CARGO ANGLE DONE");
+    //System.out.println("###L3 CARGO ANGLE DONE");
   }
 
   // Called when another command which requires one or more of the same

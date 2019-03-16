@@ -24,7 +24,7 @@ public class ShoulderIntake extends Command {
   @Override
   protected void initialize() {
     done = false;
-    System.out.println("SHOULDER INTAKE^^^^^^^^^^^^^^^^^^^^^^^@@@@@@@@@@@@@@@@@@@@@@@@@@@^^^^^^^^^^^^^^^^^^^^");
+    //System.out.println("SHOULDER INTAKE^^^^^^^^^^^^^^^^^^^^^^^@@@@@@@@@@@@@@@@@@@@@@@@@@@^^^^^^^^^^^^^^^^^^^^");
     Robot.carriageShoulder.updateSetpoint(Robot.carriageShoulder.degreesToSetpointConverter(Robot.carriageShoulder.CARGO_INTAKE_SETPOINT));    
 
   }
@@ -32,7 +32,7 @@ public class ShoulderIntake extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println("Shoulder Intake Execute");
+    //System.out.println("Shoulder Intake Execute");
     if(Math.abs(Robot.carriageShoulder.currentSetpoint-Robot.carriageShoulder.carriageShoulderMotor.getSelectedSensorPosition())<Constants.SHOULDER_BUFFER){
       done = true;
     }
@@ -47,8 +47,8 @@ public class ShoulderIntake extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //System.out.println("HOMING DONE");
-    System.out.println("&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&");
+    ////System.out.println("HOMING DONE");
+    //System.out.println("&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&");
   }
 
   // Called when another command which requires one or more of the same

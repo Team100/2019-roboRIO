@@ -24,7 +24,7 @@ public class ElevatorTeleop extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    System.out.println("INITIALIZED TELEOP ELEVATOR");
+    //System.out.println("INITIALIZED TELEOP ELEVATOR");
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -40,7 +40,7 @@ public class ElevatorTeleop extends Command {
     else{
     }*/
     //SmartDashboard.putNumber("ELEV OI AXIS",Robot.oi.getManipulatorControl().getRawAxis(3));
-    Robot.elevator.elevatorMaster.set(ControlMode.PercentOutput,-Robot.oi.getManipulatorControl().getRawAxis(3)*0.5);
+    //Robot.elevator.elevatorMaster.set(ControlMode.PercentOutput,-Robot.oi.getManipulatorControl().getRawAxis(3)*0.5);
 /*
     if(Robot.oi.getManipulatorControl().getRawAxis(3) <= 0 && !Robot.elevator.atMaxHeight){ //Going up
       Robot.elevator.elevatorMaster.set(ControlMode.PercentOutput,-Robot.oi.getManipulatorControl().getRawAxis(3)*.4);
@@ -50,7 +50,7 @@ public class ElevatorTeleop extends Command {
 
     }
     else{
-      System.out.println("Reached LS");
+      //System.out.println("Reached LS");
 
       Robot.elevator.elevatorMaster.set(ControlMode.PercentOutput,0);
   }*/
@@ -67,13 +67,13 @@ public class ElevatorTeleop extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    System.out.println("ELEVATOR TELEOP ENDED");
+    //System.out.println("ELEVATOR TELEOP ENDED");
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    System.out.println("ELEVATOR TELEOP INTERRUPTED");
+    //System.out.println("ELEVATOR TELEOP INTERRUPTED");
   }
 }

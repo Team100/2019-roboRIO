@@ -105,7 +105,7 @@ public class Robot extends TimedRobot {
         //SmartDashboard.putData("PusherExtend",new ExtendPusher());
         //SmartDashboard.putData("PusherRetract",new RetractPusher());
         //SmartDashboard.putData("IntakeElement", new IntakeArmIntakeElement());
-        new HomingProcedure().start();
+        if(!elevator.DISABLE_INTELLIGENT_CONTROL){new HomingProcedure().start();}
     }
 
     /**

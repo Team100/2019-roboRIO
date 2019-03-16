@@ -32,7 +32,7 @@ public class Global extends Subsystem {
    // setDefaultCommand(new GlobalDefault());
   }
   public void thisMethodOnlyExistsToAppeaseWPILib(){
-    System.out.println("appeased");
+    //System.out.println("appeased");
   }
   @Override
   public void periodic() {

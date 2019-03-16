@@ -45,7 +45,8 @@ public class Constants {
     public static final int EMPTY1_PCMID = 1; //Type: PCM ID
     public static final int CARGO_GROUND_PICKUP_PCMID = 6; //Type: PCM ID
     public static final int CARGO_GROUND_PICKUP2_PCMID = 7; //Type: PCM ID
-    public static final int HATCH_FLIPPER_PCMID = 2; //Type: PCM ID
+    public static final int 
+    HATCH_FLIPPER_PCMID = 2; //Type: PCM ID
     public static final int EMPTY2_PCMID = 4; //Type: PCM ID DOESN'T EXIST
 	public static final int HATCH_SCORER_PCMID = 3; //Type: PCM ID
     public static final int CLIMBER_DEPLOY_PCMID = 0; //Type: PCM ID
@@ -125,8 +126,8 @@ public class Constants {
     
      public static final double ELEVATOR_VOLTAGE_COMPENSATE = 11.3;
     
-    public static final int CARRIAGE_LOWER_LIMIT_SWITCH_ID = 0;
-    public static final int CARRIAGE_UPPER_LIMIT_SWITCH_ID = 1;
+    public static final int CARRIAGE_LOWER_LIMIT_SWITCH_ID = 1;
+    public static final int CARRIAGE_UPPER_LIMIT_SWITCH_ID = 0;
     public static final int INTERMEDIATE_UPPER_LIMIT_SWITCH_ID = 9;
     public static final int INTERMEDIATE_LOWER_LIMIT_SWITCH_ID = 3;
     

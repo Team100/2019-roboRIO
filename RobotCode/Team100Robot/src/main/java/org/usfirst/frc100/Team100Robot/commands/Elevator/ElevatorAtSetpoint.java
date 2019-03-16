@@ -36,9 +36,9 @@ public class ElevatorAtSetpoint extends Command {
       new ElevatorHomingInit().start();
     }
     Robot.elevator.state = States.AT_SETPOINT;
-    if(Math.abs(Robot.oi.getManipulatorControl().getRawAxis(3)) > 0.2){
+    /*if(Math.abs(Robot.oi.getManipulatorControl().getRawAxis(3)) > 0.2){
       new ElevatorTeleop().start();
-    }
+    }*/
     if(Robot.elevator.state == States.AT_SETPOINT){
       //Robot.elevator.elevatorMaster.set(ControlMode.Position,Robot.elevator.setpoint);
 

@@ -125,11 +125,11 @@ public class OI {
     public OI() {
 
         /*
-         * INIT Joysticks
+         * INIT Joysticks0
          */
         leftStick = new Joystick(0);
         rightStick = new Joystick(1);
-        manipulatorControl = new Joystick(2);
+        //manipulatorControl = new Joystick(2);
         buttonBoard = new Joystick(3);
 
         
@@ -151,6 +151,7 @@ public class OI {
 
         //Joystick 1 (Right Stick)
         intakeCargo = new JoystickButton(rightStick, 1);
+        intakeCargo.whileHeld(new CargoManipulatorIntake());
         
         shiftHigh = new JoystickButton(rightStick, 3);
         shiftHigh.whenPressed(new ShiftToHigh());
@@ -162,11 +163,11 @@ public class OI {
         cargoDown.whenPressed(new ShoulderDown());
 
         //Joystick 2 (Manipulator Control)
-        climberToggle = new JoystickButton(manipulatorControl, 4);
+        /*climberToggle = new JoystickButton(manipulatorControl, 4);
         hatchClamp = new JoystickButton(manipulatorControl, 5);
         elevatorStageUp = new JoystickButton(manipulatorControl, 6);
         hatchRelease = new JoystickButton(manipulatorControl, 7);
-        elevatorStageDown = new JoystickButton(manipulatorControl, 8);
+        elevatorStageDown = new JoystickButton(manipulatorControl, 8);*/
 
         //Button Board
         hatchIntake= new JoystickButton(buttonBoard,1);
@@ -183,8 +184,8 @@ public class OI {
         hatchLevel1= new JoystickButton(buttonBoard,16);
 
         //Buttons to Commands
-        elevatorStageUp.whenPressed(new ElevatorPageUp());
-        elevatorStageDown.whenPressed(new ElevatorPageDown());
+       // elevatorStageUp.whenPressed(new ElevatorPageUp());
+        //elevatorStageDown.whenPressed(new ElevatorPageDown());
         intakeCargo.whileHeld(new CargoManipulatorIntake());
 
         //hatchClamp.whenPressed(new HatchScore());//Temp for testing
@@ -196,11 +197,11 @@ public class OI {
         //home.whenPressed(new ShoulderHoming());
         home.whenPressed(new ElevatorGoToHomeProcedure());
         //home.whenPressed(new HomingProcedure());
-        cargoIntake.whenPressed(new CargoGroundIntakeProcedure());
+        //cargoIntake.whenPressed(new CargoGroundIntakeProcedure());
         cargoLevel1.whenPressed(new ElevatorGoToLevel1CargoProcedure());
         cargoLevel2.whenPressed(new ElevatorGoToLevel2CargoProcedure());
         cargoLevel3.whenPressed(new ElevatorGoToLevel3CargoProcedure());
-        cargoLevel3Reverse.whenPressed(new ElevatorCargoReverseLevel3());
+        //cargoLevel3Reverse.whenPressed(new ElevatorCargoReverseLevel3());
         hatchLevel1.whenPressed(new ElevatorGoToLevel1HatchProcedure());
         hatchLevel2.whenPressed(new ElevatorGoToLevel2HatchProcedure());
         hatchLevel3.whenPressed(new ElevatorGoToLevel3HatchProcedure());

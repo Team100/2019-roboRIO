@@ -36,7 +36,7 @@ public class ElevatorHomingGoingUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println("GOING UP");
+    //System.out.println("GOING UP");
     if(!Robot.elevator.atMinHeight){
       complete = true;
     }

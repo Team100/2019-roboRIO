@@ -21,7 +21,7 @@ public class ShiftToHigh extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    System.out.println("ShiftToHigh");
+    //System.out.println("ShiftToHigh");
     Robot.drivetrain.shift.set(true);
   }
 

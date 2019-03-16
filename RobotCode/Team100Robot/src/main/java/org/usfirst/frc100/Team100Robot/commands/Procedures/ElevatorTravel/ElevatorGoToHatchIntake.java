@@ -60,6 +60,8 @@ public class ElevatorGoToHatchIntake extends CommandGroup {
     addSequential(new ShoulderHatchIntake());
 
     addSequential(new ElevatorHatchIntake());
+    addSequential(new ShoulderHatchIntake());
+
     addSequential(new IntakeArmUp());
 
     addSequential(new BillLower());
