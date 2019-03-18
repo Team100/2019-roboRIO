@@ -64,17 +64,15 @@ public class CargoPickup extends Subsystem {
         }else{
             this.cps = CargoPickupStates.IN_MOTION;
         }*/
-        if(this.absEnc.getValue() > 2400){
+        if(this.absEnc.getValue() < 1500){
             this.cps = CargoPickupStates.DOWN;
         }
-        else if(this.absEnc.getValue() <1900){
+        else if(this.absEnc.getValue() <3400){
             this.cps = CargoPickupStates.UP;
         }else{
-            System.out.println("IN MOTION " + this.absEnc.getValue());
             this.cps = CargoPickupStates.IN_MOTION;
         }
         SmartDashboard.putString("CPS",this.cps.toString());
-
     }
     @Override
     public void initDefaultCommand() {
@@ -94,7 +92,7 @@ public class CargoPickup extends Subsystem {
     }
 
     public void setOutput(double output){
-        //System.out.println("SETTING TO "+output);
+        System.out.println("SETTING TO "+output);
         cargoRoller1.set(output);
         cargoRoller2.set(output);
     }

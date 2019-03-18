@@ -12,7 +12,6 @@
 package org.usfirst.frc100.Team100Robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
@@ -57,8 +56,8 @@ public class Drivetrain extends Subsystem implements PIDOutput {
         rightFollower.follow(rightMaster);
         leftMaster.configContinuousCurrentLimit(Constants.DT_MAX_AMP);
         rightMaster.configContinuousCurrentLimit(Constants.DT_MAX_AMP);
-        leftMaster.setNeutralMode(NeutralMode.Brake);
-        rightMaster.setNeutralMode(NeutralMode.Brake);
+
+
 
         leftMaster.setInverted(Constants.DRIVE_TRAIN_LEFT_MASTER_INVERT);
         leftFollower.setInverted(Constants.DRIVE_TRAIN_LEFT_FOLLOWER_INVERT);

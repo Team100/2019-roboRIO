@@ -24,7 +24,7 @@ public class IntakeArmUp extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    //System.out.println("#################INTAKE ARM UP STARTED");
+    System.out.println("#################INTAKE ARM UP STARTED");
     
     Robot.cargoPickup.cargoIntakePivotDoubleSolenoid.set(Value.kForward);
 

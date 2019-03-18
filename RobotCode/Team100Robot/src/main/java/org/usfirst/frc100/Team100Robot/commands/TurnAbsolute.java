@@ -42,7 +42,7 @@ public class TurnAbsolute extends Command {
     @Override
     protected void execute() {
         if(first){
-            //System.out.println("INIT_ABSOLUTE");
+            System.out.println("INIT_ABSOLUTE");
             targetHeading = normalize(targetAngle);
             Robot.drivetrain.turnPID.setSetpoint(targetHeading);
             Robot.drivetrain.turnPID.enable();
@@ -65,7 +65,7 @@ public class TurnAbsolute extends Command {
     protected boolean isFinished() {
     //SmartDashboard.putBoolean("OnTarget", isOnTarget());
         if(isOnTarget()){
-            //System.out.println("Finished turn");
+            System.out.println("Finished turn");
             first = true;
             return true;
         }

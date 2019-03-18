@@ -97,7 +97,7 @@ public class Elevator extends Subsystem {
      * <br />
      * <strong>This should <em>ONLY</em> be used for elevator testing and SHOULD NEVER BE ON DURING COMPETITION</strong>
      */
-    public static final boolean DISABLE_INTELLIGENT_CONTROL = true;
+    public static final boolean DISABLE_INTELLIGENT_CONTROL = false;
 
     public boolean homed = false;
 
@@ -159,7 +159,6 @@ public class Elevator extends Subsystem {
             elevatorMaster.config_kF(0, Constants.ELEVATOR_KF);
         }
 
-        this.setpointLevel = -1;
 
         elevatorMaster.configClosedloopRamp(0.4);
         //elevatorMaster.configPeakCurrentLimit(20);
@@ -198,14 +197,14 @@ public class Elevator extends Subsystem {
         }
     }
 
-    public static int[] LOWER_SETPOINTS = {-1,0,1,2,9,10};
+    public static int[] LOWER_SETPOINTS = {0,1,2,9,10};
     public static  int[] UPPER_SETPOINTS = {4,5,6,7,8};
 
     public enum SetpointGlobalLocations{
         DOWN,INTERMEDIATE,UP,UNKNOWN
     }
     //Each level is listed cargo then hatch
-    public Setpoint[] setpointsArray = {new Setpoint("BASE", Constants.ELEVATOR_START_HEIGHT_IN_INCHES+3, 0),new Setpoint("CARGO_LEVEL_1",28,1),new Setpoint("HATCH_LEVEL_1",25,2),new Setpoint("CARGO_LEVEL_2",72,3),new Setpoint("HATCH_LEVEL_2",69,4),new Setpoint("CARGO_LEVEL_3",93,5), new Setpoint("HATCH_LEVEL_3",93,6), new Setpoint("CARGO_LEVEL_3_REVERSE [UPDATE VALUE]",83.5,7), new Setpoint("ABOVE_ARM_RAISE_LEVEL [UPDATE VALUE]", 55,8),new Setpoint("Cargo Intake",32, 9), new Setpoint("Hatch Intake",25 /*was 24*/,10)};
+    public Setpoint[] setpointsArray = {new Setpoint("BASE", Constants.ELEVATOR_START_HEIGHT_IN_INCHES+3, 0),new Setpoint("CARGO_LEVEL_1",27.5,1),new Setpoint("HATCH_LEVEL_1",25,2),new Setpoint("CARGO_LEVEL_2",74,3),new Setpoint("HATCH_LEVEL_2",64,4),new Setpoint("CARGO_LEVEL_3",92,5), new Setpoint("HATCH_LEVEL_3",91,6), new Setpoint("CARGO_LEVEL_3_REVERSE [UPDATE VALUE]",83.5,7), new Setpoint("ABOVE_ARM_RAISE_LEVEL [UPDATE VALUE]", 55,8),new Setpoint("Cargo Intake",32, 9), new Setpoint("Hatch Intake",25 /*was 24*/,10)};
 
 
     public double convertEncoderTicksToInch(int ticks){
@@ -217,7 +216,7 @@ public class Elevator extends Subsystem {
      * Set the setpoint for the Talon SRX given the setpoint instance variable
      */
     public void updateSetpoint(){
-        //System.out.println("FINAL SP"+this.setpoint);
+        System.out.println("FINAL SP"+this.setpoint);
         new ElevatorMoveToSetpoint().start();
     }
     /**
@@ -226,7 +225,7 @@ public class Elevator extends Subsystem {
      */
     public void updateSetpoint(int setpoint){
         this.setpoint = setpoint;
-        //System.out.println("SETPOINT: "+this.setpoint);
+        System.out.println("SETPOINT: "+this.setpoint);
         this.updateSetpoint();
 
     }
@@ -246,7 +245,7 @@ public class Elevator extends Subsystem {
         if(this.elevatorMaster.getSelectedSensorPosition() < 0){
             this.elevatorMaster.setSelectedSensorPosition(-this.elevatorMaster.getSelectedSensorPosition()); // Account for random sign change at initalize
         }
-        //System.out.println(this.getDefaultCommandName());
+        System.out.println(this.getDefaultCommandName());
         
     }
 
@@ -266,10 +265,10 @@ public class Elevator extends Subsystem {
         // Put code here to be run every loop
         //updateSD();
         SmartDashboard.putString("ELEV COMMAND", this.getCurrentCommandName());
-        SmartDashboard.putBoolean("Carriage Lower Limit Switch",this.carriageLowerLimitSwitch.get());
-        SmartDashboard.putBoolean("Carriage Upper Limit Switch",this.carriageUpperLimitSwitch.get());
-        SmartDashboard.putBoolean("Intermediate Lower Limit Switch",this.intermediateLowerLimitSwitch.get());
-        SmartDashboard.putBoolean("Intermediate Upper Limit Switch",this.intermediateUpperLimitSwitch.get());
+        //SmartDashboard.putBoolean("Carriage Lower Limit Switch",this.carriageLowerLimitSwitch.get());
+        //SmartDashboard.putBoolean("Carriage Upper Limit Switch",this.carriageUpperLimitSwitch.get());
+        //SmartDashboard.putBoolean("Intermediate Lower Limit Switch",this.intermediateLowerLimitSwitch.get());
+        //SmartDashboard.putBoolean("Intermediate Upper Limit Switch",this.intermediateUpperLimitSwitch.get());
         SmartDashboard.putNumber("ELEVATOR HEIGHT IN INCHES", convertEncoderTicksToInch(this.elevatorMaster.getSelectedSensorPosition()));
         SmartDashboard.putNumber("ELEV ENC",this.elevatorMaster.getSelectedSensorPosition(0));
         this.currentPosition = this.elevatorMaster.getSelectedSensorPosition(0);
@@ -282,7 +281,8 @@ public class Elevator extends Subsystem {
             SmartDashboard.putNumber("ELEV VELOCITY",this.elevatorMaster.getSelectedSensorVelocity());
             SmartDashboard.putNumber("ELEV DESIRED VELOCITY",this.elevatorMaster.getActiveTrajectoryVelocity());
         }
-        
+        SmartDashboard.putBoolean("AT TOP", this.atMaxHeight);
+        SmartDashboard.putBoolean("AT BOTTOM",this.atMinHeight);
         //SmartDashboard.putData("StartHoming", new HomingProcedure());
         if(this.elevatorMaster.getControlMode() == ControlMode.MotionMagic){
             SmartDashboard.putNumber("ELEV_error",elevatorMaster.getClosedLoopError());
@@ -290,20 +290,18 @@ public class Elevator extends Subsystem {
         }
         if(this.intermediateUpperLimitSwitch.get() 
             && this.carriageUpperLimitSwitch.get() 
-            && this.carriageLowerLimitSwitch.get() 
-            && this.intermediateLowerLimitSwitch.get()){ 
+            && !this.carriageLowerLimitSwitch.get() 
+            && !this.intermediateLowerLimitSwitch.get()){
             this.atMinHeight = true;
         }else{this.atMinHeight = false;}
 
         if(!this.intermediateUpperLimitSwitch.get() && 
         !this.carriageUpperLimitSwitch.get() && 
-        !this.carriageLowerLimitSwitch.get() && 
-        this.intermediateLowerLimitSwitch.get()){ //TODO Invert
+        this.carriageLowerLimitSwitch.get() && 
+        this.intermediateLowerLimitSwitch.get()){
             this.atMaxHeight = true;
         }else{this.atMaxHeight = false;}
 
-        SmartDashboard.putBoolean("AT TOP", this.atMaxHeight);
-        SmartDashboard.putBoolean("AT BOTTOM",this.atMinHeight);
         if(this.atMinHeight && elevatorMaster.getMotorOutputPercent() < 0){
             elevatorMaster.set(ControlMode.PercentOutput,0);
         }
@@ -344,7 +342,7 @@ public class Elevator extends Subsystem {
      */
     public static int convertInchesToTicks(double inches){
         if(inches > Constants.ELEVATOR_MAX_HEIGHT_IN_INCHES){
-            //System.out.println("INCHES EXCEED MAX");
+            System.out.println("INCHES EXCEED MAX");
             return (int)(Constants.ELEVATOR_MAX_HEIGHT_IN_INCHES - Constants.ELEVATOR_START_HEIGHT_IN_INCHES) * Constants.ELEVATOR_INCH_TO_ENCODER_CONVERSION_FACTION;
         }
         return (int)((inches- Constants.ELEVATOR_START_HEIGHT_IN_INCHES - Constants.ELEVATOR_CENTERLINE_TOP_BAR_DISTANCE) * Constants.ELEVATOR_INCH_TO_ENCODER_CONVERSION_FACTION );

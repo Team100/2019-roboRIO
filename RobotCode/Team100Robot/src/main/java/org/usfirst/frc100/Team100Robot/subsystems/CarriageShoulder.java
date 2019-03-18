@@ -38,13 +38,13 @@ public class CarriageShoulder extends Subsystem {
 
     public static final int HOMING_SETPOINT = 45/*was 14*/; //Degrees from zero
     public static final int LEVEL_ONE_CARGO_SETPOINT = 35;
-    public static final int LEVEL_TWO_CARGO_SETPOINT = 38;
+    public static final int LEVEL_TWO_CARGO_SETPOINT = 35;
     public static final int LEVEL_SETPOINT = 10;
     public static final int DOWN_SETPOINT = 45;
     public static final int HATCH_SETPOINT = 0;
     public static final int CARGO_LEVEL_3_SETPOINT = 45;
     public static final int HATCH_MID_SETPOINT = -5;
-    public static final int CARGO_INTAKE_SETPOINT = -5;
+    public static final int CARGO_INTAKE_SETPOINT = 0;
     public static final int HATCH_INTAKE_SETPOINT = -5;
     
 
@@ -58,7 +58,7 @@ public class CarriageShoulder extends Subsystem {
             Preferences.getInstance().putDouble("SHOULDER_KD", Constants.SHOULDER_KD);
             Preferences.getInstance().putDouble("SHOULDER_KF", Constants.SHOULDER_KF);
         }
-        //System.out.println("NINETY CHECK: " + degreesToSetpointConverter(90));
+        System.out.println("NINETY CHECK: " + degreesToSetpointConverter(90));
         carriageShoulderMotor = new WPI_TalonSRX(Constants.ELEVATOR_CARRIAGE_SHOULDER_CANID);
         carriageShoulderMotor.configFactoryDefault();
         carriageShoulderMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, Constants.SHOULDER_MASTER_TIMEOUT);
@@ -111,7 +111,7 @@ public class CarriageShoulder extends Subsystem {
 
     @Override
     public void periodic() {
-        ////System.out.println("IN PERIODIC");
+        //System.out.println("IN PERIODIC");
         this.carriageShoulderMotor.config_kP(0,Preferences.getInstance().getDouble("SHOULDER_KP",Constants.SHOULDER_KP));
         this.carriageShoulderMotor.config_kI(0,Preferences.getInstance().getDouble("SHOULDER_KI",Constants.SHOULDER_KI));
         this.carriageShoulderMotor.config_kD(0,Preferences.getInstance().getDouble("SHOULDER_KD",Constants.SHOULDER_KD));
@@ -164,7 +164,7 @@ public class CarriageShoulder extends Subsystem {
     public void updateSetpoint(int setpoint){
         this.currentSetpoint = setpoint;
         this.carriageShoulderMotor.set(ControlMode.MotionMagic,setpoint);
-        ////System.out.println("***************************"+this.carriageShoulderMotor.getControlMode().toString());
+        //System.out.println("***************************"+this.carriageShoulderMotor.getControlMode().toString());
     }
 
     

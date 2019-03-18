@@ -35,8 +35,8 @@ public class ShoulderLevel2Cargo extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //System.out.println("@@@@@@"+Math.abs(Robot.carriageShoulder.currentSetpoint-Robot.carriageShoulder.carriageShoulderMotor.getSelectedSensorPosition()));
-    //System.out.println("SETPOTNT"+Robot.carriageShoulder.currentSetpoint);
+    System.out.println("@@@@@@"+Math.abs(Robot.carriageShoulder.currentSetpoint-Robot.carriageShoulder.carriageShoulderMotor.getSelectedSensorPosition()));
+    System.out.println("SETPOTNT"+Robot.carriageShoulder.currentSetpoint);
     
     if(Math.abs(Robot.carriageShoulder.currentSetpoint-Robot.carriageShoulder.carriageShoulderMotor.getSelectedSensorPosition())<Constants.SHOULDER_BUFFER){
       done = true;
@@ -54,7 +54,7 @@ public class ShoulderLevel2Cargo extends Command {
   
   @Override
   protected void end() {
-    //System.out.println("SHOULDER LV 2 CARGO DONE");
+    System.out.println("SHOULDER LV 2 CARGO DONE");
   }
 
   // Called when another command which requires one or more of the same

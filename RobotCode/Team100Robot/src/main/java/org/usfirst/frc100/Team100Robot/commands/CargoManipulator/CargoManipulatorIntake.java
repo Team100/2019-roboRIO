@@ -59,7 +59,7 @@ public class CargoManipulatorIntake extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //System.out.println("DONE");
+    System.out.println("DONE");
     Robot.manipulator.topRoller.set(ControlMode.PercentOutput,0);
     Robot.manipulator.bottomRoller.set(ControlMode.PercentOutput,0);
     

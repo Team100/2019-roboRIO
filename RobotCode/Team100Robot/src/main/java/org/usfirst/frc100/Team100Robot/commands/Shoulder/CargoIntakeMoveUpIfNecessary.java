@@ -38,24 +38,24 @@ public class CargoIntakeMoveUpIfNecessary extends Command {
       done = false;
       if(Robot.elevator.setpointLevel == 4 /*Was 4*/){
         done = false;
-        //System.out.println("()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()");
+        System.out.println("()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()");
         SmartDashboard.putBoolean("CIMUIN DONE",done);
         Robot.carriageShoulder.updateSetpoint(Robot.carriageShoulder.degreesToSetpointConverter(Robot.carriageShoulder.HOMING_SETPOINT));    
       } else if(Robot.elevator.setpointLevel == 1){
         done = false;
-        //System.out.println("()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()");
+        System.out.println("()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()");
         SmartDashboard.putBoolean("CIMUIN DONE",done);
         Robot.elevator.moveToLevel(0);
         Robot.carriageShoulder.updateSetpoint(Robot.carriageShoulder.degreesToSetpointConverter(Robot.carriageShoulder.HOMING_SETPOINT));    
       }
       else{
         done = true;
-        //System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ NOT NECESSARY TO PIVOT");
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ NOT NECESSARY TO PIVOT");
       }
       first = false;
 
     }
-    //System.out.println("CIMUIN Execute");
+    System.out.println("CIMUIN Execute");
     SmartDashboard.putBoolean("CIMUIN DONE",done);
 
     if(Math.abs(Robot.elevator.elevatorMaster.getSelectedSensorPosition() - Robot.elevator.setpoint) < Constants.ELEVATOR_POSITION_BUFFER && (Math.abs(Robot.carriageShoulder.currentSetpoint-Robot.carriageShoulder.carriageShoulderMotor.getSelectedSensorPosition())<Constants.SHOULDER_BUFFER)){
@@ -63,7 +63,7 @@ public class CargoIntakeMoveUpIfNecessary extends Command {
     }
     if(Math.abs(Robot.carriageShoulder.currentSetpoint-Robot.carriageShoulder.carriageShoulderMotor.getSelectedSensorPosition())<Constants.SHOULDER_BUFFER){
       done = true;
-      //System.out.println("********************************DONE");
+      System.out.println("********************************DONE");
     }
 
   }
@@ -78,7 +78,7 @@ public class CargoIntakeMoveUpIfNecessary extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%CIMUIN DONE");
+    System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%CIMUIN DONE");
     done = false;
     first = false;
   }

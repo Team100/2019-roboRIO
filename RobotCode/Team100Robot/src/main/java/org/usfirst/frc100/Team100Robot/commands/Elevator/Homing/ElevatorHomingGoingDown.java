@@ -32,7 +32,7 @@ public class ElevatorHomingGoingDown extends Command {
     Robot.elevator.hs = homingStates.ELEV_GOING_DOWN;
     Robot.elevator.elevatorMaster.set(ControlMode.PercentOutput, Constants.HOMING_GOING_DOWN_POWER);
     complete = false;
-    //System.out.println("In Init");
+    System.out.println("In Init");
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -40,7 +40,7 @@ public class ElevatorHomingGoingDown extends Command {
   protected void execute() {
     if(Robot.elevator.atMinHeight){
       complete = true;
-      //System.out.println("atMinHeight");
+      System.out.println("atMinHeight");
     }
   }
 
@@ -53,7 +53,7 @@ public class ElevatorHomingGoingDown extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //System.out.println("END");
+    System.out.println("END");
     new ElevatorHomingDown().start();
 
   }

@@ -21,7 +21,7 @@ public class BillRaise extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    //System.out.println("$$$$$$$$$$$$$$$$$$$$$ BILL RAISE");
+    System.out.println("$$$$$$$$$$$$$$$$$$$$$ BILL RAISE");
     Robot.manipulator.bill.set(false);
     Robot.manipulator.hatchIntakeOut = false;
   }

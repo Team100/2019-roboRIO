@@ -35,7 +35,7 @@ public class PneumaticWait extends Command {
   @Override
   protected void execute() {
     SmartDashboard.putNumber("Pneumatic Wait FPGA Timestamp",Timer.getFPGATimestamp());
-    if(Timer.getFPGATimestamp() - starttime >= 0.1){
+    if(Timer.getFPGATimestamp() - starttime >= 0.5){
       done = true;
     }
   }
@@ -49,7 +49,7 @@ public class PneumaticWait extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //System.out.println("@@@@@@@@@@@@@@@@@@@@ Pneumatic done");
+    System.out.println("@@@@@@@@@@@@@@@@@@@@ Pneumatic done");
   }
 
   // Called when another command which requires one or more of the same

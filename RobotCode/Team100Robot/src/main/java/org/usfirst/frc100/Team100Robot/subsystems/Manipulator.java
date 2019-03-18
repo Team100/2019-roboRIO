@@ -69,7 +69,6 @@ public class Manipulator extends Subsystem {
     SmartDashboard.putBoolean("Manipulator Cargo Sensor", this.cargoSensor.get());
     SmartDashboard.putBoolean("Manipulator Hatch Sensor",this.hatchSensor.get());
     SmartDashboard.putString("Maniuplator Holding",this.holding.toString());
-    SmartDashboard.putNumber("Random Manipulator Number", Math.random()*100);
     if(!cargoSensor.get()){
       holding = ScoringObjects.CARGO;
     } else if(hatchSensor.get()){ //Replace to hatch ls triggered

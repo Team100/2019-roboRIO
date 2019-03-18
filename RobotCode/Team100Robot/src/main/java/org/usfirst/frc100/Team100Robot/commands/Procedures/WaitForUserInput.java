@@ -25,14 +25,14 @@ public class WaitForUserInput extends Command {
   @Override
   protected void initialize() {
     done = false;
-    //System.out.println("Wait for user input began");
+    System.out.println("Wait for user input began");
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     if(Robot.oi.getManipulatorControl().getRawButton(9) == true){
-      //System.out.println("WAIT COMPLETE");
+      System.out.println("WAIT COMPLETE");
       done = true;
     }
   }

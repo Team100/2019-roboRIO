@@ -45,11 +45,9 @@ public class HatchScore extends CommandGroup {
     addSequential(new BillLower());
     //addSequential(new WaitForUserInput());
     //addSequential(new PneumaticWait());
-    
-    addSequential(new PneumaticWait());
-
     addSequential(new ExtendPusher());
 
+    addSequential(new PneumaticWait());
     addSequential(new PneumaticWait());
     addSequential(new PneumaticWait());
     //addSequential(new RetractHatchSystem());

@@ -24,7 +24,7 @@ public class ElevatorHomingInit extends Command {
   @Override
   protected void initialize() {
     Robot.elevator.hs = homingStates.INIT;
-    //System.out.println("INIT STARTED");
+    System.out.println("INIT STARTED");
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -42,7 +42,7 @@ public class ElevatorHomingInit extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //System.out.println("INIT FINISHED");
+    System.out.println("INIT FINISHED");
     if(Robot.elevator.atMinHeight){
       new ElevatorHomingDown().start();
 

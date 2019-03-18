@@ -46,7 +46,7 @@ public class ElevatorHomingComplete extends Command {
     Robot.elevator.homed = true;
 
     Robot.elevator.state= States.MOVE_TO_SETPOINT;
-    //System.out.println("HOMING COMPLETE");
+    System.out.println("HOMING COMPLETE");
     Robot.elevator.updateSetpoint(Constants.ELEVATOR_FINISHED_HOMING_POS);
 
   }
