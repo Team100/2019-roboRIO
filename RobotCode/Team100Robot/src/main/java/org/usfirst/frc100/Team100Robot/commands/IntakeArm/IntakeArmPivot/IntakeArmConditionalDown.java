@@ -11,13 +11,14 @@ import org.usfirst.frc100.Team100Robot.Robot;
 import org.usfirst.frc100.Team100Robot.subsystems.CargoPickup.CargoPickupStates;
 import org.usfirst.frc100.Team100Robot.subsystems.Elevator.SetpointGlobalLocations;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class IntakeArmConditionalDown extends Command {
   private boolean done = false;
   private boolean first = true;
-
+  private double startValue = -1;
   public SetpointGlobalLocations fromSetpoint = SetpointGlobalLocations.UNKNOWN;
   public SetpointGlobalLocations toSetpoint = SetpointGlobalLocations.UNKNOWN;
   public int nextSetpoint;
@@ -43,7 +44,7 @@ public class IntakeArmConditionalDown extends Command {
     first = true;
     done = false;
     this.nextSetpoint = Robot.elevator.desiredSetpointLevel;
-
+    startValue = Timer.getFPGATimestamp();
     System.out.println("CONDITIONAL INITIALIZED " + nextSetpoint);
 
   }
@@ -82,6 +83,9 @@ public class IntakeArmConditionalDown extends Command {
       
     }else{
       System.out.println("INTAKE ARM CONDITIONAL EXECUTE");
+    }
+    if(Timer.getFPGATimestamp() - startValue > 2){
+      done = true;
     }
   }
 

@@ -60,7 +60,7 @@ public class Robot extends TimedRobot {
     public static AHRS ahrs;
     public static Manipulator manipulator;
     public static Global global;
-
+    public static RobotAutoSwitch ras;
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -79,6 +79,8 @@ public class Robot extends TimedRobot {
         elevator = new Elevator();
         manipulator = new Manipulator();
         global = new Global();
+        ras = new RobotAutoSwitch();
+
 
         // OI must be constructed after subsystems. If the OI creates Commands
         //(which it very likely will), subsystems are not guaranteed to be
@@ -127,6 +129,8 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         Scheduler.getInstance().run();
+        new HomingProcedure().start();
+
         
 
         autonomousCommand = chooser.getSelected();

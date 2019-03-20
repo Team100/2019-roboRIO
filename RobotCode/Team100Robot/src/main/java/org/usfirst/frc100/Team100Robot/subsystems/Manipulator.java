@@ -26,7 +26,7 @@ public class Manipulator extends Subsystem {
   public WPI_TalonSRX topRoller;
   public WPI_TalonSRX bottomRoller;
   public DigitalInput cargoSensor; // False = triggered
-  public DigitalInput hatchSensor;
+  //public DigitalInput hatchSensor;
   public Solenoid bill;
   public Solenoid hatchPusher;
   public Solenoid cargoScorer;
@@ -50,7 +50,7 @@ public class Manipulator extends Subsystem {
     bottomRoller.configPeakOutputReverse(-1);
     bottomRoller.enableVoltageCompensation(true);
     bottomRoller.configVoltageCompSaturation(11.3,Constants.SHOULDER_MASTER_TIMEOUT);
-    hatchSensor = new DigitalInput(Constants.HATCH_SENSOR_ID);
+    //hatchSensor = new DigitalInput(Constants.SHOULDER_HOME_SWITCH_ID);
     cargoSensor =  new DigitalInput(Constants.CARGO_SENSOR_ID);
     bill = new Solenoid(Constants.PCM_CANID,Constants.HATCH_FLIPPER_PCMID);
     hatchPusher = new Solenoid(Constants.PCM_CANID,Constants.HATCH_SCORER_PCMID);
@@ -67,11 +67,11 @@ public class Manipulator extends Subsystem {
     //SmartDashboard.putData("HatchPushSolenoid",hatchPusher);
     SmartDashboard.putString("Manipulator Current Command",this.getCurrentCommandName());
     SmartDashboard.putBoolean("Manipulator Cargo Sensor", this.cargoSensor.get());
-    SmartDashboard.putBoolean("Manipulator Hatch Sensor",this.hatchSensor.get());
+    //SmartDashboard.putBoolean("Manipulator Hatch Sensor",this.hatchSensor.get());
     SmartDashboard.putString("Maniuplator Holding",this.holding.toString());
     if(!cargoSensor.get()){
       holding = ScoringObjects.CARGO;
-    } else if(hatchSensor.get()){ //Replace to hatch ls triggered
+    } else if(/*hatchSensor.get()*/false){ //Replace to hatch ls triggered
       holding = ScoringObjects.HATCH;
     }else{
       holding = ScoringObjects.NONE;

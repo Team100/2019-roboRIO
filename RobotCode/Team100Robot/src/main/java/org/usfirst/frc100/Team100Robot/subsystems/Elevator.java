@@ -198,7 +198,7 @@ public class Elevator extends Subsystem {
     }
 
     public static int[] LOWER_SETPOINTS = {0,1,2,9,10};
-    public static  int[] UPPER_SETPOINTS = {4,5,6,7,8};
+    public static  int[] UPPER_SETPOINTS = {3,4,5,6,7,8};
 
     public enum SetpointGlobalLocations{
         DOWN,INTERMEDIATE,UP,UNKNOWN

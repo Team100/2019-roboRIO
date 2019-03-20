@@ -37,7 +37,6 @@ public class Constants {
     public static final int CARGO_HATCH_SCORER_BOTTOM_CANID = 4; //Type: CAN ID
 	public static final int CLIMBER_MASTER_CANID = 14; //Type: CAN ID
 	public static final int CLIMBER_FOLLOWER_CANID = 12; //Type: CAN ID
-
     /* 
      * PNEUMATICS SOLENOID PCM IDs
      */
@@ -190,7 +189,7 @@ public class Constants {
 
 
     public static final int CARGO_SENSOR_ID = 9;
-    public static final int HATCH_SENSOR_ID = 8;
+    public static final int SHOULDER_HOME_SWITCH_ID = 8;
 
 
 
