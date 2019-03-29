@@ -45,7 +45,7 @@ public class CarriageShoulder extends Subsystem {
     public static final int HATCH_SETPOINT = 0;
     public static final int CARGO_LEVEL_3_SETPOINT = 45;
     public static final int HATCH_MID_SETPOINT = -5;
-    public static final int CARGO_INTAKE_SETPOINT = 0;
+    public static final int CARGO_INTAKE_SETPOINT = -5;
     public static final int HATCH_INTAKE_SETPOINT = -5;
     
     public DigitalInput homeLimitSwitch;

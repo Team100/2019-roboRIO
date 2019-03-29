@@ -11,6 +11,7 @@ import org.usfirst.frc100.Team100Robot.Robot;
 import org.usfirst.frc100.Team100Robot.subsystems.Elevator.homingStates;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ElevatorHomingInit extends Command {
   public ElevatorHomingInit() {
@@ -23,6 +24,7 @@ public class ElevatorHomingInit extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    SmartDashboard.putBoolean("IS HOMING", true);
     Robot.elevator.hs = homingStates.INIT;
     System.out.println("INIT STARTED");
   }

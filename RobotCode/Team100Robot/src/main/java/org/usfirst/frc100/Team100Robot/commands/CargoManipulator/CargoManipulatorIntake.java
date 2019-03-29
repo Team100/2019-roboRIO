@@ -44,7 +44,7 @@ public class CargoManipulatorIntake extends Command {
       inEndzone = true;
       startTime = Timer.getFPGATimestamp();
     }
-    if(inEndzone && Timer.getFPGATimestamp() - startTime > 0.25){
+    if(inEndzone && Timer.getFPGATimestamp() - startTime > 0.1){
       done = true;
     }
    

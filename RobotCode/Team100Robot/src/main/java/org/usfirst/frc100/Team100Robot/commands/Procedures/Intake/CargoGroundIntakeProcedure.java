@@ -9,6 +9,7 @@ package org.usfirst.frc100.Team100Robot.commands.Procedures.Intake;
 
 import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulatorIntake;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorCargoIntake;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorCargoLevel1;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorDown;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmIntakeElement;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmDown;
@@ -42,9 +43,10 @@ public class CargoGroundIntakeProcedure extends CommandGroup {
     // arm.
     addSequential(new CargoIntakeMoveUpIfNecessary());
     addSequential(new IntakeArmDown());
-
-    addSequential(new ElevatorCargoIntake());
+    addSequential(new ElevatorCargoLevel1());
     addSequential(new ShoulderIntake());
+    addSequential(new ElevatorCargoIntake());
+
 
 
     addParallel(new CargoManipulatorIntake());

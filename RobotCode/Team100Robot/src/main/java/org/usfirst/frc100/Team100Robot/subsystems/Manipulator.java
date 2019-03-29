@@ -43,6 +43,9 @@ public class Manipulator extends Subsystem {
     topRoller.configPeakOutputReverse(-1);
     topRoller.enableVoltageCompensation(true);
     topRoller.configVoltageCompSaturation(11.3, Constants.SHOULDER_MASTER_TIMEOUT);
+    topRoller.configContinuousCurrentLimit(30);
+    topRoller.configPeakCurrentDuration(20);
+    topRoller.configPeakCurrentLimit(30);
     
     bottomRoller = new WPI_TalonSRX(Constants.CARGO_MANIPULATOR_BOTTOM_TALONSRX_ID);
     bottomRoller.overrideLimitSwitchesEnable(false);
@@ -50,6 +53,9 @@ public class Manipulator extends Subsystem {
     bottomRoller.configPeakOutputReverse(-1);
     bottomRoller.enableVoltageCompensation(true);
     bottomRoller.configVoltageCompSaturation(11.3,Constants.SHOULDER_MASTER_TIMEOUT);
+    bottomRoller.configContinuousCurrentLimit(30);
+    bottomRoller.configPeakCurrentDuration(20);
+    bottomRoller.configPeakCurrentLimit(30);
     //hatchSensor = new DigitalInput(Constants.SHOULDER_HOME_SWITCH_ID);
     cargoSensor =  new DigitalInput(Constants.CARGO_SENSOR_ID);
     bill = new Solenoid(Constants.PCM_CANID,Constants.HATCH_FLIPPER_PCMID);
@@ -71,7 +77,7 @@ public class Manipulator extends Subsystem {
     SmartDashboard.putString("Maniuplator Holding",this.holding.toString());
     if(!cargoSensor.get()){
       holding = ScoringObjects.CARGO;
-    } else if(/*hatchSensor.get()*/false){ //Replace to hatch ls triggered
+    } else if(/*hatchSensor.get()*/true){ //Replace to hatch ls triggered
       holding = ScoringObjects.HATCH;
     }else{
       holding = ScoringObjects.NONE;

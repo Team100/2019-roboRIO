@@ -146,7 +146,7 @@ public class Constants {
     public static final double SHOULDER_KD = 0; //Type: PIDF Double
     public static final double SHOULDER_KF = 0; //Type: PIDF Double
     public static final int SHOULDER_TIMEOUT = 10; //Type: Milliseconds
-    public static final int SHOULDER_BUFFER = 350; //Type: Encoder Ticks
+    public static final int SHOULDER_BUFFER = 350; //Type: Encoder Ticks //WAS 350
     public static final int SHOULDER_PID_BUFFER = 50; //Type: Encoder Ticks  **NOTE THAT THIS IS ONLY FOR PID**
 
 
@@ -188,7 +188,7 @@ public class Constants {
     public static final double CARGO_EXPEL_DURATION = 1; //Type: Seconds
 
 
-    public static final int CARGO_SENSOR_ID = 9;
+    public static final int CARGO_SENSOR_ID = 3;
     public static final int SHOULDER_HOME_SWITCH_ID = 8;
 
 
