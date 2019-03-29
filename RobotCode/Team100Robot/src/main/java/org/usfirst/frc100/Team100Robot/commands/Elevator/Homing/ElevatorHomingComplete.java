@@ -13,6 +13,7 @@ import org.usfirst.frc100.Team100Robot.subsystems.Elevator.homingStates;
 import org.usfirst.frc100.Team100Robot.subsystems.Elevator.States;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ElevatorHomingComplete extends Command {
   public ElevatorHomingComplete() {
@@ -44,6 +45,8 @@ public class ElevatorHomingComplete extends Command {
   @Override
   protected void end() {
     Robot.elevator.homed = true;
+    SmartDashboard.putBoolean("IS HOMING", false);
+
 
     Robot.elevator.state= States.MOVE_TO_SETPOINT;
     System.out.println("HOMING COMPLETE");

@@ -37,7 +37,6 @@ public class Constants {
     public static final int CARGO_HATCH_SCORER_BOTTOM_CANID = 4; //Type: CAN ID
 	public static final int CLIMBER_MASTER_CANID = 14; //Type: CAN ID
 	public static final int CLIMBER_FOLLOWER_CANID = 12; //Type: CAN ID
-
     /* 
      * PNEUMATICS SOLENOID PCM IDs
      */
@@ -125,10 +124,10 @@ public class Constants {
     
      public static final double ELEVATOR_VOLTAGE_COMPENSATE = 11.3;
     
-    public static final int CARRIAGE_LOWER_LIMIT_SWITCH_ID = 0;
-    public static final int CARRIAGE_UPPER_LIMIT_SWITCH_ID = 1;
-    public static final int INTERMEDIATE_UPPER_LIMIT_SWITCH_ID = 9;
-    public static final int INTERMEDIATE_LOWER_LIMIT_SWITCH_ID = 3;
+    public static final int CARRIAGE_LOWER_LIMIT_SWITCH_ID = 1;
+    public static final int CARRIAGE_UPPER_LIMIT_SWITCH_ID = 0;
+    public static final int INTERMEDIATE_UPPER_LIMIT_SWITCH_ID = 6; //2019cada
+    public static final int INTERMEDIATE_LOWER_LIMIT_SWITCH_ID = 7;
     
 
     public static final double ELEVATOR_SAFEZONE = 65; //Point at which it is safe to continue movement in other subsystems
@@ -147,7 +146,7 @@ public class Constants {
     public static final double SHOULDER_KD = 0; //Type: PIDF Double
     public static final double SHOULDER_KF = 0; //Type: PIDF Double
     public static final int SHOULDER_TIMEOUT = 10; //Type: Milliseconds
-    public static final int SHOULDER_BUFFER = 350; //Type: Encoder Ticks
+    public static final int SHOULDER_BUFFER = 350; //Type: Encoder Ticks //WAS 350
     public static final int SHOULDER_PID_BUFFER = 50; //Type: Encoder Ticks  **NOTE THAT THIS IS ONLY FOR PID**
 
 
@@ -189,8 +188,8 @@ public class Constants {
     public static final double CARGO_EXPEL_DURATION = 1; //Type: Seconds
 
 
-    public static final int CARGO_SENSOR_ID = 7;
-    public static final int HATCH_SENSOR_ID = 8;
+    public static final int CARGO_SENSOR_ID = 3;
+    public static final int SHOULDER_HOME_SWITCH_ID = 8;
 
 
 

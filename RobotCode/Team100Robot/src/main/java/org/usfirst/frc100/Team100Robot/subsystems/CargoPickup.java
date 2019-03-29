@@ -64,14 +64,26 @@ public class CargoPickup extends Subsystem {
         }else{
             this.cps = CargoPickupStates.IN_MOTION;
         }*/
-        if(this.absEnc.getValue() < 1500){
+        
+        //TODO UNCOMMENT FOR COMP
+        
+        if(this.absEnc.getValue() > 2670){ //2880
             this.cps = CargoPickupStates.DOWN;
         }
-        else if(this.absEnc.getValue() <3400){
+        else if(this.absEnc.getValue() <2100){
             this.cps = CargoPickupStates.UP;
         }else{
             this.cps = CargoPickupStates.IN_MOTION;
         }
+        
+        /*if(this.absEnc.getValue() > 3900){
+            this.cps = CargoPickupStates.DOWN;
+        }else if(this.absEnc.getValue() < 3200){
+            this.cps = CargoPickupStates.UP;
+        }else{
+            this.cps = CargoPickupStates.IN_MOTION;
+        }*/
+        
         SmartDashboard.putString("CPS",this.cps.toString());
     }
     @Override

@@ -47,6 +47,7 @@ import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHoming;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderUp;
 import org.usfirst.frc100.Team100Robot.subsystems.HatchPickup;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.CargoGroundIntake;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.GlobalRehome;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
@@ -118,6 +119,8 @@ public class OI {
     private JoystickButton cargoHPIntake;
     private JoystickButton score;
     private JoystickButton cargoLevel1;
+    public JoystickButton autoSwitch;
+    private JoystickButton forceGlobalRehome;
     private JoystickButton hatchLevel1;
     
     
@@ -178,7 +181,10 @@ public class OI {
         hatchLevel2= new JoystickButton(buttonBoard,7);
         home= new JoystickButton(buttonBoard,8);
         cargoHPIntake= new JoystickButton(buttonBoard,10);
+        forceGlobalRehome = new JoystickButton(buttonBoard, 11);
+        
         score= new JoystickButton(buttonBoard,12);
+        autoSwitch = new JoystickButton(buttonBoard, 14); // On for manual; off for tele
         cargoLevel1= new JoystickButton(buttonBoard,15);
         hatchLevel1= new JoystickButton(buttonBoard,16);
 
@@ -189,7 +195,8 @@ public class OI {
 
         //hatchClamp.whenPressed(new HatchScore());//Temp for testing
         hatchIntake.whenPressed(new ToggleHatchBill());
-
+        
+        forceGlobalRehome.whenPressed(new GlobalRehome());
 
         score.whenPressed(new ScoreProcessing()); 
         //score.whenPressed(new ShoulderZeroPower());

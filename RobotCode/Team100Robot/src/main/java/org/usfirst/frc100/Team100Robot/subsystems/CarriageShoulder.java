@@ -11,6 +11,7 @@
 
 package org.usfirst.frc100.Team100Robot.subsystems;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -44,9 +45,10 @@ public class CarriageShoulder extends Subsystem {
     public static final int HATCH_SETPOINT = 0;
     public static final int CARGO_LEVEL_3_SETPOINT = 45;
     public static final int HATCH_MID_SETPOINT = -5;
-    public static final int CARGO_INTAKE_SETPOINT = 0;
+    public static final int CARGO_INTAKE_SETPOINT = -5;
     public static final int HATCH_INTAKE_SETPOINT = -5;
     
+    public DigitalInput homeLimitSwitch;
 
 
     public WPI_TalonSRX carriageShoulderMotor;
@@ -89,6 +91,8 @@ public class CarriageShoulder extends Subsystem {
         carriageShoulderMotor.config_kI(0, Constants.SHOULDER_KI);
         carriageShoulderMotor.config_kD(0, Constants.SHOULDER_KD);
         carriageShoulderMotor.config_kF(0, Constants.SHOULDER_KF);
+
+        homeLimitSwitch = new DigitalInput(Constants.SHOULDER_HOME_SWITCH_ID);
         resetRelativeEncoder();
 
         //SmartDashboard.putData("Shoulder Level", new ShoulderLevel());
@@ -121,10 +125,14 @@ public class CarriageShoulder extends Subsystem {
 
         SmartDashboard.putNumber("Shoulder Enc",this.carriageShoulderMotor.getSelectedSensorPosition());
         SmartDashboard.putNumber("Shoulder PO", this.carriageShoulderMotor.getMotorOutputPercent());
+        SmartDashboard.putBoolean("Home LS",this.homeLimitSwitch.get());
         //SmartDashboard.putString("Shoulder CM", this.carriageShoulderMotor.getControlMode().toString());
         //SmartDashboard.putNumber("Shoulder Setpoint",this.currentSetpoint);
         //SmartDashboard.putString("Shoulder Control Mode",this.carriageShoulderMotor.getControlMode().toString());
-
+        if(!this.homeLimitSwitch.get()){
+            System.out.println("RESET SHOULDER ENCODER");
+            this.carriageShoulderMotor.setSelectedSensorPosition(0);
+        }
         if(this.carriageShoulderMotor.getControlMode() == ControlMode.MotionMagic){
             SmartDashboard.putNumber("Shoulder Error", this.carriageShoulderMotor.getClosedLoopError());
             SmartDashboard.putNumber("Shoulder Vel",this.carriageShoulderMotor.getSelectedSensorVelocity());
