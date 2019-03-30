@@ -30,7 +30,7 @@ public class Shifter extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-        setDefaultCommand(new LowGear());
+        //setDefaultCommand(new LowGear());
     }
 
     @Override

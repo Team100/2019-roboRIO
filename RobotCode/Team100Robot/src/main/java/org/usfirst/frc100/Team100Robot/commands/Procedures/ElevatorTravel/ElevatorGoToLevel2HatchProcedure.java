@@ -7,7 +7,6 @@
 
 package org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel;
 
-import org.usfirst.frc100.Team100Robot.commands.Debug;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorHatchLevel1;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorHatchLevel2;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorUpdateDesiredEndpoint.ElevatorUpdateDesiredSetpointLevel4;

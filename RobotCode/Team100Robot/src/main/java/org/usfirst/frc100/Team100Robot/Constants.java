@@ -150,23 +150,23 @@ public class Constants {
     public static final int SHOULDER_PID_BUFFER = 50; //Type: Encoder Ticks  **NOTE THAT THIS IS ONLY FOR PID**
 
 
-    public static final int SHOULDER_LEVEL_LOCATION = 100;
-    public static final double SHOULDER_MAX_OUTPUT_FORWARD = 1;
-    public static final double SHOULDER_MAX_OUTPUT_REVERSE = -1;
+    public static final int SHOULDER_LEVEL_LOCATION = 100; //Type: Encoder Ticks
+    public static final double SHOULDER_MAX_OUTPUT_FORWARD = 1; //Type: Percent Output (-1-1)
+    public static final double SHOULDER_MAX_OUTPUT_REVERSE = -1; //Type: Percent Output (-1-1)
 
-    public static final int SHOULDER_MAX_AMP = 30;
-    public static final double SHOULDER_MAX_VOLTAGE_COMPENSATE = 11.3;
+    public static final int SHOULDER_MAX_AMP = 30; //Type: Ampere
+    public static final double SHOULDER_MAX_VOLTAGE_COMPENSATE = 11.3; //Type: Voltage
     /*
      * Cargo Floor Pickup
      */
 
-     public static final int PICKUP_ARM_ENCODER_ID = 0;
+     public static final int PICKUP_ARM_ENCODER_ID = 0; //Type: DIO ID
     /*
      * Hatch Floor Pickup
      */
     public static final double HATCH_PICKUP_INTAKE_SPEED = 0.6; //Type: Percent Output (-1-1)
     public static final double HATCH_PICKUP_TILT_SPEED = 0.2; //Type: Percent Output (-1-1)
-	public static final int HATCH_PICKUP_UPPER_LIMIT_SWITCH_SLOT = 0;
+	public static final int HATCH_PICKUP_UPPER_LIMIT_SWITCH_SLOT = 0; 
 	public static final int HATCH_PICKUP_LOWER_LIMIT_SWITCH_SLOT = 1;
 
     /*

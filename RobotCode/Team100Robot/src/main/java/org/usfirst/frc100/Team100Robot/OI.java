@@ -105,11 +105,8 @@ public class OI {
     private JoystickButton elevatorStageUp;
     private JoystickButton hatchRelease;
     private JoystickButton elevatorStageDown;
-<<<<<<< HEAD
     private JoystickButton smartDriving;
-=======
     private JoystickButton restartHoming;
->>>>>>> 61ecf29dd162d94ddec3d90e0ae216bd998eff6b
 
     // ButtonBoard
 
