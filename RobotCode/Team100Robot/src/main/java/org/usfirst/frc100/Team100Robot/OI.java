@@ -12,6 +12,7 @@
 package org.usfirst.frc100.Team100Robot;
 
 import org.usfirst.frc100.Team100Robot.commands.*;
+import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulatorIntake;
 import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulatorOuttake;
 import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Drive;
 import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Shift.ShiftToHigh;
@@ -47,6 +48,7 @@ import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHoming;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderUp;
 import org.usfirst.frc100.Team100Robot.subsystems.HatchPickup;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.CargoGroundIntake;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.GlobalRehome;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
@@ -103,7 +105,11 @@ public class OI {
     private JoystickButton elevatorStageUp;
     private JoystickButton hatchRelease;
     private JoystickButton elevatorStageDown;
+<<<<<<< HEAD
     private JoystickButton smartDriving;
+=======
+    private JoystickButton restartHoming;
+>>>>>>> 61ecf29dd162d94ddec3d90e0ae216bd998eff6b
 
     // ButtonBoard
 
@@ -118,6 +124,8 @@ public class OI {
     private JoystickButton cargoHPIntake;
     private JoystickButton score;
     private JoystickButton cargoLevel1;
+    public JoystickButton autoSwitch;
+    private JoystickButton forceGlobalRehome;
     private JoystickButton hatchLevel1;
     
     
@@ -145,6 +153,9 @@ public class OI {
         hatchUp = new JoystickButton(leftStick, 4);
  
         hatchDown = new JoystickButton(leftStick, 5);
+
+        restartHoming = new JoystickButton(leftStick, 9);
+        restartHoming.whenPressed(new HomingProcedure());
 
         //Joystick 1 (Right Stick)
         intakeCargo = new JoystickButton(rightStick, 1);
@@ -177,17 +188,22 @@ public class OI {
         hatchLevel2= new JoystickButton(buttonBoard,7);
         home= new JoystickButton(buttonBoard,8);
         cargoHPIntake= new JoystickButton(buttonBoard,10);
+        forceGlobalRehome = new JoystickButton(buttonBoard, 11);
+        
         score= new JoystickButton(buttonBoard,12);
+        autoSwitch = new JoystickButton(buttonBoard, 14); // On for manual; off for tele
         cargoLevel1= new JoystickButton(buttonBoard,15);
         hatchLevel1= new JoystickButton(buttonBoard,16);
 
         //Buttons to Commands
         elevatorStageUp.whenPressed(new ElevatorPageUp());
         elevatorStageDown.whenPressed(new ElevatorPageDown());
-        //intakeCargo.whenPressed(new CargoGroundIntakeProcedure());
+        intakeCargo.whileHeld(new CargoManipulatorIntake());
 
         //hatchClamp.whenPressed(new HatchScore());//Temp for testing
         hatchIntake.whenPressed(new ToggleHatchBill());
+        
+        forceGlobalRehome.whenPressed(new GlobalRehome());
 
         score.whenPressed(new ScoreProcessing()); 
         //score.whenPressed(new ShoulderZeroPower());

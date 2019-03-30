@@ -5,26 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc100.Team100Robot.commands.Procedures.Intake;
+package org.usfirst.frc100.Team100Robot.commands.Procedures;
 
-import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulatorIntake;
-import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorCargoIntake;
-import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorCargoLevel1;
-import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorDown;
-import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmIntakeElement;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.Deepspaceito;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorResetEncoder;
 import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmPivot.IntakeArmDown;
-import org.usfirst.frc100.Team100Robot.commands.Shoulder.CargoIntakeMoveUpIfNecessary;
-import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHatchMid;
-import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHoming;
-import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderIntake;
+import org.usfirst.frc100.Team100Robot.commands.Procedures.Scoring.ShoulderZeroPower;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class CargoGroundIntakeProcedure extends CommandGroup {
+public class GlobalRehome extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public CargoGroundIntakeProcedure() {
+  public GlobalRehome() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -41,15 +35,11 @@ public class CargoGroundIntakeProcedure extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
-    addSequential(new CargoIntakeMoveUpIfNecessary());
     addSequential(new IntakeArmDown());
-    addSequential(new ElevatorCargoLevel1());
-    addSequential(new ShoulderIntake());
-    addSequential(new ElevatorCargoIntake());
-
-
-
-    addParallel(new CargoManipulatorIntake());
-    addSequential(new IntakeArmIntakeElement());
+    addParallel(new ShoulderZeroPower());
+    addSequential(new Deepspaceito());
+    
+    addSequential(new ElevatorResetEncoder());
+    addSequential(new HomingProcedure());
   }
 }

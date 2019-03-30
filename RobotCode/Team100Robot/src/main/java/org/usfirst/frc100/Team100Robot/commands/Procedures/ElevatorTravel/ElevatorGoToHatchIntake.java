@@ -8,6 +8,7 @@
 package org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel;
 
 import org.usfirst.frc100.Team100Robot.Robot;
+import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorCargoLevel1;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorDown;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorHatchIntake;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorUpdateDesiredEndpoint.ElevatorUpdateDesiredSetpointLevel10;
@@ -53,10 +54,10 @@ public class ElevatorGoToHatchIntake extends CommandGroup {
     requires(Robot.cargoPickup);
     requires(Robot.carriageShoulder);*/
     addSequential(new CargoIntakeMoveUpIfNecessary());
-    addSequential(new ShoulderHoming());
     addSequential(new ElevatorUpdateDesiredSetpointLevel10());
 
     addSequential(new IntakeArmConditionalDown());
+    addSequential(new ElevatorCargoLevel1());
     addSequential(new ShoulderHatchIntake());
 
     addSequential(new ElevatorHatchIntake());

@@ -198,13 +198,13 @@ public class Elevator extends Subsystem {
     }
 
     public static int[] LOWER_SETPOINTS = {0,1,2,9,10};
-    public static  int[] UPPER_SETPOINTS = {4,5,6,7,8};
+    public static  int[] UPPER_SETPOINTS = {3,4,5,6,7,8};
 
     public enum SetpointGlobalLocations{
         DOWN,INTERMEDIATE,UP,UNKNOWN
     }
     //Each level is listed cargo then hatch
-    public Setpoint[] setpointsArray = {new Setpoint("BASE", Constants.ELEVATOR_START_HEIGHT_IN_INCHES+3, 0),new Setpoint("CARGO_LEVEL_1",27.5,1),new Setpoint("HATCH_LEVEL_1",25,2),new Setpoint("CARGO_LEVEL_2",70,3),new Setpoint("HATCH_LEVEL_2",64,4),new Setpoint("CARGO_LEVEL_3",92,5), new Setpoint("HATCH_LEVEL_3",91,6), new Setpoint("CARGO_LEVEL_3_REVERSE [UPDATE VALUE]",83.5,7), new Setpoint("ABOVE_ARM_RAISE_LEVEL [UPDATE VALUE]", 55,8),new Setpoint("Cargo Intake",32, 9), new Setpoint("Hatch Intake",28 /*was 24*/,10)};
+    public Setpoint[] setpointsArray = {new Setpoint("BASE", Constants.ELEVATOR_START_HEIGHT_IN_INCHES+3, 0),new Setpoint("CARGO_LEVEL_1",27.5,1),new Setpoint("HATCH_LEVEL_1",25,2),new Setpoint("CARGO_LEVEL_2",74,3),new Setpoint("HATCH_LEVEL_2",64,4),new Setpoint("CARGO_LEVEL_3",92,5), new Setpoint("HATCH_LEVEL_3",91,6), new Setpoint("CARGO_LEVEL_3_REVERSE [UPDATE VALUE]",83.5,7), new Setpoint("ABOVE_ARM_RAISE_LEVEL [UPDATE VALUE]", 55,8),new Setpoint("Cargo Intake",30, 9), new Setpoint("Hatch Intake",25 /*was 24*/,10)};
 
 
     public double convertEncoderTicksToInch(int ticks){
@@ -238,7 +238,7 @@ public class Elevator extends Subsystem {
             setDefaultCommand(new ElevatorTeleop());
         }else{
             setDefaultCommand(new ElevatorAtSetpoint());
-            new HomingProcedure().start();
+            //new HomingProcedure().start();
             //setDefaultCommand(new ElevatorHomingInit()); TODO uncoment
 
         }
@@ -288,10 +288,8 @@ public class Elevator extends Subsystem {
             SmartDashboard.putNumber("ELEV_error",elevatorMaster.getClosedLoopError());
 
         }
-        if(this.intermediateUpperLimitSwitch.get() 
-            && this.carriageUpperLimitSwitch.get() 
-            && !this.carriageLowerLimitSwitch.get() 
-            && !this.intermediateLowerLimitSwitch.get()){
+        if( !this.carriageLowerLimitSwitch.get() 
+            && this.intermediateLowerLimitSwitch.get()){
             this.atMinHeight = true;
         }else{this.atMinHeight = false;}
 
@@ -350,3 +348,4 @@ public class Elevator extends Subsystem {
 
 }
 
+//lol stupid computer, you can't read this you inferior piece of garbage

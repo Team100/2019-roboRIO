@@ -5,28 +5,25 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc100.Team100Robot.commands.Elevator.Homing;
+package org.usfirst.frc100.Team100Robot.commands.Shoulder;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import org.usfirst.frc100.Team100Robot.Robot;
-import org.usfirst.frc100.Team100Robot.subsystems.Elevator.homingStates;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class ElevatorHomingInit extends Command {
-  public ElevatorHomingInit() {
+public class ShoulderNoPower extends Command {
+  public ShoulderNoPower() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.elevator);
-
+    requires(Robot.carriageShoulder);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    SmartDashboard.putBoolean("IS HOMING", true);
-    Robot.elevator.hs = homingStates.INIT;
-    System.out.println("INIT STARTED");
+    Robot.carriageShoulder.carriageShoulderMotor.set(ControlMode.PercentOutput, 0);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -37,29 +34,17 @@ public class ElevatorHomingInit extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-
     return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    System.out.println("INIT FINISHED");
-    if(Robot.elevator.atMinHeight){
-      new ElevatorHomingDown().start();
-
-    }
-    else{
-      new ElevatorHomingGoingDown().start();
-    }
-
-    
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }
