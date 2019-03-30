@@ -192,17 +192,17 @@ public class Constants {
     public static final int SHOULDER_HOME_SWITCH_ID = 8;
 
 
-
-    public static int SHOULDER_ENCODER_TICKS_TRAVELLED = 6800;
-    public static int SHOULDER_DOWN_ENCODER_VALUE = 0;//1027;
-    public static int SHOULDER_STARTING_ENCODER_VALUE = 1311;
+    //Note: changed these from `public static` to `public static final`
+    public static final int SHOULDER_ENCODER_TICKS_TRAVELLED = 6800;
+    public static final int SHOULDER_DOWN_ENCODER_VALUE = 0;//1027;
+    public static final int SHOULDER_STARTING_ENCODER_VALUE = 1311;
     
-    public static int SHOULDER_UPPER_ENCODER_VALUE = SHOULDER_DOWN_ENCODER_VALUE + SHOULDER_ENCODER_TICKS_TRAVELLED;
-    public static int SHOULDER_DOWN_DEGREES = -36;
-    public static int SHOULDER_UP_DEGREES = 156;
-    public static int SHOULDER_DISTANCE_TRAVELLED = Constants.SHOULDER_UP_DEGREES-Constants.SHOULDER_DOWN_DEGREES;
+    public static final int SHOULDER_UPPER_ENCODER_VALUE = SHOULDER_DOWN_ENCODER_VALUE + SHOULDER_ENCODER_TICKS_TRAVELLED;
+    public static final int SHOULDER_DOWN_DEGREES = -36;
+    public static final int SHOULDER_UP_DEGREES = 156;
+    public static final int SHOULDER_DISTANCE_TRAVELLED = Constants.SHOULDER_UP_DEGREES-Constants.SHOULDER_DOWN_DEGREES;
 
-    public static int SHOULDER_ENCODER_TICKS_PER_DEGREE_TRAVEL = ((Constants.SHOULDER_UPPER_ENCODER_VALUE)-Constants.SHOULDER_DOWN_ENCODER_VALUE)/Constants.SHOULDER_DISTANCE_TRAVELLED;
+    public static final int SHOULDER_ENCODER_TICKS_PER_DEGREE_TRAVEL = ((Constants.SHOULDER_UPPER_ENCODER_VALUE)-Constants.SHOULDER_DOWN_ENCODER_VALUE)/Constants.SHOULDER_DISTANCE_TRAVELLED;
 
 
     // Encoder ticks for the bottom and top
