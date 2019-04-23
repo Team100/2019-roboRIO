@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.SerialPort;
  */
 public class Constants {
 
+
+    public static final boolean EXPO_MODE = true;
+    public static final double EXPO_MODE_REDUCER = 0.3;
 	/*
      * CAN/PWM IDs
      */
