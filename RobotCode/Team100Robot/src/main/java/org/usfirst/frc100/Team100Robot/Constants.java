@@ -16,8 +16,11 @@ import edu.wpi.first.wpilibj.SerialPort;
  */
 public class Constants {
 
+
+    public static final boolean EXPO_MODE = false;
+    public static final double EXPO_MODE_REDUCER = 0.5;
 	/*
-     * CAN/PWM IDs
+     * CA+N/PWM IDs
      */
     public static SerialPort.Port NAVX_COMM_PORT = SerialPort.Port.kUSB; //Type: ENUM
     public static final int PCM_CANID = 0; //Type: CAN ID
