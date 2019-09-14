@@ -204,7 +204,7 @@ public class Elevator extends Subsystem {
         DOWN,INTERMEDIATE,UP,UNKNOWN
     }
     //Each level is listed cargo then hatch
-    public Setpoint[] setpointsArray = {new Setpoint("BASE", Constants.ELEVATOR_START_HEIGHT_IN_INCHES+3, 0),new Setpoint("CARGO_LEVEL_1",27.5,1),new Setpoint("HATCH_LEVEL_1",25,2),new Setpoint("CARGO_LEVEL_2",74,3),new Setpoint("HATCH_LEVEL_2",64,4),new Setpoint("CARGO_LEVEL_3",92,5), new Setpoint("HATCH_LEVEL_3",91,6), new Setpoint("CARGO_LEVEL_3_REVERSE [UPDATE VALUE]",83.5,7), new Setpoint("ABOVE_ARM_RAISE_LEVEL [UPDATE VALUE]", 55,8),new Setpoint("Cargo Intake",30, 9), new Setpoint("Hatch Intake",25 /*was 24*/,10)};
+    public Setpoint[] setpointsArray = {new Setpoint("BASE", Constants.ELEVATOR_START_HEIGHT_IN_INCHES+3, 0),new Setpoint("CARGO_LEVEL_1",29,1),new Setpoint("HATCH_LEVEL_1",25,2),new Setpoint("CARGO_LEVEL_2",75,3),new Setpoint("HATCH_LEVEL_2",64,4),new Setpoint("CARGO_LEVEL_3",94,5), new Setpoint("HATCH_LEVEL_3",91,6), new Setpoint("CARGO_LEVEL_3_REVERSE [UPDATE VALUE]",83.5,7), new Setpoint("ABOVE_ARM_RAISE_LEVEL [UPDATE VALUE]", 55,8),new Setpoint("Cargo Intake",30, 9), new Setpoint("Hatch Intake",25 /*was 24*/,10)};
 
 
     public double convertEncoderTicksToInch(int ticks){
