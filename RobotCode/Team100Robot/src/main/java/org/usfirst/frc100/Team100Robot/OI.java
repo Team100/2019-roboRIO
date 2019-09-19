@@ -15,6 +15,7 @@ import org.usfirst.frc100.Team100Robot.commands.*;
 import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulatorIntake;
 import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulatorOuttake;
 import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Drive;
+import org.usfirst.frc100.Team100Robot.commands.Drivetrain.FollowPath;
 import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Shift.ShiftToHigh;
 import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Shift.ShiftToLow;
 import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorPageDown;
@@ -207,7 +208,7 @@ public class OI {
         cargoLevel1.whenPressed(new ElevatorGoToLevel1CargoProcedure());
         cargoLevel2.whenPressed(new ElevatorGoToLevel2CargoProcedure());
         cargoLevel3.whenPressed(new ElevatorGoToLevel3CargoProcedure());
-        cargoLevel3Reverse.whenPressed(new ElevatorCargoReverseLevel3());
+        cargoLevel3Reverse.whenPressed(new FollowPath());
         hatchLevel1.whenPressed(new ElevatorGoToLevel1HatchProcedure());
         hatchLevel2.whenPressed(new ElevatorGoToLevel2HatchProcedure());
         hatchLevel3.whenPressed(new ElevatorGoToLevel3HatchProcedure());
