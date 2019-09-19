@@ -52,6 +52,8 @@ public class CargoPickup extends Subsystem {
         
         cargoIntakePivotDoubleSolenoid = new DoubleSolenoid(Constants.CARGO_GROUND_PICKUP_PCMID, Constants.CARGO_GROUND_PICKUP2_PCMID);
         absEnc= new AnalogInput(Constants.PICKUP_ARM_ENCODER_ID);
+
+        
         
     }
 
