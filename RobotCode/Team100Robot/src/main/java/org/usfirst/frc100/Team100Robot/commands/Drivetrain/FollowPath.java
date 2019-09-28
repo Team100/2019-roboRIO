@@ -22,12 +22,22 @@ public class FollowPath extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    System.out.println("FollowPath Initialized");
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-      
+    if (Robot.targets.size() == 0) {
+      return;
+    }
+    double[] petersArray = getRelativeWheelSpeed(); //peter wuz here
+    Robot.drivetrain.turn(petersArray[0], petersArray[1]);
+  }
+
+  private double[] getRelativeWheelSpeed() {
+
+    return new double[]{};
   }
 
   // Make this return true when this Command no longer needs to run execute()

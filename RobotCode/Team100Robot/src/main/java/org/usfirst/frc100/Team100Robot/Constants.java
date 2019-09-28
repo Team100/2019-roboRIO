@@ -214,5 +214,9 @@ public class Constants {
 
     public static final int ELEVATOR_CENTERLINE_TOP_BAR_DISTANCE = 3;
 
-
+    // Drive Train
+    public static final double TRACK_WIDTH = 10; // inches
+    public static final double TRACK_DIAMETER = 10; // inches
+    public static final double TRACK_RADIUS = TRACK_DIAMETER / 2.0;
+    public static final double TRACK_SCRUB_FACTOR = 1.0;  // Tune me!
 }

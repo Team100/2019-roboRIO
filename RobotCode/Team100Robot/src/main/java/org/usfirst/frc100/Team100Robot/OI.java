@@ -111,7 +111,7 @@ public class OI {
 
     private JoystickButton hatchIntake;
     private JoystickButton cargoIntake;
-    private JoystickButton cargoLevel3Reverse;
+    private JoystickButton pathFind;
     private JoystickButton hatchLevel3;
     private JoystickButton cargoLevel2;
     private JoystickButton cargoLevel3;
@@ -175,7 +175,10 @@ public class OI {
         //Button Board
         hatchIntake= new JoystickButton(buttonBoard,1);
         cargoIntake= new JoystickButton(buttonBoard,2);
-        cargoLevel3Reverse= new JoystickButton(buttonBoard,3);
+
+        pathFind= new JoystickButton(buttonBoard,3);
+        pathFind.whenPressed(new FollowPath());
+        
         hatchLevel3= new JoystickButton(buttonBoard,4);
         cargoLevel2= new JoystickButton(buttonBoard,5);
         cargoLevel3= new JoystickButton(buttonBoard,6);
@@ -208,7 +211,6 @@ public class OI {
         cargoLevel1.whenPressed(new ElevatorGoToLevel1CargoProcedure());
         cargoLevel2.whenPressed(new ElevatorGoToLevel2CargoProcedure());
         cargoLevel3.whenPressed(new ElevatorGoToLevel3CargoProcedure());
-        cargoLevel3Reverse.whenPressed(new FollowPath());
         hatchLevel1.whenPressed(new ElevatorGoToLevel1HatchProcedure());
         hatchLevel2.whenPressed(new ElevatorGoToLevel2HatchProcedure());
         hatchLevel3.whenPressed(new ElevatorGoToLevel3HatchProcedure());

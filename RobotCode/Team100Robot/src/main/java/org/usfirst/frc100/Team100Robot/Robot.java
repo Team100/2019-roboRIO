@@ -9,7 +9,6 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc100.Team100Robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -33,6 +32,10 @@ import org.usfirst.frc100.Team100Robot.commands.Procedures.RetractHatchSystem;
 import org.usfirst.frc100.Team100Robot.commands.Procedures.Scoring.HatchScore;
 import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHoming;
 import org.usfirst.frc100.Team100Robot.subsystems.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
 import com.kauailabs.navx.frc.*;
 
 /**
@@ -43,6 +46,9 @@ import com.kauailabs.navx.frc.*;
  * the project.
  */
 public class Robot extends TimedRobot {
+    public volatile static ArrayList<VisionTarget> targets = new ArrayList<>();
+    public static final String HOST = "0.0.0.0";
+    public static final int PORT = 5810;
 
     Command autonomousCommand;
     SendableChooser<Command> chooser = new SendableChooser<>();
@@ -80,6 +86,15 @@ public class Robot extends TimedRobot {
         manipulator = new Manipulator();
         global = new Global();
         ras = new RobotAutoSwitch();
+
+        try {
+            Thread server = new Thread(new Server(HOST, PORT));
+            server.start();
+
+            System.out.format("Running on %s:%s...\n", HOST, PORT);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
 
 
         // OI must be constructed after subsystems. If the OI creates Commands
