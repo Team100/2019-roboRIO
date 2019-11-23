@@ -8,10 +8,6 @@
 package org.usfirst.frc100.Team100Robot.subsystems;
 
 import org.usfirst.frc100.Team100Robot.Robot;
-import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorTeleop;
-import org.usfirst.frc100.Team100Robot.commands.Procedures.GlobalRehome;
-import org.usfirst.frc100.Team100Robot.commands.Procedures.HomingProcedure;
-import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderTeleop;
 
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -49,13 +45,10 @@ public class RobotAutoSwitch extends Subsystem {
       rts = RobotTeleopState.MANUAL;
     
       Scheduler.getInstance().removeAll();
-      new ElevatorTeleop().start();
-      new ShoulderTeleop().start();
     }else if(Robot.oi.autoSwitch.get() && rts != RobotTeleopState.SMART && rts != RobotTeleopState.DEFAULT){
       System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&& STARTING SMART");
       rts = RobotTeleopState.SMART;
       Scheduler.getInstance().removeAll();
-      new GlobalRehome().start();
 
     }
 

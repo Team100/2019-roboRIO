@@ -12,42 +12,9 @@
 package org.usfirst.frc100.Team100Robot;
 
 import org.usfirst.frc100.Team100Robot.commands.*;
-import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulatorIntake;
-import org.usfirst.frc100.Team100Robot.commands.CargoManipulator.CargoManipulatorOuttake;
 import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Drive;
 import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Shift.ShiftToHigh;
 import org.usfirst.frc100.Team100Robot.commands.Drivetrain.Shift.ShiftToLow;
-import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorPageDown;
-import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorPageUp;
-import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorCargoLevel1;
-import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorCargoLevel2;
-import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorCargoLevel3;
-import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorCargoReverseLevel3;
-import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorHatchLevel1;
-import org.usfirst.frc100.Team100Robot.commands.Elevator.ElevatorLocations.ElevatorHatchLevel3;
-import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillLower;
-import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Bill.BillRaise;
-import org.usfirst.frc100.Team100Robot.commands.HatchManipulator.Pusher.*;
-import org.usfirst.frc100.Team100Robot.commands.IntakeArm.IntakeArmIntakeElement;
-import org.usfirst.frc100.Team100Robot.commands.Procedures.HomingProcedure;
-import org.usfirst.frc100.Team100Robot.commands.Procedures.HumanPlayerHatchIntake;
-import org.usfirst.frc100.Team100Robot.commands.Procedures.ToggleHatchBill;
-import org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel.ElevatorGoToHomeProcedure;
-import org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel.ElevatorGoToLevel1CargoProcedure;
-import org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel.ElevatorGoToLevel1HatchProcedure;
-import org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel.ElevatorGoToLevel2CargoProcedure;
-import org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel.ElevatorGoToLevel2HatchProcedure;
-import org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel.ElevatorGoToLevel3CargoProcedure;
-import org.usfirst.frc100.Team100Robot.commands.Procedures.ElevatorTravel.ElevatorGoToLevel3HatchProcedure;
-import org.usfirst.frc100.Team100Robot.commands.Procedures.Intake.CargoGroundIntakeProcedure;
-import org.usfirst.frc100.Team100Robot.commands.Procedures.Intake.HatchIntakeProcedure;
-import org.usfirst.frc100.Team100Robot.commands.Procedures.Scoring.*;
-import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderDown;
-import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderHoming;
-import org.usfirst.frc100.Team100Robot.commands.Shoulder.ShoulderUp;
-import org.usfirst.frc100.Team100Robot.subsystems.HatchPickup;
-import org.usfirst.frc100.Team100Robot.commands.Procedures.CargoGroundIntake;
-import org.usfirst.frc100.Team100Robot.commands.Procedures.GlobalRehome;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
@@ -139,18 +106,11 @@ public class OI {
         /* 
          * Joystick 0 (Left Stick)
          */
-        spitCargo = new JoystickButton(leftStick, 1);
-        spitCargo.whileHeld(new CargoManipulatorOuttake());
 
         shiftLow = new JoystickButton(leftStick, 3);
         shiftLow.whenPressed(new ShiftToLow());
         
-        hatchUp = new JoystickButton(leftStick, 4);
- 
-        hatchDown = new JoystickButton(leftStick, 5);
 
-        restartHoming = new JoystickButton(leftStick, 9);
-        restartHoming.whenPressed(new HomingProcedure());
 
         //Joystick 1 (Right Stick)
         intakeCargo = new JoystickButton(rightStick, 1);
@@ -158,11 +118,6 @@ public class OI {
         shiftHigh = new JoystickButton(rightStick, 3);
         shiftHigh.whenPressed(new ShiftToHigh());
         
-        cargoUp = new JoystickButton(rightStick, 4);
-        cargoUp.whenPressed(new ShoulderUp());
- 
-        cargoDown = new JoystickButton(rightStick, 5);
-        cargoDown.whenPressed(new ShoulderDown());
 
         //Joystick 2 (Manipulator Control)
         climberToggle = new JoystickButton(manipulatorControl, 4);
@@ -189,28 +144,10 @@ public class OI {
         hatchLevel1= new JoystickButton(buttonBoard,16);
 
         //Buttons to Commands
-        elevatorStageUp.whenPressed(new ElevatorPageUp());
-        elevatorStageDown.whenPressed(new ElevatorPageDown());
-        intakeCargo.whileHeld(new CargoManipulatorIntake());
+
 
         //hatchClamp.whenPressed(new HatchScore());//Temp for testing
-        hatchIntake.whenPressed(new ToggleHatchBill());
-        
-        forceGlobalRehome.whenPressed(new GlobalRehome());
 
-        score.whenPressed(new ScoreProcessing()); 
-        //score.whenPressed(new ShoulderZeroPower());
-        //home.whenPressed(new ShoulderHoming());
-        home.whenPressed(new ElevatorGoToHomeProcedure());
-        //home.whenPressed(new HomingProcedure());
-        cargoIntake.whenPressed(new CargoGroundIntakeProcedure());
-        cargoLevel1.whenPressed(new ElevatorGoToLevel1CargoProcedure());
-        cargoLevel2.whenPressed(new ElevatorGoToLevel2CargoProcedure());
-        cargoLevel3.whenPressed(new ElevatorGoToLevel3CargoProcedure());
-        cargoLevel3Reverse.whenPressed(new ElevatorCargoReverseLevel3());
-        hatchLevel1.whenPressed(new ElevatorGoToLevel1HatchProcedure());
-        hatchLevel2.whenPressed(new ElevatorGoToLevel2HatchProcedure());
-        hatchLevel3.whenPressed(new ElevatorGoToLevel3HatchProcedure());
 
       
 
