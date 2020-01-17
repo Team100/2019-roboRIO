@@ -17,12 +17,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class GetHeading extends Subsystem{
   AHRS ahrs;
 
-    double compass = 0;
-    double fused = 0;
-  public GetHeading() {
-    compass = ahrs.getCompassHeading();
-    fused = ahrs.getFusedHeading();
-  }
+  
+
+
+  // public GetHeading(double compass, double fused) {
+  //   compass = ahrs.getCompassHeading();
+  //   fused = ahrs.getFusedHeading();
+  //   return fused;
+  // }
 
 
   @Override
@@ -30,8 +32,11 @@ public class GetHeading extends Subsystem{
 
   }
 
+  ahrs = new AHRS(I2C.Port.kOnboard);
+  ahrs.enableLogging(true);
+
     @Override
     protected void initDefaultCommand() {
-
-    }
+      
+}
 }

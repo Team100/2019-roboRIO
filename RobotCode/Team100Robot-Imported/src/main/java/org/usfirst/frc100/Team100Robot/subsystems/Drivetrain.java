@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.usfirst.frc100.Team100Robot.subsystems.GetHeading;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -113,6 +114,7 @@ public class Drivetrain extends Subsystem implements PIDOutput {
         //System.out.println("DRIVE");
         if(!Constants.EXPO_MODE){
             differentialDrive.arcadeDrive(-Robot.oi.getLeftStick().getY(), Robot.oi.getRightStick().getX());
+            //getHeading();
         }
         else{
             //System.out.println("IN EXPO MODE");
